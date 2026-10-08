@@ -238,9 +238,14 @@ nav a:hover{color:var(--accent)}
 .il-cath{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linecap:round}
 .il-stone{fill:var(--muted)}
 .il-polyp{fill:var(--accent)}
+.il-band{fill:var(--accent)}
+.il-arrow{fill:none;stroke:var(--muted);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.il-num{fill:var(--accent-ink);font-family:var(--body);font-size:11px;font-weight:700}
+.il-cap{fill:var(--ink);font-family:var(--body);font-size:10.5px;font-weight:600}
+
 .il-balloon{fill:var(--accent);fill-opacity:.3;stroke:var(--accent);stroke-width:2}
 .proc-fig{margin:-24px -24px 4px;aspect-ratio:4/3;max-width:calc(100% + 48px);background:var(--surface);border-bottom:1px solid var(--line);border-radius:18px 18px 0 0;display:grid;place-items:center;overflow:hidden}
-.proc-fig svg{width:100%;height:100%;display:block}
+.proc-fig > svg{width:100%;height:100%;display:block}
 .proc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 .proc{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:24px;display:grid;gap:14px;align-content:start;min-width:0}
 .proc-abbr{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
@@ -600,6 +605,20 @@ const IL=(()=>{
     <g clip-path="url(#cv${id})">${inner}</g>
     <circle cx="100" cy="75" r="62" fill="none" stroke="#2A3634" stroke-width="2"/>`,alt);
 
+
+  /* three-step side views: lining at the bottom, open space above */
+  const wall=()=>`<path d="M0 150 H100 V176 H0Z" class="il-fill"/>`;
+  const ulcer=()=>`<path d="M0 150 H28 C34 150 36 168 50 168 C64 168 66 150 72 150 H100 V176 H0Z" class="il-fill"/><path d="M30 152 C36 165 64 165 70 152" fill="none" stroke="#E8DCC8" stroke-width="3"/>`;
+  const scopeDown=y=>`<path d="M50 -6 V${y}" stroke="var(--ink)" stroke-width="15" stroke-linecap="round"/><circle cx="50" cy="${y}" r="3.5" class="il-tip"/>`;
+  const scopeSide=y=>`<path d="M-6 ${y} H40" stroke="var(--ink)" stroke-width="15" stroke-linecap="round"/><circle cx="42" cy="${y}" r="3.5" class="il-tip"/>`;
+  const clip=(x,y,r=0)=>`<g transform="translate(${x} ${y}) rotate(${r})"><rect x="-4" y="-16" width="8" height="18" rx="2" fill="#8E9CA1"/><path d="M-3 2 L-6 22 M3 2 L6 22" stroke="#8E9CA1" stroke-width="3.2" stroke-linecap="round"/></g>`;
+  const steps=(panels,alt)=>svg("0 0 312 234",panels.map(([art,cap],i)=>`
+    <g transform="translate(${i*106} 0)">
+      <svg x="0" y="26" width="100" height="150" viewBox="0 34 100 150" overflow="hidden">${art}</svg>
+      <circle cx="12" cy="14" r="10" fill="var(--accent)"/><text x="12" y="18" text-anchor="middle" class="il-num">${i+1}</text>
+      <text x="50" y="198" text-anchor="middle" class="il-cap">${cap[0]}</text>
+      <text x="50" y="212" text-anchor="middle" class="il-cap">${cap[1]}</text>
+    </g>${i<2?`<path d="M${i*106+101} 108 l4 5 l-4 5" class="il-arrow"/>`:""}`).join(""),alt);
   return {
     gastro:svg("20 -8 210 182",
       tube(P.eso,14,true)+fill(P.liver)+tube(P.duo,12)+fill(P.stomach,true)+
@@ -629,25 +648,21 @@ const IL=(()=>{
       scope("M100 -8 C76 6 46 30 42 62 C40 84 44 98 50 104")+tip(50,104)+
       label(176,18,"Liver","middle")+label(124,84,"Bile duct")+label(120,58,"Stone")+label(150,142,"Pancreas","middle")+label(14,146,"Intestine"),
       "ERCP: from the intestine, a thin tube enters the bile duct to remove a stone"),
-    evl:scopeView([20,110,200,290].map((a,i)=>{
-        const r=a*Math.PI/180, cx=100+36*Math.cos(r), cy=75+36*Math.sin(r);
-        return i===0
-          ? `<g transform="translate(${cx} ${cy})"><ellipse rx="26" ry="10" transform="rotate(${a})" fill="#7487C2"/><circle r="12" fill="#6577B5"/><circle r="12.5" fill="none" stroke="#3FB8A6" stroke-width="4.5"/><ellipse cx="-3" cy="-4" rx="4" ry="2.5" fill="#B8C3E6"/></g>`
-          : `<g transform="translate(${cx} ${cy}) rotate(${a})"><ellipse rx="28" ry="9" fill="#7C8EC4"/><ellipse cx="4" cy="-3" rx="14" ry="2.2" fill="#B8C3E6" opacity=".8"/></g>`;
-      }).join(""),
-      "View through the scope: enlarged veins in the food pipe, with a band placed on one","a"),
-    emr:scopeView(`
-      <ellipse cx="120" cy="96" rx="34" ry="22" fill="#D98274"/>
-      <ellipse cx="120" cy="92" rx="30" ry="18" fill="#E39788"/>
-      <path d="M90 96 C88 70 152 66 152 92 C152 116 92 120 90 96Z" fill="none" stroke="#F4F6F5" stroke-width="3"/>
-      <path d="M100 150 L114 116" stroke="#C9D6D3" stroke-width="5" stroke-linecap="round"/>`,
-      "View through the scope: a raised polyp with a wire loop around it for removal","b"),
-    stop:scopeView(`
-      <ellipse cx="96" cy="82" rx="30" ry="20" fill="#F0E2D2" stroke="#C98F82" stroke-width="2"/>
-      <circle cx="96" cy="82" r="4.5" fill="#A3221A"/>
-      <g transform="translate(88 80) rotate(-35)"><rect x="-3.5" y="-46" width="7" height="30" rx="2.5" fill="#AEB9BD"/><path d="M-3 -16 L-7 4 M3 -16 L7 4" stroke="#DDE4E6" stroke-width="3" stroke-linecap="round"/></g>
-      <g transform="translate(104 82) rotate(20)"><rect x="-3.5" y="-46" width="7" height="30" rx="2.5" fill="#AEB9BD"/><path d="M-3 -16 L-7 4 M3 -16 L7 4" stroke="#DDE4E6" stroke-width="3" stroke-linecap="round"/></g>`,
-      "View through the scope: a bleeding point in an ulcer closed with small clips","c"),
+    evl:steps([
+      [wall()+`<path d="M14 150 C32 150 34 112 50 112 C66 112 68 150 86 150Z" fill="#5B6FB5"/><path d="M38 124 C44 116 56 116 62 124" fill="none" stroke="#AEB9E4" stroke-width="3" stroke-linecap="round"/>`,["Swollen vein","in the food pipe"]],
+      [wall()+scopeDown(84)+`<path d="M34 150 C40 150 40 104 50 100 C60 104 60 150 66 150Z" fill="#5B6FB5"/><rect x="36" y="84" width="28" height="56" rx="4" fill="var(--surface)" fill-opacity=".35" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="3 2"/><rect x="38" y="134" width="24" height="7" rx="3.5" class="il-band"/>`,["Vein sucked in,","band put on"]],
+      [wall()+`<circle cx="50" cy="132" r="13" fill="#5B6FB5" fill-opacity=".55"/><rect x="40" y="141" width="20" height="7" rx="3.5" class="il-band"/>`,["Vein shrinks and","falls off in days"]]
+    ],"Variceal banding in three steps: a swollen vein, a band placed on it, and the vein shrinking away"),
+    emr:steps([
+      [wall()+`<path d="M24 150 C28 124 72 124 76 150Z" fill="#D9806F"/><path d="M36 134 C44 128 56 128 64 134" fill="none" stroke="#EDB0A4" stroke-width="3" stroke-linecap="round"/>`,["Growth (polyp)","on bowel lining"]],
+      [wall()+scopeSide(70)+`<path d="M20 150 C22 116 78 116 80 150Z" fill="#B9D6EE"/><path d="M28 124 C32 102 68 102 72 124 C62 130 38 130 28 124Z" fill="#D9806F"/><path d="M44 70 C40 90 24 116 26 124 C30 134 70 134 74 124 C76 116 58 96 52 78" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>`,["Lifted, then","caught in a loop"]],
+      [wall()+`<path d="M34 150 C40 144 60 144 66 150" fill="none" stroke="var(--organ-line)" stroke-width="3"/><path d="M34 84 C38 66 62 66 66 84 C56 90 44 90 34 84Z" fill="#D9806F"/><path d="M50 118 V96 m-6 7 l6 -7 l6 7" class="il-arrow"/>`,["Removed and","sent for testing"]]
+    ],"Polyp removal in three steps: a growth on the bowel lining, lifted and caught in a wire loop, then removed"),
+    stop:steps([
+      [ulcer()+`<circle cx="50" cy="160" r="5" fill="#B3261E"/><path d="M50 150 c-5 -8 -5 -12 0 -18 c5 6 5 10 0 18Z M38 136 c-4 -6 -4 -9 0 -13 c4 4 4 7 0 13Z M62 128 c-4 -6 -4 -9 0 -13 c4 4 4 7 0 13Z" fill="#C0392B"/>`,["Ulcer with a","bleeding vessel"]],
+      [ulcer()+scopeDown(96)+`<circle cx="50" cy="160" r="5" fill="#B3261E"/><path d="M50 96 V122" stroke="var(--muted)" stroke-width="2"/>`+clip(50,122),["Tiny clip","seals the vessel"]],
+      [ulcer()+clip(44,128,-14)+clip(58,128,14)+`<path d="M70 108 l6 7 l12 -16" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`,["Bleeding stops,","clip falls off later"]]
+    ],"Bleeding control in three steps: a bleeding ulcer, a clip placed on the vessel, and the bleeding stopped"),
     peg:svg("0 0 200 150",`
       <rect x="-5" y="22" width="210" height="22" class="il-fill"/>
       <path d="M-5 68 H205 V160 H-5Z" class="il-fill on"/>
