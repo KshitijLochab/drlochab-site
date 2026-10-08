@@ -8,6 +8,7 @@ Website of Dr. Kshitij Lochab, Consultant Gastroenterologist, Gurugram.
 - `ibs.json`: the IBS Corner tips, same format and date rule as `tips.json`. Categories: Food, Habits, Mind, Know.
 - `dr-lochab.jpg`, `logo-mark.*`, `favicon.png`, `apple-touch-icon.png`, `og-image.jpg`: images
 - `hi/`: the Hindi version of the site. `hi/tips.json` and `hi/ibs.json` hold the Hindi translations of the tips, with the same dates as the English files.
+- `conditions/`, `procedures/`, `answers/` (and the same under `hi/`): one page per condition, procedure and common question, generated from the home page content. Edit them through Claude so the English, Hindi and home page stay in sync.
 - `CNAME`: tells GitHub Pages to serve the site at drlochab.com
 - `robots.txt`, `sitemap.xml`: help Google find the site
 

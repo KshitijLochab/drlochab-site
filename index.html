@@ -268,6 +268,19 @@ nav a:hover{color:var(--accent)}
 .proc dd{margin:0}
 @media (max-width:400px){.proc-grid{grid-template-columns:1fr}.proc dl{grid-template-columns:1fr;gap:2px}.proc dd{margin-bottom:8px}}
 
+/* links to full pages */
+.more{display:inline-block;margin-top:4px;font-weight:600;text-decoration:none}
+.more:hover{text-decoration:underline}
+.guides{margin-top:36px;display:grid;gap:12px}
+.guides h3{font-size:1.1rem}
+.guides div{display:flex;flex-wrap:wrap;gap:8px}
+.guides a{font-size:.9rem;font-weight:500;text-decoration:none;color:var(--ink);padding:7px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.guides a:hover{border-color:var(--accent);color:var(--accent)}
+.answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:14px}
+.answers a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 22px;border-radius:16px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--ink);font-family:var(--display);font-size:1.15rem;line-height:1.3}
+.answers a span{color:var(--accent);font-family:var(--body);flex:none}
+.answers a:hover{border-color:var(--accent)}
+
 /* myths */
 .myths{display:grid;gap:0;border-top:1px solid var(--line)}
 .myth{display:grid;grid-template-columns:1fr 1.4fr;gap:24px;padding-block:22px;border-bottom:1px solid var(--line)}
@@ -487,6 +500,7 @@ footer .wrap{display:grid;gap:10px}
           <div class="cond-list" id="condList"></div>
         </div>
       </div>
+      <div class="guides"><h3>Detailed guides to each condition</h3><div><a href="/conditions/acidity-reflux-gerd/">Acidity and GERD treatment</a><a href="/conditions/h-pylori-gastritis-ulcer/">H. pylori, gastritis and ulcer treatment</a><a href="/conditions/swallowing-difficulty/">Swallowing difficulty treatment</a><a href="/conditions/fatty-liver/">Fatty liver treatment</a><a href="/conditions/hepatitis-b-c/">Hepatitis B and C treatment</a><a href="/conditions/jaundice/">Jaundice treatment</a><a href="/conditions/cirrhosis/">Liver cirrhosis treatment</a><a href="/conditions/gallstones/">Gallstone and bile duct stone treatment</a><a href="/conditions/pancreatitis/">Pancreatitis treatment</a><a href="/conditions/pancreatic-cysts/">Pancreatic cyst evaluation</a><a href="/conditions/ibs-irritable-bowel-syndrome/">IBS treatment</a><a href="/conditions/ulcerative-colitis-crohns-disease/">Ulcerative colitis and Crohn&#x27;s disease treatment</a><a href="/conditions/constipation/">Constipation treatment</a><a href="/conditions/colon-polyps-colon-cancer/">Colon polyp removal and colon cancer screening</a></div></div>
     </div>
   </section>
 
@@ -498,6 +512,7 @@ footer .wrap{display:grid;gap:10px}
         <p class="lede">Most procedures use a thin, flexible tube with a camera. There are no cuts, and most people go home the same day. The simple drawings show where the scope goes and what it does.</p>
       </div>
       <div class="proc-grid" id="procGrid"></div>
+      <div class="guides"><h3>Detailed guides to each procedure</h3><div><a href="/procedures/upper-gi-endoscopy/">Upper GI endoscopy</a><a href="/procedures/colonoscopy/">Colonoscopy</a><a href="/procedures/endoscopic-ultrasound-eus/">Endoscopic ultrasound (EUS)</a><a href="/procedures/ercp/">ERCP</a><a href="/procedures/variceal-banding-evl/">Variceal banding (EVL)</a><a href="/procedures/polyp-removal-emr/">Polyp removal and EMR</a><a href="/procedures/gi-bleeding-treatment/">GI bleeding treatment</a><a href="/procedures/peg-feeding-tube/">PEG feeding tube</a><a href="/procedures/dilatation-stenting/">Dilatation and stenting</a></div></div>
     </div>
   </section>
 
@@ -508,6 +523,16 @@ footer .wrap{display:grid;gap:10px}
         <h2>Things patients often believe</h2>
       </div>
       <div class="myths" id="mythList"></div>
+    </div>
+  </section>
+
+  <section id="answers">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Your questions answered</p>
+        <h2>Answers to questions patients often ask</h2>
+      </div>
+      <div class="answers"><a href="/answers/is-fatty-liver-reversible/">Is fatty liver reversible?<span aria-hidden="true">→</span></a><a href="/answers/is-endoscopy-painful/">Is endoscopy painful?<span aria-hidden="true">→</span></a><a href="/answers/diet-in-jaundice/">What should I eat in jaundice?<span aria-hidden="true">→</span></a><a href="/answers/is-ibs-dangerous/">Is IBS dangerous?<span aria-hidden="true">→</span></a><a href="/answers/blood-in-stool-always-piles/">Is blood in the stool always piles?<span aria-hidden="true">→</span></a><a href="/answers/when-is-acidity-serious/">When is acidity a sign of something serious?<span aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
@@ -764,6 +789,11 @@ const MYTHS=[
 ];
 
 const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const PFX="/";
+const MORE="Read the full guide →";
+const MOREP="Read more about this procedure →";
+const CSLUG=["acidity-reflux-gerd","h-pylori-gastritis-ulcer","swallowing-difficulty","fatty-liver","hepatitis-b-c","jaundice","cirrhosis","gallstones","pancreatitis","pancreatic-cysts","ibs-irritable-bowel-syndrome","ulcerative-colitis-crohns-disease","constipation","colon-polyps-colon-cancer"];
+const PSLUG=["upper-gi-endoscopy","colonoscopy","endoscopic-ultrasound-eus","ercp","variceal-banding-evl","polyp-removal-emr","gi-bleeding-treatment","peg-feeding-tube","dilatation-stenting"];
 
 /* symptoms */
 const symList=document.getElementById("symList"), symResult=document.getElementById("symResult");
@@ -802,12 +832,12 @@ function setFilter(k){
   document.querySelectorAll(".organ").forEach(g=>{const on=g.dataset.organ===k;g.classList.toggle("on",on);g.setAttribute("aria-pressed",String(on));});
   const items=CONDITIONS.filter(c=>k==="all"||c.o===k);
   count.textContent=k==="all"?`Showing all ${items.length} conditions`:`${items.length} condition${items.length>1?"s":""} affecting the ${ORGANS[k].toLowerCase()}`;
-  list.innerHTML=items.map(c=>`<details class="cond"><summary><span class="cond-tag">${esc(ORGANS[c.o])}</span><span class="cond-name">${esc(c.n)}</span><span class="cond-short">${esc(c.s)}</span><span class="cond-plus" aria-hidden="true">+</span></summary><div class="cond-body"><p>${esc(c.w)}</p><div><h4>Common signs</h4><ul>${c.g.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div><div><h4>What helps</h4><p>${esc(c.h)}</p></div><div class="cond-see"><h4>When to see a gastroenterologist</h4><p>${esc(c.e)}</p></div></div></details>`).join("");
+  list.innerHTML=items.map(c=>`<details class="cond"><summary><span class="cond-tag">${esc(ORGANS[c.o])}</span><span class="cond-name">${esc(c.n)}</span><span class="cond-short">${esc(c.s)}</span><span class="cond-plus" aria-hidden="true">+</span></summary><div class="cond-body"><p>${esc(c.w)}</p><div><h4>Common signs</h4><ul>${c.g.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div><div><h4>What helps</h4><p>${esc(c.h)}</p></div><div class="cond-see"><h4>When to see a gastroenterologist</h4><p>${esc(c.e)}</p></div><a class="more" href="${PFX}conditions/${CSLUG[CONDITIONS.indexOf(c)]}/">${MORE}</a></div></details>`).join("");
 }
 setFilter("all");
 
 /* procedures */
-document.getElementById("procGrid").innerHTML=PROCS.map(p=>`<article class="proc"><div class="proc-fig">${IL[p.il]}</div><span class="proc-abbr">${esc(p.a)}</span><h3>${esc(p.n)}</h3><p>${esc(p.w)}</p><dl>${p.d.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl></article>`).join("");
+document.getElementById("procGrid").innerHTML=PROCS.map(p=>`<article class="proc"><div class="proc-fig">${IL[p.il]}</div><span class="proc-abbr">${esc(p.a)}</span><h3>${esc(p.n)}</h3><p>${esc(p.w)}</p><dl>${p.d.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl><a class="more" href="${PFX}procedures/${PSLUG[PROCS.indexOf(p)]}/">${MOREP}</a></article>`).join("");
 
 /* myths */
 document.getElementById("mythList").innerHTML=MYTHS.map(([m,f])=>`<div class="myth"><p><span class="lbl">Myth</span>${esc(m)}</p><p><span class="lbl">Fact</span>${esc(f)}</p></div>`).join("");
