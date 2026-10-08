@@ -223,6 +223,24 @@ nav a:hover{color:var(--accent)}
 }
 
 /* procedures */
+.il-fill{fill:var(--organ);stroke:var(--organ-line);stroke-width:1.5}
+.il-fill.on{fill:var(--accent-soft);stroke:var(--accent)}
+.il-edge{fill:none;stroke:var(--organ-line);stroke-linecap:round;stroke-linejoin:round}
+.il-edge.on{stroke:var(--accent)}
+.il-tube{fill:none;stroke:var(--organ);stroke-linecap:round;stroke-linejoin:round}
+.il-tube.on{stroke:var(--accent-soft)}
+.il-coil{fill:none;stroke:var(--organ-line);stroke-width:3;stroke-linecap:round}
+.il-scope{fill:none;stroke:var(--ink);stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}
+.il-tip{fill:var(--warm);stroke:var(--surface);stroke-width:1.5}
+.il-lbl{fill:var(--muted);font-family:var(--body);font-size:9px;font-weight:600}
+.il-fan{fill:var(--accent);fill-opacity:.22;stroke:var(--accent);stroke-width:1.2}
+.il-duct{fill:none;stroke:var(--warm);stroke-width:4;stroke-linecap:round}
+.il-cath{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linecap:round}
+.il-stone{fill:var(--muted)}
+.il-polyp{fill:var(--accent)}
+.il-balloon{fill:var(--accent);fill-opacity:.3;stroke:var(--accent);stroke-width:2}
+.proc-fig{margin:-24px -24px 4px;aspect-ratio:4/3;max-width:calc(100% + 48px);background:var(--surface);border-bottom:1px solid var(--line);border-radius:18px 18px 0 0;display:grid;place-items:center;overflow:hidden}
+.proc-fig svg{width:100%;height:100%;display:block}
 .proc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 .proc{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:24px;display:grid;gap:14px;align-content:start;min-width:0}
 .proc-abbr{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
@@ -447,7 +465,7 @@ footer .wrap{display:grid;gap:10px}
       <div class="sec-head">
         <p class="eyebrow">Tests &amp; procedures</p>
         <h2>What to expect from an endoscopy</h2>
-        <p class="lede">Most procedures use a thin, flexible tube with a camera. There are no cuts, and most people go home the same day. Here is what each one involves.</p>
+        <p class="lede">Most procedures use a thin, flexible tube with a camera. There are no cuts, and most people go home the same day. The simple drawings show where the scope goes and what it does.</p>
       </div>
       <div class="proc-grid" id="procGrid"></div>
     </div>
@@ -552,6 +570,103 @@ footer .wrap{display:grid;gap:10px}
 </footer>
 
 <script>
+/* Original procedure illustrations for drlochab.com. All drawn from scratch. */
+const IL=(()=>{
+  const P={
+    eso:"M126 -10 V100",
+    stomach:"M124 98 C150 84 192 98 190 128 C188 154 160 168 138 160 C120 154 122 134 138 130 C152 126 152 112 128 112 Z",
+    liver:"M28 114 C32 90 96 80 130 96 C126 104 120 108 114 112 C112 134 92 152 62 154 C40 156 24 138 28 114 Z",
+    gb:"M98 156 m-9 0 a9 14 -20 1 0 18 0 a9 14 -20 1 0 -18 0",
+    pancreas:"M96 182 C118 172 160 172 196 166 C203 172 197 181 182 184 C158 188 124 191 104 192 C94 192 90 186 96 182 Z",
+    duo:"M126 150 C104 152 80 162 78 180 C76 198 98 204 122 198",
+    colon:"M62 286 V216 Q62 204 74 204 H176 Q190 204 190 218 V262 Q190 282 164 286 Q140 290 132 302",
+    si:"M84 236 h88 v40 h-88 Z",
+    coil:"M100 246 H156 Q164 246 164 254 Q164 261 156 261 H102 Q94 261 94 268",
+    bile:"M112 118 C110 144 98 164 84 182"
+  };
+  const tube=(d,w,on)=>`<path d="${d}" class="il-edge${on?" on":""}" stroke-width="${w+4}"/><path d="${d}" class="il-tube${on?" on":""}" stroke-width="${w}"/>`;
+  const fill=(d,on)=>`<path d="${d}" class="il-fill${on?" on":""}"/>`;
+  const label=(x,y,t,a)=>`<text x="${x}" y="${y}" class="il-lbl"${a?` text-anchor="${a}"`:""}>${t}</text>`;
+  const tip=(x,y)=>`<circle cx="${x}" cy="${y}" r="4.2" class="il-tip"/>`;
+  const scope=d=>`<path d="${d}" class="il-scope"/>`;
+  const svg=(vb,body,alt)=>`<svg viewBox="${vb}" role="img" aria-label="${alt}">${body}</svg>`;
+
+  // the view through the scope: a circle of lining with a dark lumen
+  const scopeView=(inner,alt,id)=>svg("0 0 200 150",`
+    <defs><radialGradient id="lum${id}" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#3B1A17"/><stop offset=".35" stop-color="#8E4A40"/><stop offset="1" stop-color="#E9AFA2"/></radialGradient>
+    <clipPath id="cv${id}"><circle cx="100" cy="75" r="62"/></clipPath></defs>
+    <rect x="18" y="3" width="164" height="144" rx="20" fill="#101A19"/>
+    <circle cx="100" cy="75" r="62" fill="url(#lum${id})"/>
+    <g clip-path="url(#cv${id})">${inner}</g>
+    <circle cx="100" cy="75" r="62" fill="none" stroke="#2A3634" stroke-width="2"/>`,alt);
+
+  return {
+    gastro:svg("20 -8 210 182",
+      tube(P.eso,14,true)+fill(P.liver)+tube(P.duo,12)+fill(P.stomach,true)+
+      scope("M126 -10 V100 C126 112 156 104 170 116 C184 128 180 148 162 154 C150 158 140 156 132 152")+tip(132,152)+
+      label(196,104,"Stomach")+label(134,40,"Food pipe")+label(56,128,"Liver","middle"),
+      "Upper GI endoscopy: the scope passes through the food pipe into the stomach"),
+    colono:svg("20 186 210 140",
+      fill(P.si)+`<path d="${P.coil}" class="il-coil"/>`+tube(P.colon,16,true)+
+      scope("M131 318 L132 302 Q140 290 164 286 Q190 282 190 262 V218 Q190 204 176 204 H74 Q62 204 62 216 V272")+tip(62,272)+
+      `<circle cx="120" cy="204" r="4.5" class="il-polyp"/>`+
+      label(120,195,"Polyp","middle")+label(228,318,"Large bowel","end"),
+      "Colonoscopy: the scope travels around the large bowel, where polyps can be removed"),
+    eus:svg("44 62 204 154",
+      tube(P.eso,14)+tube(P.duo,12)+fill(P.pancreas,true)+fill(P.stomach)+
+      `<path d="M150 150 L124 192 A48 48 0 0 0 178 192 Z" class="il-fan"/>`+
+      scope("M126 60 V100 C126 112 156 104 170 116 C184 128 176 148 150 150")+tip(150,150)+
+      label(200,186,"Pancreas")+label(194,104,"Stomach")+label(151,212,"Ultrasound view","middle"),
+      "Endoscopic ultrasound: an ultrasound probe on the scope looks through the stomach wall at the pancreas"),
+    ercp:svg("0 0 200 150",
+      `<path d="M60 -10 C90 -14 196 -12 210 6 C204 24 160 30 126 30 C96 30 74 20 60 -10Z" class="il-fill"/>`+
+      `<path d="M58 112 C70 98 120 102 204 94 V118 C150 122 96 130 72 128 C60 126 52 120 58 112Z" class="il-fill"/>`+
+      `<path d="M66 108 C110 110 150 104 204 104" fill="none" stroke="var(--organ-line)" stroke-width="2"/>`+
+      tube("M106 20 C64 22 36 46 36 82 C36 124 66 140 126 136",22)+
+      `<path d="M116 26 C116 56 94 92 66 106" class="il-duct"/>`+
+      `<path d="M52 104 H64 C84 96 98 80 104 66" class="il-cath"/>`+
+      `<circle cx="110" cy="56" r="5" class="il-stone"/>`+
+      scope("M100 -8 C76 6 46 30 42 62 C40 84 44 98 50 104")+tip(50,104)+
+      label(176,18,"Liver","middle")+label(124,84,"Bile duct")+label(120,58,"Stone")+label(150,142,"Pancreas","middle")+label(14,146,"Intestine"),
+      "ERCP: from the intestine, a thin tube enters the bile duct to remove a stone"),
+    evl:scopeView([20,110,200,290].map((a,i)=>{
+        const r=a*Math.PI/180, cx=100+36*Math.cos(r), cy=75+36*Math.sin(r);
+        return i===0
+          ? `<g transform="translate(${cx} ${cy})"><ellipse rx="26" ry="10" transform="rotate(${a})" fill="#7487C2"/><circle r="12" fill="#6577B5"/><circle r="12.5" fill="none" stroke="#3FB8A6" stroke-width="4.5"/><ellipse cx="-3" cy="-4" rx="4" ry="2.5" fill="#B8C3E6"/></g>`
+          : `<g transform="translate(${cx} ${cy}) rotate(${a})"><ellipse rx="28" ry="9" fill="#7C8EC4"/><ellipse cx="4" cy="-3" rx="14" ry="2.2" fill="#B8C3E6" opacity=".8"/></g>`;
+      }).join(""),
+      "View through the scope: enlarged veins in the food pipe, with a band placed on one","a"),
+    emr:scopeView(`
+      <ellipse cx="120" cy="96" rx="34" ry="22" fill="#D98274"/>
+      <ellipse cx="120" cy="92" rx="30" ry="18" fill="#E39788"/>
+      <path d="M90 96 C88 70 152 66 152 92 C152 116 92 120 90 96Z" fill="none" stroke="#F4F6F5" stroke-width="3"/>
+      <path d="M100 150 L114 116" stroke="#C9D6D3" stroke-width="5" stroke-linecap="round"/>`,
+      "View through the scope: a raised polyp with a wire loop around it for removal","b"),
+    stop:scopeView(`
+      <ellipse cx="96" cy="82" rx="30" ry="20" fill="#F0E2D2" stroke="#C98F82" stroke-width="2"/>
+      <circle cx="96" cy="82" r="4.5" fill="#A3221A"/>
+      <g transform="translate(88 80) rotate(-35)"><rect x="-3.5" y="-46" width="7" height="30" rx="2.5" fill="#AEB9BD"/><path d="M-3 -16 L-7 4 M3 -16 L7 4" stroke="#DDE4E6" stroke-width="3" stroke-linecap="round"/></g>
+      <g transform="translate(104 82) rotate(20)"><rect x="-3.5" y="-46" width="7" height="30" rx="2.5" fill="#AEB9BD"/><path d="M-3 -16 L-7 4 M3 -16 L7 4" stroke="#DDE4E6" stroke-width="3" stroke-linecap="round"/></g>`,
+      "View through the scope: a bleeding point in an ulcer closed with small clips","c"),
+    peg:svg("0 0 200 150",`
+      <rect x="-5" y="22" width="210" height="22" class="il-fill"/>
+      <path d="M-5 68 H205 V160 H-5Z" class="il-fill on"/>
+      <path d="M100 -6 V96" stroke="var(--accent)" stroke-width="8" stroke-linecap="round"/>
+      <rect x="80" y="14" width="40" height="7" rx="3.5" fill="var(--accent)"/>
+      <ellipse cx="100" cy="98" rx="22" ry="6" fill="var(--accent)"/>
+      ${label(130,37,"Belly wall")}${label(130,90,"Stomach")}${label(92,58,"Feeding tube","end")}`,
+      "Feeding tube: a soft tube passes through the belly wall into the stomach, held by a small disc on each side"),
+    dil:svg("0 0 200 150",`
+      <path d="M8 30 H62 C82 30 86 58 100 58 C114 58 118 30 138 30 H192 V12 H8Z" class="il-fill"/>
+      <path d="M8 120 H62 C82 120 86 92 100 92 C114 92 118 120 138 120 H192 V138 H8Z" class="il-fill"/>
+      <ellipse cx="100" cy="75" rx="42" ry="20" class="il-balloon"/>
+      ${scope("M-4 75 H52")}${tip(52,75)}
+      <path d="M52 75 H58" class="il-cath"/>
+      ${label(100,148,"Balloon gently widens the narrowing","middle")}`,
+      "Dilatation: a balloon passed through the scope widens a narrowed section")
+  };
+})();
+
 const ORGANS={stomach:"Food pipe & stomach",liver:"Liver",gb:"Gallbladder & bile ducts",pancreas:"Pancreas",intestine:"Intestines"};
 const TIERS={routine:["pill-routine","Routine visit"],soon:["pill-soon","See a doctor within a few days"],urgent:["pill-urgent","Get care today"]};
 
@@ -588,13 +703,15 @@ const CONDITIONS=[
 ];
 
 const PROCS=[
- {n:"Upper GI endoscopy",a:"Gastroscopy",w:"A thin camera passed through the mouth to look at the food pipe, stomach and first part of the intestine. Small painless biopsies can be taken.",d:[["Preparation","Nothing to eat for 6 to 8 hours"],["Time","About 10 to 15 minutes"],["Comfort","Throat spray, or light sedation if you prefer"],["After","Home the same day"]]},
- {n:"Colonoscopy",a:"Large bowel",w:"A camera passed through the back passage to examine the large bowel. Polyps found during the test are removed at the same time.",d:[["Preparation","Light diet and a bowel-cleansing drink the day before"],["Time","About 20 to 45 minutes"],["Comfort","Usually done under sedation"],["After","Home the same day; do not drive that day"]]},
- {n:"Endoscopic ultrasound",a:"EUS",w:"An ultrasound probe on the tip of the scope gives close images of the pancreas, bile duct and nearby glands from inside the body. It can take needle samples and drain fluid collections.",d:[["Preparation","Nothing to eat for 6 to 8 hours"],["Time","About 20 to 60 minutes"],["Comfort","Done under sedation"],["Used for","Pancreas cysts and lumps, bile duct problems, staging of growths"]]},
- {n:"ERCP",a:"Bile & pancreatic ducts",w:"A scope with X-ray guidance reaches the opening of the bile and pancreatic ducts to remove stones and place stents through blockages, without any cuts.",d:[["Preparation","Fasting and blood tests beforehand"],["Time","About 30 to 60 minutes"],["Comfort","Done under deep sedation or anaesthesia"],["After","Often a short hospital stay"]]},
- {n:"Variceal banding",a:"EVL",w:"In liver disease, veins in the food pipe can swell and bleed. Small rubber bands placed through the scope shrink them and prevent or stop bleeding.",d:[["Preparation","Nothing to eat for 6 to 8 hours"],["Time","About 15 to 20 minutes"],["Comfort","Done under sedation"],["After","Soft diet for a day or two; repeat sessions may be needed"]]},
- {n:"Polyp removal & EMR",a:"Endoscopic resection",w:"Polyps and some early flat growths are lifted and removed through the scope, often avoiding surgery altogether.",d:[["Preparation","As for endoscopy or colonoscopy"],["Time","Depends on size and number"],["Comfort","Done under sedation"],["After","Results of the removed tissue in about a week"]]},
- {n:"Dilatation & stenting",a:"Opening narrowings",w:"Narrowed sections of the food pipe, bile duct or bowel are widened with a balloon, or kept open with a stent placed through the scope.",d:[["Preparation","Nothing to eat for 6 to 8 hours"],["Time","About 20 to 45 minutes"],["Comfort","Done under sedation"],["After","Diet is advanced step by step"]]}
+ {il:"gastro",n:"Upper GI endoscopy",a:"Gastroscopy",w:"A thin camera passed through the mouth to look at the food pipe, stomach and first part of the intestine. Small painless biopsies can be taken.",d:[["Preparation","Nothing to eat for 6 to 8 hours"],["Time","About 10 to 15 minutes"],["Comfort","Throat spray, or light sedation if you prefer"],["After","Home the same day"]]},
+ {il:"colono",n:"Colonoscopy",a:"Large bowel",w:"A camera passed through the back passage to examine the large bowel. Polyps found during the test are removed at the same time.",d:[["Preparation","Light diet and a bowel-cleansing drink the day before"],["Time","About 20 to 45 minutes"],["Comfort","Usually done under sedation"],["After","Home the same day; do not drive that day"]]},
+ {il:"eus",n:"Endoscopic ultrasound",a:"EUS",w:"An ultrasound probe on the tip of the scope gives close images of the pancreas, bile duct and nearby glands from inside the body. It can take needle samples and drain fluid collections.",d:[["Preparation","Nothing to eat for 6 to 8 hours"],["Time","About 20 to 60 minutes"],["Comfort","Done under sedation"],["Used for","Pancreas cysts and lumps, bile duct problems, staging of growths"]]},
+ {il:"ercp",n:"ERCP",a:"Bile & pancreatic ducts",w:"A scope with X-ray guidance reaches the opening of the bile and pancreatic ducts to remove stones and place stents through blockages, without any cuts.",d:[["Preparation","Fasting and blood tests beforehand"],["Time","About 30 to 60 minutes"],["Comfort","Done under deep sedation or anaesthesia"],["After","Often a short hospital stay"]]},
+ {il:"evl",n:"Variceal banding",a:"EVL",w:"In liver disease, veins in the food pipe can swell and bleed. Small rubber bands placed through the scope shrink them and prevent or stop bleeding.",d:[["Preparation","Nothing to eat for 6 to 8 hours"],["Time","About 15 to 20 minutes"],["Comfort","Done under sedation"],["After","Soft diet for a day or two; repeat sessions may be needed"]]},
+ {il:"emr",n:"Polyp removal & EMR",a:"Endoscopic resection",w:"Polyps and some early flat growths are lifted and removed through the scope, often avoiding surgery altogether.",d:[["Preparation","As for endoscopy or colonoscopy"],["Time","Depends on size and number"],["Comfort","Done under sedation"],["After","Results of the removed tissue in about a week"]]},
+ {il:"stop",n:"Bleeding control",a:"Haemostasis",w:"Bleeding from an ulcer or a damaged blood vessel is stopped through the scope with tiny clips, injections or heat, usually without surgery.",d:[["Preparation","Done urgently when needed, after fluids or blood to stabilise"],["Time","About 20 to 45 minutes"],["Comfort","Done under sedation"],["After","A short hospital stay for observation"]]},
+ {il:"peg",n:"Feeding tube (PEG)",a:"Nutrition support",w:"For people who cannot swallow safely, a soft feeding tube is placed through the skin into the stomach with the help of the scope.",d:[["Preparation","Nothing to eat for 6 to 8 hours"],["Time","About 20 to 30 minutes"],["Comfort","Done under sedation"],["After","Feeds usually start within a day"]]},
+ {il:"dil",n:"Dilatation & stenting",a:"Opening narrowings",w:"Narrowed sections of the food pipe, bile duct or bowel are widened with a balloon, or kept open with a stent placed through the scope.",d:[["Preparation","Nothing to eat for 6 to 8 hours"],["Time","About 20 to 45 minutes"],["Comfort","Done under sedation"],["After","Diet is advanced step by step"]]}
 ];
 
 const MYTHS=[
@@ -649,7 +766,7 @@ function setFilter(k){
 setFilter("all");
 
 /* procedures */
-document.getElementById("procGrid").innerHTML=PROCS.map(p=>`<article class="proc"><span class="proc-abbr">${esc(p.a)}</span><h3>${esc(p.n)}</h3><p>${esc(p.w)}</p><dl>${p.d.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl></article>`).join("");
+document.getElementById("procGrid").innerHTML=PROCS.map(p=>`<article class="proc"><div class="proc-fig">${IL[p.il]}</div><span class="proc-abbr">${esc(p.a)}</span><h3>${esc(p.n)}</h3><p>${esc(p.w)}</p><dl>${p.d.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl></article>`).join("");
 
 /* myths */
 document.getElementById("mythList").innerHTML=MYTHS.map(([m,f])=>`<div class="myth"><p><span class="lbl">Myth</span>${esc(m)}</p><p><span class="lbl">Fact</span>${esc(f)}</p></div>`).join("");
