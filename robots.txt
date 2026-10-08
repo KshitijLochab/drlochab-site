@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://drlochab.com/sitemap.xml
