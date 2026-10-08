@@ -187,6 +187,15 @@ nav a:hover{color:var(--accent)}
 .tip-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .small{font-size:.88rem;color:var(--muted)}
 @media (max-width:640px){.today{grid-template-columns:1fr;padding:22px;gap:20px}.cal{grid-template-columns:auto auto auto;justify-content:start;align-items:center;gap:12px;background:none;border:0;border-radius:0;justify-items:start}.cal-m{width:auto;border-radius:999px;padding:4px 10px}.cal-d{font-size:1.6rem;padding:0}.cal-w{padding:0}}
+.today-wrap{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}
+.ibs{background:var(--warm-soft);border-radius:24px;padding:26px;display:grid;gap:14px;min-width:0}
+.ibs-head{display:grid;gap:6px}
+.ibs-badge{justify-self:start;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:var(--warm);color:var(--surface)}
+.ibs-body{display:grid;gap:12px}
+.ibs-body h3{font-size:1.35rem}
+.ibs-body .try{background:var(--surface)}
+.ibs-body .cat{background:var(--surface)}
+@media (max-width:960px){.today-wrap{grid-template-columns:1fr}}
 .guide-picker{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
 .guide{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .guide-col{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;min-width:0}
@@ -378,7 +387,7 @@ footer .wrap{display:grid;gap:10px}
       <div class="sec-head">
         <p class="eyebrow">Gut Health Daily</p>
         <h2>One small habit for a healthier gut, every day</h2>
-        <p class="lede">A new tip each morning on diet, digestion and liver health, written for everyday Indian kitchens and routines. Share the ones you find useful with your family.</p>
+        <p class="lede">A new tip each morning on diet, digestion and liver health, written for everyday Indian kitchens and routines, plus a daily tip for people living with IBS. Share the ones you find useful with your family.</p>
       </div>
       <div class="tabs" role="tablist" aria-label="Gut Health Daily">
         <button class="tab" role="tab" id="tab-today" aria-controls="panel-today" aria-selected="true">Today's tip</button>
@@ -386,10 +395,16 @@ footer .wrap{display:grid;gap:10px}
         <button class="tab" role="tab" id="tab-past" aria-controls="panel-past" aria-selected="false" tabindex="-1">Past tips</button>
       </div>
       <div role="tabpanel" id="panel-today" aria-labelledby="tab-today">
-        <article class="today" id="todayCard">
-          <div class="cal" aria-hidden="true"><span class="cal-m" id="calM"></span><span class="cal-d" id="calD"></span><span class="cal-w" id="calW"></span></div>
-          <div class="tip" id="tipBody"><p class="small">Loading today's tip…</p></div>
-        </article>
+        <div class="today-wrap">
+          <article class="today" id="todayCard">
+            <div class="cal" aria-hidden="true"><span class="cal-m" id="calM"></span><span class="cal-d" id="calD"></span><span class="cal-w" id="calW"></span></div>
+            <div class="tip" id="tipBody"><p class="small">Loading today's tip…</p></div>
+          </article>
+          <aside class="ibs" aria-labelledby="ibs-h">
+            <div class="ibs-head"><span class="ibs-badge">IBS Corner</span><span class="small" id="ibs-h">A daily tip for people living with IBS</span></div>
+            <div class="ibs-body" id="ibsBody"><p class="small">Loading…</p></div>
+          </aside>
+        </div>
       </div>
       <div role="tabpanel" id="panel-guides" aria-labelledby="tab-guides" hidden>
         <div class="guide-picker" id="guidePicker" role="group" aria-label="Choose a diet guide"></div>
@@ -397,6 +412,10 @@ footer .wrap{display:grid;gap:10px}
         <p class="small" style="margin-top:16px">These are general guides. Your own diet may need changes based on your reports, other conditions and medicines.</p>
       </div>
       <div role="tabpanel" id="panel-past" aria-labelledby="tab-past" hidden>
+        <div class="chips" role="group" aria-label="Choose which tips to show">
+          <button type="button" class="chip" id="past-gen" aria-pressed="true">Gut health tips</button>
+          <button type="button" class="chip" id="past-ibs" aria-pressed="false">IBS tips</button>
+        </div>
         <div class="past" id="pastList"></div>
       </div>
     </div>
@@ -809,22 +828,35 @@ function renderToday(t){
   document.getElementById("calM").textContent=opt({month:"short"}).format(d);
   document.getElementById("calD").textContent=opt({day:"numeric"}).format(d);
   document.getElementById("calW").textContent=opt({weekday:"long"}).format(d);
-  const share=encodeURIComponent(`${t.title}\n\n${t.body}\n\nTry this: ${t.try}\n\nDaily gut-health tips from Dr. Kshitij Lochab: ${SITE}`);
-  document.getElementById("tipBody").innerHTML=`<span class="cat">${esc(t.cat)}</span><h3>${esc(t.title)}</h3><p>${esc(t.body)}</p><div class="try"><b>Try this today</b>${esc(t.try)}</div><div class="tip-actions"><a class="btn btn-ghost btn-sm" href="https://wa.me/?text=${share}" target="_blank" rel="noopener">Share on WhatsApp</a><span class="small">A new tip appears every morning.</span></div>`;
+  document.getElementById("tipBody").innerHTML=`<span class="cat">${esc(t.cat)}</span><h3>${esc(t.title)}</h3><p>${esc(t.body)}</p><div class="try"><b>Try this today</b>${esc(t.try)}</div><div class="tip-actions"><a class="btn btn-ghost btn-sm" href="${shareLink(t,"")}" target="_blank" rel="noopener">Share on WhatsApp</a><span class="small">A new tip appears every morning.</span></div>`;
 }
 function renderPast(list){
   const el=document.getElementById("pastList");
   if(!list.length){el.innerHTML=`<p class="small" style="padding-top:16px">Past tips will appear here as new ones are added each day.</p>`;return;}
   el.innerHTML=list.map(t=>`<details><summary><span class="past-date">${opt({day:"numeric",month:"short"}).format(asDate(t.date))}</span><span class="past-title">${esc(t.title)}</span><span class="cat">${esc(t.cat)}</span></summary><div class="past-body"><p>${esc(t.body)}</p><div class="try"><b>Try this</b>${esc(t.try)}</div></div></details>`).join("");
 }
-fetch("tips.json",{cache:"no-cache"}).then(r=>{if(!r.ok)throw 0;return r.json();}).then(all=>{
-  const live=all.filter(t=>t.date<=TODAY).sort((a,b)=>a.date<b.date?1:-1);
-  if(!live.length)throw 0;
-  renderToday(live[0]);
-  renderPast(live.slice(1));
-}).catch(()=>{
-  document.getElementById("tipBody").innerHTML=`<p>Today's tip could not load. Please refresh the page.</p>`;
-});
+const shareLink=(t,lead)=>"https://wa.me/?text="+encodeURIComponent(`${lead}${t.title}\n\n${t.body}\n\nTry this: ${t.try}\n\nDaily gut-health tips from Dr. Kshitij Lochab: ${SITE}`);
+function renderIbs(t){
+  document.getElementById("ibsBody").innerHTML=`<span class="cat">${esc(t.cat)}</span><h3>${esc(t.title)}</h3><p>${esc(t.body)}</p><div class="try"><b>Try this today</b>${esc(t.try)}</div><a class="btn btn-ghost btn-sm" style="justify-self:start" href="${shareLink(t,"IBS tip: ")}" target="_blank" rel="noopener">Share on WhatsApp</a>`;
+}
+const live=all=>all.filter(t=>t.date<=TODAY).sort((a,b)=>a.date<b.date?1:-1);
+const getJSON=u=>fetch(u,{cache:"no-cache"}).then(r=>{if(!r.ok)throw 0;return r.json();});
+let PAST={gen:[],ibs:[]};
+function showPast(k){
+  document.getElementById("past-gen").setAttribute("aria-pressed",String(k==="gen"));
+  document.getElementById("past-ibs").setAttribute("aria-pressed",String(k==="ibs"));
+  renderPast(PAST[k]);
+}
+document.getElementById("past-gen").addEventListener("click",()=>showPast("gen"));
+document.getElementById("past-ibs").addEventListener("click",()=>showPast("ibs"));
+getJSON("tips.json").then(all=>{
+  const l=live(all); if(!l.length)throw 0;
+  renderToday(l[0]); PAST.gen=l.slice(1); showPast("gen");
+}).catch(()=>{document.getElementById("tipBody").innerHTML=`<p>Today's tip could not load. Please refresh the page.</p>`;});
+getJSON("ibs.json").then(all=>{
+  const l=live(all); if(!l.length)throw 0;
+  renderIbs(l[0]); PAST.ibs=l.slice(1);
+}).catch(()=>{document.getElementById("ibsBody").innerHTML=`<p class="small">Today's IBS tip could not load. Please refresh the page.</p>`;});
 
 const picker=document.getElementById("guidePicker"), guideBody=document.getElementById("guideBody");
 GUIDES.forEach((g,i)=>{const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=g.n;b.id="guide-"+i;b.addEventListener("click",()=>showGuide(i));picker.appendChild(b);});
