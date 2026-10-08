@@ -1,0 +1,12 @@
+.organ{cursor:pointer}
+.organ .fill{fill:var(--organ);stroke:var(--organ-line);stroke-width:1.5;transition:fill .2s}
+.organ .tube{fill:none;stroke:var(--organ);transition:stroke .2s}
+.organ .tube-edge{fill:none;stroke:var(--organ-line)}
+.organ .coil{fill:none;stroke:var(--organ-line);stroke-width:3;stroke-linecap:round}
+.organ:hover .fill{fill:var(--accent-soft)}
+.organ:hover .tube{stroke:var(--accent-soft)}
+.organ.on .fill{fill:var(--accent);stroke:var(--accent)}
+.organ.on .tube{stroke:var(--accent)}
+.organ.on .coil{stroke:var(--accent-ink)}
+.organ:focus{outline:none}
+.organ:focus-visible .fill,.organ:focus-visible .tube-edge{stroke:var(--warm);stroke-width:3}

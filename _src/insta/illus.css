@@ -1,0 +1,24 @@
+/* procedures */
+.il-fill{fill:var(--organ);stroke:var(--organ-line);stroke-width:1.5}
+.il-fill.on{fill:var(--accent-soft);stroke:var(--accent)}
+.il-edge{fill:none;stroke:var(--organ-line);stroke-linecap:round;stroke-linejoin:round}
+.il-edge.on{stroke:var(--accent)}
+.il-tube{fill:none;stroke:var(--organ);stroke-linecap:round;stroke-linejoin:round}
+.il-tube.on{stroke:var(--accent-soft)}
+.il-coil{fill:none;stroke:var(--organ-line);stroke-width:3;stroke-linecap:round}
+.il-scope{fill:none;stroke:var(--ink);stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}
+.il-tip{fill:var(--warm);stroke:var(--surface);stroke-width:1.5}
+.il-lbl{fill:var(--muted);font-family:var(--body);font-size:9px;font-weight:600}
+.il-fan{fill:var(--accent);fill-opacity:.22;stroke:var(--accent);stroke-width:1.2}
+.il-duct{fill:none;stroke:var(--warm);stroke-width:4;stroke-linecap:round}
+.il-cath{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linecap:round}
+.il-stone{fill:var(--muted)}
+.il-polyp{fill:var(--accent)}
+.il-band{fill:var(--accent)}
+.il-arrow{fill:none;stroke:var(--muted);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.il-num{fill:var(--accent-ink);font-family:var(--body);font-size:11px;font-weight:700}
+.il-cap{fill:var(--ink);font-family:var(--body);font-size:10.5px;font-weight:600}
+
+.il-balloon{fill:var(--accent);fill-opacity:.3;stroke:var(--accent);stroke-width:2}
+.proc-fig{margin:-24px -24px 4px;aspect-ratio:4/3;max-width:calc(100% + 48px);background:var(--surface);border-bottom:1px solid var(--line);border-radius:18px 18px 0 0;display:grid;place-items:center;overflow:hidden}
+.proc-fig > svg{width:100%;height:100%;display:block}

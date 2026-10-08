@@ -1,0 +1,5 @@
+site/
+out/
+data-en.json
+data-hi.json
+__pycache__/

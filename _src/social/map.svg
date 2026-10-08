@@ -1,0 +1,22 @@
+<svg viewBox="0 0 240 312" role="group" aria-label="Digestive system map">
+            <g class="organ" data-organ="intestine" tabindex="0" role="button" aria-label="Intestines">
+              <path class="tube-edge" d="M62 286 V216 Q62 204 74 204 H176 Q190 204 190 218 V262 Q190 282 164 286 Q140 290 132 302" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="tube" d="M62 286 V216 Q62 204 74 204 H176 Q190 204 190 218 V262 Q190 282 164 286 Q140 290 132 302" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect class="fill" x="84" y="222" width="88" height="54" rx="20"/>
+              <path class="coil" d="M100 234 H156 Q164 234 164 242 Q164 249 156 249 H102 Q94 249 94 256 Q94 264 102 264 H154"/>
+            </g>
+            <g class="organ" data-organ="pancreas" tabindex="0" role="button" aria-label="Pancreas">
+              <path class="fill" d="M96 182 C118 172 160 172 196 166 C203 172 197 181 182 184 C158 188 124 191 104 192 C94 192 90 186 96 182 Z"/>
+            </g>
+            <g class="organ" data-organ="liver" tabindex="0" role="button" aria-label="Liver">
+              <path class="fill" d="M28 114 C32 90 96 80 130 96 C126 104 120 108 114 112 C112 134 92 152 62 154 C40 156 24 138 28 114 Z"/>
+            </g>
+            <g class="organ" data-organ="gb" tabindex="0" role="button" aria-label="Gallbladder and bile ducts">
+              <ellipse class="fill" cx="98" cy="156" rx="9" ry="14" transform="rotate(-20 98 156)"/>
+            </g>
+            <g class="organ" data-organ="stomach" tabindex="0" role="button" aria-label="Food pipe and stomach">
+              <path class="tube-edge" d="M126 8 V100" stroke-width="15" stroke-linecap="round"/>
+              <path class="tube" d="M126 8 V100" stroke-width="11" stroke-linecap="round"/>
+              <path class="fill" d="M124 98 C150 84 192 98 190 128 C188 154 160 168 138 160 C120 154 122 134 138 130 C152 126 152 112 128 112 Z"/>
+            </g>
+          </svg>
