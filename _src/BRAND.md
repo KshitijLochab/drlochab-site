@@ -8,6 +8,7 @@ Does not perform third-space endoscopy (POEM, ESD): never list these.
 - Colours: deep teal #0B6A5E (logo), teal #0D7466 (accent), ink #12302C, muted #4A615D, background #F3F7F6, line #D3E0DC, warm gold #C9851F / soft #FAEED8, warning red #B0362B / soft #F8E4E1.
 - Type: Young Serif for headings, Figtree for text (Tiro Devanagari Hindi and Mukta for Hindi).
 - Logo: `brand/logo-mark.png` (icon), `brand/logo-horizontal.png` (with name). Every image carries the logo, name and drlochab.com.
+- Style (from Oct 2026, preferred by Dr. Lochab): figurative and visual first. Build each post around one strong illustrated image or metaphor (e.g. the gut-friendly thali in `social/thali.py`), big type, very few words per slide (one idea, under 20 words), bold colour backgrounds (teal, mint, cream, saffron). Avoid text-heavy slides.
 - Illustrations: original drawings only (see `insta/illus.js`, `social/condition_art.py`). Never use images from the internet.
 
 ## Voice
