@@ -1,6 +1,9 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 10 Oct 2026
+- Instagram story: Is your gut running on empty? (fibre fuel gauge; sprouts, guava, dal, chokar roti). Generator: social/story_fibre.py.
+
 ## 9 Oct 2026
 - Instagram carousel (6 slides): The gut-friendly thali (half vegetables, quarter protein, quarter grains, 3 swaps, CTA). Generator: social/thali.py.
 - Instagram story: Does your plate look like this? (with a poll sticker).
