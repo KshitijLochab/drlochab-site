@@ -4,7 +4,7 @@ import json, os, html, subprocess
 import seo_en, seo_hi
 
 SITE = "https://drlochab.com"
-UPDATED = ("2026-10-08", "8 October 2026", "8 अक्टूबर 2026")
+UPDATED = ("2026-10-10", "10 October 2026", "10 अक्टूबर 2026")
 PHONE, WA = "+91 96671 04882", "https://wa.me/919667104882"
 REVIEW = "https://g.page/r/CYmK8BpICDd6EBM/review"
 
@@ -132,6 +132,15 @@ def write(path, text):
     os.makedirs(os.path.dirname(full), exist_ok=True)
     open(full, "w").write(text)
 
+def answer_links(lang, S, ans):
+    """Links to one answer slug or a list of them, in the page language."""
+    slugs = [a["slug"] for a in seo_en.ANSWERS]
+    out = []
+    for slug in ([ans] if isinstance(ans, str) else (ans or [])):
+        k = slugs.index(slug)
+        out.append((url(lang, "answers", slug), S.ANSWERS[k]["q"]))
+    return out
+
 def build():
     D = load()
     pages = []
@@ -158,10 +167,7 @@ def build():
                             f'<div class="gcol know"><h3>{t["know"]}</h3>{ul(g["know"])}</div></div></section>')
             body.append(f'<section class="see"><h2>{t["when"]}</h2><p>{e(c["e"])}</p></section>')
             body.append(faq_html(lang, x["faqs"]))
-            reads = []
-            if base["answer"]:
-                k = [a["slug"] for a in seo_en.ANSWERS].index(base["answer"])
-                reads.append((url(lang, "answers", base["answer"]), S.ANSWERS[k]["q"] if lang == "hi" else seo_en.ANSWERS[k]["q"]))
+            reads = answer_links(lang, S, base["answer"])
             rel = [(url(lang, "conditions", seo_en.CONDS[j]["slug"]), d["CONDITIONS"][j]["n"]) for j, cc in enumerate(d["CONDITIONS"]) if cc["o"] == c["o"] and j != i]
             if reads: body.append(f'<section><h2>{t["read"]}</h2>{links(reads)}</section>')
             if rel: body.append(f'<section><h2>{t["related"]}</h2>{links(rel)}</section>')
@@ -185,8 +191,7 @@ def build():
                     f'<section><h2>{t["treats"]}</h2>' + links([(url(lang, "conditions", seo_en.CONDS[j]["slug"]), d["CONDITIONS"][j]["n"]) for j in base["conds"]]) + "</section>",
                     faq_html(lang, x["faqs"])]
             if base["answer"]:
-                k = [a["slug"] for a in seo_en.ANSWERS].index(base["answer"])
-                body.append(f'<section><h2>{t["read"]}</h2>' + links([(url(lang, "answers", base["answer"]), (S.ANSWERS[k]["q"] if lang == "hi" else seo_en.ANSWERS[k]["q"]))]) + "</section>")
+                body.append(f'<section><h2>{t["read"]}</h2>' + links(answer_links(lang, S, base["answer"])) + "</section>")
             ld = ld_page(lang, path, pr["n"], desc, "MedicalProcedure", pr["n"], x["faqs"], t["procs"], "procedures")
             page = (head(lang, title, desc, path_en, path_hi, ld) + header(lang, path_hi if lang == "en" else path_en)
                     + f'<main class="wrap grid"><article>{crumbs(lang, t["procs"], "procedures", pr["n"])}'
@@ -208,7 +213,9 @@ def build():
                 rel.append((url(lang, "conditions", seo_en.CONDS[base["cond"]]["slug"]), d["CONDITIONS"][base["cond"]]["n"]))
             if base.get("proc") is not None:
                 rel.append((url(lang, "procedures", seo_en.PROCS[base["proc"]]["slug"]), d["PROCS"][base["proc"]]["n"]))
-            others = [(url(lang, "answers", seo_en.ANSWERS[j]["slug"]), S.ANSWERS[j]["q"]) for j in range(len(S.ANSWERS)) if j != i][:3]
+            # the next three answers in turn, so every answer page is linked from three others
+            n = len(S.ANSWERS)
+            others = [(url(lang, "answers", seo_en.ANSWERS[(i + k) % n]["slug"]), S.ANSWERS[(i + k) % n]["q"]) for k in range(1, min(4, n))]
             body = (f'<div class="short"><p class="lbl">{t["short"]}</p><p>{e(a["short"])}</p></div>' + "".join(secs)
                     + f'<section><h2>{t["read"]}</h2>{links(rel + others)}</section>')
             ld = ld_page(lang, path, a["q"], a["desc"], "MedicalCondition" if base.get("cond") is not None else "MedicalProcedure",
