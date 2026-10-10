@@ -1,6 +1,16 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## Week of 12 Oct 2026 (Navratri, 11 to 19 Oct)
+Generator: social/week_2026_10_12.py (output in _src/out/week-2026-10-12/).
+- Instagram carousel (5 slides, EN): Feel like a balloon after meals? Gas and bloating: swallowed air, gassy foods, constipation, warning signs. Links to answers/gas-and-bloating.
+- Instagram post (HI): Navratri vrat, व्रत में भी पेट रहे हल्का (roast not fry, small meals every 3 to 4 hours, fluids; check with a doctor first if diabetic, pregnant or with a gut illness).
+- Instagram post (EN): Hepatitis B is preventable (HBsAg test, vaccine if negative). Links to conditions/hepatitis-b-c.
+- Google Business Profile: Gas and bloating, common and usually harmless (Learn more: answers/gas-and-bloating).
+- WhatsApp Status: 3 quick fixes for bloating; Navratri vrat (HI); Know your hepatitis B status.
+- WhatsApp broadcast: new answer page, Why do I get so much gas and bloating?
+- Site: new answer page gas-and-bloating (EN and HI).
+
 ## 9 Oct 2026
 - Instagram carousel (6 slides): The gut-friendly thali (half vegetables, quarter protein, quarter grains, 3 swaps, CTA). Generator: social/thali.py.
 - Instagram story: Does your plate look like this? (with a poll sticker).

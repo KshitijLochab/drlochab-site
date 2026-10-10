@@ -7,7 +7,7 @@
 :root{
   --bg:#F3F7F6; --surface:#FFFFFF; --ink:#12302C; --muted:#4A615D; --line:#D3E0DC;
   --accent:#0D7466; --accent-ink:#FFFFFF; --accent-soft:#DDEEEA;
-  --warm:#C9851F; --warm-soft:#FAEED8;
+  --warm:#C9851F; --warm-soft:#FAEED8; --warm-text:#8A5A12; --warm-on-ink:#E9B157;
   --urgent:#B0362B; --urgent-soft:#F8E4E1;
   --organ:#CADDD8; --organ-line:#97B6AF; --mark:#0B6A5E;
   --display:"Young Serif", Georgia, "Times New Roman", serif;
@@ -16,14 +16,14 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0D1918; --surface:#142422; --ink:#E3EEEB; --muted:#9BB2AD; --line:#25403B;
   --accent:#52C4B2; --accent-ink:#06201C; --accent-soft:#163A35;
-  --warm:#E9B157; --warm-soft:#3A2C13;
+  --warm:#E9B157; --warm-soft:#3A2C13; --warm-text:#E9B157; --warm-on-ink:#5E3B08;
   --urgent:#F2867A; --urgent-soft:#3C1D1A;
   --organ:#21403B; --organ-line:#3E6862; color-scheme:dark;
 }}
 :root[data-theme="dark"]{
   --bg:#0D1918; --surface:#142422; --ink:#E3EEEB; --muted:#9BB2AD; --line:#25403B;
   --accent:#52C4B2; --accent-ink:#06201C; --accent-soft:#163A35;
-  --warm:#E9B157; --warm-soft:#3A2C13;
+  --warm:#E9B157; --warm-soft:#3A2C13; --warm-text:#E9B157; --warm-on-ink:#5E3B08;
   --urgent:#F2867A; --urgent-soft:#3C1D1A;
   --organ:#21403B; --organ-line:#3E6862; color-scheme:dark;
 }
@@ -86,7 +86,7 @@ nav a:hover{color:var(--accent)}
 @media (max-width:760px){.redflag{grid-template-columns:1fr}.redflag ul{grid-template-columns:1fr}}
 .pill{display:inline-block;justify-self:start;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
 .pill-urgent{background:var(--urgent);color:var(--surface)}
-.pill-soon{background:var(--warm);color:var(--surface)}
+.pill-soon{background:var(--warm-text);color:var(--surface)}
 .pill-routine{background:var(--accent);color:var(--accent-ink)}
 .redflag ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
 .redflag li{display:flex;gap:10px;align-items:baseline}
@@ -175,7 +175,7 @@ nav a:hover{color:var(--accent)}
 .today-wrap{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}
 .ibs{background:var(--warm-soft);border-radius:24px;padding:26px;display:grid;gap:14px;min-width:0}
 .ibs-head{display:grid;gap:6px}
-.ibs-badge{justify-self:start;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:var(--warm);color:var(--surface)}
+.ibs-badge{justify-self:start;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:var(--warm-text);color:var(--surface)}
 .ibs-body{display:grid;gap:12px}
 .ibs-body h3{font-size:1.35rem}
 .ibs-body .try{background:var(--surface)}
@@ -187,7 +187,7 @@ nav a:hover{color:var(--accent)}
 .guide-col h4{margin:0 0 10px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
 .guide-col.more h4{color:var(--accent)}
 .guide-col.less h4{color:var(--urgent)}
-.guide-col.know h4{color:var(--warm)}
+.guide-col.know h4{color:var(--warm-text)}
 .guide-col ul{margin:0;padding-left:18px;display:grid;gap:6px}
 @media (max-width:860px){.guide{grid-template-columns:1fr}}
 .past{display:grid;gap:0;border-top:1px solid var(--line)}
@@ -278,7 +278,7 @@ nav a:hover{color:var(--accent)}
 .cv{margin:0;padding:0;list-style:none;display:grid;gap:0;border-top:1px solid var(--line);min-width:0}
 .cv li{display:grid;grid-template-columns:150px 1fr;gap:16px;padding-block:16px;border-bottom:1px solid var(--line)}
 .cv .k{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
-.cv .gold{color:var(--warm)}
+.cv .gold{color:var(--warm-text)}
 .focus{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .focus span{font-size:.88rem;padding:6px 12px;border-radius:999px;background:var(--accent-soft);color:var(--ink)}
 @media (max-width:860px){.about{grid-template-columns:1fr}}
@@ -287,16 +287,16 @@ nav a:hover{color:var(--accent)}
 /* visit */
 .visit{background:var(--ink);color:var(--bg);border-radius:28px;padding:40px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
 .visit h2{color:var(--bg)}
-.visit .eyebrow{color:var(--warm)}
+.visit .eyebrow{color:var(--warm-on-ink)}
 .visit p{color:var(--bg);opacity:.85}
 .visit address{font-style:normal;font-size:1.1rem;line-height:1.55;color:var(--bg)}
-.visit .btn-solid{background:var(--warm);border-color:var(--warm);color:var(--ink)}
+.visit .btn-solid{background:var(--warm-on-ink);border-color:var(--warm-on-ink);color:var(--ink)}
 .visit .btn-ghost{color:var(--bg);border-color:var(--bg)}
 .visit-col{display:grid;gap:18px;align-content:start;min-width:0}
 .phone{display:grid;gap:2px}
-.phone-lbl{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--warm)}
+.phone-lbl{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-on-ink)}
 .phone-num{font-family:var(--display);font-size:clamp(1.8rem,4.5vw,2.4rem);color:var(--bg);user-select:all;font-variant-numeric:tabular-nums}
-.copied{font-size:.88rem;color:var(--warm);min-height:1.2em}
+.copied{font-size:.88rem;color:var(--warm-on-ink);min-height:1.2em}
 @media (max-width:860px){.visit{grid-template-columns:1fr;padding:28px 22px}}
 
 footer{padding-block:40px 56px;font-size:.9rem;color:var(--muted);border-top:1px solid var(--line)}
@@ -319,7 +319,7 @@ footer .wrap{display:grid;gap:10px}
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Dr. Kshitij Lochab, home">
+    <a class="brand" href="#top">
       <svg aria-hidden="true"><use href="#mark"/></svg>
       <span><span class="brand-name">Dr. Kshitij Lochab</span><span class="brand-sub">Gastroenterology · Liver · Endoscopy</span></span>
     </a>
@@ -581,7 +581,7 @@ footer .wrap{display:grid;gap:10px}
             <button class="btn btn-ghost" id="copyAddr" type="button">Copy address</button>
           </div>
           <p class="copied" id="copied" aria-live="polite"></p>
-          <p>Visited recently? You can share your experience on <a href="https://g.page/r/CYmK8BpICDd6EBM/review" target="_blank" rel="noopener" style="color:var(--warm)">Google</a>. It helps others find the right care.</p>
+          <p>Visited recently? You can share your experience on <a href="https://g.page/r/CYmK8BpICDd6EBM/review" target="_blank" rel="noopener" style="color:var(--warm-on-ink)">Google</a>. It helps others find the right care.</p>
           <p>Also consulting at Apollo Hospitals, Golf Course Road, Gurugram.</p>
         </div>
       </div>

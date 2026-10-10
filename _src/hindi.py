@@ -5,7 +5,6 @@ so text changed on the English page is never silently left untranslated."""
 # Exact text replacements for page markup, interface strings and illustration labels.
 PAIRS = [
  # header
- ('<a class="brand" href="#top" aria-label="Dr. Kshitij Lochab, home">', '<a class="brand" href="#top" aria-label="डॉ. क्षितिज लोचब, होम">'),
  ('<span class="brand-sub">Gastroenterology · Liver · Endoscopy</span>', '<span class="brand-sub">पेट · लिवर · एंडोस्कोपी</span>'),
  ('<a href="#daily">Daily tips</a>', '<a href="#daily">रोज़ की सलाह</a>'),
  ('<a href="#symptoms">Symptoms</a>', '<a href="#symptoms">लक्षण</a>'),
@@ -150,8 +149,8 @@ PAIRS = [
   '<address id="addr"><strong>आर्क्योरा क्लिनिक (Arcura Clinic)</strong><br>M2K कॉर्पोरेट पार्क एंड शॉपिंग प्लाज़ा<br>14, मेफ़ील्ड गार्डन, सेक्टर 51<br>गुरुग्राम, हरियाणा 122018</address>'),
  ('rel="noopener">Get directions</a>', 'rel="noopener">रास्ता देखें</a>'),
  ('id="copyAddr" type="button">Copy address</button>', 'id="copyAddr" type="button">पता कॉपी करें</button>'),
- ('<p>Visited recently? You can share your experience on <a href="https://g.page/r/CYmK8BpICDd6EBM/review" target="_blank" rel="noopener" style="color:var(--warm)">Google</a>. It helps others find the right care.</p>',
-  '<p>हाल ही में आए थे? अपना अनुभव <a href="https://g.page/r/CYmK8BpICDd6EBM/review" target="_blank" rel="noopener" style="color:var(--warm)">Google</a> पर शेयर करें। इससे दूसरों को सही इलाज ढूँढने में मदद मिलती है।</p>'),
+ ('<p>Visited recently? You can share your experience on <a href="https://g.page/r/CYmK8BpICDd6EBM/review" target="_blank" rel="noopener" style="color:var(--warm-on-ink)">Google</a>. It helps others find the right care.</p>',
+  '<p>हाल ही में आए थे? अपना अनुभव <a href="https://g.page/r/CYmK8BpICDd6EBM/review" target="_blank" rel="noopener" style="color:var(--warm-on-ink)">Google</a> पर शेयर करें। इससे दूसरों को सही इलाज ढूँढने में मदद मिलती है।</p>'),
  ('<p>Also consulting at Apollo Hospitals, Golf Course Road, Gurugram.</p>', '<p>अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड, गुरुग्राम में भी देखते हैं।</p>'),
  ('aria-label="Book on WhatsApp">', 'aria-label="WhatsApp पर अपॉइंटमेंट">'),
  ('</svg>\n  Book\n</a>', '</svg>\n  अपॉइंटमेंट\n</a>'),

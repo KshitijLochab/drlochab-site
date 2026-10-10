@@ -2,7 +2,7 @@
 :root{
   --bg:#F3F7F6; --surface:#FFFFFF; --ink:#12302C; --muted:#4A615D; --line:#D3E0DC;
   --accent:#0D7466; --accent-ink:#FFFFFF; --accent-soft:#DDEEEA;
-  --warm:#C9851F; --warm-soft:#FAEED8; --urgent:#B0362B; --urgent-soft:#F8E4E1;
+  --warm:#C9851F; --warm-soft:#FAEED8; --warm-text:#8A5A12; --urgent:#B0362B; --urgent-soft:#F8E4E1;
   --organ:#CADDD8; --organ-line:#97B6AF; --mark:#0B6A5E;
   --display:"Young Serif","Tiro Devanagari Hindi", Georgia, serif;
   --body:"Figtree","Mukta", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -11,7 +11,7 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0D1918; --surface:#142422; --ink:#E3EEEB; --muted:#9BB2AD; --line:#25403B;
   --accent:#52C4B2; --accent-ink:#06201C; --accent-soft:#163A35;
-  --warm:#E9B157; --warm-soft:#3A2C13; --urgent:#F2867A; --urgent-soft:#3C1D1A;
+  --warm:#E9B157; --warm-soft:#3A2C13; --warm-text:#E9B157; --urgent:#F2867A; --urgent-soft:#3C1D1A;
   --organ:#21403B; --organ-line:#3E6862; color-scheme:dark;
 }}
 *{box-sizing:border-box}
@@ -69,7 +69,7 @@ li::marker{color:var(--accent)}
 .gcol{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
 .gcol h3{font-family:var(--body);font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
 .gcol ul{font-size:.95rem}
-.gcol.more h3{color:var(--accent)} .gcol.less h3{color:var(--urgent)} .gcol.know h3{color:var(--warm)}
+.gcol.more h3{color:var(--accent)} .gcol.less h3{color:var(--urgent)} .gcol.know h3{color:var(--warm-text)}
 .fig{margin:0 0 24px;background:var(--surface);border:1px solid var(--line);border-radius:20px;aspect-ratio:4/3;max-width:100%;display:grid;place-items:center;overflow:hidden}
 .fig > svg{width:100%;height:100%;display:block}
 .expect{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;margin:0}
