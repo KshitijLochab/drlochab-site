@@ -72,9 +72,10 @@ em{{font-style:normal;color:#B0362B}}
  </div>
 </body></html>"""
 
-with sync_playwright() as p:
-    b = p.chromium.launch(); pg = b.new_page(viewport={"width": 1080, "height": 1920})
-    open(f"{OUT}/tmp.html", "w").write(HTML)
-    pg.goto(f"file://{OUT}/tmp.html"); pg.wait_for_timeout(300); pg.screenshot(path=f"{OUT}/fibre.png"); b.close()
-os.remove(f"{OUT}/tmp.html")
-print("done")
+if __name__ == "__main__":
+    with sync_playwright() as p:
+        b = p.chromium.launch(); pg = b.new_page(viewport={"width": 1080, "height": 1920})
+        open(f"{OUT}/tmp.html", "w").write(HTML)
+        pg.goto(f"file://{OUT}/tmp.html"); pg.wait_for_timeout(300); pg.screenshot(path=f"{OUT}/fibre.png"); b.close()
+    os.remove(f"{OUT}/tmp.html")
+    print("done")

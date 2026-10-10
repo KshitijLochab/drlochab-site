@@ -2,6 +2,7 @@
 Newest first. Add every new post here so topics are not repeated.
 
 ## 10 Oct 2026
+- Google Business Profile post: Is your gut running on empty? (fibre gauge, 1200x900). Generator: social/google_fibre.py.
 - Instagram story: Is your gut running on empty? (fibre fuel gauge; sprouts, guava, dal, chokar roti). Generator: social/story_fibre.py.
 
 ## 9 Oct 2026
