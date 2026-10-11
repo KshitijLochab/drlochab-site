@@ -11,6 +11,9 @@ Generator: social/week_2026_10_12.py (output in _src/out/week-2026-10-12/).
 - WhatsApp broadcast: new answer page, Why do I get so much gas and bloating?
 - Site: new answer page gas-and-bloating (EN and HI).
 
+## 11 Oct 2026
+- Instagram story: Chai on an empty stomach? (chai glass into empty stomach with flames; almonds, fruit, then chai). Generator: social/story_chai.py.
+
 ## 10 Oct 2026
 - Google Business Profile post: Is your gut running on empty? (fibre gauge, 1200x900). Generator: social/google_fibre.py.
 - Instagram story: Is your gut running on empty? (fibre fuel gauge; sprouts, guava, dal, chokar roti). Generator: social/story_fibre.py.
