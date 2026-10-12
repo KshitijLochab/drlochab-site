@@ -1,6 +1,9 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 12 Oct 2026
+- Google Business Profile logo (720x720) and cover photo (1920x1080, portrait + credentials). Generator: social/gbp_brand.py.
+
 ## Week of 12 Oct 2026 (Navratri, 11 to 19 Oct)
 Generator: social/week_2026_10_12.py (output in _src/out/week-2026-10-12/).
 - Instagram carousel (5 slides, EN): Feel like a balloon after meals? Gas and bloating: swallowed air, gassy foods, constipation, warning signs. Links to answers/gas-and-bloating.
