@@ -2,6 +2,8 @@
 Newest first. Add every new post here so topics are not repeated.
 
 ## 12 Oct 2026
+- Instagram carousel (5 slides, EN): 3 free guides for special times of life (pregnancy, children, after 60; cover, one slide per guide, CTA to drlochab.com Special guides). Generator: social/guides_launch.py.
+- WhatsApp Status: 3 free guides (pregnancy, children, after 60). Generator: social/guides_launch.py.
 - Google Business Profile logo (720x720) and cover photo (1920x1080, portrait + credentials). Generator: social/gbp_brand.py.
 
 ## Week of 12 Oct 2026 (Navratri, 11 to 19 Oct)
