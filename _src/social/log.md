@@ -4,6 +4,7 @@ Newest first. Add every new post here so topics are not repeated.
 ## 12 Oct 2026
 - Instagram carousel (5 slides, EN): 3 free guides for special times of life (pregnancy, children, after 60; cover, one slide per guide, CTA to drlochab.com Special guides). Generator: social/guides_launch.py.
 - WhatsApp Status: 3 free guides (pregnancy, children, after 60). Generator: social/guides_launch.py.
+- Visiting card, 3.5 x 2 in with bleed (front: name, degrees, role, gold medal, phone, QR; back: Apollo Hospitals Golf Course Road morning OPD as Associate Consultant, Apollo Clinic Sector 52 2 to 5 pm, Arcura Sector 51 6 to 8 pm). Generator: social/visiting_card.py.
 - Google Business Profile logo (720x720) and cover photo (1920x1080, portrait + credentials). Generator: social/gbp_brand.py.
 
 ## Week of 12 Oct 2026 (Navratri, 11 to 19 Oct)
