@@ -260,12 +260,14 @@ nav a:hover{color:var(--accent)}
 .answers a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 22px;border-radius:16px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--ink);font-family:var(--display);font-size:1.15rem;line-height:1.3}
 .answers a span{color:var(--accent);font-family:var(--body);flex:none}
 .answers a:hover{border-color:var(--accent)}
-.feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:32px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:28px;padding:28px 32px;text-decoration:none;color:var(--ink)}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:20px}
+.feature{display:flex;flex-direction:column;gap:18px;background:var(--bg);border:1px solid var(--line);border-radius:24px;padding:24px;text-decoration:none;color:var(--ink)}
 .feature:hover{border-color:var(--accent)}
 .feature-art svg{width:100%;height:auto;display:block}
-.feature h3{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.15;margin:0 0 12px}
-.feature p{color:var(--muted);font-size:1.05rem;line-height:1.6;margin:0 0 22px}
-@media (max-width:760px){.feature{grid-template-columns:1fr;gap:18px;padding:20px}}
+.feature > div:last-child{display:flex;flex-direction:column;flex:1}
+.feature h3{font-family:var(--display);font-weight:400;font-size:1.5rem;line-height:1.2;margin:0 0 10px}
+.feature p{color:var(--muted);font-size:1rem;line-height:1.6;margin:0 0 20px;flex:1}
+.feature .btn{align-self:flex-start}
 
 /* myths */
 .myths{display:grid;gap:0;border-top:1px solid var(--line)}

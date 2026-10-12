@@ -117,7 +117,7 @@ def link_lists(lang):
                   f'<h3>{esc(x["name"])}</h3><p>{esc(x["blurb"])}</p><span class="btn btn-solid">{esc(x["feature_btn"])} <span aria-hidden="true">→</span></span></div></a>')
     x0 = S.SPECIAL[0]
     guides = (f'<section id="guides" class="alt">\n    <div class="wrap">\n      <div class="sec-head">\n        <p class="eyebrow">{esc(x0["feature_kick"])}</p>\n'
-              f'        <h2>{esc(x0["section_h"])}</h2>\n      </div>\n      {feats}\n    </div>\n  </section>')
+              f'        <h2>{esc(x0["section_h"])}</h2>\n      </div>\n      <div class="features">{feats}</div>\n    </div>\n  </section>')
     return {"<!--GUIDES_SECTION-->": guides, "<!--COND_LINKS-->": f'<div class="guides"><h3>{h_c}</h3><div>{cond}</div></div>',
             "<!--PROC_LINKS-->": f'<div class="guides"><h3>{h_p}</h3><div>{proc}</div></div>',
             "<!--ANSWER_LINKS-->": f'<div class="answers">{ans}</div>'}
