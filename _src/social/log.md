@@ -9,6 +9,7 @@ Generator: social/week_2026_10_12.py (output in _src/out/week-2026-10-12/).
 - Google Business Profile: Gas and bloating, common and usually harmless (Learn more: answers/gas-and-bloating).
 - WhatsApp Status: 3 quick fixes for bloating; Navratri vrat (HI); Know your hepatitis B status.
 - WhatsApp broadcast: new answer page, Why do I get so much gas and bloating?
+- Instagram story (Mon 12 Oct): Bloated after meals? (balloon stomach, space for a poll sticker, points to the carousel). Generator: social/story_bloat.py.
 - Site: new answer page gas-and-bloating (EN and HI).
 
 ## 11 Oct 2026
