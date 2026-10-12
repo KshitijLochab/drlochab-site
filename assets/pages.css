@@ -85,6 +85,30 @@ li::marker{color:var(--accent)}
 @media (max-width:900px){.grid{grid-template-columns:1fr;gap:40px}.cta{position:static}.guide{grid-template-columns:1fr}}
 @media (max-width:480px){.expect{grid-template-columns:1fr;gap:2px}.expect dd{margin-bottom:10px}}
 
+/* special guides (e.g. pregnancy) */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tri-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+.tri-card ul{font-size:.95rem}
+.probs{display:grid;gap:16px}
+.prob{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.prob > p:first-of-type{color:var(--muted)}
+.prob .lbl{margin-top:14px}
+.prob-see{margin:16px 0 0;padding:12px 16px;border-radius:12px;background:var(--warm-soft);font-size:.95rem}
+.urgent{background:var(--urgent-soft);border-radius:18px;padding:22px 24px}
+.urgent h2{color:var(--urgent)}
+.urgent li::marker{color:var(--urgent)}
+.urgent p{margin:14px 0 0;font-weight:600}
+.toc{margin-top:24px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.toc .lbl{width:100%;margin:0 0 2px}
+.toc a{font-size:.9rem;font-weight:600;text-decoration:none;color:var(--ink);padding:7px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.toc a:hover{border-color:var(--accent);color:var(--accent)}
+section[id]{scroll-margin-top:84px}
+.note{background:var(--accent-soft);border-radius:18px;padding:20px 24px}
+.note p{margin-bottom:14px}
+.day-h{margin-top:28px;margin-bottom:12px}
+.day{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+@media (max-width:900px){.tri{grid-template-columns:1fr}}
+
 footer{padding-block:36px 56px;font-size:.88rem;color:var(--muted);border-top:1px solid var(--line)}
 .fab{display:none}
 @media (max-width:760px){

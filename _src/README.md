@@ -13,6 +13,7 @@ This runs `build_site.py` (English home, Hindi home, and all condition, procedur
 - `lochab-gastro.html`: the English home page (markup, styles, script, data for symptoms, conditions, procedures, myths, diet guides, illustrations).
 - `hindi.py`: Hindi text for the home page. Every English string it lists must still exist, or the build stops, so English edits need a matching Hindi update.
 - `seo_en.py` / `seo_hi.py`: extra content for condition, procedure and answer pages (same order as the home page lists). Add a new answer page by appending to `ANSWERS` in both files.
+- `SPECIAL` in `seo_en.py` / `seo_hi.py`: longer guides for a group of patients (for example pregnancy) at `/guides/<slug>/`. Each gets a card in the home page "Guides" section and a callout on the condition and procedure pages listed in its `conds` and `procs`. Illustrations are in `guide_art.py`.
 - `build_pages.py` + `pages.css`: template for those pages, with structured data, breadcrumbs and hreflang.
 - `brand/`, `fonts/`, `dr-lochab.jpg`: logo, fonts (Young Serif, Figtree, and Devanagari subsets of Tiro Devanagari Hindi and Mukta for Hindi images, all OFL licensed) and portrait.
 
