@@ -18,7 +18,8 @@ L = {
    clinic="Arcura Clinic, M2K Corporate Park, 14, Mayfield Garden, Sector 51, Gurugram", also="Also at Apollo Hospitals, Golf Course Road",
    disc="This page is for general health education and does not replace a consultation. In an emergency, call 112 or go to the nearest emergency department.",
    reg="Haryana Medical Council Reg. No. HN-23524", lang_link="हिंदी", lang_aria="यह पेज हिंदी में पढ़ें", city="in Gurugram",
-   all_guides="More guides", guides="Guides"),
+   all_guides="More guides", guides="Guides",
+   special="Special guides:", special_p="read the guide for your situation, with diet advice and the warning signs to watch for."),
  "hi": dict(home="होम", conds="बीमारियाँ", procs="जाँच और इलाज", answers="सवाल-जवाब", tips="रोज़ की सलाह", book="अपॉइंटमेंट",
    by="लेखक: डॉ. क्षितिज लोचब, कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट", upd="अपडेट", symptoms="आम लक्षण", causes="वजहें और ख़तरे",
    tests="जाँच कैसे होती है", treat="इलाज", proc_help="इलाज में मदद करने वाले प्रोसीजर", diet="डाइट गाइड", more="ज़्यादा खाएँ", less="कम करें",
@@ -28,7 +29,8 @@ L = {
    clinic="आर्क्योरा क्लिनिक, M2K कॉर्पोरेट पार्क, 14, मेफ़ील्ड गार्डन, सेक्टर 51, गुरुग्राम", also="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड में भी",
    disc="यह पेज सामान्य स्वास्थ्य जानकारी के लिए है और डॉक्टर की सलाह की जगह नहीं ले सकता। इमरजेंसी में 112 पर कॉल करें या सबसे पास की इमरजेंसी में जाएँ।",
    reg="हरियाणा मेडिकल काउंसिल रजि. नं. HN-23524", lang_link="English", lang_aria="Read this page in English", city="गुरुग्राम",
-   all_guides="और गाइड", guides="गाइड"),
+   all_guides="और गाइड", guides="गाइड",
+   special="ख़ास गाइड:", special_p="अपनी स्थिति के लिए गाइड पढ़ें, जिसमें खाने की सलाह और ख़तरे के संकेत दिए गए हैं।"),
 }
 
 e = lambda s: html.escape(s, quote=True)
@@ -142,14 +144,17 @@ def answer_links(lang, S, ans):
     return out
 
 def guide_notes(lang, kind, idx):
-    """Callout boxes linking a condition or procedure page to the special guides that list it."""
+    """One callout box linking a condition or procedure page to the special guides that list it."""
     S = seo_en if lang == "en" else seo_hi
-    out = ""
-    for g, x in zip(seo_en.SPECIAL, S.SPECIAL):
-        if idx in g[kind]:
-            out += (f'<section class="note"><p><b>{e(x["note_q"])}</b> {e(x["note_p"])}</p>'
-                    + links([(url(lang, "guides", g["slug"]), x["name"])]) + "</section>")
-    return out
+    hits = [(g, x) for g, x in zip(seo_en.SPECIAL, S.SPECIAL) if idx in g[kind]]
+    if not hits:
+        return ""
+    if len(hits) == 1:
+        g, x = hits[0]
+        text = f'<p><b>{e(x["note_q"])}</b> {e(x["note_p"])}</p>'
+    else:
+        text = f'<p><b>{L[lang]["special"]}</b> {L[lang]["special_p"]}</p>'
+    return f'<section class="note">{text}' + links([(url(lang, "guides", g["slug"]), x["name"]) for g, x in hits]) + "</section>"
 
 def build():
     D = load()
@@ -240,29 +245,43 @@ def build():
         for i, x in enumerate(S.SPECIAL):
             base = seo_en.SPECIAL[i]
             path, path_en, path_hi = url(lang, "guides", base["slug"]), url("en", "guides", base["slug"]), url("hi", "guides", base["slug"])
-            tri = '<div class="tri">' + "".join(f'<div class="tri-card"><p class="lbl">{e(w)}</p><h3>{e(h)}</h3>{ul(items)}</div>' for w, h, items in x["tri"]) + "</div>"
-            probs = "".join(f'<div class="prob"><h3>{e(h)}</h3><p>{e(p_)}</p><p class="lbl">{e(x["help_lbl"])}</p>{ul(items)}<p class="prob-see">{e(see)}</p></div>'
-                            for h, p_, items, see in x["probs"])
             hp = lambda items: "".join(f'<div class="faq"><h3>{e(h)}</h3><p>{e(p_)}</p></div>' for h, p_ in items)
-            day = '<dl class="expect day">' + "".join(f"<dt>{e(k)}</dt><dd>{e(v)}</dd>" for k, v in x["day"]) + "</dl>"
-            ids = ["trimesters", "problems", "liver", "warning-signs", "existing", "diet", "medicines"]
+            def block(bid, kind):
+                if kind == "cards":
+                    return (f'<section id="{bid}"><h2>{e(x["tri_h"])}</h2><div class="tri">'
+                            + "".join(f'<div class="tri-card"><p class="lbl">{e(w)}</p><h3>{e(h)}</h3>{ul(items)}</div>' for w, h, items in x["tri"]) + "</div></section>")
+                if kind == "probs":
+                    return (f'<section id="{bid}"><h2>{e(x["prob_h"])}</h2><div class="probs">'
+                            + "".join(f'<div class="prob"><h3>{e(h)}</h3><p>{e(p_)}</p><p class="lbl">{e(x["help_lbl"])}</p>{ul(items)}<p class="prob-see">{e(see)}</p></div>'
+                                      for h, p_, items, see in x["probs"]) + "</div></section>")
+                if kind == "attn":
+                    return f'<section id="{bid}"><h2>{e(x["liver_h"])}</h2><p>{e(x["liver_p"])}</p><div class="faqs">{hp(x["liver"])}</div></section>'
+                if kind == "urgent":
+                    return f'<section id="{bid}" class="urgent"><h2>{e(x["urgent_h"])}</h2>{ul(x["urgent"])}<p>{e(x["urgent_p"])}</p></section>'
+                if kind == "pre":
+                    return f'<section id="{bid}"><h2>{e(x["pre_h"])}</h2><p>{e(x["pre_p"])}</p><div class="faqs">{hp(x["pre"])}</div></section>'
+                if kind == "diet":
+                    day = '<dl class="expect day">' + "".join(f"<dt>{e(k)}</dt><dd>{e(v)}</dd>" for k, v in x["day"]) + "</dl>"
+                    return (f'<section id="{bid}"><h2>{e(x["diet_h"])}</h2><p>{e(x["diet_p"])}</p><div class="guide">'
+                            f'<div class="gcol more"><h3>{t["more"]}</h3>{ul(x["more"])}</div>'
+                            f'<div class="gcol less"><h3>{t["less"]}</h3>{ul(x["less"])}</div>'
+                            f'<div class="gcol know"><h3>{t["know"]}</h3>{ul(x["know"])}</div></div>'
+                            f'<h3 class="day-h">{e(x["day_h"])}</h3>{day}</section>')
+                if kind == "test":
+                    return f'<section id="{bid}"><h2>{e(x["test_h"])}</h2>' + "".join(f"<p>{e(p_)}</p>" for p_ in x["test"]) + "</section>"
+                if kind == "care":
+                    return f'<section id="{bid}"><h2>{e(x["care_h"])}</h2><p>{e(x["care"])}</p></section>'
+                if kind == "who":
+                    return f'<section id="{bid}" class="note"><h2>{e(x["care_h"])}</h2><p>{e(x["care"])}</p></section>'
+                raise SystemExit(f"unknown guide block {kind}")
+            listed = [(bid, kind) for bid, kind in base["blocks"] if kind not in ("care", "who")]
+            assert len(listed) == len(x["toc"]), (base["slug"], lang, "toc labels must match the listed blocks")
             toc = (f'<nav class="toc" aria-label="{e(x["toc_lbl"])}"><p class="lbl">{e(x["toc_lbl"])}</p>'
-                   + "".join(f'<a href="#{i_}">{e(l_)}</a>' for i_, l_ in zip(ids, x["toc"])) + "</nav>")
+                   + "".join(f'<a href="#{bid}">{e(l_)}</a>' for (bid, _), l_ in zip(listed, x["toc"])) + "</nav>")
             body = [f'<figure class="fig">{guide_art.ART[base["slug"]](e(x["alt"]))}</figure>', f'<p class="lead">{e(x["lead"])}</p>',
-                    f'<div class="short"><p class="lbl">{e(x["short_lbl"])}</p><p>{e(x["short"])}</p></div>', toc,
-                    f'<section id="trimesters"><h2>{e(x["tri_h"])}</h2>{tri}</section>',
-                    f'<section id="problems"><h2>{e(x["prob_h"])}</h2><div class="probs">{probs}</div></section>',
-                    f'<section id="liver"><h2>{e(x["liver_h"])}</h2><p>{e(x["liver_p"])}</p><div class="faqs">{hp(x["liver"])}</div></section>',
-                    f'<section id="warning-signs" class="urgent"><h2>{e(x["urgent_h"])}</h2>{ul(x["urgent"])}<p>{e(x["urgent_p"])}</p></section>',
-                    f'<section id="existing"><h2>{e(x["pre_h"])}</h2><p>{e(x["pre_p"])}</p><div class="faqs">{hp(x["pre"])}</div></section>',
-                    f'<section id="diet"><h2>{e(x["diet_h"])}</h2><p>{e(x["diet_p"])}</p><div class="guide">'
-                    f'<div class="gcol more"><h3>{t["more"]}</h3>{ul(x["more"])}</div>'
-                    f'<div class="gcol less"><h3>{t["less"]}</h3>{ul(x["less"])}</div>'
-                    f'<div class="gcol know"><h3>{t["know"]}</h3>{ul(x["know"])}</div></div>'
-                    f'<h3 class="day-h">{e(x["day_h"])}</h3>{day}</section>',
-                    f'<section id="medicines"><h2>{e(x["test_h"])}</h2>' + "".join(f"<p>{e(p_)}</p>" for p_ in x["test"]) + "</section>",
-                    f'<section><h2>{e(x["care_h"])}</h2><p>{e(x["care"])}</p></section>',
-                    faq_html(lang, x["faqs"])]
+                    f'<div class="short"><p class="lbl">{e(x["short_lbl"])}</p><p>{e(x["short"])}</p></div>', toc]
+            body += [block(bid, kind) for bid, kind in base["blocks"]]
+            body.append(faq_html(lang, x["faqs"]))
             reads = (answer_links(lang, S, base["answers"])
                      + [(url(lang, "conditions", seo_en.CONDS[j]["slug"]), d["CONDITIONS"][j]["n"]) for j in base["conds"]]
                      + [(url(lang, "procedures", seo_en.PROCS[j]["slug"]), d["PROCS"][j]["n"]) for j in base["procs"]])
