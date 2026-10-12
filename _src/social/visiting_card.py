@@ -23,7 +23,7 @@ PW, PH = W + 2 * BLEED, H + 2 * BLEED
 PAD = BLEED + SAFE
 
 PLACES = [
-    ("Apollo Hospitals", "Golf Course Road, Gurugram", "Morning OPD", "Associate Consultant, Gastroenterology &amp; Therapeutic Endoscopy"),
+    ("Apollo Hospitals", "Golf Course Road, Gurugram", None, "Associate Consultant, Gastroenterology &amp; Therapeutic Endoscopy"),
     ("Apollo Clinic", "Sector 52, Gurugram", "2 – 5 pm", None),
     ("Arcura Clinic", "M2K Corporate Park, 14 Mayfield Garden, Sector 51", "Mon–Fri 6 – 8 pm<br>Sun 9 am – 1 pm", None),
 ]
@@ -44,18 +44,22 @@ body{{font-family:"FT",sans-serif;color:#12302C;-webkit-print-color-adjust:exact
 /* front */
 .band{{position:absolute;left:0;top:0;bottom:0;width:{BLEED + 0.16}in;background:#0B6A5E}}
 .band::after{{content:"";position:absolute;right:0;top:0;bottom:0;width:.03in;background:#C9851F}}
-.f{{position:absolute;left:{PAD + 0.12}in;right:{PAD}in;top:{PAD}in;bottom:{PAD}in}}
+.f{{position:absolute;left:{PAD + 0.12}in;right:{PAD}in;top:{PAD}in;bottom:{PAD}in;display:flex;flex-direction:column;justify-content:space-between}}
 .mark{{position:absolute;right:0;top:0;width:.42in;height:.42in}} .mark svg{{width:100%;height:100%}}
-.name{{font-family:"YS",serif;font-size:14.5pt;line-height:1.05;margin-top:.02in}}
-.deg{{font-size:6.6pt;font-weight:600;color:#0D7466;margin-top:.04in;letter-spacing:.01em}}
+.name{{font-family:"YS",serif;font-size:15.5pt;line-height:1.05;margin-top:.01in}}
+.deg{{font-size:6.6pt;font-weight:600;color:#0D7466;margin-top:.045in;letter-spacing:.01em}}
 .role{{font-size:6.8pt;margin-top:.035in;line-height:1.3}}
 .gold{{display:inline-block;margin-top:.05in;font-size:6pt;font-weight:600;color:#7A4E0E;background:#FAEED8;border-radius:.06in;padding:.012in .06in}}
-.contact{{position:absolute;left:0;bottom:0;font-size:7pt;line-height:1.45}}
-.contact b{{font-family:"YS",serif;font-weight:400;font-size:10pt;letter-spacing:.01em}}
+.int{{display:flex;align-items:center;gap:.06in;font-size:6pt;color:#4A615D}}
+.int i{{flex:0 0 .22in;height:.6px;background:#C9851F}}
+.int span{{font-weight:600;color:#0D7466}}
+.bot{{display:flex;justify-content:space-between;align-items:flex-end}}
+.contact{{font-size:6.8pt;line-height:1.45}}
+.contact b{{font-family:"YS",serif;font-weight:400;font-size:11pt;letter-spacing:.01em}}
 .contact .small{{font-size:6pt;color:#4A615D}}
-.qr{{position:absolute;right:0;bottom:0;width:.54in;text-align:center}}
-.qr svg{{width:.54in;height:.54in;display:block}}
-.qr span{{display:block;font-size:5pt;color:#4A615D;margin-top:.02in}}
+.qr{{width:.5in;text-align:center}}
+.qr svg{{width:.5in;height:.5in;display:block}}
+.qr span{{display:block;font-size:4.8pt;color:#4A615D;margin-top:.02in}}
 /* back */
 .b{{position:absolute;left:{PAD}in;right:{PAD}in;top:{PAD}in;bottom:{PAD}in;display:flex;flex-direction:column}}
 .bh{{display:flex;justify-content:space-between;align-items:baseline;border-bottom:.6px solid rgba(255,255,255,.3);padding-bottom:.035in}}
@@ -76,17 +80,22 @@ body{{font-family:"FT",sans-serif;color:#12302C;-webkit-print-color-adjust:exact
 def front():
     return f"""<div class="card front"><div class="band"></div><div class="trim"></div><div class="f">
  <div class="mark">{MARK}</div>
- <div class="name">Dr. Kshitij Lochab</div>
- <div class="deg">MBBS · MD (Medicine) · DrNB (Gastroenterology)</div>
- <div class="role">Consultant Gastroenterologist &amp;<br>Therapeutic Endoscopist · Fellowship in EUS &amp; ERCP</div>
- <div class="gold">All-India Gold Medal, DrNB</div>
- <div class="contact"><b>+91 96671 04882</b><br>Appointments &amp; video consultations · Call or WhatsApp<br><span class="small">drlochab.com · @drlochab</span></div>
- <div class="qr">{qr_svg("https://drlochab.com")}<span>drlochab.com</span></div>
+ <div>
+  <div class="name">Dr. Kshitij Lochab</div>
+  <div class="deg">MBBS · MD (Medicine) · DrNB (Gastroenterology)</div>
+  <div class="role">Consultant Gastroenterologist &amp;<br>Therapeutic Endoscopist · Fellowship in EUS &amp; ERCP</div>
+  <div class="gold">All-India Gold Medal, DrNB</div>
+ </div>
+ <div class="int"><i></i>Liver <span>·</span> Pancreas &amp; bile ducts <span>·</span> Stomach &amp; bowel <span>·</span> Endoscopy</div>
+ <div class="bot">
+  <div class="contact"><b>+91 96671 04882</b><br>Appointments &amp; video consultations<br>Call or WhatsApp · <span class="small">drlochab.com · @drlochab</span></div>
+  <div class="qr">{qr_svg("https://drlochab.com")}<span>Scan for website</span></div>
+ </div>
 </div></div>"""
 
 def back():
     rows = "".join(
-        f'<div class="pl"><div class="n">{n}</div><div class="a">{a}</div>{f"<div class=r>{r}</div>" if r else ""}<div class="t">{t}</div></div>'
+        f'<div class="pl"><div class="n">{n}</div><div class="a">{a}</div>{f"<div class=r>{r}</div>" if r else ""}{f'<div class="t">{t}</div>' if t else ""}</div>'
         for n, a, t, r in PLACES)
     return f"""<div class="card back"><div class="trim"></div><div class="b">
  <div class="bh"><span class="k">Consultations</span><span class="k2">Gastroenterology · Liver · Endoscopy</span></div>
