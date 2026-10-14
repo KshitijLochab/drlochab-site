@@ -1,6 +1,11 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 14 Oct 2026 (Navratri day 4)
+- Instagram post (EN): Fast, but keep your stomach light (vrat thali; roast don't fry, small meals every 3 to 4 hours, fluids; ask a doctor first if diabetic, pregnant or with a stomach problem). Generator: social/navratri_14oct.py.
+- Google Business Profile (HI): व्रत में भी पेट रहे हल्का, same tips (Learn more: hi/conditions/acidity-reflux-gerd).
+- WhatsApp Status (HI): पेट रहे हल्का, same tips, posted today instead of Thu 15 Oct.
+
 ## 12 Oct 2026
 - Instagram carousel (5 slides, EN): 3 free guides for special times of life (pregnancy, children, after 60; cover, one slide per guide, CTA to drlochab.com Special guides). Generator: social/guides_launch.py.
 - WhatsApp Status: 3 free guides (pregnancy, children, after 60). Generator: social/guides_launch.py.
