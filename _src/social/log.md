@@ -5,6 +5,7 @@ Newest first. Add every new post here so topics are not repeated.
 - Instagram post (EN): Fast, but keep your stomach light (vrat thali; roast don't fry, small meals every 3 to 4 hours, fluids; ask a doctor first if diabetic, pregnant or with a stomach problem). Generator: social/navratri_14oct.py.
 - Google Business Profile (HI): व्रत में भी पेट रहे हल्का, same tips (Learn more: hi/conditions/acidity-reflux-gerd).
 - WhatsApp Status (HI): पेट रहे हल्का, same tips, posted today instead of Thu 15 Oct.
+- Instagram carousel (6 slides, EN): Fasting without the acidity (fried to roasted swaps, a vrat day of meals every 3 to 4 hours, 3 acidity traps, who should ask a doctor first, when to break the fast; fresh kuttu atta tip). Generator: social/navratri_carousel.py.
 
 ## 12 Oct 2026
 - Instagram carousel (5 slides, EN): 3 free guides for special times of life (pregnancy, children, after 60; cover, one slide per guide, CTA to drlochab.com Special guides). Generator: social/guides_launch.py.
