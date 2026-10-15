@@ -85,6 +85,13 @@ li::marker{color:var(--accent)}
 @media (max-width:900px){.grid{grid-template-columns:1fr;gap:40px}.cta{position:static}.guide{grid-template-columns:1fr}}
 @media (max-width:480px){.expect{grid-template-columns:1fr;gap:2px}.expect dd{margin-bottom:10px}}
 
+/* seasonal banner */
+.season{background:var(--warm-soft);border-bottom:1px solid var(--line)}
+.season .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-block:10px}
+.season p{margin:0;font-weight:600;font-size:.95rem;color:var(--ink);flex:1 1 260px}
+.season-dot{width:12px;height:12px;border-radius:50%;background:#E46F10;box-shadow:0 0 0 4px rgba(228,111,16,.2);flex:none}
+.season-btn{flex:none;font-weight:700;font-size:.9rem;text-decoration:none;color:var(--accent-ink);background:var(--accent);padding:8px 16px;border-radius:999px}
+
 /* special guides (e.g. pregnancy) */
 .tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .tri-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
