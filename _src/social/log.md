@@ -1,6 +1,11 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 15 Oct 2026
+- Site: Navratri fasting guide live (guides/navratri-fasting-guide, EN + HI) with a festival banner on every page until 20 Oct.
+- Instagram story (EN): Navratri fasting guide (vrat thali, 4 ticks, space for a link sticker). Generator: social/navratri_guide_promo.py.
+- WhatsApp Status (HI): बिना एसिडिटी के व्रत, promoting the Hindi guide. Generator: social/navratri_guide_promo.py.
+
 ## 14 Oct 2026 (Navratri day 4)
 - Instagram post (EN): Fast, but keep your stomach light (vrat thali; roast don't fry, small meals every 3 to 4 hours, fluids; ask a doctor first if diabetic, pregnant or with a stomach problem). Generator: social/navratri_14oct.py.
 - Google Business Profile (HI): व्रत में भी पेट रहे हल्का, same tips (Learn more: hi/conditions/acidity-reflux-gerd).
