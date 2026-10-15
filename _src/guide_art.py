@@ -87,3 +87,42 @@ def elderly(alt):
 </svg>'''
 
 ART.update({"children-digestive-health": children, "digestive-health-after-60": elderly})
+
+
+# Navratri vrat thali, ported from social/week_2026_10_12.py with its own ids.
+def _thali():
+    """Navratri vrat plate (viewBox 0 0 600 600): makhana, fruit, curd, sabudana khichdi, with marigolds and a diya."""
+    makhana = "".join(f'<circle cx="{x}" cy="{y}" r="15" fill="#FFF9EE" stroke="#E2D2B4" stroke-width="2"/><circle cx="{x+4}" cy="{y+4}" r="4" fill="#C9A77A" opacity=".6"/>' for x, y in
+                      [(150,180),(178,166),(204,180),(164,206),(192,204),(218,206),(140,226),(176,232),(206,232),(160,254),(192,256)])
+    sabu = "".join(f'<circle cx="{x}" cy="{y}" r="6" fill="#FBF6EA" stroke="#E7DCC4" stroke-width="1.5"/>' for x, y in
+                   [(400,180),(414,170),(428,182),(442,172),(456,186),(408,196),(424,200),(440,194),(456,206),(470,196),(398,214),(416,220),(432,216),(450,222),(466,216),(412,238),(430,240),(448,240),(462,234),(426,258),(444,258)])
+    nuts = "".join(f'<ellipse cx="{x}" cy="{y}" rx="9" ry="6" fill="#C98A4A" transform="rotate({r} {x} {y})"/>' for x, y, r in [(420,188,20),(452,212,-30),(410,226,60),(440,250,10),(470,226,-10)])
+    leaves = "".join(f'<ellipse cx="{x}" cy="{y}" rx="12" ry="5" fill="#3F8A3A" transform="rotate({r} {x} {y})"/>' for x, y, r in [(434,176,-20),(462,244,40),(400,204,70)])
+    banana = '<path d="M150 380 C180 470 290 480 330 430 C300 450 220 450 176 372 Z" fill="#F7D046" stroke="#C9A21F" stroke-width="4" stroke-linejoin="round"/><path d="M150 380 l-10 -12" stroke="#7A5A1A" stroke-width="7" stroke-linecap="round"/>'
+    apple = "".join(f'<g transform="translate({x} {y}) rotate({r})"><path d="M-34 0 A34 34 0 0 1 34 0 Z" fill="#FFF3D9" stroke="#D2372C" stroke-width="7"/><circle cx="-8" cy="-12" r="3" fill="#5A3A1A"/><circle cx="8" cy="-12" r="3" fill="#5A3A1A"/></g>'
+                    for x, y, r in [(232,330,-10),(270,350,20)])
+    curd = '<circle cx="430" cy="410" r="74" fill="#C8D0D2"/><circle cx="430" cy="410" r="62" fill="url(#nv-vcurd)"/><path d="M398 400 q16 -14 32 0 t32 0" fill="none" stroke="#E2E6DE" stroke-width="5" stroke-linecap="round"/><circle cx="446" cy="388" r="6" fill="#3F8A3A"/>'
+    marigold = lambda x, y, s: f'<g transform="translate({x} {y}) scale({s})">' + "".join(f'<circle cx="{14*__import__("math").cos(a/6*3.1416)}" cy="{14*__import__("math").sin(a/6*3.1416)}" r="12" fill="#F28C1E"/>' for a in range(12)) + '<circle r="14" fill="#F9B233"/><circle r="6" fill="#E46F10"/></g>'
+    diya = '<g transform="translate(520 520)"><path d="M-54 0 C-40 34 40 34 54 0 Z" fill="#B5542C" stroke="#8A3A1A" stroke-width="4"/><path d="M-54 0 H54" stroke="#8A3A1A" stroke-width="5" stroke-linecap="round"/><path d="M0 -6 C-14 -26 -6 -46 0 -60 C6 -46 14 -26 0 -6 Z" fill="#F9B233"/><path d="M0 -10 C-6 -22 -2 -34 0 -42 C2 -34 6 -22 0 -10 Z" fill="#FFF1C2"/></g>'
+    return f"""
+<defs>
+ <radialGradient id="nv-vsteel" cx="42%" cy="38%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#E4E9EA"/><stop offset="1" stop-color="#B9C3C6"/></radialGradient>
+ <radialGradient id="nv-vrim" cx="50%" cy="50%" r="50%"><stop offset=".86" stop-color="#C8D0D2"/><stop offset=".93" stop-color="#F6F8F8"/><stop offset="1" stop-color="#9AA6A9"/></radialGradient>
+ <radialGradient id="nv-vcurd" cx="40%" cy="35%" r="65%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EEF0EA"/></radialGradient>
+ <filter id="nv-vsh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0B2A26" flood-opacity=".3"/></filter>
+</defs>
+<g filter="url(#nv-vsh)"><circle cx="300" cy="300" r="262" fill="url(#nv-vrim)"/></g>
+<circle cx="300" cy="300" r="236" fill="url(#nv-vsteel)"/>
+<circle cx="180" cy="216" r="86" fill="#C8D0D2"/><circle cx="180" cy="216" r="74" fill="#F3EEE2"/>{makhana}
+<circle cx="432" cy="214" r="86" fill="#C8D0D2"/><circle cx="432" cy="214" r="74" fill="#F6E7C4"/>{sabu}{nuts}{leaves}
+{banana}{apple}{curd}
+{marigold(70,80,1.2)}{marigold(530,70,1)}{marigold(60,520,1)}{diya}
+"""
+
+
+def navratri(alt):
+    """A Navratri vrat thali with makhana, sabudana khichdi, fruit, curd, marigolds and a diya (viewBox 0 0 400 300)."""
+    return (f'<svg viewBox="0 0 400 300" role="img" aria-label="{alt}" xmlns="http://www.w3.org/2000/svg">'
+            '<circle cx="200" cy="150" r="140" fill="var(--accent-soft)"/><g transform="translate(64 14) scale(.453)">' + _thali() + '</g></svg>')
+
+ART["navratri-fasting-guide"] = navratri

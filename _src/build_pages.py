@@ -81,7 +81,20 @@ def header(lang, other_path):
   <a class="brand" href="{p}"><img src="/logo-mark.svg" alt="" width="40" height="40"><span><span class="brand-name">Dr. Kshitij Lochab</span><span class="brand-sub">{'Gastroenterology · Liver · Endoscopy' if lang=='en' else 'पेट · लिवर · एंडोस्कोपी'}</span></span></a>
   <nav aria-label="Main"><a href="{p}#conditions">{t['conds']}</a><a href="{p}#procedures">{t['procs']}</a><a href="{p}#answers">{t['answers']}</a><a href="{p}#daily">{t['tips']}</a><a class="btn btn-solid btn-sm" href="{p}#visit">{t['book']}</a></nav>
   <a class="lang" href="{other_path}" lang="{'hi' if lang=='en' else 'en'}" aria-label="{t['lang_aria']}">{t['lang_link']}</a>
-</div></header>"""
+</div></header>""" + season_bar(lang, other_path)
+
+def season_bar(lang, here=""):
+    """Slim banner under the header linking to a timely guide; left out after seo_en.SEASONAL['until'] (at build time and in the browser)."""
+    import datetime
+    cfg = getattr(seo_en, "SEASONAL", None)
+    if not cfg or cfg["slug"] in here:
+        return ""
+    if datetime.datetime.now(datetime.timezone.utc) >= datetime.datetime.fromisoformat(cfg["until"]):
+        return ""
+    x = cfg if lang == "en" else seo_hi.SEASONAL
+    return (f'<aside class="season" id="season" aria-label="{"Festival guide" if lang == "en" else "त्योहार गाइड"}" data-until="{cfg["until"]}"><div class="wrap"><span class="season-dot" aria-hidden="true"></span>'
+            f'<p>{e(x["text"])}</p><a class="season-btn" href="{url(lang, "guides", cfg["slug"])}">{e(x["btn"])} <span aria-hidden="true">→</span></a></div></aside>'
+            '<script data-season>(function(){var s=document.getElementById("season");if(s&&new Date()>=new Date(s.dataset.until))s.remove();})();</script>')
 
 def crumbs(lang, mid_label, mid_anchor, name):
     p = pre(lang); t = L[lang]
