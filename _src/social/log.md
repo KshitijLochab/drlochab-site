@@ -1,6 +1,9 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 16 Oct 2026
+- Instagram post (EN): Hepatitis B is preventable, redesigned (teal, shield, 3 facts, test and vaccine cards; replaces the plain version from week_2026_10_12). Generator: social/hepb_post.py.
+
 ## 15 Oct 2026
 - Site: Navratri fasting guide live (guides/navratri-fasting-guide, EN + HI) with a festival banner on every page until 20 Oct.
 - Instagram story (EN): Navratri fasting guide (vrat thali, 4 ticks, space for a link sticker). Generator: social/navratri_guide_promo.py.
