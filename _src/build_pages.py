@@ -1,13 +1,16 @@
 """Generates condition, procedure and answer pages (English and Hindi) into site/.
 Run after build_site.py has written site/index.html and site/hi/index.html."""
 import json, os, html, subprocess
-import seo_en, seo_hi, guide_art, seo_proc_en, seo_proc_hi, answers_extra_en, answers_extra_hi
+import seo_en, seo_hi, guide_art, seo_proc_en, seo_proc_hi, answers_extra_en, answers_extra_hi, cond_diet_en, cond_diet_hi
 
 # diet box + FAQs for answer pages: same slugs and item counts in both languages
 for _k, _v in answers_extra_en.EXTRA.items():
     _h = answers_extra_hi.EXTRA[_k]
     assert len(_v["faqs"]) == len(_h["faqs"]) and all(len(_v["diet"][c]) == len(_h["diet"][c]) for c in ("more", "less", "know")), _k
     assert ("labels" in _v["diet"]) == ("labels" in _h["diet"]), _k
+for _k, _v in cond_diet_en.DIET.items():
+    assert all(len(_v[c]) == len(cond_diet_hi.DIET[_k][c]) for c in ("more", "less", "know")), _k
+assert set(cond_diet_en.DIET) == set(cond_diet_hi.DIET) <= {c["slug"] for c in seo_en.CONDS}
 assert set(answers_extra_en.EXTRA) == set(answers_extra_hi.EXTRA) <= {a["slug"] for a in seo_en.ANSWERS}
 
 SITE = "https://drlochab.com"
@@ -204,6 +207,12 @@ def build():
             if base["guide"] is not None:
                 g = d["GUIDES"][base["guide"]]
                 body.append(f'<section><h2>{t["diet"]}: {e(g["n"])}</h2><div class="guide">'
+                            f'<div class="gcol more"><h3>{t["more"]}</h3>{ul(g["more"])}</div>'
+                            f'<div class="gcol less"><h3>{t["less"]}</h3>{ul(g["less"])}</div>'
+                            f'<div class="gcol know"><h3>{t["know"]}</h3>{ul(g["know"])}</div></div></section>')
+            elif base["slug"] in cond_diet_en.DIET:
+                g = (cond_diet_en if lang == "en" else cond_diet_hi).DIET[base["slug"]]
+                body.append(f'<section><h2>{e(g["h"])}</h2><div class="guide">'
                             f'<div class="gcol more"><h3>{t["more"]}</h3>{ul(g["more"])}</div>'
                             f'<div class="gcol less"><h3>{t["less"]}</h3>{ul(g["less"])}</div>'
                             f'<div class="gcol know"><h3>{t["know"]}</h3>{ul(g["know"])}</div></div></section>')

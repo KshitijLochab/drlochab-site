@@ -243,7 +243,7 @@ EXTRA = {
    less=["Large glasses of milk, milkshakes and kheer on an empty stomach",
          "Khoya and milk-based sweets, ice cream and milk powder",
          "Some protein powders, chocolates and bakery items with milk solids"],
-   know=["Most people can manage about half a cup of milk at a time, especially with food.",
+   know=["Most people can manage up to about one cup (250 ml) of milk at a time, especially with food.",
          "Tea with a little milk is usually fine."]),
   faqs=[["Can lactose intolerance start in adulthood?",
          "Yes. The enzyme that digests lactose naturally falls after childhood, so many adults in India develop symptoms gradually."],
