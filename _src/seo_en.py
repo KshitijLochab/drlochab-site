@@ -642,3 +642,16 @@ for _i, _slugs in _am2.COND_LINKS.items():
     _cur = CONDS[_i].get("answer")
     _cur = [] if not _cur else ([_cur] if isinstance(_cur, str) else list(_cur))
     CONDS[_i]["answer"] = _cur + [s for s in _slugs if s not in _cur]
+
+# 18 everyday topics (17 Oct 2026), kept in answers_more3_en.py.
+import answers_more3_en as _am3
+ANSWERS += _am3.MORE
+for _i, _slugs in _am3.COND_LINKS.items():
+    _cur = CONDS[_i].get("answer")
+    _cur = [] if not _cur else ([_cur] if isinstance(_cur, str) else list(_cur))
+    CONDS[_i]["answer"] = _cur + [s for s in _slugs if s not in _cur]
+
+# Diwali food guide (17 Oct 2026), shown first; its banner takes over from Navratri's on 21 Oct.
+import diwali_guide as _dw
+SPECIAL.insert(0, _dw.EN)
+SEASONAL = [dict(SEASONAL), _dw.SEASON_EN]

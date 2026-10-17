@@ -60,14 +60,25 @@ PROBLEMS = {
  "pancreatic-pseudocyst-walled-off-necrosis": ("pancreas", "Pseudocyst and walled-off necrosis", "Collections after pancreatitis, drained by EUS.", "स्यूडोसिस्ट और वॉल्ड-ऑफ़ नेक्रोसिस", "पैंक्रियाटाइटिस के बाद जमा पानी, EUS से निकाला जाता है।"),
  "pancreatic-cancer": ("pancreas", "Pancreatic cancer", "Painless jaundice, back pain, weight loss.", "पैंक्रियास का कैंसर", "बिना दर्द का पीलिया, पीठ दर्द, वज़न घटना।"),
  "abdominal-tuberculosis": ("intestine", "Abdominal tuberculosis", "Weight loss, fever and belly pain; curable.", "पेट की टीबी", "वज़न घटना, बुखार और पेट दर्द; ठीक हो सकती है।"),
+ "hepatitis-a-and-e": ("liver", "Hepatitis A and E", "The commonest cause of jaundice in India.", "हेपेटाइटिस A और E", "भारत में पीलिया की सबसे आम वजह।"),
+ "gilberts-syndrome": ("liver", "Gilbert's syndrome", "Slightly high bilirubin that is harmless.", "गिल्बर्ट सिंड्रोम", "थोड़ा बढ़ा बिलीरुबिन जो नुकसान रहित है।"),
+ "herbal-supplement-liver-damage": ("liver", "Liver injury from supplements", "Herbal, Ayurvedic and gym products.", "सप्लीमेंट से लिवर को नुकसान", "हर्बल, आयुर्वेदिक और जिम प्रोडक्ट।"),
+ "wilsons-disease": ("liver", "Wilson's disease", "Inherited copper build-up in young people.", "विल्सन डिज़ीज़", "युवाओं में ख़ानदानी तांबे का जमाव।"),
+ "vomiting-blood-black-stools": ("stomach", "Vomiting blood, black stools", "Upper GI bleeding: an emergency.", "ख़ून की उल्टी, काला मल", "ऊपरी पेट की ब्लीडिंग: इमरजेंसी।"),
+ "hiatus-hernia": ("stomach", "Hiatus hernia", "The stomach slides up into the chest.", "हाइटस हर्निया", "पेट का हिस्सा छाती में खिसकना।"),
+ "worms-in-stomach": ("intestine", "Worms in the stomach", "Real signs, myths and simple treatment.", "पेट में कीड़े", "असली संकेत, भ्रम और आसान इलाज।"),
+ "chronic-diarrhoea-mucus-in-stool": ("intestine", "Long-lasting loose motions", "Diarrhoea for weeks, or mucus in stool.", "लंबे समय के दस्त", "हफ़्तों से दस्त, या मल में आँव।"),
+ "appendicitis-or-gas-pain": ("intestine", "Appendicitis or gas?", "Lower right belly pain: how to tell.", "अपेंडिसाइटिस या गैस?", "निचले दाएँ पेट में दर्द: फ़र्क़ कैसे पहचानें।"),
+ "typhoid-fever": ("intestine", "Typhoid", "Rising fever; blood culture, not Widal.", "टाइफ़ाइड", "बढ़ता बुखार; विडाल नहीं, ब्लड कल्चर।"),
+ "travellers-diarrhoea": ("intestine", "Loose motions while travelling", "Prevention and treatment on trips.", "यात्रा में दस्त", "सफ़र में बचाव और इलाज।"),
 }
 # Other answer pages, shown as question chips under their organ.
 QS = {
- "stomach": ["when-is-acidity-serious", "is-endoscopy-painful"],
+ "stomach": ["when-is-acidity-serious", "is-endoscopy-painful", "is-pantoprazole-safe-long-term", "burping-and-hiccups", "weight-loss-injections-and-gut"],
  "liver": ["is-fatty-liver-reversible", "high-sgpt-sgot-liver-function-test", "fatty-liver-grade-on-ultrasound", "fibroscan-test",
-           "diet-in-jaundice", "when-is-liver-transplant-needed"],
- "gb": [], "pancreas": [],
- "intestine": ["gas-and-bloating", "is-ibs-dangerous", "blood-in-stool-always-piles", "stool-tests", "capsule-endoscopy"],
+           "diet-in-jaundice", "when-is-liver-transplant-needed", "ultrasound-report-terms", "how-much-alcohol-is-safe-for-liver"],
+ "gb": [], "pancreas": ["diabetes-and-digestive-system"],
+ "intestine": ["gas-and-bloating", "is-ibs-dangerous", "blood-in-stool-always-piles", "stool-tests", "capsule-endoscopy", "do-probiotics-help"],
 }
 PROCS = {
  "stomach": ["upper-gi-endoscopy", "dilatation-stenting", "gi-bleeding-treatment", "peg-feeding-tube"],

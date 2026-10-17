@@ -101,17 +101,27 @@ def header(lang, other_path):
 </div></header>""" + season_bar(lang, other_path)
 
 def season_bar(lang, here=""):
-    """Slim banner under the header linking to a timely guide; left out after seo_en.SEASONAL['until'] (at build time and in the browser)."""
+    """Slim banner(s) under the header linking to a timely guide. seo_en.SEASONAL is a list of dicts with slug, until and an optional start;
+    seo_hi.SEASONAL holds the Hindi text in the same order. Each banner shows only between start and until, checked at build time and in the browser."""
     import datetime
-    cfg = getattr(seo_en, "SEASONAL", None)
-    if not cfg or cfg["slug"] in here:
+    cfgs = getattr(seo_en, "SEASONAL", None) or []
+    if isinstance(cfgs, dict):
+        cfgs = [cfgs]
+    his = seo_hi.SEASONAL if isinstance(seo_hi.SEASONAL, list) else [seo_hi.SEASONAL]
+    now = datetime.datetime.now(datetime.timezone.utc)
+    out = ""
+    for cfg, hx in zip(cfgs, his):
+        if cfg["slug"] in here or now >= datetime.datetime.fromisoformat(cfg["until"]):
+            continue
+        start = cfg.get("start")
+        hidden = " hidden" if start and now < datetime.datetime.fromisoformat(start) else ""
+        x = cfg if lang == "en" else hx
+        out += (f'<aside class="season"{hidden} aria-label="{"Festival guide" if lang == "en" else "त्योहार गाइड"}" data-from="{start or ""}" data-until="{cfg["until"]}"><div class="wrap"><span class="season-dot" aria-hidden="true"></span>'
+                f'<p>{e(x["text"])}</p><a class="season-btn" href="{url(lang, "guides", cfg["slug"])}">{e(x["btn"])} <span aria-hidden="true">→</span></a></div></aside>')
+    if not out:
         return ""
-    if datetime.datetime.now(datetime.timezone.utc) >= datetime.datetime.fromisoformat(cfg["until"]):
-        return ""
-    x = cfg if lang == "en" else seo_hi.SEASONAL
-    return (f'<aside class="season" id="season" aria-label="{"Festival guide" if lang == "en" else "त्योहार गाइड"}" data-until="{cfg["until"]}"><div class="wrap"><span class="season-dot" aria-hidden="true"></span>'
-            f'<p>{e(x["text"])}</p><a class="season-btn" href="{url(lang, "guides", cfg["slug"])}">{e(x["btn"])} <span aria-hidden="true">→</span></a></div></aside>'
-            '<script data-season>(function(){var s=document.getElementById("season");if(s&&new Date()>=new Date(s.dataset.until))s.remove();})();</script>')
+    return out + ('<script data-season>(function(){var n=new Date();document.querySelectorAll("aside.season").forEach(function(s){'
+                  'var f=s.dataset.from,u=s.dataset.until;if(n>=new Date(u)||(f&&n<new Date(f)))s.remove();else s.hidden=false;});})();</script>')
 
 def crumbs(lang, mid_label, mid_anchor, name):
     p = pre(lang); t = L[lang]
@@ -292,7 +302,7 @@ def build():
             others = [(url(lang, "answers", seo_en.ANSWERS[(i + k) % n]["slug"]), S.ANSWERS[(i + k) % n]["q"]) for k in range(1, min(4, n))]
             body = (f'<div class="short"><p class="lbl">{t["short"]}</p><p>{e(a["short"])}</p></div>' + "".join(secs)
                     + f'<section><h2>{t["read"]}</h2>{links(rel + others)}</section>')
-            ld = ld_page(lang, path, a["q"], a["desc"], "MedicalCondition" if base.get("cond") is not None else "MedicalProcedure",
+            ld = ld_page(lang, path, a["q"], a["desc"], "MedicalProcedure" if base.get("cond") is None and base.get("proc") is not None else "MedicalCondition",
                          rel[0][1] if rel else a["q"], [[a["q"], a["short"]]] + xfaqs, t["answers"], "conditions")
             page = (head(lang, title, a["desc"], path_en, path_hi, ld) + header(lang, path_hi if lang == "en" else path_en)
                     + f'<main class="wrap grid"><article>{crumbs(lang, t["answers"], "conditions", a["q"])}'

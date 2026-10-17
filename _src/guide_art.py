@@ -126,3 +126,42 @@ def navratri(alt):
             '<circle cx="200" cy="150" r="140" fill="var(--accent-soft)"/><g transform="translate(64 14) scale(.453)">' + _thali() + '</g></svg>')
 
 ART["navratri-fasting-guide"] = navratri
+
+
+def diwali(alt):
+    """A Diwali plate of ladoos, kaju katli and jalebi, with two lit diyas and rangoli dots (viewBox 0 0 400 300)."""
+    import math
+    ladoo = lambda x, y: (f'<circle cx="{x}" cy="{y}" r="19" fill="url(#dw-ladoo)" stroke="#C9761B" stroke-width="1.5"/>'
+                          + "".join(f'<circle cx="{x + dx}" cy="{y + dy}" r="1.6" fill="#B5651D" opacity=".7"/>' for dx, dy in [(-7,-6),(5,-9),(8,3),(-3,6),(-9,2),(2,-1),(6,10)]))
+    katli = lambda x, y: (f'<path d="M{x} {y-15} L{x+20} {y} L{x} {y+15} L{x-20} {y} Z" fill="#F4E7CF" stroke="#D9C3A0" stroke-width="1.5"/>'
+                          f'<path d="M{x} {y-11} L{x+14} {y} L{x} {y+11} L{x-14} {y} Z" fill="#E9EEF0" opacity=".8"/>')
+    def jalebi(cx, cy):
+        pts = []
+        for i in range(60):
+            a = i / 60 * 5.2 * math.pi
+            r = 3 + i * 0.36
+            pts.append(f"{cx + r*math.cos(a):.1f} {cy + r*math.sin(a):.1f}")
+        d = "M" + " L".join(pts)
+        return f'<path d="{d}" fill="none" stroke="#E8891C" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="{d}" fill="none" stroke="#FFC25C" stroke-width="2.2" stroke-linecap="round" opacity=".8"/>'
+    def diya(x, y, s=1):
+        return (f'<g transform="translate({x} {y}) scale({s})"><ellipse cx="0" cy="6" rx="34" ry="7" fill="#0B2A26" opacity=".12"/>'
+                '<path d="M-32 -4 C-24 18 24 18 32 -4 Z" fill="#C2552A" stroke="#8A3A1A" stroke-width="2.5"/>'
+                '<path d="M-32 -4 C-18 2 18 2 32 -4" fill="none" stroke="#8A3A1A" stroke-width="2.5"/>'
+                '<path d="M-20 4 h40" stroke="#F2B33D" stroke-width="2" stroke-dasharray="3 4"/>'
+                '<circle cx="0" cy="-26" r="16" fill="#FFD36B" opacity=".25"/>'
+                '<path d="M0 -6 C-9 -18 -4 -32 0 -40 C4 -32 9 -18 0 -6 Z" fill="#F9B233"/>'
+                '<path d="M0 -9 C-4 -17 -2 -25 0 -30 C2 -25 4 -17 0 -9 Z" fill="#FFF1C2"/></g>')
+    dots = "".join(f'<circle cx="{200 + 150*math.cos(a/16*2*math.pi):.1f}" cy="{150 + 128*math.sin(a/16*2*math.pi):.1f}" r="{4 if a % 2 else 6}" fill="{["#E46F10","#D2372C","#F9B233","#1F8A70"][a % 4]}" opacity=".75"/>' for a in range(16))
+    petals = "".join(f'<ellipse cx="{200 + 138*math.cos(a/8*2*math.pi + .2):.1f}" cy="{150 + 116*math.sin(a/8*2*math.pi + .2):.1f}" rx="9" ry="4.5" fill="#F28C1E" opacity=".55" transform="rotate({a*45+12} {200 + 138*math.cos(a/8*2*math.pi + .2):.1f} {150 + 116*math.sin(a/8*2*math.pi + .2):.1f})"/>' for a in range(8))
+    return (f'<svg viewBox="0 0 400 300" role="img" aria-label="{alt}" xmlns="http://www.w3.org/2000/svg">'
+            '<defs><radialGradient id="dw-ladoo" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#FFD27A"/><stop offset=".6" stop-color="#F5A623"/><stop offset="1" stop-color="#D9821A"/></radialGradient>'
+            '<radialGradient id="dw-steel" cx="42%" cy="36%" r="72%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#E4E9EA"/><stop offset="1" stop-color="#B9C3C6"/></radialGradient>'
+            '<filter id="dw-sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0B2A26" flood-opacity=".25"/></filter></defs>'
+            '<circle cx="200" cy="150" r="140" fill="var(--accent-soft)"/>' + dots + petals +
+            '<g filter="url(#dw-sh)"><ellipse cx="200" cy="150" rx="112" ry="96" fill="#C8D0D2"/></g><ellipse cx="200" cy="150" rx="102" ry="87" fill="url(#dw-steel)"/>'
+            + ladoo(158, 118) + ladoo(190, 104) + ladoo(174, 144)
+            + katli(240, 118) + katli(262, 146) + katli(226, 152)
+            + jalebi(190, 188) + jalebi(228, 192)
+            + diya(70, 236, .9) + diya(332, 232, .9) + '</svg>')
+
+ART["diwali-food-guide"] = diwali

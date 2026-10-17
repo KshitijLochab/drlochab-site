@@ -586,3 +586,12 @@ ANSWERS += _am.MORE
 # 14 biliary, pancreatic, cancer and TB pages (17 Oct 2026), same order as answers_more2_en.py.
 import answers_more2_hi as _am2
 ANSWERS += _am2.MORE
+
+# 18 everyday topics (17 Oct 2026), same order as answers_more3_en.py.
+import answers_more3_hi as _am3
+ANSWERS += _am3.MORE
+
+# Diwali food guide (17 Oct 2026), same position as in seo_en.py.
+import diwali_guide as _dw
+SPECIAL.insert(0, _dw.HI)
+SEASONAL = [dict(SEASONAL), _dw.SEASON_HI]
