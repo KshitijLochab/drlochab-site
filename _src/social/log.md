@@ -1,6 +1,9 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 17 Oct 2026 (social)
+- Instagram carousel (6 slides, EN): Your gut, tracked and decoded (Gut Health Tracker, privacy, stool check, Food of the day, CTA with Diwali guide). Generator: social/new_tools_promo.py.
+
 ## 17 Oct 2026 (site)
 - Site: Gut Health Tracker highlighted as the first card on the home page (teal, 'New · Private · free', Start tracking); returning users with entries see 'Log today'.
 - Site: private Gut Health Tracker (tools/gut-tracker, EN + HI): daily log of bowel movements, stool type, bloating/pain/acidity, warning signs (with booking prompt), triggers, water, activity, weight, waist and notes; graphs for 7/14/30 days; trigger vs symptom comparison; printable doctor report, CSV, WhatsApp summary; backup/restore; optional PIN encryption; data only on the user's device, page blocked from sending data (CSP connect-src 'none'). Linked from IBS corner, stool check and IBS, constipation, acidity, IBD and H. pylori pages.
