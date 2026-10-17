@@ -591,3 +591,38 @@ SPECIAL.insert(0, dict(slug="navratri-fasting-guide", conds=[0, 1, 12, 10], proc
 # A slim banner under the header on every page, linking to a timely guide. Hidden automatically after `until`.
 SEASONAL = dict(slug="navratri-fasting-guide", until="2026-10-21T00:00:00+05:30",
   text="Navratri 2026: how to fast without acidity, with a simple vrat day plan", btn="Read the guide")
+
+# Added 17 Oct 2026 after Search Console showed searches for these topics.
+ANSWERS += [
+ dict(slug="alcoholic-hepatitis", q="What is alcoholic hepatitis, and how is it treated?", cond=6,
+  desc="Alcoholic hepatitis: jaundice and fever after heavy drinking, how it is diagnosed, severity, treatment and why stopping alcohol is essential. Dr. Kshitij Lochab, gastroenterologist, Gurugram.",
+  short="Alcoholic hepatitis is a sudden, serious inflammation of the liver in people who drink heavily, usually for years. It causes jaundice, fever, a tender liver and weakness, and severe cases can be life-threatening. Stopping alcohol completely is the most important treatment, and severe cases need hospital care, sometimes with steroid medicines.",
+  sections=[
+   ("Symptoms", ["- Yellow eyes and skin (jaundice), often appearing over a few weeks","- Loss of appetite, nausea and severe weakness","- Fever, and pain or tenderness in the upper right belly","- Swelling of the belly or legs from fluid","- In severe cases: confusion, drowsiness, easy bruising or bleeding",
+                 "Symptoms usually start while a person is still drinking heavily, or within a few weeks of stopping."]),
+   ("Who gets it", ["- People who drink heavily every day for years, often with binges on top","- Women can develop it at lower amounts of alcohol than men","- Being overweight, or having hepatitis B or C, raises the risk",
+                    "Many people with alcoholic hepatitis already have fatty liver or cirrhosis without knowing it."]),
+   ("How it is diagnosed", ["The diagnosis is based on the drinking history, examination and blood tests: bilirubin, liver enzymes, clotting (INR), blood counts and kidney function. An ultrasound and tests for viral hepatitis, infection and a blocked bile duct rule out other causes. Doctors use severity scores, such as the Maddrey score and MELD, to decide who needs stronger treatment. A liver biopsy is sometimes needed when the picture is unclear."]),
+   ("Treatment", ["- Stop alcohol completely and for life. This matters more than any medicine.","- Moderate and severe cases are treated in hospital.","- Good nutrition is essential; when eating is poor, feeding through a soft tube may be used.","- Infections, kidney problems and alcohol withdrawal are treated, with withdrawal managed safely under medical care.","- Steroid medicines help selected patients with severe disease, once infection has been ruled out, and the response is checked after about a week.","- Liver transplantation is considered in carefully selected patients at specialist centres.",
+                  "Avoid herbal or 'liver detox' remedies, which can harm an already inflamed liver."]),
+   ("Outlook, and when it is an emergency", ["Mild alcoholic hepatitis often improves over weeks to months once alcohol is stopped. Severe alcoholic hepatitis is life-threatening: even with treatment, about 1 in 3 people may not survive the following three months. Long-term recovery depends above all on staying off alcohol.",
+                  "Go to the nearest emergency department or call 112 for confusion or drowsiness, vomiting blood or black stools, high fever, or passing very little urine. Ask your doctor about de-addiction support; help is available and works best with family involvement."]),
+  ]),
+ dict(slug="aclf-acute-on-chronic-liver-failure", q="What is ACLF (acute-on-chronic liver failure)?", cond=6,
+  desc="ACLF, acute-on-chronic liver failure: what it means, common triggers such as alcohol, hepatitis and infection, warning signs, treatment and outlook. Dr. Kshitij Lochab, gastroenterologist, Gurugram.",
+  short="ACLF, or acute-on-chronic liver failure, is a sudden and severe worsening of liver function in someone who already has chronic liver disease. It is often triggered by alcohol, a hepatitis flare, an infection or bleeding. It can lead to failure of other organs such as the kidneys and brain, and needs urgent hospital care, often in an intensive care unit.",
+  sections=[
+   ("What it means", ["In ACLF, a person with long-standing liver disease, such as fatty liver, alcohol-related liver disease or hepatitis B or C, with or without cirrhosis, suffers a new injury to the liver. Within days to weeks, jaundice deepens and blood clotting worsens. Fluid may build up in the belly, the brain may be affected (hepatic encephalopathy) and the kidneys may fail.",
+                      "Asian and European liver societies define ACLF slightly differently, but both describe a sudden, serious worsening with a high risk to life that needs prompt specialist care."]),
+   ("Common triggers", ["- Heavy drinking and alcoholic hepatitis","- A flare of hepatitis B, especially after stopping hepatitis B medicines or during chemotherapy","- Hepatitis A or E infection on top of existing liver disease","- Bacterial infections, for example in the belly fluid, urine or lungs","- Bleeding from varices","- Some medicines and unregulated herbal supplements",
+                        "Sometimes no clear trigger is found."]),
+   ("Warning signs", ["- Jaundice that deepens quickly","- Confusion, unusual sleepiness or change in behaviour","- Fever, or a belly that keeps swelling","- Passing very little urine","- Vomiting blood or black stools",
+                      "These are emergencies. Go to the nearest hospital emergency department or call 112."]),
+   ("Treatment", ["- Care in hospital, often in an intensive care unit","- Finding and treating the trigger: antiviral medicines for hepatitis B, antibiotics for infection, stopping bleeding, stopping alcohol, and steroids for selected cases of alcoholic hepatitis","- Supporting the organs that are failing, with fluids, albumin, kidney support and breathing support when needed","- Careful nutrition","- Early assessment for liver transplantation in suitable patients, which can be life-saving"]),
+   ("Outlook and prevention", ["ACLF is serious, and the outlook depends on how many organs are affected and how quickly the trigger can be controlled. Some people recover well, back to their earlier state, when treatment starts early.",
+                               "- Stop alcohol completely if you have liver disease","- Take hepatitis B medicines regularly and never stop them without your doctor's advice","- Get vaccinated against hepatitis A and B if you are not immune","- Avoid unprescribed herbal and 'detox' products","- Keep regular check-ups if you have cirrhosis, and seek help early for fever or new symptoms"]),
+  ]),
+]
+# Link the new liver answers from the cirrhosis page.
+CONDS[6]["answer"] = ["alcoholic-hepatitis", "aclf-acute-on-chronic-liver-failure"]
+CONDS[4]["answer"] = ["aclf-acute-on-chronic-liver-failure"]
