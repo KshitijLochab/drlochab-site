@@ -372,6 +372,24 @@ nav a:hover{color:var(--accent)}
 @media (prefers-reduced-motion: reduce){.hook-needle{animation:none;transform:rotate(-40deg)}.hook{transition:none}}
 .fb-cat{margin:22px 0 10px;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .fb-cat:first-child{margin-top:0}
+.mbc{position:relative}
+.mbc-track{display:grid;grid-auto-flow:column;grid-auto-columns:100%;gap:16px;overflow-x:auto;overflow-y:hidden;transition:height .35s ease;scroll-snap-type:x mandatory;position:relative;scrollbar-width:none;align-items:start;overscroll-behavior-x:contain}
+.mbc-track::-webkit-scrollbar{display:none}
+.mbc-track>.mb{scroll-snap-align:start}
+.mbc-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:18px}
+.mbc-arrow{flex:none;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font-size:1.7rem;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0 0 3px}
+.mbc-arrow:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.mbc-arrow:disabled{opacity:.35;cursor:default}
+.mbc-dots{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;max-width:70%}
+.mbc-dot{width:10px;height:10px;border-radius:50%;border:0;padding:0;background:var(--line);cursor:pointer;transition:transform .2s}
+.mbc-dot.done{background:var(--warm)}
+.mbc-dot[aria-current="true"]{background:var(--accent);transform:scale(1.4)}
+.mbc-foot{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;font-size:.9rem;color:var(--muted);margin-top:12px}
+.mbc-foot b{color:var(--warm-text)}
+.mb-new{display:inline-block;background:#B0362B;color:#fff;border-radius:6px;padding:2px 8px;margin-right:10px;letter-spacing:.08em}
+.mb-num{opacity:.75;margin-left:8px;letter-spacing:.04em}
+.mb-go{margin-left:auto}
+@media (max-width:760px){.mbc-track{grid-auto-columns:88%;gap:12px}.mbc-dots{max-width:62%}}
 @media (max-width:760px){.mb{grid-template-columns:1fr;padding:26px 20px;gap:20px;border-radius:26px}.mb-art{width:140px;justify-self:start}.mb-btns{flex-wrap:nowrap}.mb-btn{flex:1;min-width:0;padding:14px 12px}.mb-claim{font-size:1.6rem}.mb-actions .btn{flex:1 1 auto;justify-content:center}}
 @media (prefers-reduced-motion: reduce){.mb-stamp{animation:none}.fb-needle{transition:none}}
 
@@ -557,10 +575,9 @@ footer .wrap{display:grid;gap:10px}
       <div class="sec-head">
         <p class="eyebrow">Myth Buster</p>
         <h2>Myth or fact? Take a guess</h2>
-        <p class="lede">One common belief about the stomach and liver, put to the test. A new one every Monday and Thursday.</p>
+        <p class="lede">Swipe through common beliefs about the stomach and liver and guess which are true. New ones every Monday and Thursday.</p>
       </div>
-      <div class="mb" id="mb" aria-live="polite"><p class="small">Loading…</p></div>
-      <div class="mb-past" id="mbPast" hidden></div>
+      <div class="mbc" id="mb"><p class="small">Loading…</p></div>
     </div>
   </section>
 
@@ -1116,7 +1133,7 @@ tabs.forEach((t,i)=>{
 });
 
 /*PLAY*/
-const MB={eyebrow:"Myth or fact?",ask:"What do you think?",myth:"Myth",fact:"Fact",isMyth:"It's a myth",isFact:"It's a fact",right:"You got it right!",wrong:"Not quite. Many people believe this.",doLbl:"What to do instead",doLblF:"What to do",docLbl:"When to see a doctor",more:"Read more →",share:"Challenge your family on WhatsApp",shareTail:"Guess, then see the answer from Dr. Kshitij Lochab:",next:d=>d===1?"Next myth: tomorrow":`Next myth in ${d} days`,nextDefault:"A new myth every Monday and Thursday",score:(r,n)=>`Your score: <b>${r} of ${n}</b> right`,past:"Earlier myths",hint:"Tap to see the answer",go:"Test yourself →",err:"The myth could not load. Please refresh the page."};
+const MB={eyebrow:"Myth or fact?",ask:"What do you think?",myth:"Myth",fact:"Fact",isMyth:"It's a myth",isFact:"It's a fact",right:"You got it right!",wrong:"Not quite. Many people believe this.",doLbl:"What to do instead",doLblF:"What to do",docLbl:"When to see a doctor",more:"Read more →",share:"Challenge your family on WhatsApp",shareTail:"Guess, then see the answer from Dr. Kshitij Lochab:",next:d=>d===1?"Next myth: tomorrow":`Next myth in ${d} days`,nextDefault:"A new myth every Monday and Thursday",score:(r,n)=>`Your score: <b>${r} of ${n}</b> right`,past:"Earlier myths",hint:"Tap to see the answer",go:"Test yourself →",err:"The myth could not load. Please refresh the page.",latest:"New",of:(i,n)=>`${i} of ${n}`,nextBtn:"Next myth →",prevA:"Previous myth",nextA:"Next myth"};
 const FT={reset:"Start again",u:"g",legend:"per serving",add:f=>`Add ${f.n}, ${f.s}: ${f.f} grams fibre, ${f.p} grams protein, ${f.t} grams fat`,sub:f=>`Remove one ${f.n}`,
  meters:{f:{n:"Fibre",t:"Aim for at least 25–30 g",st:["Low","Getting there","Good"]},p:{n:"Protein",t:"Aim for about 45–55 g",st:["Low","Getting there","Good"]},t:{n:"Fat",t:"Keep under about 60 g in all",st:["In range","Watch it","Too much"]}},
  msg:{start:"Tap the foods you have eaten today.",fat:"Fat is high today. Go easy on oil, ghee and fried snacks.",prot:"Add some protein: dal, curd, paneer, eggs, chicken or fish.",fib:"Add fibre: a fruit, a katori of sabzi or dal.",good:"A well-balanced day. Your gut will thank you!"},
@@ -1157,41 +1174,66 @@ const ART={
  scope:`<path d="M26 176 C26 124 58 104 98 104 C140 104 160 84 160 52" fill="none" stroke="#12302C" stroke-width="18" stroke-linecap="round"/><path d="M26 176 C26 124 58 104 98 104 C140 104 160 84 160 52" fill="none" stroke="#4A615D" stroke-width="8" stroke-linecap="round"/><circle cx="160" cy="48" r="11" fill="#F3C66B" stroke="#12302C" stroke-width="4"/><path d="M160 22 V12 M180 30 L188 22 M140 30 L132 22" stroke="#C9851F" stroke-width="5" stroke-linecap="round"/><circle cx="62" cy="56" r="28" fill="#F3C66B"/><circle cx="52" cy="50" r="4" fill="#12302C"/><circle cx="72" cy="50" r="4" fill="#12302C"/><path d="M48 63 Q62 76 76 63" stroke="#12302C" stroke-width="4.5" fill="none" stroke-linecap="round"/>`,
  glass:`<g transform="translate(-6 -34) scale(1.3)"><path d="${LIVERP}" fill="#E9B3A3" stroke="#B0362B" stroke-width="2"/></g><g transform="translate(46 50)"><circle r="26" fill="#FFFFFF" stroke="#D3E0DC" stroke-width="3"/><path d="M-10 -13 H10 Q10 3 0 5 Q-10 3 -10 -13Z" fill="#E9A090" stroke="#12302C" stroke-width="3"/><path d="M0 5 V13 M-7 13 H7" stroke="#12302C" stroke-width="3" stroke-linecap="round"/></g><g transform="translate(100 34)"><circle r="26" fill="#FFFFFF" stroke="#D3E0DC" stroke-width="3"/><path d="M-9 -11 H9 L7 13 H-7Z" fill="#B0362B" stroke="#12302C" stroke-width="3" stroke-linejoin="round"/><path d="M2 -11 L7 -20" stroke="#12302C" stroke-width="3" stroke-linecap="round"/></g><g transform="translate(154 50)"><circle r="26" fill="#FFFFFF" stroke="#D3E0DC" stroke-width="3"/><g transform="rotate(-40)"><rect x="-14" y="-7" width="28" height="14" rx="7" fill="#FFFFFF" stroke="#12302C" stroke-width="3"/><path d="M0 -7 H7 A7 7 0 0 1 7 7 H0Z" fill="#0D7466" stroke="#12302C" stroke-width="3"/></g></g>`,
  eye:`<path d="M14 100 Q100 28 186 100 Q100 172 14 100Z" fill="#F4DB6A" stroke="#12302C" stroke-width="5" stroke-linejoin="round"/><circle cx="100" cy="100" r="32" fill="#0D7466"/><circle cx="100" cy="100" r="14" fill="#12302C"/><circle cx="111" cy="89" r="7" fill="#FFFFFF"/><path d="M40 74 L30 60 M70 56 L64 40 M100 50 V34 M130 56 L136 40 M160 74 L170 60" stroke="#12302C" stroke-width="4" stroke-linecap="round"/>`,
+ roll:`<path d="M40 64 V150 Q40 168 88 168 Q136 168 136 150 V64" fill="#FFFFFF" stroke="#97B6AF" stroke-width="5"/><ellipse cx="88" cy="64" rx="48" ry="18" fill="#F3F7F6" stroke="#97B6AF" stroke-width="5"/><ellipse cx="88" cy="64" rx="15" ry="6" fill="#CADDD8" stroke="#97B6AF" stroke-width="3"/><path d="M136 70 V176 L126 170 L116 176 V150" fill="#FFFFFF" stroke="#97B6AF" stroke-width="4" stroke-linejoin="round"/><g transform="translate(154 136)"><circle r="30" fill="#F3C66B" stroke="#12302C" stroke-width="4"/><path d="M0 -16 V0 L12 8" fill="none" stroke="#12302C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>`,
+ tablets:`<rect x="24" y="46" width="132" height="104" rx="18" fill="#DCE7EA" stroke="#97B6AF" stroke-width="5"/>${[[52,76],[90,76],[128,76],[52,120],[90,120],[128,120]].map(([x,y],k)=>`<ellipse cx="${x}" cy="${y}" rx="14" ry="11" fill="${k===4?"#DCE7EA":"#FFFFFF"}" stroke="#97B6AF" stroke-width="3"${k===4?' stroke-dasharray="4 4"':""}/>`).join("")}<g transform="translate(156 154)"><circle r="30" fill="#F3C66B" stroke="#12302C" stroke-width="4"/><path d="M-13 4 A14 14 0 1 0 -6 -12" fill="none" stroke="#12302C" stroke-width="5" stroke-linecap="round"/><path d="M-12 -20 L-5 -12 L-14 -6" fill="none" stroke="#12302C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>`,
  colon:`<g transform="translate(-49 -170) scale(1.1)"><path d="M62 286 V216 Q62 204 74 204 H176 Q190 204 190 218 V262 Q190 282 164 286 Q140 290 132 302" fill="none" stroke="#97B6AF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/><path d="M62 286 V216 Q62 204 74 204 H176 Q190 204 190 218 V262 Q190 282 164 286 Q140 290 132 302" fill="none" stroke="#CADDD8" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><circle cx="190" cy="240" r="6" fill="#B0362B"/></g><circle cx="160" cy="94" r="22" fill="none" stroke="#C9851F" stroke-width="5"/><path d="M176 110 L190 126" stroke="#C9851F" stroke-width="7" stroke-linecap="round"/>`
 };
 const art=k=>`<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${ART[k]||ART.liver}</svg>`;
 const ICON_X='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 L18 18 M18 6 L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
 const ICON_OK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 L10 18 L20 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
-let MBG=store.get("mb-guesses",{}), MBALL=[], MBCUR=null, MBNEXT="";
+let MBG=store.get("mb-guesses",{}), MBALL=[], MBCUR=null, MBNEXT="", MBI=0;
 const mbShare=m=>"https://wa.me/?text="+encodeURIComponent(`${MB.eyebrow} “${m.claim}”\n\n${MB.shareTail} ${SITE.replace(/\/$/,"")}/#myths`);
 function mbScore(){const done=MBALL.filter(m=>MBG[m.date]);return done.length?MB.score(done.filter(m=>MBG[m.date]===m.answer).length,done.length):"";}
-function mbRender(focus){
-  const m=MBCUR, g=MBG[m.date];
-  let h=`<div class="mb-art">${art(m.art)}</div><div class="mb-body"><p class="mb-eyebrow">${MB.eyebrow}</p><p class="mb-claim">“${esc(m.claim)}”</p>`;
+function mbCard(m,i){
+  const g=MBG[m.date], n=MBALL.length;
+  let h=`<div class="mb" data-i="${i}" role="group" aria-roledescription="slide" aria-label="${MB.of(i+1,n)}"><div class="mb-art">${art(m.art)}</div><div class="mb-body"><p class="mb-eyebrow">${i===0?`<span class="mb-new">${MB.latest}</span>`:""}${MB.eyebrow}<span class="mb-num">${MB.of(i+1,n)}</span></p><p class="mb-claim">“${esc(m.claim)}”</p>`;
   if(!g){
     h+=`<p class="mb-ask">${MB.ask}</p><div class="mb-btns"><button type="button" class="mb-btn" data-g="myth">${ICON_X}${MB.myth}</button><button type="button" class="mb-btn" data-g="fact">${ICON_OK}${MB.fact}</button></div>`;
   }else{
     const ok=g===m.answer;
-    h+=`<div class="mb-reveal" id="mbReveal" tabindex="-1"><div class="mb-verdict"><span class="mb-stamp ${m.answer}">${m.answer==="myth"?MB.isMyth:MB.isFact}</span><span class="mb-res ${ok?"ok":""}">${ok?MB.right:MB.wrong}</span></div><h3>${esc(m.verdict)}</h3><p>${esc(m.truth)}</p><div class="try"><b>${m.answer==="myth"?MB.doLbl:MB.doLblF}</b>${esc(m.do)}</div>${m.doctor?`<p class="mb-doc"><b>${MB.docLbl}:</b> ${esc(m.doctor)}</p>`:""}<div class="mb-actions"><a class="btn btn-solid btn-sm" href="${mbShare(m)}" target="_blank" rel="noopener">${MB.share}</a>${m.link?`<a class="btn btn-ghost btn-sm" href="${PFX}${m.link}/">${MB.more}</a>`:""}</div></div>`;
+    h+=`<div class="mb-reveal" tabindex="-1"><div class="mb-verdict"><span class="mb-stamp ${m.answer}">${m.answer==="myth"?MB.isMyth:MB.isFact}</span><span class="mb-res ${ok?"ok":""}">${ok?MB.right:MB.wrong}</span></div><h3>${esc(m.verdict)}</h3><p>${esc(m.truth)}</p><div class="try"><b>${m.answer==="myth"?MB.doLbl:MB.doLblF}</b>${esc(m.do)}</div>${m.doctor?`<p class="mb-doc"><b>${MB.docLbl}:</b> ${esc(m.doctor)}</p>`:""}<div class="mb-actions"><a class="btn btn-solid btn-sm" href="${mbShare(m)}" target="_blank" rel="noopener">${MB.share}</a>${m.link?`<a class="btn btn-ghost btn-sm" href="${PFX}${m.link}/">${MB.more}</a>`:""}${i<n-1?`<button type="button" class="btn btn-ghost btn-sm mb-go" data-to="${i+1}">${MB.nextBtn}</button>`:""}</div></div>`;
   }
-  const sc=mbScore();
-  h+=`<p class="mb-foot"><span>${MBNEXT}</span>${sc?`<span>${sc}</span>`:""}</p></div>`;
-  const el=document.getElementById("mb"); el.innerHTML=h;
-  el.querySelectorAll(".mb-btn").forEach(b=>b.addEventListener("click",()=>{MBG[m.date]=b.dataset.g;store.set("mb-guesses",MBG);mbRender(true);}));
-  if(focus){const r=document.getElementById("mbReveal");if(r)r.focus({preventScroll:true});}
+  return h+`</div></div>`;
 }
-function mbPast(list){
-  const el=document.getElementById("mbPast"); if(!list.length)return;
-  el.innerHTML=`<h3>${MB.past}</h3><div class="mb-grid">${list.slice(0,9).map(m=>`<details class="mb-card"><summary><span class="mb-mini">${art(m.art)}</span><span class="mb-q">“${esc(m.claim)}”</span><span class="mb-hint">${MB.hint}</span></summary><div class="mb-ans"><span class="mb-stamp ${m.answer}">${m.answer==="myth"?MB.isMyth:MB.isFact}</span><p><b>${esc(m.verdict)}</b> ${esc(m.truth)}</p>${m.link?`<a href="${PFX}${m.link}/">${MB.more}</a>`:""}</div></details>`).join("")}</div>`;
-  el.hidden=false;
+const mbTrack=()=>document.getElementById("mbTrack");
+function mbSync(){
+  const tr=mbTrack(), kids=[...tr.children]; let best=0,bd=1e9;
+  kids.forEach((c,i)=>{const d=Math.abs(c.offsetLeft-tr.scrollLeft);if(d<bd){bd=d;best=i;}});
+  MBI=best;
+  document.querySelectorAll(".mbc-dot").forEach((d,i)=>{d.setAttribute("aria-current",String(i===best));d.classList.toggle("done",!!MBG[MBALL[i].date]);});
+  tr.style.height=kids[best].offsetHeight+"px";
+  document.getElementById("mbPrev").disabled=best===0; document.getElementById("mbNext").disabled=best===kids.length-1;
+}
+function mbGo(i){
+  const tr=mbTrack(); i=Math.max(0,Math.min(MBALL.length-1,i));
+  const smooth=!matchMedia("(prefers-reduced-motion: reduce)").matches;
+  tr.scrollTo({left:tr.children[i].offsetLeft,behavior:smooth?"smooth":"auto"});
+}
+function mbFoot(){const sc=mbScore();document.getElementById("mbFoot").innerHTML=`<span>${MBNEXT}</span>${sc?`<span>${sc}</span>`:""}`;}
+function mbBuild(){
+  const el=document.getElementById("mb"), n=MBALL.length;
+  el.innerHTML=`<div class="mbc-track" id="mbTrack" tabindex="0" aria-roledescription="carousel" aria-label="${MB.eyebrow}" aria-live="polite">${MBALL.map(mbCard).join("")}</div><div class="mbc-nav"><button type="button" class="mbc-arrow" id="mbPrev" aria-label="${MB.prevA}">‹</button><div class="mbc-dots" id="mbDots">${MBALL.map((m,i)=>`<button type="button" class="mbc-dot" data-to="${i}" aria-label="${MB.of(i+1,n)}"></button>`).join("")}</div><button type="button" class="mbc-arrow" id="mbNext" aria-label="${MB.nextA}">›</button></div><p class="mbc-foot" id="mbFoot"></p>`;
+  const tr=mbTrack();
+  tr.addEventListener("click",e=>{
+    const b=e.target.closest(".mb-btn");
+    if(b){const card=b.closest(".mb"),i=+card.dataset.i;MBG[MBALL[i].date]=b.dataset.g;store.set("mb-guesses",MBG);card.outerHTML=mbCard(MBALL[i],i);mbFoot();mbSync();setTimeout(mbSync,550);const r=tr.querySelector(`.mb[data-i="${i}"] .mb-reveal`);if(r)r.focus({preventScroll:true});return;}
+    const go=e.target.closest(".mb-go"); if(go)mbGo(+go.dataset.to);
+  });
+  tr.addEventListener("keydown",e=>{if(e.target!==tr)return;if(e.key==="ArrowRight"){e.preventDefault();mbGo(MBI+1);}if(e.key==="ArrowLeft"){e.preventDefault();mbGo(MBI-1);}});
+  document.getElementById("mbPrev").addEventListener("click",()=>mbGo(MBI-1));
+  document.getElementById("mbNext").addEventListener("click",()=>mbGo(MBI+1));
+  document.getElementById("mbDots").addEventListener("click",e=>{const d=e.target.closest(".mbc-dot");if(d)mbGo(+d.dataset.to);});
+  let tm; tr.addEventListener("scroll",()=>{clearTimeout(tm);tm=setTimeout(mbSync,70);},{passive:true});
+  addEventListener("resize",()=>mbGo(MBI));
+  mbSync(); mbFoot();
 }
 getJSON("myths.json").then(all=>{
   const l=live(all); if(!l.length)throw 0;
-  MBALL=l; MBCUR=l[0];
+  MBALL=l.slice(0,20); MBCUR=l[0];
   const nx=all.filter(t=>t.date>TODAY).sort((a,b)=>a.date<b.date?-1:1)[0];
   MBNEXT=nx?MB.next(Math.round((asDate(nx.date)-asDate(TODAY))/864e5)):MB.nextDefault;
-  mbRender(false); mbPast(l.slice(1));
+  mbBuild();
   const t=document.getElementById("mbTeaser");
   t.innerHTML=`<span class="hook-art">${art(MBCUR.art)}</span><span class="hook-k">${MB.eyebrow}</span><span class="hook-q">“${esc(MBCUR.claim)}”</span><span class="hook-go">${MB.go}</span>`; t.hidden=false;
 }).catch(()=>{document.getElementById("mb").innerHTML=`<p>${MB.err}</p>`;});

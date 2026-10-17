@@ -164,8 +164,8 @@ PAIRS = [
  ('<a href="#myths">Myth Buster</a>', '<a href="#myths">भ्रम या सच</a>'),
  ('<p class="eyebrow">Myth Buster</p>', '<p class="eyebrow">भ्रम और सच</p>'),
  ('<h2>Myth or fact? Take a guess</h2>', '<h2>भ्रम या सच? अंदाज़ा लगाइए</h2>'),
- ('<p class="lede">One common belief about the stomach and liver, put to the test. A new one every Monday and Thursday.</p>',
-  '<p class="lede">पेट और लिवर से जुड़ी एक आम धारणा, जिसे हम परखते हैं। हर सोमवार और गुरुवार एक नई।</p>'),
+ ('<p class="lede">Swipe through common beliefs about the stomach and liver and guess which are true. New ones every Monday and Thursday.</p>',
+  '<p class="lede">पेट और लिवर से जुड़ी आम धारणाओं को स्वाइप करें और अंदाज़ा लगाइए कि कौन-सी सच है। हर सोमवार और गुरुवार नई जुड़ती हैं।</p>'),
  ('aria-selected="false" tabindex="-1">Thali meter</button>', 'aria-selected="false" tabindex="-1">थाली मीटर</button>'),
  ('<h3>How balanced is your thali today?</h3>', '<h3>आज आपकी थाली कितनी संतुलित है?</h3>'),
  ('<p class="lede">Tap what you have eaten today. Three meters show your fibre, protein and fat against what most adults need.</p>',
@@ -291,7 +291,7 @@ PAIRS += [
 
 # Replaces the block between /*PLAY*/ and /*/PLAY*/ (Myth Buster and fibre counter text and foods).
 PLAY_JS = r'''/*PLAY*/
-const MB={eyebrow:"भ्रम या सच?",ask:"आपको क्या लगता है?",myth:"भ्रम",fact:"सच",isMyth:"यह भ्रम है",isFact:"यह सच है",right:"आपने सही पहचाना!",wrong:"सही नहीं। बहुत लोग ऐसा ही मानते हैं।",doLbl:"इसकी जगह क्या करें",doLblF:"क्या करें",docLbl:"डॉक्टर को कब दिखाएँ",more:"और पढ़ें →",share:"परिवार को WhatsApp पर चुनौती दें",shareTail:"अंदाज़ा लगाइए, फिर डॉ. क्षितिज लोचब से जवाब जानिए:",next:d=>d===1?"अगला भ्रम: कल":`अगला भ्रम ${d} दिन में`,nextDefault:"हर सोमवार और गुरुवार एक नया भ्रम",score:(r,n)=>`आपका स्कोर: <b>${n} में से ${r}</b> सही`,past:"पिछले भ्रम",hint:"जवाब देखने के लिए टैप करें",go:"ख़ुद को परखें →",err:"भ्रम लोड नहीं हो पाया। कृपया पेज रीफ़्रेश करें।"};
+const MB={eyebrow:"भ्रम या सच?",ask:"आपको क्या लगता है?",myth:"भ्रम",fact:"सच",isMyth:"यह भ्रम है",isFact:"यह सच है",right:"आपने सही पहचाना!",wrong:"सही नहीं। बहुत लोग ऐसा ही मानते हैं।",doLbl:"इसकी जगह क्या करें",doLblF:"क्या करें",docLbl:"डॉक्टर को कब दिखाएँ",more:"और पढ़ें →",share:"परिवार को WhatsApp पर चुनौती दें",shareTail:"अंदाज़ा लगाइए, फिर डॉ. क्षितिज लोचब से जवाब जानिए:",next:d=>d===1?"अगला भ्रम: कल":`अगला भ्रम ${d} दिन में`,nextDefault:"हर सोमवार और गुरुवार एक नया भ्रम",score:(r,n)=>`आपका स्कोर: <b>${n} में से ${r}</b> सही`,past:"पिछले भ्रम",hint:"जवाब देखने के लिए टैप करें",go:"ख़ुद को परखें →",err:"भ्रम लोड नहीं हो पाया। कृपया पेज रीफ़्रेश करें।",latest:"नया",of:(i,n)=>`${n} में से ${i}`,nextBtn:"अगला भ्रम →",prevA:"पिछला भ्रम",nextA:"अगला भ्रम"};
 const FT={reset:"फिर से शुरू करें",u:"ग्राम",legend:"हर सर्विंग में",add:f=>`${f.n} जोड़ें, ${f.s}: फ़ाइबर ${f.f} ग्राम, प्रोटीन ${f.p} ग्राम, फ़ैट ${f.t} ग्राम`,sub:f=>`एक ${f.n} हटाएँ`,
  meters:{f:{n:"फ़ाइबर",t:"कम से कम 25–30 ग्राम",st:["कम","सही दिशा में","अच्छा"]},p:{n:"प्रोटीन",t:"लक्ष्य लगभग 45–55 ग्राम",st:["कम","सही दिशा में","अच्छा"]},t:{n:"फ़ैट",t:"कुल मिलाकर लगभग 60 ग्राम से कम",st:["ठीक","ध्यान दें","बहुत ज़्यादा"]}},
  msg:{start:"आज आपने जो खाया है, उस पर टैप करें।",fat:"आज फ़ैट ज़्यादा है। तेल, घी और तली चीज़ें कम करें।",prot:"थोड़ा प्रोटीन जोड़ें: दाल, दही, पनीर, अंडा, चिकन या मछली।",fib:"फ़ाइबर जोड़ें: एक फल, एक कटोरी सब्ज़ी या दाल।",good:"आज की थाली अच्छी संतुलित है। आपका पेट शुक्रिया कहेगा!"},
