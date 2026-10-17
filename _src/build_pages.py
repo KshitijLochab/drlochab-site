@@ -22,6 +22,14 @@ PHONE, WA = "+91 96671 04882", "https://wa.me/919667104882"
 WA_CHANNEL = ""
 CHANNEL_TXT = {"en": ("Get a daily gut-health tip on WhatsApp", "Join the channel"), "hi": ("पेट की सेहत की रोज़ की सलाह WhatsApp पर पाएँ", "चैनल से जुड़ें")}
 
+TRACK_CONDS = {"ibs-irritable-bowel-syndrome", "constipation", "acidity-reflux-gerd", "ulcerative-colitis-crohns-disease", "h-pylori-gastritis-ulcer"}
+TRACK_TXT = {"en": ("Keep a symptom diary", "Log your bowel habits, symptoms and possible food triggers for 2 to 4 weeks, privately on your phone, and bring the summary to your visit.", "Open the gut health tracker"),
+             "hi": ("लक्षणों की डायरी रखें", "2 से 4 हफ़्ते तक अपनी मल की आदत, लक्षण और संभावित खाने के ट्रिगर अपने फ़ोन पर निजी रूप से लिखें, और सारांश डॉक्टर के पास लाएँ।", "पेट की सेहत का ट्रैकर खोलें")}
+
+def tracker_note(lang):
+    h, p_, b = TRACK_TXT[lang]
+    return f'<section class="note"><p><b>{h}.</b> {p_}</p><p><a class="btn btn-ghost btn-sm" href="{url(lang, "tools", "gut-tracker")}">{b} →</a></p></section>'
+
 def channel_html(lang, cls="chan"):
     """A small 'join the WhatsApp channel' block, or nothing while WA_CHANNEL is empty."""
     if not WA_CHANNEL:
@@ -238,6 +246,8 @@ def build():
                             f'<div class="gcol less"><h3>{t["less"]}</h3>{ul(g["less"])}</div>'
                             f'<div class="gcol know"><h3>{t["know"]}</h3>{ul(g["know"])}</div></div></section>')
             body.append(f'<section class="see"><h2>{t["when"]}</h2><p>{e(c["e"])}</p></section>')
+            if base["slug"] in TRACK_CONDS:
+                body.append(tracker_note(lang))
             body.append(guide_notes(lang, "conds", i))
             body.append(faq_html(lang, x["faqs"]))
             reads = answer_links(lang, S, base["answer"])
@@ -375,6 +385,9 @@ def build():
     import stool_check, sys
     for lang in ("en", "hi"):
         path, path_en, path_hi, page = stool_check.render(lang, sys.modules[__name__])
+        write(path, page); pages.append((path_en, path_hi))
+        import gut_tracker
+        path, path_en, path_hi, page = gut_tracker.render(lang, sys.modules[__name__])
         write(path, page); pages.append((path_en, path_hi))
     os.makedirs("site/assets", exist_ok=True)
     il_css = open("insta/illus.css").read()

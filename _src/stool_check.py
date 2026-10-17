@@ -195,7 +195,8 @@ def render(lang, bp):
             f'<div class="sc-act"><a class="btn btn-wa btn-sm" href="{share}" target="_blank" rel="noopener">{ICON_SHARE}{e(X["share"])}</a>'
             f'<button type="button" class="btn btn-ghost btn-sm" id="scAgain">{e(X["again"])}</button></div>'
             f'<p class="small" style="margin-top:12px">{e(X["disc"])}</p>'
-            f'<section><h2>{e(X["more_h"])}</h2><div class="faqs">' + "".join(f'<div class="faq"><h3>{e(h)}</h3><p>{e(p)}</p></div>' for h, p in X["more"]) + '</div></section>'
+            + bp.tracker_note(lang)
+            + f'<section><h2>{e(X["more_h"])}</h2><div class="faqs">' + "".join(f'<div class="faq"><h3>{e(h)}</h3><p>{e(p)}</p></div>' for h, p in X["more"]) + '</div></section>'
             f'<section class="see"><h2>{e(X["see_h"])}</h2>{bp.ul(X["see"])}</section>'
             + bp.faq_html(lang, X["faqs"]))
     ld = bp.ld_page(lang, path, X["h1"], X["desc"], "MedicalCondition", X["h1"], X["faqs"], t["answers"], "conditions", UPD)

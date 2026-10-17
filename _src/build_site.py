@@ -141,6 +141,7 @@ def link_lists(lang):
             "<!--ANSWER_LINKS-->": ans,
             "/*FOOD*/": food_js(lang),
             "<!--WA_CHANNEL-->": build_pages.channel_html(lang),
+            "<!--TRACKER-->": ('<a class="ibs-track" href="tools/gut-tracker/">' + ("Track your symptoms privately →" if lang == "en" else "अपने लक्षण निजी रूप से ट्रैक करें →") + '</a>'),
             "<!--HUB-->": hub.hub_html(lang, hub.page_data(src[src.index("const ORGANS="):src.index("const esc=")] if lang == "en" else hindi.DATA_JS))}
 
 for key, p in PAGES.items():
