@@ -122,3 +122,7 @@ footer{padding-block:36px 56px;font-size:.88rem;color:var(--muted);border-top:1p
   .fab{display:flex;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;padding:13px 20px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.22)}
   footer{padding-bottom:110px}
 }
+.alarm{background:var(--urgent-soft);border-radius:18px;padding:22px 24px}
+.alarm h2{color:var(--urgent)}
+.alarm .small{margin-top:10px}
+section h3{margin-top:18px}

@@ -1,10 +1,11 @@
 """Generates condition, procedure and answer pages (English and Hindi) into site/.
 Run after build_site.py has written site/index.html and site/hi/index.html."""
 import json, os, html, subprocess
-import seo_en, seo_hi, guide_art
+import seo_en, seo_hi, guide_art, seo_proc_en, seo_proc_hi
 
 SITE = "https://drlochab.com"
 UPDATED = ("2026-10-10", "10 October 2026", "10 अक्टूबर 2026")
+PROC_UPDATED = ("2026-10-17", "17 October 2026", "17 अक्टूबर 2026")
 PHONE, WA = "+91 96671 04882", "https://wa.me/919667104882"
 REVIEW = "https://g.page/r/CYmK8BpICDd6EBM/review"
 
@@ -19,7 +20,10 @@ L = {
    disc="This page is for general health education and does not replace a consultation. In an emergency, call 112 or go to the nearest emergency department.",
    reg="Haryana Medical Council Reg. No. HN-23524", lang_link="हिंदी", lang_aria="यह पेज हिंदी में पढ़ें", city="in Gurugram",
    all_guides="More guides", guides="Guides",
-   special="Special guides:", special_p="read the guide for your situation, with diet advice and the warning signs to watch for."),
+   special="Special guides:", special_p="read the guide for your situation, with diet advice and the warning signs to watch for.",
+   about="How it works", prep="Before the procedure", day="On the day", glance="At a glance", after="After the procedure",
+   alarm="Get medical help straight away if you have", alts="Other tests and options", where="{n} in Gurugram",
+   where_p="Dr. Kshitij Lochab, Consultant Gastroenterologist and Therapeutic Endoscopist (DrNB Gastroenterology, Medanta; Advanced Fellowship in EUS and ERCP), sees patients in Gurugram (Gurgaon) at Arcura Clinic, M2K Corporate Park, Sector 51, and at Apollo Hospitals, Golf Course Road. Book a consultation by call or WhatsApp on +91 96671 04882. Video consultations are available to go through your reports before a visit."),
  "hi": dict(home="होम", conds="बीमारियाँ", procs="जाँच और इलाज", answers="सवाल-जवाब", tips="रोज़ की सलाह", book="अपॉइंटमेंट",
    by="लेखक: डॉ. क्षितिज लोचब, कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट", upd="अपडेट", symptoms="आम लक्षण", causes="वजहें और ख़तरे",
    tests="जाँच कैसे होती है", treat="इलाज", proc_help="इलाज में मदद करने वाले प्रोसीजर", diet="डाइट गाइड", more="ज़्यादा खाएँ", less="कम करें",
@@ -30,7 +34,10 @@ L = {
    disc="यह पेज सामान्य स्वास्थ्य जानकारी के लिए है और डॉक्टर की सलाह की जगह नहीं ले सकता। इमरजेंसी में 112 पर कॉल करें या सबसे पास की इमरजेंसी में जाएँ।",
    reg="हरियाणा मेडिकल काउंसिल रजि. नं. HN-23524", lang_link="English", lang_aria="Read this page in English", city="गुरुग्राम",
    all_guides="और गाइड", guides="गाइड",
-   special="ख़ास गाइड:", special_p="अपनी स्थिति के लिए गाइड पढ़ें, जिसमें खाने की सलाह और ख़तरे के संकेत दिए गए हैं।"),
+   special="ख़ास गाइड:", special_p="अपनी स्थिति के लिए गाइड पढ़ें, जिसमें खाने की सलाह और ख़तरे के संकेत दिए गए हैं।",
+   about="यह कैसे होता है", prep="प्रोसीजर से पहले", day="प्रोसीजर वाले दिन", glance="एक नज़र में", after="प्रोसीजर के बाद",
+   alarm="इनमें से कुछ भी हो तो तुरंत डॉक्टर को दिखाएँ", alts="दूसरी जाँचें और विकल्प", where="गुरुग्राम में {n}",
+   where_p="डॉ. क्षितिज लोचब, कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट और थेराप्यूटिक एंडोस्कोपिस्ट (DrNB गैस्ट्रोएंटेरोलॉजी, मेदांता; EUS और ERCP में एडवांस्ड फ़ेलोशिप), गुरुग्राम (गुड़गाँव) में आर्क्योरा क्लिनिक, M2K कॉर्पोरेट पार्क, सेक्टर 51, और अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड में मरीज़ देखते हैं। अपॉइंटमेंट के लिए +91 96671 04882 पर कॉल या WhatsApp करें। मिलने से पहले रिपोर्ट दिखाने के लिए वीडियो कंसल्टेशन भी उपलब्ध है।"),
 }
 
 e = lambda s: html.escape(s, quote=True)
@@ -211,20 +218,32 @@ def build():
             base = seo_en.PROCS[i]; x = S.PROCS[i]
             path, path_en, path_hi = url(lang, "procedures", base["slug"]), url("en", "procedures", base["slug"]), url("hi", "procedures", base["slug"])
             title = f"{x['seo']} {t['city']} | Dr. Kshitij Lochab" if lang == "en" else f"{x['seo']}, {t['city']} | डॉ. क्षितिज लोचब"
-            desc = pr["w"][:155].rsplit(" ", 1)[0] + "…"
+            M = (seo_proc_en if lang == "en" else seo_proc_hi).MORE.get(base["slug"], {})
+            desc = M.get("desc") or (pr["w"][:155].rsplit(" ", 1)[0] + "…")
+            faqs = x["faqs"] + M.get("faqs", [])
             table = '<dl class="expect">' + "".join(f"<dt>{e(k)}</dt><dd>{e(v)}</dd>" for k, v in pr["d"]) + "</dl>"
-            body = [f'<figure class="fig">{d["IL"][pr["il"]]}</figure>', f'<p class="lead">{e(pr["w"])}</p>',
-                    f'<section><h2>{t["uses"]}</h2>{ul(x["uses"])}</section>',
-                    f'<section><h2>{t["expect"]}</h2>{table}</section>',
-                    f'<section><h2>{t["risks"]}</h2><p>{e(x["risks"])}</p></section>',
-                    f'<section><h2>{t["treats"]}</h2>' + links([(url(lang, "conditions", seo_en.CONDS[j]["slug"]), d["CONDITIONS"][j]["n"]) for j in base["conds"]]) + "</section>",
-                    guide_notes(lang, "procs", i), faq_html(lang, x["faqs"])]
+            sec = lambda h, inner: f"<section><h2>{h}</h2>{inner}</section>"
+            body = [f'<figure class="fig">{d["IL"][pr["il"]]}</figure>', f'<p class="lead">{e(pr["w"])}</p>']
+            if M.get("intro"): body.append(sec(t["about"], "".join(f"<p>{e(p_)}</p>" for p_ in M["intro"])))
+            body.append(sec(t["uses"], ul(x["uses"])))
+            if M.get("prep"): body.append(sec(t["prep"], ul(M["prep"])))
+            if M.get("day"): body.append(sec(t["day"], f"<p>{e(M['day'])}</p><h3>{t['glance']}</h3>{table}"))
+            else: body.append(sec(t["expect"], table))
+            if M.get("after"): body.append(sec(t["after"], ul(M["after"])))
+            body.append(sec(t["risks"], f"<p>{e(M.get('risks') or x['risks'])}</p>"))
+            if M.get("alarm"): body.append(f'<section class="alarm"><h2>{t["alarm"]}</h2>{ul(M["alarm"])}<p class="small">{e(t["disc"])}</p></section>')
+            if M.get("alts"): body.append(sec(t["alts"], f"<p>{e(M['alts'])}</p>"))
+            body.append(sec(t["treats"], links([(url(lang, "conditions", seo_en.CONDS[j]["slug"]), d["CONDITIONS"][j]["n"]) for j in base["conds"]])))
+            body.append(guide_notes(lang, "procs", i))
+            if M: body.append(sec(e(t["where"].format(n=x["seo"])), f"<p>{e(t['where_p'])}</p>"))
+            body.append(faq_html(lang, faqs))
             if base["answer"]:
                 body.append(f'<section><h2>{t["read"]}</h2>' + links(answer_links(lang, S, base["answer"])) + "</section>")
-            ld = ld_page(lang, path, pr["n"], desc, "MedicalProcedure", pr["n"], x["faqs"], t["procs"], "procedures")
+            upd = PROC_UPDATED if M else None
+            ld = ld_page(lang, path, pr["n"], desc, "MedicalProcedure", pr["n"], faqs, t["procs"], "procedures", upd)
             page = (head(lang, title, desc, path_en, path_hi, ld) + header(lang, path_hi if lang == "en" else path_en)
                     + f'<main class="wrap grid"><article>{crumbs(lang, t["procs"], "procedures", pr["n"])}'
-                    + f'<p class="eyebrow">{e(pr["a"])}</p><h1>{e(pr["n"])}</h1>{byline(lang)}' + "".join(body)
+                    + f'<p class="eyebrow">{e(pr["a"])}</p><h1>{e(pr["n"])}</h1>{byline(lang, upd)}' + "".join(body)
                     + f"</article>{aside(lang)}</main>" + footer(lang))
             write(path, page); pages.append((path_en, path_hi))
         # ---- answers

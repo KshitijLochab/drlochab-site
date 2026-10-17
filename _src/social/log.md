@@ -2,6 +2,7 @@
 Newest first. Add every new post here so topics are not repeated.
 
 ## 17 Oct 2026 (site)
+- Site: all 9 procedure pages expanded (EN + HI, about 800 to 1,100 words each, 6 FAQs, Gurugram section), aimed at searches like EUS in Gurugram, ERCP, endoscopy procedure.
 - Promo for the new site features (Myth or fact? + Thali meter): Instagram story (EN), WhatsApp Status (HI and EN), Google Business Profile post (Learn more: drlochab.com). Generator: social/site_games_promo.py.
 - Site: fibre counter became the Thali meter (fibre, protein and fat gauges; 51 foods incl. milk, paneer, eggs, meat, oil, ghee and snacks).
 - Site: Myth Buster section (guess myth or fact, new entry Mon and Thu from myths.json) and fibre counter tab (31 foods incl. 13 vegetables), both promoted as cards at the top of the home page, EN + HI.
