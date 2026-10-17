@@ -1,6 +1,9 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 17 Oct 2026 (site)
+- Site: Myth Buster section (guess myth or fact, new entry Mon and Thu from myths.json) and fibre counter tab (31 foods incl. 13 vegetables), both promoted as cards at the top of the home page, EN + HI.
+
 ## 17 Oct 2026
 - WhatsApp Status (HI + EN): Know your hepatitis B status (shield, 2 facts, who should get tested checklist, test and vaccine steps; replaces the plain wa-status-3). Generator: social/hepb_status.py.
 

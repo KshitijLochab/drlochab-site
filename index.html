@@ -355,14 +355,23 @@ nav a:hover{color:var(--accent)}
 .mb-ans{display:grid;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:.95rem}
 .mb-ans .mb-stamp{font-size:.72rem;padding:4px 10px;justify-self:start;animation:none;outline:0;transform:none}
 .mb-ans a{font-weight:600;font-size:.9rem}
-@media (min-width:761px){.mb-teaser{order:-1;justify-self:start}}
-.mb-teaser{display:grid;grid-template-columns:auto 1fr auto;gap:6px 14px;align-items:center;text-decoration:none;color:var(--ink);background:var(--warm-soft);border:1.5px solid var(--warm);border-radius:18px;padding:12px 16px;max-width:580px}
-.mb-teaser:hover{border-color:var(--accent)}
-.mb-teaser-k{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#B0362B;padding:5px 9px;border-radius:8px;transform:rotate(-3deg);white-space:nowrap}
-.mb-teaser-q{font-family:var(--display);font-size:1.02rem;line-height:1.25;min-width:0}
-.mb-teaser-go{font-weight:700;color:var(--accent);white-space:nowrap;font-size:.95rem}
-@media (max-width:760px){.mb{grid-template-columns:1fr;padding:26px 22px;gap:22px;border-radius:26px}.mb-art{width:150px}.mb-btn{flex:1;min-width:0}}
-@media (max-width:520px){.mb-teaser{grid-template-columns:auto 1fr}.mb-teaser-go{grid-column:1/-1}}
+.hooks{display:grid;grid-template-columns:1fr 1fr;gap:12px;order:-1;max-width:640px}
+.hook{display:grid;grid-template-columns:48px 1fr;gap:5px 12px;align-content:start;text-decoration:none;color:var(--ink);border-radius:18px;padding:14px 16px;border:1.5px solid;min-width:0;transition:transform .15s}
+.hook:hover{transform:translateY(-2px)}
+.hook-myth{background:var(--warm-soft);border-color:var(--warm)}
+.hook-fibre{background:var(--accent-soft);border-color:var(--accent)}
+.hook-art{grid-row:span 3;width:48px;height:48px;border-radius:50%;background:#FBEFD9;padding:4px;align-self:start}
+.hook-art svg{width:100%;height:100%;display:block}
+.hook-k{justify-self:start;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff;padding:4px 8px;border-radius:7px;transform:rotate(-2deg);white-space:nowrap}
+.hook-myth .hook-k{background:#B0362B}.hook-fibre .hook-k{background:#0B6A5E}
+.hook-q{font-family:var(--display);font-size:1rem;line-height:1.25}
+.hook-go{font-weight:700;font-size:.9rem;color:var(--accent)}
+.hook-needle{transform-origin:50px 62px;animation:hookswing 2.4s ease-in-out .6s infinite}
+@keyframes hookswing{0%,100%{transform:rotate(-58deg)}45%,60%{transform:rotate(52deg)}}
+@media (max-width:560px){.hooks{gap:8px}.hook{grid-template-columns:1fr;padding:12px;gap:6px}.hook-art{grid-row:auto;width:40px;height:40px;padding:6px}.hook-q{font-size:.92rem}.hook-go{font-size:.84rem}}
+@media (prefers-reduced-motion: reduce){.hook-needle{animation:none;transform:rotate(-40deg)}.hook{transition:none}}
+.fb-cat{margin:22px 0 10px;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.fb-cat:first-child{margin-top:0}
 @media (prefers-reduced-motion: reduce){.mb-stamp{animation:none}.fb-needle{transition:none}}
 
 /* fibre counter */
@@ -457,7 +466,7 @@ footer .wrap{display:grid;gap:10px}
           <span>All-India Gold Medal</span>
           <span>Advanced Fellowship in EUS &amp; ERCP</span>
         </div>
-        <a class="mb-teaser" id="mbTeaser" href="#myths" hidden></a>
+        <div class="hooks" id="hooks"><a class="hook hook-myth" id="mbTeaser" href="#myths" hidden></a><a class="hook hook-fibre" id="fbTeaser" href="#fibre"></a></div>
       </div>
       <figure class="portrait">
         <img src="dr-lochab.jpg" alt="Dr. Kshitij Lochab in a white doctor's coat" width="800" height="1000">
@@ -1098,12 +1107,17 @@ tabs.forEach((t,i)=>{
 
 /*PLAY*/
 const MB={eyebrow:"Myth or fact?",ask:"What do you think?",myth:"Myth",fact:"Fact",isMyth:"It's a myth",isFact:"It's a fact",right:"You got it right!",wrong:"Not quite. Many people believe this.",doLbl:"What to do instead",doLblF:"What to do",docLbl:"When to see a doctor",more:"Read more →",share:"Challenge your family on WhatsApp",shareTail:"Guess, then see the answer from Dr. Kshitij Lochab:",next:d=>d===1?"Next myth: tomorrow":`Next myth in ${d} days`,nextDefault:"A new myth every Monday and Thursday",score:(r,n)=>`Your score: <b>${r} of ${n}</b> right`,past:"Earlier myths",hint:"Tap to see the answer",go:"Test yourself →",err:"The myth could not load. Please refresh the page."};
-const FT={reset:"Start again",u:"g",total:"g of fibre today",add:f=>`Add ${f.n}, ${f.s}, about ${f.g} grams`,sub:f=>`Remove one ${f.n}`,lv:["Tap the foods you have eaten today.","Running on empty. Your gut needs more fibre.","Getting there. Add a fruit or a katori of dal.","Almost full. One more fibre-rich food will do it.","Tank full! Your gut will thank you."],note:"Values are approximate for a typical home serving. Add fibre slowly over a few weeks and drink more water with it. If you have a bowel condition, ask your doctor what suits you. Your list stays on this phone for today only, so come back tomorrow for a fresh tank."};
+const FT={reset:"Start again",u:"g",total:"g of fibre today",add:f=>`Add ${f.n}, ${f.s}, about ${f.g} grams`,sub:f=>`Remove one ${f.n}`,lv:["Tap the foods you have eaten today.","Running on empty. Your gut needs more fibre.","Getting there. Add a fruit or a katori of dal.","Almost full. One more fibre-rich food will do it.","Tank full! Your gut will thank you."],note:"Values are approximate for a typical home serving. Add fibre slowly over a few weeks and drink more water with it. If you have a bowel condition, ask your doctor what suits you. Your list stays on this phone for today only, so come back tomorrow for a fresh tank.",cats:{g:"Roti, rice & cereals",d:"Dal & beans",v:"Vegetables",f:"Fruits & nuts"},hookK:"Fibre counter",hookQ:"Is your gut running on empty?",hookGo:"Fill your fibre tank →",hookHave:g=>`You are at ${g} g of fibre today`,hookTop:"Top up your tank →"};
 const FOODS=[
- {n:"Atta roti",s:"1 roti",g:2.5},{n:"Bajra or jowar roti",s:"1 roti",g:3},{n:"Dal",s:"1 katori",g:4},{n:"Rajma or chole",s:"1 katori",g:8},
- {n:"Sabzi",s:"1 katori",g:3},{n:"Salad",s:"1 plate",g:2},{n:"Oats",s:"1 bowl",g:4},{n:"Brown rice",s:"1 katori",g:2.5},
- {n:"White rice",s:"1 katori",g:0.5},{n:"White bread",s:"2 slices",g:1.5},{n:"Whole wheat bread",s:"2 slices",g:4},{n:"Guava",s:"1 fruit",g:5},
- {n:"Apple, with peel",s:"1 fruit",g:4},{n:"Banana",s:"1 fruit",g:3},{n:"Orange",s:"1 fruit",g:3},{n:"Papaya",s:"1 bowl",g:2.5},{n:"Almonds",s:"1 handful",g:3.5}
+ {c:"g",n:"Atta roti",s:"1 roti",g:2.5},{c:"g",n:"Bajra or jowar roti",s:"1 roti",g:3},{c:"g",n:"Oats",s:"1 bowl",g:4},{c:"g",n:"Brown rice",s:"1 katori",g:2.5},
+ {c:"g",n:"White rice",s:"1 katori",g:0.5},{c:"g",n:"White bread",s:"2 slices",g:1.5},{c:"g",n:"Whole wheat bread",s:"2 slices",g:4},
+ {c:"d",n:"Dal",s:"1 katori",g:4},{c:"d",n:"Rajma or chole",s:"1 katori",g:8},{c:"d",n:"Roasted chana, with skin",s:"1 handful",g:4},
+ {c:"v",n:"Mixed sabzi",s:"1 katori",g:3},{c:"v",n:"Matar (green peas)",s:"1 katori",g:5},{c:"v",n:"Bhindi",s:"1 katori",g:3},{c:"v",n:"Palak or saag",s:"1 katori",g:3},
+ {c:"v",n:"Gobhi",s:"1 katori",g:2.5},{c:"v",n:"Beans",s:"1 katori",g:3},{c:"v",n:"Baingan",s:"1 katori",g:2.5},{c:"v",n:"Patta gobhi (cabbage)",s:"1 katori",g:2},
+ {c:"v",n:"Lauki or tori",s:"1 katori",g:1},{c:"v",n:"Gajar (carrot)",s:"1 medium",g:2},{c:"v",n:"Shakarkandi (sweet potato)",s:"1 medium",g:4},{c:"v",n:"Bhutta (corn)",s:"1 cob",g:2.5},
+ {c:"v",n:"Salad",s:"1 plate",g:2},
+ {c:"f",n:"Guava",s:"1 fruit",g:5},{c:"f",n:"Pear",s:"1 fruit",g:5},{c:"f",n:"Apple, with peel",s:"1 fruit",g:4},{c:"f",n:"Anaar (pomegranate)",s:"1 katori seeds",g:3.5},
+ {c:"f",n:"Banana",s:"1 fruit",g:3},{c:"f",n:"Orange",s:"1 fruit",g:3},{c:"f",n:"Papaya",s:"1 bowl",g:2.5},{c:"f",n:"Almonds",s:"1 handful",g:3.5}
 ];
 /*/PLAY*/
 
@@ -1156,11 +1170,12 @@ getJSON("myths.json").then(all=>{
   MBNEXT=nx?MB.next(Math.round((asDate(nx.date)-asDate(TODAY))/864e5)):MB.nextDefault;
   mbRender(false); mbPast(l.slice(1));
   const t=document.getElementById("mbTeaser");
-  t.innerHTML=`<span class="mb-teaser-k">${MB.eyebrow}</span><span class="mb-teaser-q">“${esc(MBCUR.claim)}”</span><span class="mb-teaser-go">${MB.go}</span>`; t.hidden=false;
+  t.innerHTML=`<span class="hook-art">${art(MBCUR.art)}</span><span class="hook-k">${MB.eyebrow}</span><span class="hook-q">“${esc(MBCUR.claim)}”</span><span class="hook-go">${MB.go}</span>`; t.hidden=false;
 }).catch(()=>{document.getElementById("mb").innerHTML=`<p>${MB.err}</p>`;});
 
 /* fibre counter */
 let FB=store.get("fibre-"+TODAY,{});
+const MINIGAUGE='<svg viewBox="0 0 100 80" aria-hidden="true"><path d="M14 62 A36 36 0 0 1 32 31" fill="none" stroke="#E9A090" stroke-width="12" stroke-linecap="round"/><path d="M32 31 A36 36 0 0 1 68 31" fill="none" stroke="#F3C66B" stroke-width="12"/><path d="M68 31 A36 36 0 0 1 86 62" fill="none" stroke="#2E9C86" stroke-width="12" stroke-linecap="round"/><g class="hook-needle"><line x1="50" y1="62" x2="50" y2="34" stroke="#12302C" stroke-width="6" stroke-linecap="round"/></g><circle cx="50" cy="62" r="8" fill="#12302C"/></svg>';
 const fmtG=g=>String(Math.round(g*10)/10);
 function gauge(){
   const cx=200,cy=200,r=150,P=a=>[(cx+r*Math.cos(a*Math.PI/180)).toFixed(1),(cy-r*Math.sin(a*Math.PI/180)).toFixed(1)];
@@ -1175,10 +1190,11 @@ function fbUpdate(){
   document.getElementById("fbMsg").textContent=FT.lv[tot===0?0:tot<8?1:tot<18?2:tot<25?3:4];
   FOODS.forEach((f,i)=>{const n=FB[i]||0,d=document.getElementById("fd"+i);d.classList.toggle("on",n>0);const c=d.querySelector(".fd-n");c.textContent="×"+n;c.hidden=!n;d.querySelector(".fd-sub").hidden=!n;});
   store.set("fibre-"+TODAY,FB);
+  document.getElementById("fbTeaser").innerHTML=`<span class="hook-art">${MINIGAUGE}</span><span class="hook-k">${FT.hookK}</span><span class="hook-q">${tot?FT.hookHave(fmtG(tot)):FT.hookQ}</span><span class="hook-go">${tot?FT.hookTop:FT.hookGo}</span>`;
 }
 (function(){
   const root=document.getElementById("fb");
-  root.innerHTML=`<div class="fb-meter">${gauge()}<div class="fb-read" role="status"><div class="fb-total" id="fbTotal"></div><p class="fb-msg" id="fbMsg"></p></div><button type="button" class="chip" id="fbReset">${FT.reset}</button></div><div><div class="fb-foods">${FOODS.map((f,i)=>`<div class="fd" id="fd${i}"><button type="button" class="fd-add" data-i="${i}" aria-label="${FT.add(f)}"><b>${esc(f.n)}</b><span>${esc(f.s)}</span><i>+${fmtG(f.g)} ${FT.u}</i></button><span class="fd-n" aria-hidden="true" hidden></span><button type="button" class="fd-sub" data-i="${i}" aria-label="${FT.sub(f)}" hidden>−</button></div>`).join("")}</div><p class="small" style="margin-top:16px;max-width:70ch">${FT.note}</p></div>`;
+  root.innerHTML=`<div class="fb-meter">${gauge()}<div class="fb-read" role="status"><div class="fb-total" id="fbTotal"></div><p class="fb-msg" id="fbMsg"></p></div><button type="button" class="chip" id="fbReset">${FT.reset}</button></div><div>${Object.keys(FT.cats).map(c=>`<h4 class="fb-cat">${FT.cats[c]}</h4><div class="fb-foods">${FOODS.map((f,i)=>[f,i]).filter(x=>x[0].c===c).map(([f,i])=>`<div class="fd" id="fd${i}"><button type="button" class="fd-add" data-i="${i}" aria-label="${FT.add(f)}"><b>${esc(f.n)}</b><span>${esc(f.s)}</span><i>+${fmtG(f.g)} ${FT.u}</i></button><span class="fd-n" aria-hidden="true" hidden></span><button type="button" class="fd-sub" data-i="${i}" aria-label="${FT.sub(f)}" hidden>−</button></div>`).join("")}</div>`).join("")}<p class="small" style="margin-top:16px;max-width:70ch">${FT.note}</p></div>`;
   root.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
     if(b.id==="fbReset")FB={};
     else if(b.classList.contains("fd-add"))FB[b.dataset.i]=(FB[b.dataset.i]||0)+1;
@@ -1188,7 +1204,9 @@ function fbUpdate(){
 })();
 const hdr=()=>document.documentElement.style.setProperty("--hdr",document.querySelector(".top").offsetHeight+"px");
 hdr(); addEventListener("resize",hdr);
-function openFromHash(){if(location.hash==="#fibre"){selectTab(document.getElementById("tab-fibre"));document.getElementById("daily").scrollIntoView();}}
+function openFibre(){selectTab(document.getElementById("tab-fibre"));document.getElementById("daily").scrollIntoView();}
+function openFromHash(){if(location.hash==="#fibre")openFibre();}
+document.getElementById("fbTeaser").addEventListener("click",e=>{e.preventDefault();history.replaceState(null,"","#fibre");openFibre();});
 addEventListener("hashchange",openFromHash); openFromHash();
 
 /* copy address and phone */
