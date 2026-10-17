@@ -2,7 +2,7 @@
 Newest first. Add every new post here so topics are not repeated.
 
 ## 17 Oct 2026
-- WhatsApp Status (HI + EN): Do you know your hepatitis B status? (redesign matching the 16 Oct post; replaces the plain wa-status-3). Generator: social/hepb_status.py.
+- WhatsApp Status (HI + EN): Know your hepatitis B status (shield, 2 facts, who should get tested checklist, test and vaccine steps; replaces the plain wa-status-3). Generator: social/hepb_status.py.
 
 ## 16 Oct 2026
 - Instagram post (EN): Hepatitis B is preventable, redesigned (teal, shield, 3 facts, test and vaccine cards; replaces the plain version from week_2026_10_12). Generator: social/hepb_post.py.
