@@ -108,7 +108,15 @@ def link_lists(lang):
     esc = lambda x: _html.escape(x, quote=True)
     cond = "".join(f'<a href="{pre}conditions/{b["slug"]}/">{esc(x["seo"])}</a>' for b, x in zip(seo_en.CONDS, S.CONDS))
     proc = "".join(f'<a href="{pre}procedures/{b["slug"]}/">{esc(x["seo"])}</a>' for b, x in zip(seo_en.PROCS, S.PROCS))
-    ans = "".join(f'<a href="{pre}answers/{b["slug"]}/">{esc(x["q"])}<span aria-hidden="true">→</span></a>' for b, x in zip(seo_en.ANSWERS, S.ANSWERS))
+    LIVER = {"is-fatty-liver-reversible","diet-in-jaundice","alcoholic-hepatitis","aclf-acute-on-chronic-liver-failure","high-sgpt-sgot-liver-function-test",
+             "ascites-fluid-in-abdomen","hepatic-encephalopathy","liver-abscess","liver-cancer-screening","when-is-liver-transplant-needed","fatty-liver-grade-on-ultrasound"}
+    TESTS = {"is-endoscopy-painful","fibroscan-test","capsule-endoscopy","stool-tests"}
+    grp = lambda slug: "l" if slug in LIVER else "t" if slug in TESTS else "g"
+    heads = {"l": "Liver", "g": "Stomach and bowel", "t": "Tests and procedures"} if lang == "en" else {"l": "लिवर", "g": "पेट और आँतें", "t": "जाँच और प्रोसीजर"}
+    ans = ""
+    for k in ("l", "g", "t"):
+        items = "".join(f'<a href="{pre}answers/{b["slug"]}/">{esc(x["q"])}<span aria-hidden="true">→</span></a>' for b, x in zip(seo_en.ANSWERS, S.ANSWERS) if grp(b["slug"]) == k)
+        if items: ans += f'<h3 class="ans-h">{heads[k]}</h3><div class="answers">{items}</div>'
     h_c = "Detailed guides to each condition" if lang == "en" else "हर बीमारी की पूरी जानकारी"
     h_p = "Detailed guides to each procedure" if lang == "en" else "हर प्रोसीजर की पूरी जानकारी"
     import guide_art
@@ -124,7 +132,7 @@ def link_lists(lang):
     season = build_pages.season_bar(lang)
     return {"<!--SEASONAL-->": season, "<!--GUIDES_SECTION-->": guides, "<!--COND_LINKS-->": f'<div class="guides"><h3>{h_c}</h3><div>{cond}</div></div>',
             "<!--PROC_LINKS-->": f'<div class="guides"><h3>{h_p}</h3><div>{proc}</div></div>',
-            "<!--ANSWER_LINKS-->": f'<div class="answers">{ans}</div>'}
+            "<!--ANSWER_LINKS-->": ans}
 
 for key, p in PAGES.items():
     s = src if key == "en" else hindi_source(src)

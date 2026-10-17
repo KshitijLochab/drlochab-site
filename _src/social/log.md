@@ -2,6 +2,7 @@
 Newest first. Add every new post here so topics are not repeated.
 
 ## 17 Oct 2026 (site)
+- Site: 16 new answer pages (EN + HI): high SGPT/SGOT, ascites, hepatic encephalopathy, liver abscess, liver cancer screening, liver transplant, FibroScan, fatty liver grade, piles/fissure/fistula, celiac, stomach infection, lactose intolerance, stomach cancer signs, achalasia, capsule endoscopy, stool tests. Home answers grouped into Liver / Stomach and bowel / Tests.
 - Site: new answer pages (EN + HI): alcoholic hepatitis; ACLF (acute-on-chronic liver failure). Linked from cirrhosis and hepatitis B/C pages.
 - Site: Myth Buster is now a swipeable carousel (12 playable myths). 6 new myths added: thin people and fatty liver, gallstone home remedies, daily stool, daily acidity tablets, jaundice diet, colonoscopy prevents cancer (fact).
 - Site: all 9 procedure pages expanded (EN + HI, about 800 to 1,100 words each, 6 FAQs, Gurugram section), aimed at searches like EUS in Gurugram, ERCP, endoscopy procedure.

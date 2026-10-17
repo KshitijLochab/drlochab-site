@@ -626,3 +626,11 @@ ANSWERS += [
 # Link the new liver answers from the cirrhosis page.
 CONDS[6]["answer"] = ["alcoholic-hepatitis", "aclf-acute-on-chronic-liver-failure"]
 CONDS[4]["answer"] = ["aclf-acute-on-chronic-liver-failure"]
+
+# 16 more answer pages (17 Oct 2026), kept in answers_more_en.py.
+import answers_more_en as _am
+ANSWERS += _am.MORE
+for _i, _slugs in _am.COND_LINKS.items():
+    _cur = CONDS[_i].get("answer")
+    _cur = [] if not _cur else ([_cur] if isinstance(_cur, str) else list(_cur))
+    CONDS[_i]["answer"] = _cur + [s for s in _slugs if s not in _cur]
