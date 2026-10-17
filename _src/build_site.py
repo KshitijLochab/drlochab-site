@@ -35,14 +35,14 @@ PAGES = {
     "en": dict(
         lang="en", url="https://drlochab.com/", up="",
         title="Dr. Kshitij Lochab | Gastroenterologist in Gurugram",
-        desc=("Dr. Kshitij Lochab, gastroenterologist in Gurugram. Plain-language guides to acidity, fatty liver, "
-              "jaundice, IBS and more, daily diet tips, and appointments at Arcura Clinic, Sector 51."),
+        desc=("Dr. Kshitij Lochab, gastroenterologist and endoscopist in Gurugram. Clear guides to acidity, fatty liver, "
+              "IBS and more. Consult at Arcura Clinic, Sector 51."),
         og="Clear answers about your stomach, liver and digestion, with a new gut-health tip every day."),
     "hi": dict(
         lang="hi", url="https://drlochab.com/hi/", up="../",
         title="डॉ. क्षितिज लोचब | गुरुग्राम में पेट और लिवर रोग विशेषज्ञ",
-        desc=("डॉ. क्षितिज लोचब, गुरुग्राम में गैस्ट्रोएंटेरोलॉजिस्ट। एसिडिटी, फैटी लिवर, पीलिया, IBS जैसी बीमारियों की "
-              "आसान भाषा में जानकारी, रोज़ की डाइट सलाह, और आर्क्योरा क्लिनिक, सेक्टर 51 में अपॉइंटमेंट।"),
+        desc=("डॉ. क्षितिज लोचब, गुरुग्राम में गैस्ट्रोएंटेरोलॉजिस्ट और एंडोस्कोपी विशेषज्ञ। एसिडिटी, फैटी लिवर, IBS जैसी "
+              "बीमारियों की आसान जानकारी। आर्क्योरा क्लिनिक, सेक्टर 51 में दिखाएँ।"),
         og="पेट, लिवर और पाचन से जुड़े सवालों के सीधे जवाब, और हर दिन सेहत की एक नई सलाह।"),
 }
 

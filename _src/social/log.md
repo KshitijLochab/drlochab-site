@@ -1,6 +1,16 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## Week of 19 Oct 2026 (Dussehra Tue 20 Oct; cooler weather)
+Generator: social/week_2026_10_19.py (output in _src/out/week-2026-10-19/).
+- Site: new answer page do-gallstones-need-surgery (EN and HI), linked from the gallstones condition page and the ERCP procedure page.
+- Instagram carousel (6 slides, EN, Mon 19 Oct): Gallstones, do they always need an operation? (silent stones watched; pain attacks, keyhole removal; bile duct stone, ERCP; home remedies do not dissolve stones; emergency signs, 112). Links to answers/do-gallstones-need-surgery.
+- Instagram post (HI, Tue 20 Oct, Dussehra): दावत भी, पेट भी ख़ुश (small festive plate; small plate once, one or two sweets, 15-minute walk, early dinner; see a doctor if acidity or pain lasts 2 weeks after the festival).
+- Instagram post (EN, Fri 23 Oct): Less thirst, harder stools (scarf-wrapped warm glass; warm water or soup, winter greens, guava, carrots, amla). Links to conditions/constipation.
+- Google Business Profile (Wed 21 Oct): Gallstones, an operation is not always needed (Learn more: answers/do-gallstones-need-surgery).
+- WhatsApp Status: पित्त की पथरी, हर बार ऑपरेशन ज़रूरी नहीं (HI, Mon); दशहरा दावत (HI, Tue); Keep sipping, even when not thirsty (EN, Sat).
+- WhatsApp broadcast (EN + HI): new answer page, Do gallstones always need an operation?
+
 ## 17 Oct 2026
 - WhatsApp Status (HI + EN): Know your hepatitis B status (shield, 2 facts, who should get tested checklist, test and vaccine steps; replaces the plain wa-status-3). Generator: social/hepb_status.py.
 
