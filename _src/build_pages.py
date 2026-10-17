@@ -122,7 +122,7 @@ def aside(lang):
 def footer(lang):
     t = L[lang]
     return f"""<footer><div class="wrap"><p>{t['disc']}</p><p>Dr. Kshitij Lochab · {t['reg']} · {PHONE}</p><p>© 2026 Dr. Kshitij Lochab</p></div></footer>
-<a class="fab" href="{WA}" target="_blank" rel="noopener">{t['book']}</a>
+<aside aria-label="{t['book']}"><a class="fab" href="{WA}" target="_blank" rel="noopener">{t['book']}</a></aside>
 </body></html>"""
 
 def physician(lang):
@@ -141,6 +141,23 @@ def ld_page(lang, path, name, desc, about_type, about_name, faqs, mid_label, mid
             {"@type": "ListItem", "position": 2, "name": mid_label, "item": f"{SITE}{p}#{mid_anchor}"},
             {"@type": "ListItem", "position": 3, "name": name, "item": SITE + path}]},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]}]}
+
+def page_title(lang, seo):
+    """Condition and procedure titles; uses the short name when the full title would be cut off in search results (about 65 characters)."""
+    t = L[lang]
+    full = f"{seo} {t['city']} | Dr. Kshitij Lochab" if lang == "en" else f"{seo}, {t['city']} | डॉ. क्षितिज लोचब"
+    if len(full) <= 65: return full
+    return f"{seo} {t['city']} | Dr. Lochab" if lang == "en" else f"{seo}, {t['city']} | डॉ. लोचब"
+
+def meta_desc(lang, kind, name, lead):
+    """A complete meta description (no cut-off text): for conditions the name and its one-line summary, for procedures the
+    procedure name, then what the page covers and who wrote it. Kept to about 160 characters."""
+    if kind == "cond":
+        tail = " Symptoms, tests and treatment by Dr. Kshitij Lochab, Gurugram." if lang == "en" else " लक्षण, जाँच और इलाज, गुरुग्राम के डॉ. क्षितिज लोचब से जानें।"
+        return f"{name}: {lead}{tail}"
+    if lang == "en":
+        return f"{name} in Gurugram: what it is used for, what to expect, risks and recovery, explained by Dr. Kshitij Lochab."
+    return f"{name}, गुरुग्राम: यह कब किया जाता है, क्या उम्मीद करें, जोखिम और रिकवरी, डॉ. क्षितिज लोचब से जानें।"
 
 def write(path, text):
     full = "site" + path + "index.html"
@@ -178,8 +195,8 @@ def build():
         for i, c in enumerate(d["CONDITIONS"]):
             base = seo_en.CONDS[i]; x = S.CONDS[i]
             path, path_en, path_hi = url(lang, "conditions", base["slug"]), url("en", "conditions", base["slug"]), url("hi", "conditions", base["slug"])
-            title = f"{x['seo']} {t['city']} | Dr. Kshitij Lochab" if lang == "en" else f"{x['seo']}, {t['city']} | डॉ. क्षितिज लोचब"
-            desc = (c["s"] + " " + c["w"])[:155].rsplit(" ", 1)[0] + "…"
+            title = page_title(lang, x["seo"])
+            desc = meta_desc(lang, "cond", c["n"], c["s"])
             body = [f'<p class="lead">{e(c["w"])}</p>',
                     f'<section><h2>{t["symptoms"]}</h2>{ul(c["g"])}</section>',
                     f'<section><h2>{t["causes"]}</h2>{ul(x["causes"])}</section>',
@@ -210,8 +227,8 @@ def build():
         for i, pr in enumerate(d["PROCS"]):
             base = seo_en.PROCS[i]; x = S.PROCS[i]
             path, path_en, path_hi = url(lang, "procedures", base["slug"]), url("en", "procedures", base["slug"]), url("hi", "procedures", base["slug"])
-            title = f"{x['seo']} {t['city']} | Dr. Kshitij Lochab" if lang == "en" else f"{x['seo']}, {t['city']} | डॉ. क्षितिज लोचब"
-            desc = pr["w"][:155].rsplit(" ", 1)[0] + "…"
+            title = page_title(lang, x["seo"])
+            desc = meta_desc(lang, "proc", x["seo"], None)
             table = '<dl class="expect">' + "".join(f"<dt>{e(k)}</dt><dd>{e(v)}</dd>" for k, v in pr["d"]) + "</dl>"
             body = [f'<figure class="fig">{d["IL"][pr["il"]]}</figure>', f'<p class="lead">{e(pr["w"])}</p>',
                     f'<section><h2>{t["uses"]}</h2>{ul(x["uses"])}</section>',
@@ -248,10 +265,10 @@ def build():
             body = (f'<div class="short"><p class="lbl">{t["short"]}</p><p>{e(a["short"])}</p></div>' + "".join(secs)
                     + f'<section><h2>{t["read"]}</h2>{links(rel + others)}</section>')
             ld = ld_page(lang, path, a["q"], a["desc"], "MedicalCondition" if base.get("cond") is not None else "MedicalProcedure",
-                         rel[0][1] if rel else a["q"], [[a["q"], a["short"]]], t["answers"], "answers")
+                         rel[0][1] if rel else a["q"], [[a["q"], a["short"]]], t["answers"], "answers", base.get("updated"))
             page = (head(lang, title, a["desc"], path_en, path_hi, ld) + header(lang, path_hi if lang == "en" else path_en)
                     + f'<main class="wrap grid"><article>{crumbs(lang, t["answers"], "answers", a["q"])}'
-                    + f'<p class="eyebrow">{t["answers"]}</p><h1>{e(a["q"])}</h1>{byline(lang)}' + body
+                    + f'<p class="eyebrow">{t["answers"]}</p><h1>{e(a["q"])}</h1>{byline(lang, base.get("updated"))}' + body
                     + f"</article>{aside(lang)}</main>" + footer(lang))
             write(path, page); pages.append((path_en, path_hi))
         # ---- special guides
