@@ -1,7 +1,14 @@
 """Generates condition, procedure and answer pages (English and Hindi) into site/.
 Run after build_site.py has written site/index.html and site/hi/index.html."""
 import json, os, html, subprocess
-import seo_en, seo_hi, guide_art, seo_proc_en, seo_proc_hi
+import seo_en, seo_hi, guide_art, seo_proc_en, seo_proc_hi, answers_extra_en, answers_extra_hi
+
+# diet box + FAQs for answer pages: same slugs and item counts in both languages
+for _k, _v in answers_extra_en.EXTRA.items():
+    _h = answers_extra_hi.EXTRA[_k]
+    assert len(_v["faqs"]) == len(_h["faqs"]) and all(len(_v["diet"][c]) == len(_h["diet"][c]) for c in ("more", "less", "know")), _k
+    assert ("labels" in _v["diet"]) == ("labels" in _h["diet"]), _k
+assert set(answers_extra_en.EXTRA) == set(answers_extra_hi.EXTRA) <= {a["slug"] for a in seo_en.ANSWERS}
 
 SITE = "https://drlochab.com"
 UPDATED = ("2026-10-10", "10 October 2026", "10 अक्टूबर 2026")
@@ -256,6 +263,16 @@ def build():
                 items = [p_[2:] for p_ in parts if p_.startswith("- ")]
                 paras = [p_ for p_ in parts if not p_.startswith("- ")]
                 secs.append(f"<section><h2>{e(h)}</h2>" + "".join(f"<p>{e(p_)}</p>" for p_ in paras) + (ul(items) if items else "") + "</section>")
+            X = (answers_extra_en if lang == "en" else answers_extra_hi).EXTRA.get(base["slug"])
+            xfaqs = []
+            if X:
+                dt = X["diet"]; lb = dt.get("labels") or (t["more"], t["less"], t["know"])
+                secs.append(f'<section><h2>{e(dt["h"])}</h2><div class="guide">'
+                            f'<div class="gcol more"><h3>{e(lb[0])}</h3>{ul(dt["more"])}</div>'
+                            f'<div class="gcol less"><h3>{e(lb[1])}</h3>{ul(dt["less"])}</div>'
+                            f'<div class="gcol know"><h3>{e(lb[2])}</h3>{ul(dt["know"])}</div></div></section>')
+                xfaqs = X["faqs"]
+                secs.append(faq_html(lang, xfaqs))
             rel = []
             if base.get("cond") is not None:
                 rel.append((url(lang, "conditions", seo_en.CONDS[base["cond"]]["slug"]), d["CONDITIONS"][base["cond"]]["n"]))
@@ -267,7 +284,7 @@ def build():
             body = (f'<div class="short"><p class="lbl">{t["short"]}</p><p>{e(a["short"])}</p></div>' + "".join(secs)
                     + f'<section><h2>{t["read"]}</h2>{links(rel + others)}</section>')
             ld = ld_page(lang, path, a["q"], a["desc"], "MedicalCondition" if base.get("cond") is not None else "MedicalProcedure",
-                         rel[0][1] if rel else a["q"], [[a["q"], a["short"]]], t["answers"], "conditions")
+                         rel[0][1] if rel else a["q"], [[a["q"], a["short"]]] + xfaqs, t["answers"], "conditions")
             page = (head(lang, title, a["desc"], path_en, path_hi, ld) + header(lang, path_hi if lang == "en" else path_en)
                     + f'<main class="wrap grid"><article>{crumbs(lang, t["answers"], "conditions", a["q"])}'
                     + f'<p class="eyebrow">{t["answers"]}</p><h1>{e(a["q"])}</h1>{byline(lang)}' + body
