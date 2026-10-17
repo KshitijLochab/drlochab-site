@@ -2,6 +2,7 @@
 Newest first. Add every new post here so topics are not repeated.
 
 ## 17 Oct 2026 (site)
+- Site: body map stomach redrawn as a full J-shaped stomach (fundus, body, antrum to pylorus) instead of a thin crescent.
 - Site: diet box (eat more / cut down / good to know) and 3 to 4 common questions added to the 32 newer answer pages (EN + HI), from alcoholic hepatitis to TB medicines and the liver; FAQs also in the FAQPage structured data. Content in answers_extra_en.py / answers_extra_hi.py.
 - Site: body map redrawn as a labelled infographic (full-colour organs, name buttons with counts and leader lines). 14 new pages (EN + HI): cholecystitis, cholangitis, gallbladder polyps, gallbladder cancer, blocked bile duct, bile duct cancer, choledochal cyst, pain after gallbladder removal, chronic pancreatitis, pancreatic cancer, pseudocyst and walled-off necrosis, food pipe cancer, abdominal TB, TB medicines and the liver. Liver cancer (HCC) now shown as a liver problem card.
 - Site: home page overhaul. New 'Explore your digestive system' hub (body map + organ tabs, one organ at a time, conditions + questions + procedures per organ, A to Z list) replaces the conditions list and the answers section; compact procedure tiles; guides and procedures swipe on phones. Home page about 9,300 px tall on desktop (was 13,900) and 14,400 px on phones (was 27,900).
