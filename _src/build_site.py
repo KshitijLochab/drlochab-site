@@ -88,6 +88,8 @@ def hindi_source(s):
     a = s.index("const GUIDES=[")
     b = s.index("\n];", a) + len("\n];")
     s = s[:a] + hindi.GUIDES_JS + s[b:]
+    a, b = s.index("/*PLAY*/"), s.index("/*/PLAY*/")
+    s = s[:a] + hindi.PLAY_JS + s[b:]
     s = s.replace('--display:"Young Serif", Georgia,', '--display:"Young Serif","Tiro Devanagari Hindi", Georgia,', 1)
     s = s.replace('--body:"Figtree", system-ui,', '--body:"Figtree","Mukta", system-ui,', 1)
     s = s.replace("</style>", "*{letter-spacing:0!important}\nbody{line-height:1.7}\n</style>", 1)
@@ -135,10 +137,11 @@ for key, p in PAGES.items():
     path = f"{OUT}/index.html" if key == "en" else f"{OUT}/hi/index.html"
     open(path, "w").write(head(p, fonts) + top + "\n</head>\n<body>" + body + "\n</body>\n</html>\n")
 
-for f in ["tips.json", "ibs.json", "dr-lochab.jpg"]:
+for f in ["tips.json", "ibs.json", "myths.json", "dr-lochab.jpg"]:
     shutil.copy(f, OUT)
 shutil.copy("tips-hi.json", f"{OUT}/hi/tips.json")
 shutil.copy("ibs-hi.json", f"{OUT}/hi/ibs.json")
+shutil.copy("myths-hi.json", f"{OUT}/hi/myths.json")
 shutil.copy("brand/logo-mark.png", f"{OUT}/logo-mark.png")
 shutil.copy("brand/logo-mark.svg", f"{OUT}/logo-mark.svg")
 mark = Image.open("brand/logo-mark.png").convert("RGBA")
