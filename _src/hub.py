@@ -45,12 +45,27 @@ PROBLEMS = {
  "celiac-disease": ("intestine", "Celiac disease", "Gluten damages the small intestine.", "सीलिएक बीमारी", "ग्लूटेन से छोटी आँत को नुकसान।"),
  "lactose-intolerance": ("intestine", "Lactose intolerance", "Gas and loose motions after milk.", "लैक्टोज़ इनटॉलरेंस", "दूध के बाद गैस और दस्त।"),
  "stomach-infection-gastroenteritis": ("intestine", "Stomach infection", "Loose motions and vomiting, usually from a virus.", "पेट का इंफ़ेक्शन", "दस्त और उल्टी, अक्सर वायरस से।"),
+ "liver-cancer-screening": ("liver", "Liver cancer (HCC)", "Who needs screening every six months, and why.", "लिवर कैंसर (HCC)", "किसे हर छह महीने जाँच चाहिए, और क्यों।"),
+ "tb-medicines-and-liver": ("liver", "Liver injury from TB medicines", "Warning signs, and what to do at once.", "टीबी की दवाओं से लिवर पर असर", "ख़तरे के संकेत, और तुरंत क्या करें।"),
+ "oesophageal-cancer": ("stomach", "Food pipe cancer", "Swallowing that gets harder, with weight loss.", "खाने की नली का कैंसर", "बढ़ती निगलने की दिक्कत, वज़न घटने के साथ।"),
+ "cholecystitis-gallbladder-infection": ("gb", "Cholecystitis", "Gallbladder inflammation, usually from a stone.", "कोलेसिस्टाइटिस", "पित्ताशय की सूजन, अक्सर पथरी से।"),
+ "cholangitis-bile-duct-infection": ("gb", "Cholangitis", "Infection of a blocked bile duct: an emergency.", "कोलैंजाइटिस", "बंद पित्त की नली में इंफ़ेक्शन: इमरजेंसी।"),
+ "blocked-bile-duct-obstructive-jaundice": ("gb", "Blocked bile duct", "Jaundice with itching and pale stools.", "पित्त की नली बंद होना", "खुजली और हल्के मल के साथ पीलिया।"),
+ "gallbladder-polyps": ("gb", "Gallbladder polyps", "Usually harmless; size decides the plan.", "पित्ताशय के पॉलिप", "अक्सर नुकसान रहित; आकार से योजना तय होती है।"),
+ "gallbladder-cancer": ("gb", "Gallbladder cancer", "More common in North India; linked to stones.", "पित्ताशय का कैंसर", "उत्तर भारत में ज़्यादा; पथरी से जुड़ा।"),
+ "cholangiocarcinoma-bile-duct-cancer": ("gb", "Bile duct cancer", "Painless jaundice that keeps deepening.", "पित्त की नली का कैंसर", "बिना दर्द का बढ़ता पीलिया।"),
+ "choledochal-cyst": ("gb", "Choledochal cyst", "A widened bile duct present from birth.", "कोलेडोकल सिस्ट", "जन्म से फैली हुई पित्त की नली।"),
+ "pain-after-gallbladder-removal": ("gb", "Pain after gallbladder removal", "Left-behind stones, bile leaks and other causes.", "पित्ताशय निकालने के बाद दर्द", "बची पथरी, पित्त का रिसाव और दूसरी वजहें।"),
+ "chronic-pancreatitis": ("pancreas", "Chronic pancreatitis", "Long-term damage: pain, oily stools, diabetes.", "पुरानी पैंक्रियाटाइटिस", "लंबा नुकसान: दर्द, चिकना मल, डायबिटीज़।"),
+ "pancreatic-pseudocyst-walled-off-necrosis": ("pancreas", "Pseudocyst and walled-off necrosis", "Collections after pancreatitis, drained by EUS.", "स्यूडोसिस्ट और वॉल्ड-ऑफ़ नेक्रोसिस", "पैंक्रियाटाइटिस के बाद जमा पानी, EUS से निकाला जाता है।"),
+ "pancreatic-cancer": ("pancreas", "Pancreatic cancer", "Painless jaundice, back pain, weight loss.", "पैंक्रियास का कैंसर", "बिना दर्द का पीलिया, पीठ दर्द, वज़न घटना।"),
+ "abdominal-tuberculosis": ("intestine", "Abdominal tuberculosis", "Weight loss, fever and belly pain; curable.", "पेट की टीबी", "वज़न घटना, बुखार और पेट दर्द; ठीक हो सकती है।"),
 }
 # Other answer pages, shown as question chips under their organ.
 QS = {
  "stomach": ["when-is-acidity-serious", "is-endoscopy-painful"],
  "liver": ["is-fatty-liver-reversible", "high-sgpt-sgot-liver-function-test", "fatty-liver-grade-on-ultrasound", "fibroscan-test",
-           "diet-in-jaundice", "liver-cancer-screening", "when-is-liver-transplant-needed"],
+           "diet-in-jaundice", "when-is-liver-transplant-needed"],
  "gb": [], "pancreas": [],
  "intestine": ["gas-and-bloating", "is-ibs-dangerous", "blood-in-stool-always-piles", "stool-tests", "capsule-endoscopy"],
 }
@@ -62,13 +77,10 @@ PROCS = {
  "intestine": ["colonoscopy", "polyp-removal-emr", "gi-bleeding-treatment"],
 }
 
-SHORT = {"en": {"stomach": "Food pipe & stomach", "liver": "Liver", "gb": "Gallbladder", "pancreas": "Pancreas", "intestine": "Intestines"},
-         "hi": {"stomach": "खाने की नली और पेट", "liver": "लिवर", "gb": "पित्ताशय", "pancreas": "पैंक्रियास", "intestine": "आँतें"}}
-# Body map geometry (viewBox 0 0 300 430). Patient's right is the viewer's left, as in an anatomy chart.
-TORSO = ("M136 76 C122 86 96 92 74 96 C50 100 36 114 33 140 C29 180 25 228 24 262 C24 274 36 278 39 266 "
-         "C42 236 45 196 50 158 C54 196 58 236 58 280 C58 330 66 384 92 414 L208 414 C234 384 242 330 242 280 "
-         "C242 236 246 196 250 158 C255 196 258 236 261 266 C264 278 276 274 276 262 C275 228 271 180 267 140 "
-         "C264 114 250 100 226 96 C204 92 178 86 164 76 Z")
+SHORT = {"en": {"stomach": "Stomach", "liver": "Liver", "gb": "Gallbladder", "pancreas": "Pancreas", "intestine": "Intestines"},
+         "hi": {"stomach": "पेट", "liver": "लिवर", "gb": "पित्ताशय", "pancreas": "पैंक्रियास", "intestine": "आँतें"}}
+# Body map geometry. viewBox x -70..370, y 70..415. Patient's right is the viewer's left, as in an anatomy chart.
+VB = (-75, 70, 460, 345)
 ESOPH = "M150 84 C150 120 156 150 170 182"
 LIVER = ("M70 182 C76 162 112 150 152 154 C174 156 194 160 206 168 C204 180 190 188 172 192 C164 216 142 236 112 240 "
          "C88 242 68 228 66 208 C65 198 67 190 70 182 Z")
@@ -77,10 +89,12 @@ STOM = ("M168 180 C176 166 206 162 224 172 C242 182 246 210 238 232 C230 254 208
 DUO = "M156 250 C142 252 132 262 132 276 C132 292 144 302 162 302"
 PANC = "M146 272 C162 266 198 264 228 254 C240 251 244 260 236 266 C208 278 178 286 158 292 C144 294 136 284 146 272 Z"
 BILE = "M134 228 C138 244 142 256 146 268"
+GB = "M124 222 C134 222 140 232 138 244 C136 254 128 258 122 254 C114 248 114 230 124 222 Z"
 COLON = "M90 380 V322 Q90 310 102 310 H204 Q216 310 216 322 V362 Q216 380 194 384 Q174 388 164 394 L160 400"
 SMALL = "M116 328 H188 Q197 328 197 336 Q197 344 188 344 H120 Q111 344 111 352 Q111 360 120 360 H188 Q197 360 197 368 Q197 375 188 375 H128"
-PINS = {"stomach": (214, 214), "liver": (106, 200), "gb": (124, 236), "pancreas": (204, 272), "intestine": (155, 352)}
-LABEL_AT = {"stomach": (214, 150), "liver": (106, 172), "gb": (104, 262), "pancreas": (214, 296), "intestine": (155, 302)}
+# organ anchor point, label anchor point, side
+CALLOUT = {"stomach": ((226, 190), (264, 134)), "pancreas": ((232, 262), (300, 300)),
+           "liver": ((96, 190), (30, 132)), "gb": ((124, 240), (10, 270)), "intestine": ((212, 368), (302, 390))}
 
 def page_data(js_block):
     """ORGANS and CONDITIONS as defined in the page source for one language."""
@@ -89,47 +103,58 @@ def page_data(js_block):
     return json.loads(out)
 
 
-def body_map(lang, organs):
+def body_map(lang, organs, counts):
     c = COLOR
+    x0, y0, w, h = VB
     def grp(k, inner):
-        return f'<g class="org" data-organ="{k}" tabindex="-1" role="button" aria-label="{e(organs[k])}">{inner}</g>'
+        return f'<g class="org" data-organ="{k}">{inner}</g>'
     def grad(k):
         f, l = c[k]
-        return (f'<radialGradient id="bm-{k}" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".55"/>'
-                f'<stop offset=".45" stop-color="{f}"/><stop offset="1" stop-color="{l}" stop-opacity=".9"/></radialGradient>')
+        return (f'<radialGradient id="bm-{k}" cx="35%" cy="28%" r="85%"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".6"/>'
+                f'<stop offset=".42" stop-color="{f}"/><stop offset="1" stop-color="{l}"/></radialGradient>')
     defs = ("<defs>" + "".join(grad(k) for k in ORDER)
-            + '<filter id="bm-sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.6" flood-color="#12302C" flood-opacity=".22"/></filter>'
-            + '<linearGradient id="bm-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="bm-b1"/><stop offset="1" class="bm-b2"/></linearGradient></defs>')
-    body = (f'<g class="bm-body"><circle cx="150" cy="38" r="30"/><path d="M137 62 H163 V84 H137 Z"/><path d="{TORSO}"/></g>'
-            '<g class="bm-ribs" fill="none">' + "".join(f'<path d="M{150-w} {y} Q150 {y+18} {150+w} {y}"/>' for w, y in [(70, 118), (80, 136), (86, 154)]) + '</g>')
+            + '<filter id="bm-sh" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="2" stdDeviation="2.2" flood-color="#12302C" flood-opacity=".25"/></filter>'
+            + '<radialGradient id="bm-glow" cx="50%" cy="50%" r="50%"><stop offset="0" class="bm-g1"/><stop offset="1" class="bm-g2"/></radialGradient></defs>')
+    W = 'stroke="#fff" stroke-width="2.4"'
+    glow = '<ellipse class="bm-glowshape" cx="155" cy="246" rx="132" ry="172" fill="url(#bm-glow)"/>'
     gut = grp("intestine",
-              f'<path d="{COLON}" fill="none" stroke="{c["intestine"][1]}" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>'
-              f'<path d="{COLON}" fill="none" stroke="{c["intestine"][0]}" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/>'
-              f'<path d="{COLON}" fill="none" stroke="{c["intestine"][1]}" stroke-width="19" stroke-dasharray="1.6 9" stroke-linejoin="round" opacity=".45"/>'
-              f'<path d="{SMALL}" fill="none" stroke="{c["intestine"][1]}" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>'
-              f'<path d="{SMALL}" fill="none" stroke="#F9D9C6" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>'
-              f'<path d="M122 334 H150" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>')
-    panc = grp("pancreas", f'<path d="{DUO}" fill="none" stroke="#E7B7A2" stroke-width="11" stroke-linecap="round"/>'
-                           f'<path d="{PANC}" fill="url(#bm-pancreas)" stroke="{c["pancreas"][1]}" stroke-width="1.8" filter="url(#bm-sh)"/>'
-                           + "".join(f'<circle cx="{x}" cy="{y}" r="1.7" fill="{c["pancreas"][1]}" opacity=".55"/>' for x, y in [(150,280),(166,276),(184,272),(202,267),(220,262)]))
-    stomach = grp("stomach", f'<path d="{ESOPH}" fill="none" stroke="{c["stomach"][1]}" stroke-width="13" stroke-linecap="round"/>'
-                             f'<path d="{ESOPH}" fill="none" stroke="{c["stomach"][0]}" stroke-width="8.5" stroke-linecap="round"/>'
-                             f'<path d="{STOM}" fill="url(#bm-stomach)" stroke="{c["stomach"][1]}" stroke-width="1.8" filter="url(#bm-sh)"/>'
-                             '<g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".55">'
-                             '<path d="M196 196 C210 204 216 222 210 238"/><path d="M220 192 C232 208 232 228 222 246"/><path d="M182 256 C196 258 210 252 220 242"/></g>')
-    liver = grp("liver", f'<path d="{LIVER}" fill="url(#bm-liver)" stroke="{c["liver"][1]}" stroke-width="1.8" filter="url(#bm-sh)"/>'
-                         f'<path d="M150 158 C146 176 150 186 160 192" fill="none" stroke="{c["liver"][1]}" stroke-width="1.4" opacity=".6"/>')
-    gb = grp("gb", f'<path d="{BILE}" fill="none" stroke="{c["gb"][1]}" stroke-width="3" stroke-linecap="round"/>'
-                   f'<path d="M124 222 C134 222 140 232 138 244 C136 254 128 258 122 254 C114 248 114 230 124 222 Z" fill="url(#bm-gb)" stroke="{c["gb"][1]}" stroke-width="1.8" filter="url(#bm-sh)"/>')
-    pins = "".join(f'<g class="pin" data-organ="{k}" transform="translate({x} {y})" aria-hidden="true"><circle class="pulse" r="8" stroke="{c[k][1]}"/>'
-                   f'<circle r="7" fill="#fff" stroke="{c[k][1]}" stroke-width="3"/><circle r="2.6" fill="{c[k][1]}"/></g>' for k, (x, y) in PINS.items())
-    labels = ""
-    for k, (x, y) in LABEL_AT.items():
-        t = SHORT[lang][k]; w = len(t) * (7.4 if lang == "hi" else 6.6) + 18
-        labels += (f'<g class="olabel" data-organ="{k}" aria-hidden="true"><rect x="{x - w/2:.0f}" y="{y - 12}" width="{w:.0f}" height="22" rx="11"/>'
-                   f'<text x="{x}" y="{y + 3}" text-anchor="middle">{e(t)}</text></g>')
-    return (f'<svg class="body-map" viewBox="20 0 260 430" role="group" aria-label="{e(LBL[lang]["map"])}">{defs}{body}'
-            f'{gut}{panc}{stomach}{liver}{gb}{pins}{labels}</svg>')
+              f'<path d="{COLON}" fill="none" stroke="#fff" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/>'
+              f'<path d="{COLON}" fill="none" stroke="{c["intestine"][1]}" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>'
+              f'<path d="{COLON}" fill="none" stroke="{c["intestine"][0]}" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>'
+              f'<path d="{COLON}" fill="none" stroke="{c["intestine"][1]}" stroke-width="17" stroke-dasharray="1.6 9" stroke-linejoin="round" opacity=".5"/>'
+              f'<path d="{SMALL}" fill="none" stroke="#fff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>'
+              f'<path d="{SMALL}" fill="none" stroke="{c["intestine"][1]}" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>'
+              f'<path d="{SMALL}" fill="none" stroke="#FBE0CF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>')
+    panc = grp("pancreas", f'<path d="{DUO}" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round"/>'
+                           f'<path d="{DUO}" fill="none" stroke="#EDB9A3" stroke-width="9" stroke-linecap="round"/>'
+                           f'<path d="{PANC}" fill="url(#bm-pancreas)" {W} filter="url(#bm-sh)"/>'
+                           + "".join(f'<circle cx="{x}" cy="{y}" r="1.8" fill="{c["pancreas"][1]}" opacity=".55"/>' for x, y in [(150,280),(166,276),(184,272),(202,267),(220,262)]))
+    stomach = grp("stomach", f'<path d="{ESOPH}" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round"/>'
+                             f'<path d="{ESOPH}" fill="none" stroke="{c["stomach"][1]}" stroke-width="9" stroke-linecap="round"/>'
+                             f'<path d="{ESOPH}" fill="none" stroke="{c["stomach"][0]}" stroke-width="5" stroke-linecap="round"/>'
+                             f'<path d="{STOM}" fill="url(#bm-stomach)" {W} filter="url(#bm-sh)"/>'
+                             '<g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".6">'
+                             '<path d="M196 196 C210 204 216 222 210 238"/><path d="M220 192 C232 208 232 228 222 246"/></g>')
+    liver = grp("liver", f'<path d="{LIVER}" fill="url(#bm-liver)" {W} filter="url(#bm-sh)"/>'
+                         f'<path d="M150 158 C146 176 150 186 160 192" fill="none" stroke="#fff" stroke-width="1.6" opacity=".6"/>')
+    gb = grp("gb", f'<path d="{BILE}" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>'
+                   f'<path d="{BILE}" fill="none" stroke="{c["gb"][1]}" stroke-width="3" stroke-linecap="round"/>'
+                   f'<path d="{GB}" fill="url(#bm-gb)" {W} filter="url(#bm-sh)"/>')
+    lines = "".join(f'<g class="lead" data-organ="{k}"><path d="M{lx} {ly} L{ax} {ay}"/><circle cx="{ax}" cy="{ay}" r="3.6"/></g>'
+                    for k, ((ax, ay), (lx, ly)) in CALLOUT.items())
+    svg = (f'<svg class="body-map" viewBox="{x0} {y0} {w} {h}" aria-hidden="true" focusable="false">{defs}{glow}'
+           f'{gut}{panc}{stomach}{liver}{gb}{lines}</svg>')
+    L = LBL[lang]
+    btns = ""
+    for k in ORDER:
+        (ax, ay), (lx, ly) = CALLOUT[k]
+        left = (lx - x0) / w * 100; top = (ly - y0) / h * 100
+        n = counts[k]
+        btns += (f'<button type="button" class="hub-tab" role="tab" id="hubtab-{k}" data-k="{k}" aria-controls="hub-{k}" aria-selected="false" tabindex="-1" '
+                 f'style="left:{left:.2f}%;top:{top:.2f}%"><i style="background:{c[k][0]};border-color:{c[k][1]}"></i>'
+                 f'<span>{e(SHORT[lang][k])}</span><em>{n}</em></button>')
+    return (f'<div class="hub-mapwrap">{svg}<div class="hub-tabs" role="tablist" aria-label="{e(L["pick"])}">{btns}</div></div>'
+            f'<p class="hub-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11V5a2 2 0 0 1 4 0v5m0-1a2 2 0 0 1 4 0v2m0-1a2 2 0 0 1 4 0v4c0 4-3 7-7 7h-1c-3 0-5-2-6.5-4L4 15a1.8 1.8 0 0 1 2.8-2.2L9 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>{L["hint"]}</p>')
 
 
 def hub_html(lang, data):
@@ -138,7 +163,7 @@ def hub_html(lang, data):
     organs = data["ORGANS"]; conds = data["CONDITIONS"]
     ans_q = {b["slug"]: x["q"] for b, x in zip(seo_en.ANSWERS, S.ANSWERS)}
     proc_n = {b["slug"]: x["seo"] for b, x in zip(seo_en.PROCS, S.PROCS)}
-    tabs, panels, az_c, az_q, az_p = [], [], [], [], []
+    counts, panels, az_c, az_q, az_p = {}, [], [], [], []
     for k in ORDER:
         probs = [(f'{pre}conditions/{seo_en.CONDS[i]["slug"]}/', c["n"], c["s"]) for i, c in enumerate(conds) if c["o"] == k]
         probs += [(f'{pre}answers/{slug}/', v[1] if lang == "en" else v[3], v[2] if lang == "en" else v[4]) for slug, v in PROBLEMS.items() if v[0] == k]
@@ -147,8 +172,7 @@ def hub_html(lang, data):
         az_c += [(h, n) for h, n, _ in probs]; az_q += qs; az_p += ps
         n = len(probs) + len(qs)
         fill, line = COLOR[k]
-        tabs.append(f'<button type="button" class="hub-tab" role="tab" id="hubtab-{k}" data-k="{k}" aria-controls="hub-{k}" aria-selected="false" tabindex="-1">'
-                    f'<i style="background:{fill};border-color:{line}"></i><span>{e(organs[k])}</span><em>{n} {L["topic"] if n == 1 else L["topics"]}</em></button>')
+        counts[k] = n
         cards = "".join(f'<a class="hc" href="{h}"><b>{e(nm)}</b><span>{e(ln)}</span><i aria-hidden="true">→</i></a>' for h, nm, ln in probs)
         chips = "".join(f'<a class="hq" href="{h}">{e(q)}</a>' for h, q in qs)
         pchips = "".join(f'<a class="hp" href="{h}">{e(nm)}</a>' for h, nm in ps)
@@ -161,7 +185,6 @@ def hub_html(lang, data):
     az = "".join(f'<div><h4>{t}</h4><ul>' + "".join(f'<li><a href="{h}">{e(n)}</a></li>' for h, n in uniq(xs)) + "</ul></div>"
                  for t, xs in [(L["az_c"], az_c), (L["az_q"], az_q), (L["az_p"], az_p)])
     return (f'<div class="hub" id="hub" data-sel="stomach">'
-            f'<div class="hub-pick"><div class="hub-mapwrap">{body_map(lang, organs)}<p class="hub-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11V5a2 2 0 0 1 4 0v5m0-1a2 2 0 0 1 4 0v2m0-1a2 2 0 0 1 4 0v4c0 4-3 7-7 7h-1c-3 0-5-2-6.5-4L4 15a1.8 1.8 0 0 1 2.8-2.2L9 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>{L["hint"]}</p></div>'
-            f'<div class="hub-tabs" role="tablist" aria-label="{e(L["pick"])}">{"".join(tabs)}</div></div>'
+            f'<div class="hub-pick">{body_map(lang, organs, counts)}</div>'
             f'<div class="hub-main">{"".join(panels)}</div></div>'
             f'<details class="az"><summary>{L["az"]}</summary><div class="az-cols">{az}</div></details>')

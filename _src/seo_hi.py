@@ -582,3 +582,7 @@ ANSWERS += [
 # 16 more answer pages (17 Oct 2026), same order as answers_more_en.py.
 import answers_more_hi as _am
 ANSWERS += _am.MORE
+
+# 14 biliary, pancreatic, cancer and TB pages (17 Oct 2026), same order as answers_more2_en.py.
+import answers_more2_hi as _am2
+ANSWERS += _am2.MORE

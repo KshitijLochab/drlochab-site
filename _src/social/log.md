@@ -2,6 +2,7 @@
 Newest first. Add every new post here so topics are not repeated.
 
 ## 17 Oct 2026 (site)
+- Site: body map redrawn as a labelled infographic (full-colour organs, name buttons with counts and leader lines). 14 new pages (EN + HI): cholecystitis, cholangitis, gallbladder polyps, gallbladder cancer, blocked bile duct, bile duct cancer, choledochal cyst, pain after gallbladder removal, chronic pancreatitis, pancreatic cancer, pseudocyst and walled-off necrosis, food pipe cancer, abdominal TB, TB medicines and the liver. Liver cancer (HCC) now shown as a liver problem card.
 - Site: home page overhaul. New 'Explore your digestive system' hub (body map + organ tabs, one organ at a time, conditions + questions + procedures per organ, A to Z list) replaces the conditions list and the answers section; compact procedure tiles; guides and procedures swipe on phones. Home page about 9,300 px tall on desktop (was 13,900) and 14,400 px on phones (was 27,900).
 - Site: 16 new answer pages (EN + HI): high SGPT/SGOT, ascites, hepatic encephalopathy, liver abscess, liver cancer screening, liver transplant, FibroScan, fatty liver grade, piles/fissure/fistula, celiac, stomach infection, lactose intolerance, stomach cancer signs, achalasia, capsule endoscopy, stool tests. Home answers grouped into Liver / Stomach and bowel / Tests.
 - Site: new answer pages (EN + HI): alcoholic hepatitis; ACLF (acute-on-chronic liver failure). Linked from cirrhosis and hepatitis B/C pages.

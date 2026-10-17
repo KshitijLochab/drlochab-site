@@ -634,3 +634,11 @@ for _i, _slugs in _am.COND_LINKS.items():
     _cur = CONDS[_i].get("answer")
     _cur = [] if not _cur else ([_cur] if isinstance(_cur, str) else list(_cur))
     CONDS[_i]["answer"] = _cur + [s for s in _slugs if s not in _cur]
+
+# 14 biliary, pancreatic, cancer and TB pages (17 Oct 2026), kept in answers_more2_en.py.
+import answers_more2_en as _am2
+ANSWERS += _am2.MORE
+for _i, _slugs in _am2.COND_LINKS.items():
+    _cur = CONDS[_i].get("answer")
+    _cur = [] if not _cur else ([_cur] if isinstance(_cur, str) else list(_cur))
+    CONDS[_i]["answer"] = _cur + [s for s in _slugs if s not in _cur]
