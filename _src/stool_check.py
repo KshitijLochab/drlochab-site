@@ -40,30 +40,31 @@ EN = dict(
  h1="What does your stool say?",
  desc="Check what your stool's shape and colour mean: constipation, normal, loose motions, black, pale, green, yellow or red stools, and when to see a doctor. A free tool in English and Hindi.",
  eyebrow="Gut check",
- lead="Your stool is a daily report from your gut. Pick the shape and the colour closest to yours to see what they usually mean and whether you need a doctor. Everything stays on your phone; nothing is saved or sent.",
+ lead="Your stool is a daily report from your gut. Shape and colour tell you different things, so each gets its own answer: pick the shape closest to yours, then the colour, and read both. Everything stays on your phone; nothing is saved or sent.",
  step1="1. Which shape is closest?", step2="2. What colour is it?",
  pick="Pick a shape and a colour to see what they mean.",
  shapeSays="The shape says", colourSays="The colour says", next="What to do next",
- levels=["Looks normal", "Keep an eye on it", "See a doctor soon", "Get medical care today"],
+ levels=["Normal", "Needs attention", "See a doctor soon", "Get medical care today"],
+ book="Book a consultation on WhatsApp",
  share="Share this check on WhatsApp", shareText="What does your stool say? A quick shape and colour check from Dr. Kshitij Lochab:",
  again="Start again", read="Read more",
  shapes=[
   dict(n="Type 1", d="Separate hard lumps, like nuts", lvl=1, m="This is constipation. Stool has stayed in the bowel too long and lost its water.",
-       a="Add fibre slowly (fruit with peel, dal, whole grains, isabgol with water), drink enough water and walk daily.", link="conditions/constipation"),
+       a="Add fibre slowly (fruit with peel, dal, whole grains, isabgol with water), drink enough water and walk daily. If this is your usual pattern, or it does not improve within 2 to 3 weeks, see a gastroenterologist; go sooner if there is blood, pain, weight loss, or it is new after age 45.", link="conditions/constipation"),
   dict(n="Type 2", d="Lumpy, sausage-shaped", lvl=1, m="Mild constipation. Stool is passing more slowly than ideal.",
-       a="Increase fibre and fluids, keep regular toilet times after breakfast, and do not hold back the urge.", link="conditions/constipation"),
+       a="Increase fibre and fluids, keep regular toilet times after breakfast, and do not hold back the urge. If it continues for more than 2 to 3 weeks, or you need laxatives regularly, see a gastroenterologist.", link="conditions/constipation"),
   dict(n="Type 3", d="Sausage-shaped with cracks", lvl=0, m="This is normal.", a="Keep up your fibre, fluids and activity.", link=""),
   dict(n="Type 4", d="Smooth, soft sausage or snake", lvl=0, m="This is the ideal stool.", a="Whatever you are doing is working.", link=""),
   dict(n="Type 5", d="Soft blobs with clear edges", lvl=0, m="Near normal, though it can mean a diet low in fibre or a slightly fast gut.",
        a="Add a little more fibre, such as oats, isabgol or a fruit.", link=""),
   dict(n="Type 6", d="Mushy, fluffy pieces", lvl=1, m="Loose stool. Often a passing infection, a food that did not suit you, stress or IBS.",
-       a="Drink ORS or fluids and eat light food. If it lasts more than two weeks, get checked.", link="answers/chronic-diarrhoea-mucus-in-stool"),
+       a="Drink ORS or fluids and eat light food. If loose stools last more than 2 weeks, keep coming back, or come with blood, weight loss or night-time urgency, see a gastroenterologist.", link="answers/chronic-diarrhoea-mucus-in-stool"),
   dict(n="Type 7", d="Watery, no solid pieces", lvl=1, m="Diarrhoea. The main risk is losing too much water and salt.",
-       a="ORS after every loose stool. See a doctor the same day for blood, high fever, very little urine, or if it lasts more than 2 to 3 days.", link="answers/stomach-infection-gastroenteritis"),
+       a="ORS after every loose stool. See a doctor the same day for blood, high fever, severe pain or very little urine, and book a consultation if it lasts more than 2 to 3 days or keeps returning.", link="answers/stomach-infection-gastroenteritis"),
  ],
  colours=[
-  dict(k="brown", n="Brown", lvl=0, m="Any shade of brown is normal.", a="No action needed.", link=""),
-  dict(k="green", n="Green", lvl=0, m="Usually from green vegetables, food colouring, iron tablets, or stool passing quickly during loose motions.", a="Usually harmless. Check with a doctor if it continues with other symptoms.", link=""),
+  dict(k="brown", n="Brown", lvl=0, m="Brown, in any shade, is the normal colour of stool.", a="The colour is reassuring on its own, but it does not rule out a problem: hard, lumpy or watery stools still need the attention described for the shape.", link=""),
+  dict(k="green", n="Green", lvl=0, m="Usually from green vegetables, food colouring, iron tablets, or stool passing quickly during loose motions.", a="Usually harmless. If it comes with loose motions, follow the advice for the shape; see a doctor if it continues with other symptoms.", link=""),
   dict(k="yellow", n="Yellow, greasy, hard to flush", lvl=2, m="Greasy, foul-smelling stool that floats can mean fat is not being absorbed, from pancreas problems, celiac disease or an infection such as giardia.", a="See a doctor, especially if it keeps happening or comes with weight loss.", link="answers/chronic-pancreatitis"),
   dict(k="pale", n="Pale, clay or white", lvl=2, m="Bile may not be reaching the gut, from a blocked bile duct or a liver problem. A barium X-ray test can also turn stools white for a day or two.", a="See a doctor soon. If you also have yellow eyes, dark urine, itching or fever, go the same day.", link="answers/blocked-bile-duct-obstructive-jaundice"),
   dict(k="black", n="Black and tarry", lvl=3, m="Black, sticky, foul-smelling stool can mean bleeding from the food pipe, stomach or duodenum. Iron tablets also turn stool black, but firm and not sticky.", a="If it is sticky and tar-like, or you feel dizzy or weak, this is an emergency: call 112 or go to the emergency department.", link="answers/vomiting-blood-black-stools"),
@@ -88,30 +89,31 @@ HI = dict(
  h1="आपका मल क्या कहता है?",
  desc="मल के आकार और रंग का मतलब जानें: क़ब्ज़, सामान्य, दस्त, काला, हल्का, हरा, पीला या लाल मल, और कब डॉक्टर को दिखाएँ। हिंदी और अंग्रेज़ी में मुफ़्त जाँच।",
  eyebrow="पेट की जाँच",
- lead="आपका मल आपकी आँतों की रोज़ की रिपोर्ट है। अपने मल से सबसे मिलता-जुलता आकार और रंग चुनें और जानें कि आमतौर पर उनका क्या मतलब है और क्या डॉक्टर को दिखाना चाहिए। सब कुछ आपके फ़ोन पर ही रहता है; कुछ भी सेव या भेजा नहीं जाता।",
+ lead="आपका मल आपकी आँतों की रोज़ की रिपोर्ट है। आकार और रंग अलग-अलग बातें बताते हैं, इसलिए दोनों का जवाब अलग मिलता है: पहले अपने मल से सबसे मिलता आकार चुनें, फिर रंग, और दोनों जवाब पढ़ें। सब कुछ आपके फ़ोन पर ही रहता है; कुछ भी सेव या भेजा नहीं जाता।",
  step1="1. कौन-सा आकार सबसे मिलता है?", step2="2. इसका रंग कैसा है?",
  pick="मतलब जानने के लिए एक आकार और एक रंग चुनें।",
  shapeSays="आकार बताता है", colourSays="रंग बताता है", next="आगे क्या करें",
- levels=["सामान्य लगता है", "नज़र रखें", "जल्दी डॉक्टर को दिखाएँ", "आज ही इलाज लें"],
+ levels=["सामान्य", "ध्यान देने की ज़रूरत", "जल्दी डॉक्टर को दिखाएँ", "आज ही इलाज लें"],
+ book="WhatsApp पर अपॉइंटमेंट लें",
  share="यह जाँच WhatsApp पर भेजें", shareText="आपका मल क्या कहता है? डॉ. क्षितिज लोचब की आकार और रंग की आसान जाँच:",
  again="फिर से शुरू करें", read="और पढ़ें",
  shapes=[
   dict(n="टाइप 1", d="अलग-अलग सख़्त गाँठें, मेवे जैसी", m="यह क़ब्ज़ है। मल आँत में बहुत देर रहा और उसका पानी सूख गया।",
-       a="धीरे-धीरे फ़ाइबर बढ़ाएँ (छिलके वाले फल, दाल, साबुत अनाज, पानी के साथ इसबगोल), पर्याप्त पानी पिएँ और रोज़ टहलें।"),
+       a="धीरे-धीरे फ़ाइबर बढ़ाएँ (छिलके वाले फल, दाल, साबुत अनाज, पानी के साथ इसबगोल), पर्याप्त पानी पिएँ और रोज़ टहलें। अगर यही आपकी आम आदत है, या 2 से 3 हफ़्ते में सुधार न हो, तो गैस्ट्रोएंटेरोलॉजिस्ट को दिखाएँ; ख़ून, दर्द, वज़न घटना हो या 45 की उम्र के बाद नई शुरुआत हो तो जल्दी दिखाएँ।"),
   dict(n="टाइप 2", d="गाँठदार, सॉसेज जैसा", m="हल्की क़ब्ज़। मल सामान्य से धीरे निकल रहा है।",
-       a="फ़ाइबर और पानी बढ़ाएँ, नाश्ते के बाद शौच का तय समय रखें, और इच्छा को न रोकें।"),
+       a="फ़ाइबर और पानी बढ़ाएँ, नाश्ते के बाद शौच का तय समय रखें, और इच्छा को न रोकें। 2 से 3 हफ़्ते से ज़्यादा चले, या नियमित जुलाब लेना पड़े, तो गैस्ट्रोएंटेरोलॉजिस्ट को दिखाएँ।"),
   dict(n="टाइप 3", d="दरारों वाला सॉसेज जैसा", m="यह सामान्य है।", a="फ़ाइबर, पानी और चलना-फिरना जारी रखें।"),
   dict(n="टाइप 4", d="चिकना, नरम सॉसेज या साँप जैसा", m="यह सबसे अच्छा मल है।", a="आप जो कर रहे हैं वह काम कर रहा है।"),
   dict(n="टाइप 5", d="साफ़ किनारों वाले नरम टुकड़े", m="लगभग सामान्य, हालाँकि इसका मतलब कम फ़ाइबर वाला खाना या थोड़ी तेज़ आँत हो सकता है।",
        a="थोड़ा और फ़ाइबर जोड़ें, जैसे ओट्स, इसबगोल या एक फल।"),
   dict(n="टाइप 6", d="गीले, फूले हुए टुकड़े", m="पतला मल। अक्सर थोड़े समय का इंफ़ेक्शन, कोई खाना जो सूट न किया, तनाव या IBS।",
-       a="ORS या तरल पिएँ और हल्का खाना खाएँ। दो हफ़्ते से ज़्यादा चले तो जाँच कराएँ।"),
+       a="ORS या तरल पिएँ और हल्का खाना खाएँ। पतला मल 2 हफ़्ते से ज़्यादा चले, बार-बार लौटे, या ख़ून, वज़न घटने या रात में जल्दी जाने के साथ हो, तो गैस्ट्रोएंटेरोलॉजिस्ट को दिखाएँ।"),
   dict(n="टाइप 7", d="पानी जैसा, बिना ठोस टुकड़ों के", m="दस्त। मुख्य ख़तरा बहुत ज़्यादा पानी और नमक निकल जाना है।",
-       a="हर पतले दस्त के बाद ORS। ख़ून, तेज़ बुखार, बहुत कम पेशाब, या 2 से 3 दिन से ज़्यादा चले तो उसी दिन डॉक्टर को दिखाएँ।"),
+       a="हर पतले दस्त के बाद ORS। ख़ून, तेज़ बुखार, तेज़ दर्द या बहुत कम पेशाब हो तो उसी दिन डॉक्टर को दिखाएँ, और 2 से 3 दिन से ज़्यादा चले या बार-बार लौटे तो अपॉइंटमेंट लें।"),
  ],
  colours=[
-  dict(n="भूरा", m="भूरे का कोई भी शेड सामान्य है।", a="कुछ करने की ज़रूरत नहीं।"),
-  dict(n="हरा", m="आमतौर पर हरी सब्ज़ियों, खाने के रंग, आयरन की गोलियों, या दस्त में मल के जल्दी निकलने से।", a="आमतौर पर नुकसान रहित। दूसरे लक्षणों के साथ जारी रहे तो डॉक्टर से पूछें।"),
+  dict(n="भूरा", m="भूरे का कोई भी शेड मल का सामान्य रंग है।", a="अकेले रंग से तसल्ली मिलती है, पर इससे कोई समस्या ख़ारिज नहीं होती: सख़्त, गाँठदार या पानी जैसे मल पर आकार वाली सलाह के अनुसार ध्यान देना ज़रूरी है।"),
+  dict(n="हरा", m="आमतौर पर हरी सब्ज़ियों, खाने के रंग, आयरन की गोलियों, या दस्त में मल के जल्दी निकलने से।", a="आमतौर पर नुकसान रहित। दस्त के साथ हो तो आकार वाली सलाह मानें; दूसरे लक्षणों के साथ जारी रहे तो डॉक्टर को दिखाएँ।"),
   dict(n="पीला, चिकना, फ़्लश न होने वाला", m="चिकना, बदबूदार, तैरने वाला मल का मतलब हो सकता है कि फ़ैट नहीं पच रहा, पैंक्रियास की समस्या, सीलिएक बीमारी या जियार्डिया जैसे इंफ़ेक्शन से।", a="डॉक्टर को दिखाएँ, ख़ासकर अगर बार-बार हो या वज़न घटे।"),
   dict(n="हल्का, मिट्टी जैसा या सफ़ेद", m="हो सकता है पित्त आँत तक न पहुँच रहा हो, पित्त की नली बंद होने या लिवर की समस्या से। बेरियम X-ray जाँच से भी एक-दो दिन मल सफ़ेद हो सकता है।", a="जल्दी डॉक्टर को दिखाएँ। साथ में आँखें पीली, गहरा पेशाब, खुजली या बुखार हो तो उसी दिन जाएँ।"),
   dict(n="काला और तारकोल जैसा", m="काला, चिपचिपा, बदबूदार मल खाने की नली, पेट या ड्यूओडेनम से ब्लीडिंग का मतलब हो सकता है। आयरन की गोलियाँ भी मल काला करती हैं, पर वह सख़्त होता है, चिपचिपा नहीं।", a="अगर यह चिपचिपा और तारकोल जैसा है, या चक्कर या कमज़ोरी है, तो यह इमरजेंसी है: 112 पर कॉल करें या इमरजेंसी में जाएँ।"),
@@ -142,13 +144,14 @@ CSS = """
 .sc-opt svg{width:100%;max-width:120px;height:auto}
 .sc-opt b{font-size:.9rem}.sc-opt span{font-size:.82rem;color:var(--muted);line-height:1.3}
 .sc-opt[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
-.sc-res{margin-top:24px;border-radius:20px;border:1.5px solid var(--line);background:var(--surface);padding:20px}
+.sc-res{margin-top:16px;scroll-margin:90px;border-radius:20px;border:1.5px solid var(--line);background:var(--surface);padding:20px}
 .sc-res[data-l="0"]{border-color:#2E9C86}.sc-res[data-l="1"]{border-color:#E0A93A}.sc-res[data-l="2"]{border-color:#E07A3A}.sc-res[data-l="3"]{border-color:var(--urgent);background:#FFF4F2}
 .sc-badge{display:inline-block;font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:5px 10px;border-radius:8px}
 .sc-res[data-l="0"] .sc-badge{background:#1F7F6B}.sc-res[data-l="1"] .sc-badge{background:#A8741A}.sc-res[data-l="2"] .sc-badge{background:#B4531C}.sc-res[data-l="3"] .sc-badge{background:var(--urgent)}
 .sc-res h3{margin:14px 0 4px;font-size:1rem;font-family:var(--body);font-weight:700}
 .sc-res p{margin:0 0 6px}
 .sc-act{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.sc-act:empty{display:none}
 .btn-wa{background:#1E8E4E;color:#fff;border-color:#1E8E4E}
 .btn-wa svg{width:18px;height:18px;vertical-align:-3px;margin-right:6px}
 """
@@ -168,25 +171,27 @@ def render(lang, bp):
     cols = "".join(opt("c", i, _swatch(c["k"]), c["n"], "") for i, c in enumerate(X["colours"]))
     data = {"shapes": [{k: s[k] for k in ("n", "d", "m", "a", "lvl", "link")} for s in X["shapes"]],
             "colours": [{k: c[k] for k in ("n", "m", "a", "lvl", "link")} for c in X["colours"]],
-            "levels": X["levels"], "t": {k: X[k] for k in ("shapeSays", "colourSays", "next", "read", "pick", "again")}, "pre": pre}
+            "levels": X["levels"], "t": {k: X[k] for k in ("shapeSays", "colourSays", "read", "book")}, "pre": pre, "wa": bp.WA}
     share = "https://wa.me/?text=" + bp.quote(f'{X["shareText"]} {bp.SITE}{path}')
     js = ("<script>(function(){const D=" + json.dumps(data, ensure_ascii=False) + ";"
-          "const sel={s:null,c:null},res=document.getElementById('scRes');"
+          "const sel={s:null,c:null},box={s:document.getElementById('scResS'),c:document.getElementById('scResC')};"
           "const esc=s=>String(s).replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]));"
-          "const blk=(h,x)=>`<h3>${h}</h3><p>${esc(x.m)}</p><p>${esc(x.a)}</p>${x.link?`<p><a href=\"${D.pre}${x.link}/\">${D.t.read} →</a></p>`:''}`;"
-          "function draw(){const s=sel.s!==null?D.shapes[sel.s]:null,c=sel.c!==null?D.colours[sel.c]:null;"
-          "if(!s&&!c){res.hidden=true;return;}const l=Math.max(s?s.lvl:0,c?c.lvl:0);res.hidden=false;res.dataset.l=l;"
-          "res.innerHTML=`<span class=\"sc-badge\">${D.levels[l]}</span>`+(s?blk(D.t.shapeSays+': '+esc(s.n)+', '+esc(s.d).toLowerCase(),s):'')+(c?blk(D.t.colourSays+': '+esc(c.n),c):'')+(!s||!c?`<p class=\"small\">${D.t.pick}</p>`:'');}"
+          "function draw(k){const el=box[k],i=sel[k];if(i===null){el.hidden=true;el.innerHTML='';return;}"
+          "const x=k==='s'?D.shapes[i]:D.colours[i],h=k==='s'?D.t.shapeSays+': '+esc(x.n)+', '+esc(x.d).toLowerCase():D.t.colourSays+': '+esc(x.n);"
+          "el.hidden=false;el.dataset.l=x.lvl;"
+          "el.innerHTML=`<span class=\"sc-badge\">${D.levels[x.lvl]}</span><h3>${h}</h3><p>${esc(x.m)}</p><p>${esc(x.a)}</p>`"
+          "+`<div class=\"sc-act\">${x.link?`<a class=\"btn btn-ghost btn-sm\" href=\"${D.pre}${x.link}/\">${D.t.read} →</a>`:''}${x.lvl>0?`<a class=\"btn btn-wa btn-sm\" href=\"${D.wa}\" target=\"_blank\" rel=\"noopener\">${D.t.book}</a>`:''}</div>`;}"
           "document.querySelectorAll('.sc-opt').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.kind,i=+b.dataset.i;sel[k]=sel[k]===i?null:i;"
-          "document.querySelectorAll(`.sc-opt[data-kind=\"${k}\"]`).forEach(o=>o.setAttribute('aria-pressed',String(+o.dataset.i===sel[k])));draw();"
-          "if(sel.s!==null&&sel.c!==null)res.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});}));"
-          "document.getElementById('scAgain').addEventListener('click',()=>{sel.s=sel.c=null;document.querySelectorAll('.sc-opt').forEach(o=>o.setAttribute('aria-pressed','false'));draw();scrollTo({top:0});});"
+          "document.querySelectorAll(`.sc-opt[data-kind=\"${k}\"]`).forEach(o=>o.setAttribute('aria-pressed',String(+o.dataset.i===sel[k])));draw(k);"
+          "if(sel[k]!==null)box[k].scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});}));"
+          "document.getElementById('scAgain').addEventListener('click',()=>{sel.s=sel.c=null;document.querySelectorAll('.sc-opt').forEach(o=>o.setAttribute('aria-pressed','false'));draw('s');draw('c');scrollTo({top:0});});"
           "})();</script>")
     t = bp.L[lang]
     body = (f'<p class="lead">{e(X["lead"])}</p>'
             f'<h2 class="sc-step">{e(X["step1"])}</h2><div class="sc-grid" role="group" aria-label="{e(X["step1"])}">{shapes}</div>'
+            f'<div class="sc-res" id="scResS" role="status" aria-live="polite" hidden></div>'
             f'<h2 class="sc-step">{e(X["step2"])}</h2><div class="sc-grid" role="group" aria-label="{e(X["step2"])}">{cols}</div>'
-            f'<div class="sc-res" id="scRes" role="status" aria-live="polite" hidden></div>'
+            f'<div class="sc-res" id="scResC" role="status" aria-live="polite" hidden></div>'
             f'<div class="sc-act"><a class="btn btn-wa btn-sm" href="{share}" target="_blank" rel="noopener">{ICON_SHARE}{e(X["share"])}</a>'
             f'<button type="button" class="btn btn-ghost btn-sm" id="scAgain">{e(X["again"])}</button></div>'
             f'<p class="small" style="margin-top:12px">{e(X["disc"])}</p>'
