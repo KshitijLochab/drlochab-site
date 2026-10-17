@@ -38,3 +38,8 @@ See `BRAND.md` for colours, type, voice and rules.
 
 ## Festival guides and banners
 - The Diwali guide lives in `diwali_guide.py` (EN, HI and its banner text) and is inserted first in `SPECIAL`. `seo_en.SEASONAL` is a list of banners with `slug`, optional `start` and `until`; `seo_hi.SEASONAL` holds the Hindi text in the same order. Each banner shows only between its start and until (checked at build time and in the browser), so several festivals can be queued ahead.
+
+## Daily features
+- Food of the day: `food_day.py` (EN, HI, labels), injected at `/*FOOD*/` by `build_site.py`; one food per IST day, same order in both languages.
+- Stool check tool: `stool_check.py`, built at /tools/stool-check/ by `build_pages.build()`.
+- WhatsApp Channel: set `WA_CHANNEL` in `build_pages.py` to the channel invite link; the join block then appears under today's tip and in every page footer.

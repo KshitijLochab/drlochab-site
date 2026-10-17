@@ -1,6 +1,7 @@
 """Generates condition, procedure and answer pages (English and Hindi) into site/.
 Run after build_site.py has written site/index.html and site/hi/index.html."""
 import json, os, html, subprocess
+from urllib.parse import quote
 import seo_en, seo_hi, guide_art, seo_proc_en, seo_proc_hi, answers_extra_en, answers_extra_hi, cond_diet_en, cond_diet_hi
 
 # diet box + FAQs for answer pages: same slugs and item counts in both languages
@@ -17,6 +18,16 @@ SITE = "https://drlochab.com"
 UPDATED = ("2026-10-10", "10 October 2026", "10 अक्टूबर 2026")
 PROC_UPDATED = ("2026-10-17", "17 October 2026", "17 अक्टूबर 2026")
 PHONE, WA = "+91 96671 04882", "https://wa.me/919667104882"
+# WhatsApp Channel for the daily tip. Paste the channel's invite link here (https://whatsapp.com/channel/...); left empty, every channel link stays hidden.
+WA_CHANNEL = ""
+CHANNEL_TXT = {"en": ("Get a daily gut-health tip on WhatsApp", "Join the channel"), "hi": ("पेट की सेहत की रोज़ की सलाह WhatsApp पर पाएँ", "चैनल से जुड़ें")}
+
+def channel_html(lang, cls="chan"):
+    """A small 'join the WhatsApp channel' block, or nothing while WA_CHANNEL is empty."""
+    if not WA_CHANNEL:
+        return ""
+    a, b = CHANNEL_TXT[lang]
+    return f'<p class="{cls}"><span>{a}</span> <a class="btn btn-wa btn-sm" href="{WA_CHANNEL}" target="_blank" rel="noopener">{b} <span aria-hidden="true">→</span></a></p>'
 REVIEW = "https://g.page/r/CYmK8BpICDd6EBM/review"
 
 L = {
@@ -148,7 +159,7 @@ def aside(lang):
 
 def footer(lang):
     t = L[lang]
-    return f"""<footer><div class="wrap"><p>{t['disc']}</p><p>Dr. Kshitij Lochab · {t['reg']} · {PHONE}</p><p>© 2026 Dr. Kshitij Lochab</p></div></footer>
+    return f"""<footer><div class="wrap">{channel_html(lang, "chan chan-foot")}<p>{t['disc']}</p><p>Dr. Kshitij Lochab · {t['reg']} · {PHONE}</p><p>© 2026 Dr. Kshitij Lochab</p></div></footer>
 <a class="fab" href="{WA}" target="_blank" rel="noopener">{t['book']}</a>
 </body></html>"""
 
@@ -360,6 +371,11 @@ def build():
                     + f'<p class="eyebrow">{e(x["eyebrow"])}</p><h1>{e(x["h1"])}</h1>{byline(lang, base.get("updated"))}' + "".join(body)
                     + f"</article>{aside(lang)}</main>" + footer(lang))
             write(path, page); pages.append((path_en, path_hi))
+    # ---- tools
+    import stool_check, sys
+    for lang in ("en", "hi"):
+        path, path_en, path_hi, page = stool_check.render(lang, sys.modules[__name__])
+        write(path, page); pages.append((path_en, path_hi))
     os.makedirs("site/assets", exist_ok=True)
     il_css = open("insta/illus.css").read()
     open("site/assets/pages.css", "w").write(open("pages.css").read() + il_css)

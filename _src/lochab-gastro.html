@@ -342,15 +342,36 @@ nav a:hover{color:var(--accent)}
 .hook:hover{transform:translateY(-2px)}
 .hook-myth{background:var(--warm-soft);border-color:var(--warm)}
 .hook-fibre{background:var(--accent-soft);border-color:var(--accent)}
+.hook-food{background:#F1F6E6;border-color:#8DB33A}
+.hook-stool{background:#F7EFE6;border-color:#B07A4C}
+.fod{scroll-margin-top:calc(var(--hdr,70px) + 16px);margin-top:18px;display:grid;grid-template-columns:120px 1fr;gap:22px;align-items:start;background:var(--surface);border:1.5px solid #8DB33A;border-radius:22px;padding:22px}
+.fod-art{width:120px;height:120px;border-radius:50%;background:#F1F6E6;display:grid;place-items:center}
+.fod-art svg{width:78px;height:78px}
+.fod-k{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#4E7A1E;padding:4px 9px;border-radius:7px;margin:0 0 8px}
+.fod h3{margin:0 0 4px;font-size:1.5rem}
+.fod-s{margin:0 0 12px;color:var(--muted)}.fod-s b{color:var(--ink)}
+.fod dl{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0}
+.fod dt{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.fod dd{margin:4px 0 0;font-size:.95rem}
+.fod-foot{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:14px}
+.fod-next{font-size:.9rem;color:var(--muted)}.fod-next b{color:var(--ink)}
+.btn[href^="https://wa.me/?"]{background:#1E8E4E;border-color:#1E8E4E;color:#fff}
+.btn[href^="https://wa.me/?"]::before{content:"";display:inline-block;width:17px;height:17px;margin-right:7px;vertical-align:-3px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 20l1.4-4.2A8 8 0 1 1 8.6 19z' fill='none' stroke='black' stroke-width='2.2' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 20l1.4-4.2A8 8 0 1 1 8.6 19z' fill='none' stroke='black' stroke-width='2.2' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.mb-ask-share{display:inline-block;margin-top:12px;font-size:.88rem;font-weight:700;color:#1E7A45}
+.fb-share{margin-top:10px}
+.chan{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0 0}
+.chan span{font-weight:600}
+.btn-wa{background:#1E8E4E;color:#fff;border-color:#1E8E4E}
+@media (max-width:760px){.fod{grid-template-columns:1fr;gap:12px;padding:18px}.fod-art{width:76px;height:76px}.fod-art svg{width:50px;height:50px}.fod dl{grid-template-columns:1fr}}
 .hook-art{grid-row:span 3;width:48px;height:48px;border-radius:50%;background:#FBEFD9;padding:4px;align-self:start}
 .hook-art svg{width:100%;height:100%;display:block}
 .hook-k{justify-self:start;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff;padding:4px 8px;border-radius:7px;transform:rotate(-2deg);white-space:nowrap}
-.hook-myth .hook-k{background:#B0362B}.hook-fibre .hook-k{background:#0B6A5E}
+.hook-myth .hook-k{background:#B0362B}.hook-fibre .hook-k{background:#0B6A5E}.hook-food .hook-k{background:#4E7A1E}.hook-stool .hook-k{background:#7A4A22}
 .hook-q{font-family:var(--display);font-size:1rem;line-height:1.25}
 .hook-go{font-weight:700;font-size:.9rem;color:var(--accent)}
 .hook-needle{transform-origin:50px 62px;animation:hookswing 2.4s ease-in-out .6s infinite}
 @keyframes hookswing{0%,100%{transform:rotate(-58deg)}45%,60%{transform:rotate(52deg)}}
-@media (max-width:560px){.hooks{gap:8px}.hook{grid-template-columns:1fr;padding:12px;gap:6px}.hook-art{grid-row:auto;width:40px;height:40px;padding:6px}.hook-q{font-size:.92rem}.hook-go{font-size:.84rem}}
+@media (max-width:560px){.hooks{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px;margin-inline:-16px;padding:2px 16px 8px;scrollbar-width:none}.hooks::-webkit-scrollbar{display:none}.hook{flex:0 0 44%;scroll-snap-align:start}.hooks{gap:8px}.hook{grid-template-columns:1fr;padding:12px;gap:6px}.hook-art{grid-row:auto;width:40px;height:40px;padding:6px}.hook-q{font-size:.92rem}.hook-go{font-size:.84rem}}
 @media (prefers-reduced-motion: reduce){.hook-needle{animation:none;transform:rotate(-40deg)}.hook{transition:none}}
 .fb-cat{margin:22px 0 10px;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .fb-cat:first-child{margin-top:0}
@@ -556,7 +577,7 @@ footer .wrap{display:grid;gap:10px}
           <span>All-India Gold Medal</span>
           <span>Advanced Fellowship in EUS &amp; ERCP</span>
         </div>
-        <div class="hooks" id="hooks"><a class="hook hook-myth" id="mbTeaser" href="#myths" hidden></a><a class="hook hook-fibre" id="fbTeaser" href="#fibre"></a></div>
+        <div class="hooks" id="hooks"><a class="hook hook-myth" id="mbTeaser" href="#myths" hidden></a><a class="hook hook-fibre" id="fbTeaser" href="#fibre"></a><a class="hook hook-food" id="fodTeaser" href="#food" hidden></a><a class="hook hook-stool" id="scTeaser" href="tools/stool-check/" hidden></a></div>
       </div>
       <figure class="portrait">
         <img src="dr-lochab.jpg" alt="Dr. Kshitij Lochab in a white doctor's coat" width="800" height="1000">
@@ -609,6 +630,8 @@ footer .wrap{display:grid;gap:10px}
             <div class="ibs-body" id="ibsBody"><p class="small">Loading…</p></div>
           </aside>
         </div>
+        <article class="fod" id="food" hidden></article>
+        <!--WA_CHANNEL-->
       </div>
       <div role="tabpanel" id="fibre" aria-labelledby="tab-fibre" hidden>
         <div class="sec-head" style="margin-bottom:22px">
@@ -1086,6 +1109,7 @@ const FOODS=[
  {c:"o",n:"Chips",s:"1 small packet",f:1,p:1.5,t:9},{c:"o",n:"Cream biscuits",s:"4 biscuits",f:0.5,p:2,t:8}
 ];
 /*/PLAY*/
+/*FOOD*/
 
 /* myth buster */
 const FLAME='<path d="M0 0 C-14 -14 -10 -30 0 -44 C2 -32 14 -28 12 -12 C12 -4 6 2 0 0Z" fill="#F08A2C"/><path d="M0 -2 C-6 -8 -5 -18 0 -26 C2 -18 7 -14 6 -7 C5 -3 3 -1 0 -2Z" fill="#F7D46B"/>';
@@ -1115,7 +1139,7 @@ function mbCard(m,i){
   const g=MBG[m.date], n=MBALL.length;
   let h=`<div class="mb" data-i="${i}" role="group" aria-roledescription="slide" aria-label="${MB.of(i+1,n)}"><div class="mb-art">${art(m.art)}</div><div class="mb-body"><p class="mb-eyebrow">${i===0?`<span class="mb-new">${MB.latest}</span>`:""}${MB.eyebrow}<span class="mb-num">${MB.of(i+1,n)}</span></p><p class="mb-claim">“${esc(m.claim)}”</p>`;
   if(!g){
-    h+=`<p class="mb-ask">${MB.ask}</p><div class="mb-btns"><button type="button" class="mb-btn" data-g="myth">${ICON_X}${MB.myth}</button><button type="button" class="mb-btn" data-g="fact">${ICON_OK}${MB.fact}</button></div>`;
+    h+=`<p class="mb-ask">${MB.ask}</p><div class="mb-btns"><button type="button" class="mb-btn" data-g="myth">${ICON_X}${MB.myth}</button><button type="button" class="mb-btn" data-g="fact">${ICON_OK}${MB.fact}</button></div><a class="mb-ask-share" href="${mbShare(m)}" target="_blank" rel="noopener">${FO.ask} →</a>`;
   }else{
     const ok=g===m.answer;
     h+=`<div class="mb-reveal" tabindex="-1"><div class="mb-verdict"><span class="mb-stamp ${m.answer}">${m.answer==="myth"?MB.isMyth:MB.isFact}</span><span class="mb-res ${ok?"ok":""}">${ok?MB.right:MB.wrong}</span></div><h3>${esc(m.verdict)}</h3><p>${esc(m.truth)}</p><div class="try"><b>${m.answer==="myth"?MB.doLbl:MB.doLblF}</b>${esc(m.do)}</div>${m.doctor?`<p class="mb-doc"><b>${MB.docLbl}:</b> ${esc(m.doctor)}</p>`:""}<div class="mb-actions"><a class="btn btn-solid btn-sm" href="${mbShare(m)}" target="_blank" rel="noopener">${MB.share}</a>${m.link?`<a class="btn btn-ghost btn-sm" href="${PFX}${m.link}/">${MB.more}</a>`:""}${i<n-1?`<button type="button" class="btn btn-ghost btn-sm mb-go" data-to="${i+1}">${MB.nextBtn}</button>`:""}</div></div>`;
@@ -1161,7 +1185,7 @@ getJSON("myths.json").then(all=>{
   MBNEXT=nx?MB.next(Math.round((asDate(nx.date)-asDate(TODAY))/864e5)):MB.nextDefault;
   mbBuild();
   const t=document.getElementById("mbTeaser");
-  t.innerHTML=`<span class="hook-art">${art(MBCUR.art)}</span><span class="hook-k">${MB.eyebrow}</span><span class="hook-q">“${esc(MBCUR.claim)}”</span><span class="hook-go">${MB.go}</span>`; t.hidden=false;
+  t.innerHTML=`<span class="hook-art">${art(MBCUR.art)}</span><span class="hook-k">${MB.eyebrow}</span><span class="hook-q">“${esc(MBCUR.claim)}”</span><span class="hook-go">${MB.go}</span>`; t.hidden=false; document.getElementById("hooks").scrollLeft=0;
 }).catch(()=>{document.getElementById("mb").innerHTML=`<p>${MB.err}</p>`;});
 
 /* thali meter */
@@ -1192,13 +1216,14 @@ function fbUpdate(){
   document.getElementById("fbMsg").textContent=msg;
   FOODS.forEach((f,i)=>{const n=FB[i]||0,d=document.getElementById("fd"+i);d.classList.toggle("on",n>0);const c=d.querySelector(".fd-n");c.textContent="×"+n;c.hidden=!n;d.querySelector(".fd-sub").hidden=!n;});
   store.set("thali-"+TODAY,FB);
+  const sh=document.getElementById("fbShare"); sh.hidden=!any; sh.href="https://wa.me/?text="+encodeURIComponent(FO.thaliText.replace("{f}",fmtG(T.f)).replace("{p}",fmtG(T.p)).replace("{t}",fmtG(T.t))+"\n\n"+SITE.replace(/\/$/,"")+"/#fibre");
   document.getElementById("fbTeaser").innerHTML=`<span class="hook-art">${MINIGAUGE}</span><span class="hook-k">${FT.hookK}</span><span class="hook-q">${any?FT.hookHave(fmtG(T.f),fmtG(T.p),fmtG(T.t)):FT.hookQ}</span><span class="hook-go">${any?FT.hookTop:FT.hookGo}</span>`;
 }
 (function(){
   const root=document.getElementById("fb");
   const card=(f,i)=>`<div class="fd" id="fd${i}"><button type="button" class="fd-add" data-i="${i}" aria-label="${FT.add(f)}"><b>${esc(f.n)}</b><span>${esc(f.s)}</span><i class="fd-m"><span class="mf">${fmtG(f.f)}</span><span class="mp">${fmtG(f.p)}</span><span class="mt">${fmtG(f.t)}</span></i></button><span class="fd-n" aria-hidden="true" hidden></span><button type="button" class="fd-sub" data-i="${i}" aria-label="${FT.sub(f)}" hidden>−</button></div>`;
   const gauges=METERS.map(m=>`<div class="gm"><span class="gm-n">${FT.meters[m.k].n}</span>${gaugeSvg(m)}<span class="gm-v" id="gv-${m.k}"></span><span class="gm-s" id="gs-${m.k}"></span><span class="gm-t">${FT.meters[m.k].t}</span></div>`).join("");
-  root.innerHTML=`<div class="fb-meter"><div class="fb-gauges">${gauges}</div><p class="fb-msg" id="fbMsg" role="status"></p><button type="button" class="chip" id="fbReset">${FT.reset}</button></div><div><p class="fb-legend"><span class="mf">${FT.meters.f.n}</span><span class="mp">${FT.meters.p.n}</span><span class="mt">${FT.meters.t.n}</span><span>(${FT.u}, ${FT.legend})</span></p>${Object.keys(FT.cats).map(c=>`<h4 class="fb-cat">${FT.cats[c]}</h4><div class="fb-foods">${FOODS.map((f,i)=>[f,i]).filter(x=>x[0].c===c).map(([f,i])=>card(f,i)).join("")}</div>`).join("")}<p class="small" style="margin-top:18px;max-width:72ch">${FT.note}</p></div>`;
+  root.innerHTML=`<div class="fb-meter"><div class="fb-gauges">${gauges}</div><p class="fb-msg" id="fbMsg" role="status"></p><button type="button" class="chip" id="fbReset">${FT.reset}</button><a class="btn btn-sm fb-share" id="fbShare" target="_blank" rel="noopener" hidden>${FO.thaliShare}</a></div><div><p class="fb-legend"><span class="mf">${FT.meters.f.n}</span><span class="mp">${FT.meters.p.n}</span><span class="mt">${FT.meters.t.n}</span><span>(${FT.u}, ${FT.legend})</span></p>${Object.keys(FT.cats).map(c=>`<h4 class="fb-cat">${FT.cats[c]}</h4><div class="fb-foods">${FOODS.map((f,i)=>[f,i]).filter(x=>x[0].c===c).map(([f,i])=>card(f,i)).join("")}</div>`).join("")}<p class="small" style="margin-top:18px;max-width:72ch">${FT.note}</p></div>`;
   root.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
     if(b.id==="fbReset")FB={};
     else if(b.classList.contains("fd-add"))FB[b.dataset.i]=(FB[b.dataset.i]||0)+1;
@@ -1212,6 +1237,36 @@ function openFibre(){selectTab(document.getElementById("tab-fibre"));document.ge
 function openFromHash(){if(location.hash==="#fibre")openFibre();}
 document.getElementById("fbTeaser").addEventListener("click",e=>{e.preventDefault();history.replaceState(null,"","#fibre");openFibre();});
 addEventListener("hashchange",openFromHash); openFromHash();
+
+/* food of the day */
+const FICON={
+ fruit:c=>`<circle cx="32" cy="36" r="20" fill="${c}"/><path d="M32 16 C32 10 36 7 40 6" stroke="#5A3A1A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M34 14 C40 6 50 8 52 12 C46 16 40 16 34 14Z" fill="#3F8A3A"/><ellipse cx="25" cy="30" rx="5" ry="7" fill="#fff" opacity=".35"/>`,
+ leaf:c=>`<path d="M12 52 C12 26 30 10 54 10 C54 34 38 52 12 52Z" fill="${c}"/><path d="M14 50 C26 38 36 28 48 16" stroke="#fff" stroke-width="2.5" fill="none" opacity=".7"/>`,
+ grain:c=>`<path d="M32 58 V14" stroke="#9C7A3C" stroke-width="3" stroke-linecap="round"/>${[18,26,34,42].map(y=>`<ellipse cx="25" cy="${y}" rx="5" ry="8" fill="${c}" transform="rotate(-30 25 ${y})"/><ellipse cx="39" cy="${y}" rx="5" ry="8" fill="${c}" transform="rotate(30 39 ${y})"/>`).join("")}<ellipse cx="32" cy="10" rx="4.5" ry="7" fill="${c}"/>`,
+ bean:c=>[[20,30,-20],[40,24,15],[32,44,-5]].map(([x,y,r])=>`<path d="M${x-10} ${y} C${x-10} ${y-10} ${x+10} ${y-10} ${x+10} ${y} C${x+10} ${y+6} ${x+4} ${y+5} ${x} ${y+4} C${x-4} ${y+5} ${x-10} ${y+6} ${x-10} ${y}Z" fill="${c}" stroke="rgba(0,0,0,.25)" stroke-width="1.5" transform="rotate(${r} ${x} ${y})"/>`).join(""),
+ cup:c=>`<path d="M12 26 H52 L48 50 Q47 56 41 56 H23 Q17 56 16 50Z" fill="#fff" stroke="#97B6AF" stroke-width="3"/><path d="M14 30 H50 L47 48 Q46 52 41 52 H23 Q18 52 17 48Z" fill="${c}"/><path d="M24 20 q2 -6 0 -10 M32 20 q2 -6 0 -10 M40 20 q2 -6 0 -10" stroke="#97B6AF" stroke-width="2.5" fill="none" stroke-linecap="round"/>`,
+ nut:c=>[[24,30,-25],[40,36,20],[30,46,5]].map(([x,y,r])=>`<path d="M${x} ${y-12} C${x+9} ${y-6} ${x+8} ${y+8} ${x} ${y+12} C${x-8} ${y+8} ${x-9} ${y-6} ${x} ${y-12}Z" fill="${c}" stroke="rgba(0,0,0,.25)" stroke-width="1.5" transform="rotate(${r} ${x} ${y})"/>`).join(""),
+ root:c=>`<path d="M22 22 C30 18 42 20 44 26 L30 58 C28 60 26 59 26 56Z" fill="${c}"/><path d="M28 30 h8 M27 38 h6 M27 46 h4" stroke="#fff" stroke-width="2" opacity=".5" stroke-linecap="round"/><path d="M34 20 C30 10 26 8 22 8 M36 20 C38 10 44 8 48 9 M34 20 V6" stroke="#3F8A3A" stroke-width="3.5" fill="none" stroke-linecap="round"/>`,
+ egg:c=>`<path d="M32 8 C46 8 52 30 52 40 C52 52 43 58 32 58 C21 58 12 52 12 40 C12 30 18 8 32 8Z" fill="${c}" stroke="#D9C3A0" stroke-width="2.5"/><ellipse cx="25" cy="26" rx="4" ry="7" fill="#fff" opacity=".6"/>`,
+ fish:c=>`<path d="M8 32 C18 16 40 14 50 32 C40 50 18 48 8 32Z" fill="${c}"/><path d="M48 32 L60 20 V44Z" fill="${c}"/><circle cx="20" cy="29" r="3" fill="#12302C"/><path d="M28 24 q4 8 0 16 M36 24 q4 8 0 16" stroke="#fff" stroke-width="2" fill="none" opacity=".6"/>`,
+ seed:c=>`<path d="M10 40 Q32 60 54 40" fill="#E8EEF0" stroke="#97B6AF" stroke-width="3"/>${[[20,38],[28,34],[36,36],[44,38],[24,44],[32,42],[40,44],[30,28],[38,30]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="3.6" ry="2.4" fill="${c}"/>`).join("")}`,
+ bowl:c=>`<path d="M30 22 C38 12 46 20 40 24" stroke="#C9A06A" stroke-width="2.5" fill="none" opacity=".6"/><path d="M10 32 H54 C54 46 44 56 32 56 C20 56 10 46 10 32Z" fill="#fff" stroke="#97B6AF" stroke-width="3"/><path d="M12 32 C16 22 48 22 52 32Z" fill="${c}"/>`,
+ spice:c=>`<path d="M10 52 C16 32 26 24 32 24 C38 24 48 32 54 52Z" fill="${c}"/><path d="M40 20 L56 8" stroke="#A88A5A" stroke-width="5" stroke-linecap="round"/><circle cx="38" cy="22" r="5" fill="${c}"/>`
+};
+const ficon=f=>`<svg viewBox="0 0 64 64" aria-hidden="true">${(FICON[f.ic]||FICON.fruit)(f.col)}</svg>`;
+(function(){
+  const N=FOD.length, day=Math.floor(asDate(TODAY).getTime()/864e5), f=FOD[((day%N)+N)%N], nx=FOD[(((day+1)%N)+N)%N];
+  const share="https://wa.me/?text="+encodeURIComponent(FO.shareText.replace("{n}",f.n).replace("{k}",f.k).replace("{why}",f.why)+"\n\n"+FO.shareTail+" "+SITE.replace(/\/$/,"")+"/#food");
+  const el=document.getElementById("food");
+  el.innerHTML=`<div class="fod-art">${ficon(f)}</div><div><p class="fod-k">${FO.k}</p><h3>${esc(f.n)}</h3><p class="fod-s">${FO.serving}: ${esc(f.s)} · <b>${esc(f.k)}</b></p><dl><div><dt>${FO.why}</dt><dd>${esc(f.why)}</dd></div><div><dt>${FO.how}</dt><dd>${esc(f.how)}</dd></div><div><dt>${FO.care}</dt><dd>${esc(f.care)}</dd></div></dl><div class="fod-foot"><a class="btn btn-sm" href="${share}" target="_blank" rel="noopener">${FO.share}</a><span class="fod-next">${FO.tomorrow}: <b>${esc(nx.n)}</b></span></div></div>`;
+  el.hidden=false;
+  const t=document.getElementById("fodTeaser");
+  t.innerHTML=`<span class="hook-art" style="background:#E6F0D2">${ficon(f)}</span><span class="hook-k">${FO.k}</span><span class="hook-q">${esc(f.n)}</span><span class="hook-go">${FO.go}</span>`; t.hidden=false;
+  t.addEventListener("click",e=>{e.preventDefault();history.replaceState(null,"","#food");selectTab(document.getElementById("tab-today"));el.scrollIntoView({behavior:"smooth",block:"start"});});
+  const sc=document.getElementById("scTeaser");
+  sc.innerHTML=`<span class="hook-art" style="background:#F1E3D3"><svg viewBox="0 0 120 64" aria-hidden="true"><path d="M14 40 C30 18 46 18 60 32 S92 48 106 24" fill="none" stroke="#5E3518" stroke-width="20" stroke-linecap="round"/><path d="M14 40 C30 18 46 18 60 32 S92 48 106 24" fill="none" stroke="#8A5530" stroke-width="16" stroke-linecap="round"/></svg></span><span class="hook-k">${FO.stoolK}</span><span class="hook-q">${FO.stoolQ}</span><span class="hook-go">${FO.stoolGo}</span>`; sc.hidden=false;
+  if(location.hash==="#food"){selectTab(document.getElementById("tab-today"));setTimeout(()=>el.scrollIntoView(),50);}
+})();
 
 /* copy address and phone */
 function copyBtn(btnId,text,nodeId,label){

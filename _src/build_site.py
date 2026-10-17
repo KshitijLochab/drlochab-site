@@ -101,6 +101,12 @@ def hindi_source(s):
 import html as _html
 import seo_en, seo_hi, hub
 
+def food_js(lang):
+    """Food of the day data and labels for one language (see food_day.py)."""
+    import food_day
+    items = food_day.EN if lang == "en" else [dict(h, ic=e["ic"], col=e["col"]) for h, e in zip(food_day.HI, food_day.EN)]
+    return "const FOD=" + json.dumps(items, ensure_ascii=False) + ";\nconst FO=" + json.dumps(food_day.LABELS[lang], ensure_ascii=False) + ";"
+
 def link_lists(lang):
     """Static, crawlable links from the home page to every condition, procedure and answer page."""
     pre = "/" if lang == "en" else "/hi/"
@@ -133,6 +139,8 @@ def link_lists(lang):
     return {"<!--SEASONAL-->": season, "<!--GUIDES_SECTION-->": guides, "<!--COND_LINKS-->": f'<div class="guides"><h3>{h_c}</h3><div>{cond}</div></div>',
             "<!--PROC_LINKS-->": f'<div class="guides"><h3>{h_p}</h3><div>{proc}</div></div>',
             "<!--ANSWER_LINKS-->": ans,
+            "/*FOOD*/": food_js(lang),
+            "<!--WA_CHANNEL-->": build_pages.channel_html(lang),
             "<!--HUB-->": hub.hub_html(lang, hub.page_data(src[src.index("const ORGANS="):src.index("const esc=")] if lang == "en" else hindi.DATA_JS))}
 
 for key, p in PAGES.items():
