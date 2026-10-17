@@ -1117,26 +1117,29 @@ tabs.forEach((t,i)=>{
 /*PLAY*/
 const MB={eyebrow:"Myth or fact?",ask:"What do you think?",myth:"Myth",fact:"Fact",isMyth:"It's a myth",isFact:"It's a fact",right:"You got it right!",wrong:"Not quite. Many people believe this.",doLbl:"What to do instead",doLblF:"What to do",docLbl:"When to see a doctor",more:"Read more →",share:"Challenge your family on WhatsApp",shareTail:"Guess, then see the answer from Dr. Kshitij Lochab:",next:d=>d===1?"Next myth: tomorrow":`Next myth in ${d} days`,nextDefault:"A new myth every Monday and Thursday",score:(r,n)=>`Your score: <b>${r} of ${n}</b> right`,past:"Earlier myths",hint:"Tap to see the answer",go:"Test yourself →",err:"The myth could not load. Please refresh the page."};
 const FT={reset:"Start again",u:"g",legend:"per serving",add:f=>`Add ${f.n}, ${f.s}: ${f.f} grams fibre, ${f.p} grams protein, ${f.t} grams fat`,sub:f=>`Remove one ${f.n}`,
- meters:{f:{n:"Fibre",t:"Aim for 25–30 g",st:["Low","Getting there","Good"]},p:{n:"Protein",t:"Aim for about 50–60 g",st:["Low","Getting there","Good"]},t:{n:"Fat",t:"Keep under about 60 g",st:["In range","Watch it","Too much"]}},
+ meters:{f:{n:"Fibre",t:"Aim for at least 25–30 g",st:["Low","Getting there","Good"]},p:{n:"Protein",t:"Aim for about 45–55 g",st:["Low","Getting there","Good"]},t:{n:"Fat",t:"Keep under about 60 g in all",st:["In range","Watch it","Too much"]}},
  msg:{start:"Tap the foods you have eaten today.",fat:"Fat is high today. Go easy on oil, ghee and fried snacks.",prot:"Add some protein: dal, curd, paneer, eggs, chicken or fish.",fib:"Add fibre: a fruit, a katori of sabzi or dal.",good:"A well-balanced day. Your gut will thank you!"},
  cats:{g:"Roti, rice & cereals",d:"Dal & beans",m:"Milk, paneer, eggs & meat",v:"Vegetables",f:"Fruits & nuts",o:"Oil, ghee & snacks"},
- note:"Values are rough estimates for a typical home serving. Fat shown for foods does not include the oil or ghee used to cook them, so add those as teaspoons. Protein needs depend on body weight (roughly 0.8 to 1 g per kg); if you have kidney or liver disease, ask your doctor how much is right for you. With fatty liver, keep fat and oil on the lower side. Add fibre slowly and drink more water with it. Your list stays on this phone for today only, so come back tomorrow for a fresh thali.",
+ note:"Values are rough estimates for a typical home serving, worked out from the Indian Food Composition Tables (ICMR-NIN) and USDA food data. Cooked dishes such as dal, sabzi and curries include about 1 teaspoon of cooking oil per katori; add any extra ghee, butter or oil separately. For most adults, ICMR-NIN suggests about 0.8 to 1 g of protein per kg of body weight (about 45 to 55 g a day) and no more than 4 to 5 teaspoons of oil or ghee a day. If you have kidney or liver disease, ask your doctor how much protein is right for you; with fatty liver, keep fat and oil on the lower side. Add fibre slowly and drink more water with it. Your list stays on this phone for today only, so come back tomorrow for a fresh thali.",
  hookK:"Thali meter",hookQ:"Fibre, protein, fat: how is your plate today?",hookGo:"Count your thali →",hookHave:(f,p,t)=>`Today: ${f} g fibre · ${p} g protein · ${t} g fat`,hookTop:"Add more →"};
 const FOODS=[
- {c:"g",n:"Atta roti",s:"1 roti",f:2.5,p:3,t:0.5},{c:"g",n:"Bajra or jowar roti",s:"1 roti",f:3,p:3,t:1},{c:"g",n:"Paratha, with ghee or oil",s:"1 paratha",f:3,p:4,t:9},
- {c:"g",n:"Oats",s:"1 bowl",f:4,p:5,t:3},{c:"g",n:"Brown rice",s:"1 katori",f:2.5,p:4,t:1},{c:"g",n:"White rice",s:"1 katori",f:0.5,p:3.5,t:0.5},
- {c:"g",n:"Idli",s:"2 idlis",f:1.5,p:4,t:0.5},{c:"g",n:"Plain dosa",s:"1 dosa",f:1,p:3,t:4},{c:"g",n:"White bread",s:"2 slices",f:1.5,p:4.5,t:1.5},{c:"g",n:"Whole wheat bread",s:"2 slices",f:4,p:6,t:2},
- {c:"d",n:"Dal",s:"1 katori",f:4,p:7,t:1},{c:"d",n:"Rajma or chole",s:"1 katori",f:8,p:9,t:2},{c:"d",n:"Roasted chana, with skin",s:"1 handful",f:4,p:6,t:1.5},{c:"d",n:"Soya chunks, cooked",s:"1 katori",f:3,p:13,t:0.5},
- {c:"m",n:"Milk (toned)",s:"1 glass",f:0,p:6.5,t:6},{c:"m",n:"Curd (dahi)",s:"1 katori",f:0,p:5,t:4.5},{c:"m",n:"Chaas",s:"1 glass",f:0,p:2,t:1},{c:"m",n:"Paneer",s:"50 g, about 5 cubes",f:0,p:9,t:10},
- {c:"m",n:"Egg, boiled",s:"1 egg",f:0,p:6,t:5},{c:"m",n:"Chicken",s:"1 katori, about 100 g",f:0,p:25,t:6},{c:"m",n:"Fish",s:"1 katori, about 100 g",f:0,p:22,t:4},
- {c:"v",n:"Mixed sabzi",s:"1 katori",f:3,p:2,t:0},{c:"v",n:"Matar (green peas)",s:"1 katori",f:5,p:5,t:0.5},{c:"v",n:"Bhindi",s:"1 katori",f:3,p:2,t:0},{c:"v",n:"Palak or saag",s:"1 katori",f:3,p:3,t:0.5},
- {c:"v",n:"Gobhi",s:"1 katori",f:2.5,p:2.5,t:0},{c:"v",n:"Beans",s:"1 katori",f:3,p:2,t:0},{c:"v",n:"Baingan",s:"1 katori",f:2.5,p:1,t:0},{c:"v",n:"Patta gobhi (cabbage)",s:"1 katori",f:2,p:1.5,t:0},
- {c:"v",n:"Lauki or tori",s:"1 katori",f:1,p:0.5,t:0},{c:"v",n:"Gajar (carrot)",s:"1 medium",f:2,p:0.5,t:0},{c:"v",n:"Shakarkandi (sweet potato)",s:"1 medium",f:4,p:2,t:0},{c:"v",n:"Bhutta (corn)",s:"1 cob",f:2.5,p:3.5,t:1.5},
- {c:"v",n:"Salad",s:"1 plate",f:2,p:1,t:0},
- {c:"f",n:"Guava",s:"1 fruit",f:5,p:2.5,t:0.5},{c:"f",n:"Pear",s:"1 fruit",f:5,p:0.5,t:0},{c:"f",n:"Apple, with peel",s:"1 fruit",f:4,p:0.5,t:0},{c:"f",n:"Anaar (pomegranate)",s:"1 katori seeds",f:3.5,p:1.5,t:1},
- {c:"f",n:"Banana",s:"1 fruit",f:3,p:1.5,t:0.5},{c:"f",n:"Orange",s:"1 fruit",f:3,p:1,t:0},{c:"f",n:"Papaya",s:"1 bowl",f:2.5,p:1,t:0.5},{c:"f",n:"Almonds",s:"1 handful",f:3.5,p:6,t:14},{c:"f",n:"Peanuts",s:"1 handful",f:2.5,p:7,t:14},
- {c:"o",n:"Cooking oil",s:"1 teaspoon",f:0,p:0,t:5},{c:"o",n:"Ghee or butter",s:"1 teaspoon",f:0,p:0,t:5},{c:"o",n:"Samosa",s:"1 samosa",f:2,p:4,t:15},{c:"o",n:"Pakora",s:"1 plate, about 6",f:2,p:5,t:15},
- {c:"o",n:"Namkeen or bhujia",s:"1 small bowl",f:1.5,p:4,t:10},{c:"o",n:"Chips",s:"1 small packet",f:1,p:2,t:9}
+ {c:"g",n:"Atta roti",s:"1 medium roti",f:3,p:3,t:0.5},{c:"g",n:"Bajra or jowar roti",s:"1 roti",f:3.5,p:3.5,t:1.5},{c:"g",n:"Plain paratha, with ghee or oil",s:"1 paratha",f:3.5,p:4,t:8},
+ {c:"g",n:"Oats, made with water",s:"1 bowl",f:4,p:5,t:2.5},{c:"g",n:"Brown rice",s:"1 katori",f:2.5,p:4,t:1.5},{c:"g",n:"White rice",s:"1 katori",f:0.5,p:4,t:0.5},
+ {c:"g",n:"Idli",s:"2 idlis",f:1.5,p:4,t:0.5},{c:"g",n:"Plain dosa",s:"1 dosa",f:1,p:3,t:4},{c:"g",n:"White bread",s:"2 slices",f:1.5,p:4.5,t:1.5},
+ {c:"g",n:"Brown or whole wheat bread",s:"2 slices",f:3,p:6,t:2},{c:"d",n:"Dal, with tadka",s:"1 katori",f:3,p:7,t:3},{c:"d",n:"Rajma or chole",s:"1 katori",f:7,p:9,t:6},
+ {c:"d",n:"Roasted chana, with skin",s:"1 handful",f:4,p:6,t:1.5},{c:"d",n:"Soya chunks curry",s:"1 katori",f:3,p:13,t:5},{c:"m",n:"Milk (toned)",s:"1 glass",f:0,p:6.5,t:6},
+ {c:"m",n:"Curd (dahi)",s:"1 katori",f:0,p:4.5,t:4.5},{c:"m",n:"Chaas",s:"1 glass",f:0,p:2,t:1},{c:"m",n:"Paneer",s:"50 g, about 5 cubes",f:0,p:9,t:10},
+ {c:"m",n:"Egg, boiled",s:"1 egg",f:0,p:6,t:5},{c:"m",n:"Chicken curry",s:"1 katori, about 100 g meat",f:0,p:25,t:12},{c:"m",n:"Fish curry",s:"1 katori, about 100 g fish",f:0,p:20,t:7},
+ {c:"v",n:"Mixed sabzi",s:"1 katori",f:3,p:2,t:5},{c:"v",n:"Aloo sabzi",s:"1 katori",f:2.5,p:2.5,t:5},{c:"v",n:"Matar (green peas)",s:"1 katori",f:5,p:5,t:5},
+ {c:"v",n:"Bhindi",s:"1 katori",f:2.5,p:2,t:6},{c:"v",n:"Palak or saag",s:"1 katori",f:3.5,p:4,t:5},{c:"v",n:"Gobhi",s:"1 katori",f:2.5,p:2,t:5},
+ {c:"v",n:"Beans",s:"1 katori",f:3,p:2,t:5},{c:"v",n:"Baingan",s:"1 katori",f:2.5,p:1,t:6},{c:"v",n:"Patta gobhi (cabbage)",s:"1 katori",f:2,p:1.5,t:5},
+ {c:"v",n:"Lauki or tori",s:"1 katori",f:1,p:1,t:4},{c:"v",n:"Gajar (carrot), raw",s:"1 medium",f:2,p:0.5,t:0},{c:"v",n:"Shakarkandi (sweet potato), roasted",s:"1 medium",f:4,p:2.5,t:0},
+ {c:"v",n:"Bhutta (corn), roasted",s:"1 cob",f:2.5,p:3,t:1.5},{c:"v",n:"Salad",s:"1 plate",f:2,p:1,t:0},{c:"f",n:"Guava",s:"1 fruit",f:5,p:2.5,t:1},
+ {c:"f",n:"Pear",s:"1 fruit",f:5.5,p:0.5,t:0},{c:"f",n:"Apple, with peel",s:"1 fruit",f:4,p:0.5,t:0},{c:"f",n:"Anaar (pomegranate)",s:"1 katori seeds",f:3.5,p:1.5,t:1},
+ {c:"f",n:"Banana",s:"1 fruit",f:3,p:1.5,t:0.5},{c:"f",n:"Orange",s:"1 fruit",f:3,p:1,t:0},{c:"f",n:"Papaya",s:"1 bowl",f:2.5,p:0.5,t:0.5},
+ {c:"f",n:"Almonds",s:"1 handful, about 20",f:3,p:5,t:12},{c:"f",n:"Peanuts, roasted",s:"1 handful",f:2.5,p:7,t:15},{c:"o",n:"Extra ghee, butter or oil",s:"1 teaspoon",f:0,p:0,t:5},
+ {c:"o",n:"Samosa",s:"1 samosa",f:2,p:4,t:15},{c:"o",n:"Pakora",s:"1 plate, about 6",f:3,p:5,t:15},{c:"o",n:"Namkeen or bhujia",s:"1 small bowl",f:1.5,p:4,t:10},
+ {c:"o",n:"Chips",s:"1 small packet",f:1,p:1.5,t:9},{c:"o",n:"Cream biscuits",s:"4 biscuits",f:0.5,p:2,t:8}
 ];
 /*/PLAY*/
 
@@ -1193,12 +1196,12 @@ getJSON("myths.json").then(all=>{
 }).catch(()=>{document.getElementById("mb").innerHTML=`<p>${MB.err}</p>`;});
 
 /* thali meter */
-let FB=store.get("plate-"+TODAY,{});
+let FB=store.get("thali-"+TODAY,{});
 const MINIGAUGE='<svg viewBox="0 0 100 80" aria-hidden="true"><path d="M14 62 A36 36 0 0 1 32 31" fill="none" stroke="#E9A090" stroke-width="12" stroke-linecap="round"/><path d="M32 31 A36 36 0 0 1 68 31" fill="none" stroke="#F3C66B" stroke-width="12"/><path d="M68 31 A36 36 0 0 1 86 62" fill="none" stroke="#2E9C86" stroke-width="12" stroke-linecap="round"/><g class="hook-needle"><line x1="50" y1="62" x2="50" y2="34" stroke="#12302C" stroke-width="6" stroke-linecap="round"/></g><circle cx="50" cy="62" r="8" fill="#12302C"/></svg>';
 const fmtG=g=>String(Math.round(g*10)/10);
 const METERS=[
  {k:"f",max:35,zones:[[0,12,"#E9A090"],[12,25,"#F3C66B"],[25,35,"#2E9C86"]],lvl:v=>v>=25?2:v>=12?1:0,cls:["bad","warn","ok"]},
- {k:"p",max:80,zones:[[0,30,"#E9A090"],[30,50,"#F3C66B"],[50,80,"#2E9C86"]],lvl:v=>v>=50?2:v>=30?1:0,cls:["bad","warn","ok"]},
+ {k:"p",max:70,zones:[[0,25,"#E9A090"],[25,45,"#F3C66B"],[45,70,"#2E9C86"]],lvl:v=>v>=45?2:v>=25?1:0,cls:["bad","warn","ok"]},
  {k:"t",max:90,zones:[[0,45,"#2E9C86"],[45,60,"#F3C66B"],[60,90,"#E9A090"]],lvl:v=>v>60?2:v>45?1:0,cls:["ok","warn","bad"]}
 ];
 function gaugeSvg(m){
@@ -1216,10 +1219,10 @@ function fbUpdate(){
     const st=document.getElementById("gs-"+m.k); st.textContent=any?M.st[L]:"–"; st.className="gm-s"+(any?" "+m.cls[L]:"");
   });
   let msg=FT.msg.start;
-  if(any){const rf=T.f/25, rp=T.p/50; msg=T.t>60?FT.msg.fat:(rf>=1&&rp>=1)?FT.msg.good:(rp<rf?FT.msg.prot:FT.msg.fib);}
+  if(any){const rf=T.f/25, rp=T.p/45; msg=T.t>60?FT.msg.fat:(rf>=1&&rp>=1)?FT.msg.good:(rp<rf?FT.msg.prot:FT.msg.fib);}
   document.getElementById("fbMsg").textContent=msg;
   FOODS.forEach((f,i)=>{const n=FB[i]||0,d=document.getElementById("fd"+i);d.classList.toggle("on",n>0);const c=d.querySelector(".fd-n");c.textContent="×"+n;c.hidden=!n;d.querySelector(".fd-sub").hidden=!n;});
-  store.set("plate-"+TODAY,FB);
+  store.set("thali-"+TODAY,FB);
   document.getElementById("fbTeaser").innerHTML=`<span class="hook-art">${MINIGAUGE}</span><span class="hook-k">${FT.hookK}</span><span class="hook-q">${any?FT.hookHave(fmtG(T.f),fmtG(T.p),fmtG(T.t)):FT.hookQ}</span><span class="hook-go">${any?FT.hookTop:FT.hookGo}</span>`;
 }
 (function(){
