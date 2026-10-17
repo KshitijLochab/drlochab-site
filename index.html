@@ -425,6 +425,88 @@ nav a:hover{color:var(--accent)}
 .fd-sub{position:absolute;bottom:10px;right:10px;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--accent);background:var(--surface);color:var(--accent);font-size:1.15rem;font-weight:700;cursor:pointer;line-height:1;padding:0}
 @media (max-width:820px){.fb{grid-template-columns:1fr}.fb-meter{top:calc(var(--hdr,70px) + 6px);z-index:5;padding:10px 12px 12px;gap:6px;box-shadow:0 6px 18px rgba(0,0,0,.08)}.gm svg{max-width:84px}.gm-v{font-size:1.15rem}.gm-t{display:none}.gm-s{font-size:.68rem}.fb-msg{font-size:.84rem}.fb-meter{grid-template-columns:1fr auto;align-items:center}.fb-gauges{grid-column:1/-1}.fb-msg{text-align:left}.fb-meter .chip{padding:4px 12px;font-size:.78rem}}
 
+/* explore hub */
+.hub{display:grid;grid-template-columns:minmax(0,330px) minmax(0,1fr);gap:40px;align-items:start}
+.hub-pick{position:sticky;top:calc(var(--hdr,70px) + 16px);display:grid;gap:16px}
+.hub-mapwrap{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:18px 18px 12px}
+.body-map{display:block;width:100%;height:auto;max-height:360px}
+.body-map .torso{fill:var(--accent-soft);stroke:var(--organ-line);stroke-width:1.5;opacity:.7}
+.org{cursor:pointer;transition:opacity .25s,filter .25s}
+.hub[data-sel] .org{opacity:.38;filter:saturate(.35)}
+.hub .org.on{opacity:1;filter:drop-shadow(0 0 7px rgba(13,116,102,.55)) saturate(1.1)}
+.hub .org:hover{opacity:.9;filter:none}
+.pin{cursor:pointer}
+.org:focus{outline:none}
+.pin .pulse{fill:none;stroke-width:2.5;transform-box:fill-box;transform-origin:center;animation:pinpulse 1.8s ease-out infinite}
+.hub.touched .pin .pulse{animation:none;opacity:0}
+.hub[data-sel] .pin{opacity:.55}.hub .pin[data-organ].on,.hub[data-sel="stomach"] .pin[data-organ="stomach"],.hub[data-sel="liver"] .pin[data-organ="liver"],.hub[data-sel="gb"] .pin[data-organ="gb"],.hub[data-sel="pancreas"] .pin[data-organ="pancreas"],.hub[data-sel="intestine"] .pin[data-organ="intestine"]{opacity:1}
+@keyframes pinpulse{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+.hub-hint{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.9rem;font-weight:600;color:var(--accent);margin-top:4px}
+.hub-hint svg{width:22px;height:22px;flex:none}
+.hub.touched .hub-hint{color:var(--muted);font-weight:500}
+.hub-tabs{display:grid;gap:8px}
+.hub-tab{display:grid;grid-template-columns:16px 1fr auto;gap:12px;align-items:center;text-align:left;font-family:var(--body);font-size:1rem;font-weight:600;padding:12px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.hub-tab i{width:16px;height:16px;border-radius:50%;border:2px solid}
+.hub-tab em{font-style:normal;font-size:.78rem;font-weight:600;color:var(--muted)}
+.hub-tab:hover{border-color:var(--accent)}
+.hub-tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.hub-tab[aria-selected="true"] em{color:var(--bg);opacity:.75}
+.hub-panel{display:grid;gap:12px;animation:hubin .3s ease}
+@keyframes hubin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.hub-head{display:flex;gap:16px;align-items:center;padding-bottom:6px}
+.hub-head i{flex:none;width:44px;height:44px;border-radius:14px;border:3px solid}
+.hub-head h3{font-size:clamp(1.5rem,3vw,2rem)}
+.hub-head p{color:var(--muted)}
+.hub-panel h4{margin:14px 0 2px;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:10px}
+.hc{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;padding:14px 16px;border-radius:16px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.hc b{font-family:var(--display);font-weight:400;font-size:1.12rem;line-height:1.25}
+.hc span{grid-column:1;font-size:.88rem;color:var(--muted);line-height:1.4}
+.hc i{grid-column:2;grid-row:1/3;font-style:normal;color:var(--accent);font-weight:700}
+.hc:hover{border-color:var(--accent);box-shadow:0 4px 14px rgba(13,116,102,.08)}
+.hqs{display:flex;flex-wrap:wrap;gap:8px}
+.hq,.hp{font-size:.92rem;font-weight:500;text-decoration:none;color:var(--ink);padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);line-height:1.35}
+.hq::before{content:"?";display:inline-grid;place-items:center;width:18px;height:18px;margin-right:7px;border-radius:50%;background:var(--warm-soft);color:var(--warm-text);font-weight:700;font-size:.75rem}
+.hp{background:var(--accent-soft);border-color:transparent}
+.hq:hover,.hp:hover{border-color:var(--accent);color:var(--accent)}
+.az{margin-top:28px;border-top:1px solid var(--line);padding-top:16px}
+.az summary{cursor:pointer;font-weight:600;color:var(--accent);list-style:none;display:inline-flex;gap:8px;align-items:center}
+.az summary::-webkit-details-marker{display:none}
+.az summary::after{content:"+";font-size:1.2rem;line-height:1}
+.az[open] summary::after{content:"−"}
+.az-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:16px}
+.az h4{margin:0 0 8px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.az ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:.93rem}
+.az a{color:var(--ink);text-decoration:none}.az a:hover{color:var(--accent);text-decoration:underline}
+@media (max-width:760px){
+ .hub{grid-template-columns:1fr;gap:18px}
+ .hub-pick{position:static;grid-template-columns:44% 1fr;gap:12px;align-items:center}
+ .hub-mapwrap{padding:10px 8px 6px;border-radius:20px}
+ .hub-hint{font-size:.74rem;gap:4px}.hub-hint svg{width:16px;height:16px}
+ .hub-tabs{gap:6px}
+ .hub-tab{grid-template-columns:12px 1fr;padding:9px 11px;font-size:.88rem;gap:8px;border-radius:12px}
+ .hub-tab i{width:12px;height:12px}
+ .hub-tab em{display:none}
+ .hub-head i{width:34px;height:34px;border-radius:11px}
+}
+/* procedure tiles */
+.ptiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:14px}
+.ptile{display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:center;padding:14px;border-radius:20px;background:var(--bg);border:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.ptile:hover{border-color:var(--accent);box-shadow:0 4px 14px rgba(13,116,102,.08)}
+.ptile-fig{width:118px;aspect-ratio:4/3;border-radius:14px;background:var(--surface);border:1px solid var(--line);overflow:hidden;display:grid;place-items:center}
+.ptile-fig > svg{width:100%;height:100%;display:block}
+.ptile-t{display:grid;gap:3px;min-width:0}
+.ptile-t b{font-family:var(--display);font-weight:400;font-size:1.15rem;line-height:1.25}
+.ptile-w{font-size:.88rem;color:var(--muted);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ptile .more{font-size:.85rem;font-weight:600;color:var(--accent)}
+@media (max-width:760px){
+ .ptiles{grid-auto-flow:column;grid-auto-columns:84%;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:thin}
+ .ptile{scroll-snap-align:start;grid-template-columns:1fr;align-content:start}
+ .ptile-fig{width:100%}
+ .features{grid-auto-flow:column;grid-auto-columns:82%;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+ .feature{scroll-snap-align:start}
+ .portrait{max-width:300px}
+}
 /* visit */
 .visit{background:var(--ink);color:var(--bg);border-radius:28px;padding:40px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
 .visit h2{color:var(--bg)}
@@ -608,42 +690,10 @@ footer .wrap{display:grid;gap:10px}
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">Conditions explained</p>
-        <h2>Common gut and liver problems</h2>
-        <p class="lede">Tap a part of the digestive system to see the conditions that affect it. Open any card to read the signs, what helps, and when to get checked.</p>
+        <h2>Explore your digestive system</h2>
+        <p class="lede">Choose a part of the body to see its common problems, the questions patients ask, and the tests that help.</p>
       </div>
-      <div class="cond-grid">
-        <div class="map">
-          <svg viewBox="0 0 240 312" role="group" aria-label="Digestive system map">
-            <g class="organ" data-organ="intestine" tabindex="0" role="button" aria-label="Intestines">
-              <path class="tube-edge" d="M62 286 V216 Q62 204 74 204 H176 Q190 204 190 218 V262 Q190 282 164 286 Q140 290 132 302" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/>
-              <path class="tube" d="M62 286 V216 Q62 204 74 204 H176 Q190 204 190 218 V262 Q190 282 164 286 Q140 290 132 302" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
-              <rect class="fill" x="84" y="222" width="88" height="54" rx="20"/>
-              <path class="coil" d="M100 234 H156 Q164 234 164 242 Q164 249 156 249 H102 Q94 249 94 256 Q94 264 102 264 H154"/>
-            </g>
-            <g class="organ" data-organ="pancreas" tabindex="0" role="button" aria-label="Pancreas">
-              <path class="fill" d="M96 182 C118 172 160 172 196 166 C203 172 197 181 182 184 C158 188 124 191 104 192 C94 192 90 186 96 182 Z"/>
-            </g>
-            <g class="organ" data-organ="liver" tabindex="0" role="button" aria-label="Liver">
-              <path class="fill" d="M28 114 C32 90 96 80 130 96 C126 104 120 108 114 112 C112 134 92 152 62 154 C40 156 24 138 28 114 Z"/>
-            </g>
-            <g class="organ" data-organ="gb" tabindex="0" role="button" aria-label="Gallbladder and bile ducts">
-              <ellipse class="fill" cx="98" cy="156" rx="9" ry="14" transform="rotate(-20 98 156)"/>
-            </g>
-            <g class="organ" data-organ="stomach" tabindex="0" role="button" aria-label="Food pipe and stomach">
-              <path class="tube-edge" d="M126 8 V100" stroke-width="15" stroke-linecap="round"/>
-              <path class="tube" d="M126 8 V100" stroke-width="11" stroke-linecap="round"/>
-              <path class="fill" d="M124 98 C150 84 192 98 190 128 C188 154 160 168 138 160 C120 154 122 134 138 130 C152 126 152 112 128 112 Z"/>
-            </g>
-          </svg>
-          <p class="map-cap">Tap an organ. Tap it again to show all.</p>
-        </div>
-        <div style="min-width:0">
-          <div class="chips" id="chips" role="group" aria-label="Filter by organ"></div>
-          <p class="count" id="count"></p>
-          <div class="cond-list" id="condList"></div>
-        </div>
-      </div>
-      <div class="guides"><h3>Detailed guides to each condition</h3><div><a href="/conditions/acidity-reflux-gerd/">Acidity and GERD treatment</a><a href="/conditions/h-pylori-gastritis-ulcer/">H. pylori, gastritis and ulcer treatment</a><a href="/conditions/swallowing-difficulty/">Swallowing difficulty treatment</a><a href="/conditions/fatty-liver/">Fatty liver treatment</a><a href="/conditions/hepatitis-b-c/">Hepatitis B and C treatment</a><a href="/conditions/jaundice/">Jaundice treatment</a><a href="/conditions/cirrhosis/">Liver cirrhosis treatment</a><a href="/conditions/gallstones/">Gallstone and bile duct stone treatment</a><a href="/conditions/pancreatitis/">Pancreatitis treatment</a><a href="/conditions/pancreatic-cysts/">Pancreatic cyst evaluation</a><a href="/conditions/ibs-irritable-bowel-syndrome/">IBS treatment</a><a href="/conditions/ulcerative-colitis-crohns-disease/">Ulcerative colitis and Crohn&#x27;s disease treatment</a><a href="/conditions/constipation/">Constipation treatment</a><a href="/conditions/colon-polyps-colon-cancer/">Colon polyp removal and colon cancer screening</a></div></div>
+      <div class="hub" id="hub" data-sel="stomach"><div class="hub-pick"><div class="hub-mapwrap"><svg class="body-map" viewBox="-12 -28 264 368" role="group" aria-label="Digestive system: choose an organ"><path class="torso" d="M104 -24 H148 L150 -2 C196 6 234 30 240 82 C244 120 238 200 238 300 C238 322 224 334 204 334 H36 C16 334 2 322 2 300 C2 200 -4 120 0 82 C6 30 44 6 102 -2 Z"/><g class="org" data-organ="intestine" tabindex="-1" role="button" aria-label="Intestines"><path d="M62 286 V216 Q62 204 74 204 H176 Q190 204 190 218 V262 Q190 282 164 286 Q140 290 132 302" fill="none" stroke="#CF8B62" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><path d="M62 286 V216 Q62 204 74 204 H176 Q190 204 190 218 V262 Q190 282 164 286 Q140 290 132 302" fill="none" stroke="#F6CDB5" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><rect x="84" y="222" width="88" height="56" rx="22" fill="#F9DCCB" stroke="#CF8B62" stroke-width="2"/><path d="M100 234 H156 Q164 234 164 242 Q164 249 156 249 H102 Q94 249 94 256 Q94 264 102 264 H154" fill="none" stroke="#CF8B62" stroke-width="3" stroke-linecap="round"/></g><g class="org" data-organ="pancreas" tabindex="-1" role="button" aria-label="Pancreas"><path d="M96 182 C118 172 160 172 196 166 C203 172 197 181 182 184 C158 188 124 191 104 192 C94 192 90 186 96 182 Z" fill="#F3CF7A" stroke="#C49A35" stroke-width="2"/><circle cx="112" cy="184" r="1.8" fill="#C49A35" opacity=".6"/><circle cx="128" cy="182" r="1.8" fill="#C49A35" opacity=".6"/><circle cx="146" cy="180" r="1.8" fill="#C49A35" opacity=".6"/><circle cx="164" cy="177" r="1.8" fill="#C49A35" opacity=".6"/><circle cx="182" cy="174" r="1.8" fill="#C49A35" opacity=".6"/></g><g class="org" data-organ="liver" tabindex="-1" role="button" aria-label="Liver"><path d="M28 114 C32 90 96 80 130 96 C126 104 120 108 114 112 C112 134 92 152 62 154 C40 156 24 138 28 114 Z" fill="#D98C72" stroke="#A9523D" stroke-width="2"/><path d="M40 112 C52 98 82 94 104 100" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".45"/></g><g class="org" data-organ="gb" tabindex="-1" role="button" aria-label="Gallbladder &amp; bile ducts"><path d="M112 120 C110 140 100 150 98 160" fill="none" stroke="#6E9A3A" stroke-width="3"/><ellipse cx="98" cy="156" rx="9" ry="14" transform="rotate(-20 98 156)" fill="#AFD27E" stroke="#6E9A3A" stroke-width="2"/></g><g class="org" data-organ="stomach" tabindex="-1" role="button" aria-label="Food pipe &amp; stomach"><path d="M126 -6 V100" stroke="#D9776B" stroke-width="15" stroke-linecap="round"/><path d="M126 -6 V100" stroke="#F4B6AE" stroke-width="10" stroke-linecap="round"/><path d="M124 98 C150 84 192 98 190 128 C188 154 160 168 138 160 C120 154 122 134 138 130 C152 126 152 112 128 112 Z" fill="#F4B6AE" stroke="#D9776B" stroke-width="2"/><path d="M140 104 C160 100 178 110 180 128" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".55"/></g><g class="pin" data-organ="stomach" transform="translate(163 126)" aria-hidden="true"><circle class="pulse" r="8" stroke="#D9776B"/><circle r="7" fill="#fff" stroke="#D9776B" stroke-width="3"/><circle r="2.6" fill="#D9776B"/></g><g class="pin" data-organ="liver" transform="translate(64 118)" aria-hidden="true"><circle class="pulse" r="8" stroke="#A9523D"/><circle r="7" fill="#fff" stroke="#A9523D" stroke-width="3"/><circle r="2.6" fill="#A9523D"/></g><g class="pin" data-organ="gb" transform="translate(98 158)" aria-hidden="true"><circle class="pulse" r="8" stroke="#6E9A3A"/><circle r="7" fill="#fff" stroke="#6E9A3A" stroke-width="3"/><circle r="2.6" fill="#6E9A3A"/></g><g class="pin" data-organ="pancreas" transform="translate(150 181)" aria-hidden="true"><circle class="pulse" r="8" stroke="#C49A35"/><circle r="7" fill="#fff" stroke="#C49A35" stroke-width="3"/><circle r="2.6" fill="#C49A35"/></g><g class="pin" data-organ="intestine" transform="translate(127 246)" aria-hidden="true"><circle class="pulse" r="8" stroke="#CF8B62"/><circle r="7" fill="#fff" stroke="#CF8B62" stroke-width="3"/><circle r="2.6" fill="#CF8B62"/></g></svg><p class="hub-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11V5a2 2 0 0 1 4 0v5m0-1a2 2 0 0 1 4 0v2m0-1a2 2 0 0 1 4 0v4c0 4-3 7-7 7h-1c-3 0-5-2-6.5-4L4 15a1.8 1.8 0 0 1 2.8-2.2L9 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Tap a part of the body</p></div><div class="hub-tabs" role="tablist" aria-label="Choose a part of the digestive system"><button type="button" class="hub-tab" role="tab" id="hubtab-stomach" data-k="stomach" aria-controls="hub-stomach" aria-selected="false" tabindex="-1"><i style="background:#F4B6AE;border-color:#D9776B"></i><span>Food pipe &amp; stomach</span><em>7 topics</em></button><button type="button" class="hub-tab" role="tab" id="hubtab-liver" data-k="liver" aria-controls="hub-liver" aria-selected="false" tabindex="-1"><i style="background:#D98C72;border-color:#A9523D"></i><span>Liver</span><em>16 topics</em></button><button type="button" class="hub-tab" role="tab" id="hubtab-gb" data-k="gb" aria-controls="hub-gb" aria-selected="false" tabindex="-1"><i style="background:#AFD27E;border-color:#6E9A3A"></i><span>Gallbladder &amp; bile ducts</span><em>1 topic</em></button><button type="button" class="hub-tab" role="tab" id="hubtab-pancreas" data-k="pancreas" aria-controls="hub-pancreas" aria-selected="false" tabindex="-1"><i style="background:#F3CF7A;border-color:#C49A35"></i><span>Pancreas</span><em>2 topics</em></button><button type="button" class="hub-tab" role="tab" id="hubtab-intestine" data-k="intestine" aria-controls="hub-intestine" aria-selected="false" tabindex="-1"><i style="background:#F6CDB5;border-color:#CF8B62"></i><span>Intestines</span><em>13 topics</em></button></div></div><div class="hub-main"><div class="hub-panel" role="tabpanel" id="hub-stomach" data-k="stomach" aria-labelledby="hubtab-stomach" hidden><div class="hub-head"><i style="background:#F4B6AE;border-color:#D9776B"></i><div><h3>Food pipe &amp; stomach</h3><p>The food pipe carries food down; the stomach churns it with acid.</p></div></div><h4>Common problems</h4><div class="hcs"><a class="hc" href="/conditions/acidity-reflux-gerd/"><b>Acidity &amp; reflux (GERD)</b><span>Acid flowing back into the food pipe.</span><i aria-hidden="true">→</i></a><a class="hc" href="/conditions/h-pylori-gastritis-ulcer/"><b>H. pylori, gastritis &amp; ulcers</b><span>A common infection and painkillers are the usual causes.</span><i aria-hidden="true">→</i></a><a class="hc" href="/conditions/swallowing-difficulty/"><b>Swallowing difficulty</b><span>Food sticking on the way down is never normal.</span><i aria-hidden="true">→</i></a><a class="hc" href="/answers/stomach-cancer-warning-signs/"><b>Stomach cancer</b><span>Warning signs that need an endoscopy.</span><i aria-hidden="true">→</i></a><a class="hc" href="/answers/achalasia/"><b>Achalasia</b><span>The food pipe muscle does not relax.</span><i aria-hidden="true">→</i></a></div><h4>Questions and tests</h4><div class="hqs"><a class="hq" href="/answers/when-is-acidity-serious/">When is acidity a sign of something serious?</a><a class="hq" href="/answers/is-endoscopy-painful/">Is endoscopy painful?</a></div><h4>Tests and procedures</h4><div class="hqs"><a class="hp" href="/procedures/upper-gi-endoscopy/">Upper GI endoscopy</a><a class="hp" href="/procedures/dilatation-stenting/">Dilatation and stenting</a><a class="hp" href="/procedures/gi-bleeding-treatment/">GI bleeding treatment</a><a class="hp" href="/procedures/peg-feeding-tube/">PEG feeding tube</a></div></div><div class="hub-panel" role="tabpanel" id="hub-liver" data-k="liver" aria-labelledby="hubtab-liver" hidden><div class="hub-head"><i style="background:#D98C72;border-color:#A9523D"></i><div><h3>Liver</h3><p>Cleans the blood, stores energy and makes bile to digest fat.</p></div></div><h4>Common problems</h4><div class="hcs"><a class="hc" href="/conditions/fatty-liver/"><b>Fatty liver (MASLD)</b><span>Very common, usually silent, often reversible.</span><i aria-hidden="true">→</i></a><a class="hc" href="/conditions/hepatitis-b-c/"><b>Hepatitis B &amp; C</b><span>Silent infections that are treatable, and in C curable.</span><i aria-hidden="true">→</i></a><a class="hc" href="/conditions/jaundice/"><b>Jaundice</b><span>A sign of a problem, not a disease in itself.</span><i aria-hidden="true">→</i></a><a class="hc" href="/conditions/cirrhosis/"><b>Cirrhosis</b><span>Long-term scarring of the liver.</span><i aria-hidden="true">→</i></a><a class="hc" href="/answers/alcoholic-hepatitis/"><b>Alcoholic hepatitis</b><span>Sudden liver inflammation from heavy drinking.</span><i aria-hidden="true">→</i></a><a class="hc" href="/answers/aclf-acute-on-chronic-liver-failure/"><b>ACLF (acute-on-chronic liver failure)</b><span>Sudden worsening of long-standing liver disease.</span><i aria-hidden="true">→</i></a><a class="hc" href="/answers/ascites-fluid-in-abdomen/"><b>Ascites (fluid in the belly)</b><span>Fluid build-up, most often from cirrhosis.</span><i aria-hidden="true">→</i></a><a class="hc" href="/answers/hepatic-encephalopathy/"><b>Hepatic encephalopathy</b><span>Confusion and sleepiness in liver disease.</span><i aria-hidden="true">→</i></a><a class="hc" href="/answers/liver-abscess/"><b>Liver abscess</b><span>Pus in the liver, with fever and right-sided pain.</span><i aria-hidden="true">→</i></a></div><h4>Questions and tests</h4><div class="hqs"><a class="hq" href="/answers/is-fatty-liver-reversible/">Is fatty liver reversible?</a><a class="hq" href="/answers/high-sgpt-sgot-liver-function-test/">High SGPT or SGOT in a liver test: what does it mean?</a><a class="hq" href="/answers/fatty-liver-grade-on-ultrasound/">Grade 1, 2 or 3 fatty liver on ultrasound: what does it mean?</a><a class="hq" href="/answers/fibroscan-test/">What is a FibroScan, and what do the results mean?</a><a class="hq" href="/answers/diet-in-jaundice/">What should I eat in jaundice?</a><a class="hq" href="/answers/liver-cancer-screening/">Who needs screening for liver cancer, and how is it done?</a><a class="hq" href="/answers/when-is-liver-transplant-needed/">When is a liver transplant needed?</a></div><h4>Tests and procedures</h4><div class="hqs"><a class="hp" href="/procedures/variceal-banding-evl/">Variceal banding (EVL)</a><a class="hp" href="/procedures/endoscopic-ultrasound-eus/">Endoscopic ultrasound (EUS)</a></div></div><div class="hub-panel" role="tabpanel" id="hub-gb" data-k="gb" aria-labelledby="hubtab-gb" hidden><div class="hub-head"><i style="background:#AFD27E;border-color:#6E9A3A"></i><div><h3>Gallbladder &amp; bile ducts</h3><p>The gallbladder stores bile and squeezes it into the gut after meals.</p></div></div><h4>Common problems</h4><div class="hcs"><a class="hc" href="/conditions/gallstones/"><b>Gallstones &amp; bile duct stones</b><span>Stones that can block the flow of bile.</span><i aria-hidden="true">→</i></a></div><h4>Tests and procedures</h4><div class="hqs"><a class="hp" href="/procedures/ercp/">ERCP</a><a class="hp" href="/procedures/endoscopic-ultrasound-eus/">Endoscopic ultrasound (EUS)</a></div></div><div class="hub-panel" role="tabpanel" id="hub-pancreas" data-k="pancreas" aria-labelledby="hubtab-pancreas" hidden><div class="hub-head"><i style="background:#F3CF7A;border-color:#C49A35"></i><div><h3>Pancreas</h3><p>Makes digestive juices, and the insulin that controls blood sugar.</p></div></div><h4>Common problems</h4><div class="hcs"><a class="hc" href="/conditions/pancreatitis/"><b>Pancreatitis</b><span>Inflammation of the pancreas, sudden or long-term.</span><i aria-hidden="true">→</i></a><a class="hc" href="/conditions/pancreatic-cysts/"><b>Pancreatic cysts &amp; lumps</b><span>Often found by chance on a scan.</span><i aria-hidden="true">→</i></a></div><h4>Tests and procedures</h4><div class="hqs"><a class="hp" href="/procedures/endoscopic-ultrasound-eus/">Endoscopic ultrasound (EUS)</a><a class="hp" href="/procedures/ercp/">ERCP</a></div></div><div class="hub-panel" role="tabpanel" id="hub-intestine" data-k="intestine" aria-labelledby="hubtab-intestine" hidden><div class="hub-head"><i style="background:#F6CDB5;border-color:#CF8B62"></i><div><h3>Intestines</h3><p>Absorb food and water, then form and pass stool.</p></div></div><h4>Common problems</h4><div class="hcs"><a class="hc" href="/conditions/ibs-irritable-bowel-syndrome/"><b>Irritable bowel syndrome (IBS)</b><span>Real symptoms, but no damage to the bowel.</span><i aria-hidden="true">→</i></a><a class="hc" href="/conditions/ulcerative-colitis-crohns-disease/"><b>Ulcerative colitis &amp; Crohn&#x27;s disease</b><span>Long-term inflammation of the bowel.</span><i aria-hidden="true">→</i></a><a class="hc" href="/conditions/constipation/"><b>Constipation</b><span>Usually simple to fix, occasionally a warning sign.</span><i aria-hidden="true">→</i></a><a class="hc" href="/conditions/colon-polyps-colon-cancer/"><b>Colon polyps &amp; colon cancer</b><span>Finding polyps early prevents many cancers.</span><i aria-hidden="true">→</i></a><a class="hc" href="/answers/piles-fissure-fistula/"><b>Piles, fissure and fistula</b><span>Bleeding, pain or discharge at the back passage.</span><i aria-hidden="true">→</i></a><a class="hc" href="/answers/celiac-disease/"><b>Celiac disease</b><span>Gluten damages the small intestine.</span><i aria-hidden="true">→</i></a><a class="hc" href="/answers/lactose-intolerance/"><b>Lactose intolerance</b><span>Gas and loose motions after milk.</span><i aria-hidden="true">→</i></a><a class="hc" href="/answers/stomach-infection-gastroenteritis/"><b>Stomach infection</b><span>Loose motions and vomiting, usually from a virus.</span><i aria-hidden="true">→</i></a></div><h4>Questions and tests</h4><div class="hqs"><a class="hq" href="/answers/gas-and-bloating/">Why do I get so much gas and bloating?</a><a class="hq" href="/answers/is-ibs-dangerous/">Is IBS dangerous?</a><a class="hq" href="/answers/blood-in-stool-always-piles/">Is blood in the stool always piles?</a><a class="hq" href="/answers/stool-tests/">Which stool tests are done for stomach problems, and what do they show?</a><a class="hq" href="/answers/capsule-endoscopy/">What is capsule endoscopy (the pill camera)?</a></div><h4>Tests and procedures</h4><div class="hqs"><a class="hp" href="/procedures/colonoscopy/">Colonoscopy</a><a class="hp" href="/procedures/polyp-removal-emr/">Polyp removal and EMR</a><a class="hp" href="/procedures/gi-bleeding-treatment/">GI bleeding treatment</a></div></div></div></div><details class="az"><summary>Browse all topics, A to Z</summary><div class="az-cols"><div><h4>Conditions and problems</h4><ul><li><a href="/answers/achalasia/">Achalasia</a></li><li><a href="/conditions/acidity-reflux-gerd/">Acidity &amp; reflux (GERD)</a></li><li><a href="/answers/aclf-acute-on-chronic-liver-failure/">ACLF (acute-on-chronic liver failure)</a></li><li><a href="/answers/alcoholic-hepatitis/">Alcoholic hepatitis</a></li><li><a href="/answers/ascites-fluid-in-abdomen/">Ascites (fluid in the belly)</a></li><li><a href="/answers/celiac-disease/">Celiac disease</a></li><li><a href="/conditions/cirrhosis/">Cirrhosis</a></li><li><a href="/conditions/colon-polyps-colon-cancer/">Colon polyps &amp; colon cancer</a></li><li><a href="/conditions/constipation/">Constipation</a></li><li><a href="/conditions/fatty-liver/">Fatty liver (MASLD)</a></li><li><a href="/conditions/gallstones/">Gallstones &amp; bile duct stones</a></li><li><a href="/conditions/h-pylori-gastritis-ulcer/">H. pylori, gastritis &amp; ulcers</a></li><li><a href="/answers/hepatic-encephalopathy/">Hepatic encephalopathy</a></li><li><a href="/conditions/hepatitis-b-c/">Hepatitis B &amp; C</a></li><li><a href="/conditions/ibs-irritable-bowel-syndrome/">Irritable bowel syndrome (IBS)</a></li><li><a href="/conditions/jaundice/">Jaundice</a></li><li><a href="/answers/lactose-intolerance/">Lactose intolerance</a></li><li><a href="/answers/liver-abscess/">Liver abscess</a></li><li><a href="/conditions/pancreatic-cysts/">Pancreatic cysts &amp; lumps</a></li><li><a href="/conditions/pancreatitis/">Pancreatitis</a></li><li><a href="/answers/piles-fissure-fistula/">Piles, fissure and fistula</a></li><li><a href="/answers/stomach-cancer-warning-signs/">Stomach cancer</a></li><li><a href="/answers/stomach-infection-gastroenteritis/">Stomach infection</a></li><li><a href="/conditions/swallowing-difficulty/">Swallowing difficulty</a></li><li><a href="/conditions/ulcerative-colitis-crohns-disease/">Ulcerative colitis &amp; Crohn&#x27;s disease</a></li></ul></div><div><h4>Questions and tests</h4><ul><li><a href="/answers/fatty-liver-grade-on-ultrasound/">Grade 1, 2 or 3 fatty liver on ultrasound: what does it mean?</a></li><li><a href="/answers/high-sgpt-sgot-liver-function-test/">High SGPT or SGOT in a liver test: what does it mean?</a></li><li><a href="/answers/blood-in-stool-always-piles/">Is blood in the stool always piles?</a></li><li><a href="/answers/is-endoscopy-painful/">Is endoscopy painful?</a></li><li><a href="/answers/is-fatty-liver-reversible/">Is fatty liver reversible?</a></li><li><a href="/answers/is-ibs-dangerous/">Is IBS dangerous?</a></li><li><a href="/answers/fibroscan-test/">What is a FibroScan, and what do the results mean?</a></li><li><a href="/answers/capsule-endoscopy/">What is capsule endoscopy (the pill camera)?</a></li><li><a href="/answers/diet-in-jaundice/">What should I eat in jaundice?</a></li><li><a href="/answers/when-is-liver-transplant-needed/">When is a liver transplant needed?</a></li><li><a href="/answers/when-is-acidity-serious/">When is acidity a sign of something serious?</a></li><li><a href="/answers/stool-tests/">Which stool tests are done for stomach problems, and what do they show?</a></li><li><a href="/answers/liver-cancer-screening/">Who needs screening for liver cancer, and how is it done?</a></li><li><a href="/answers/gas-and-bloating/">Why do I get so much gas and bloating?</a></li></ul></div><div><h4>Procedures</h4><ul><li><a href="/procedures/colonoscopy/">Colonoscopy</a></li><li><a href="/procedures/dilatation-stenting/">Dilatation and stenting</a></li><li><a href="/procedures/endoscopic-ultrasound-eus/">Endoscopic ultrasound (EUS)</a></li><li><a href="/procedures/ercp/">ERCP</a></li><li><a href="/procedures/gi-bleeding-treatment/">GI bleeding treatment</a></li><li><a href="/procedures/peg-feeding-tube/">PEG feeding tube</a></li><li><a href="/procedures/polyp-removal-emr/">Polyp removal and EMR</a></li><li><a href="/procedures/upper-gi-endoscopy/">Upper GI endoscopy</a></li><li><a href="/procedures/variceal-banding-evl/">Variceal banding (EVL)</a></li></ul></div></div></details>
     </div>
   </section>
 
@@ -652,10 +702,9 @@ footer .wrap{display:grid;gap:10px}
       <div class="sec-head">
         <p class="eyebrow">Tests &amp; procedures</p>
         <h2>What to expect from an endoscopy</h2>
-        <p class="lede">Most procedures use a thin, flexible tube with a camera. There are no cuts, and most people go home the same day. The simple drawings show where the scope goes and what it does.</p>
+        <p class="lede">Most procedures use a thin, flexible tube with a camera. There are no cuts, and most people go home the same day. Tap any one to see how it works.</p>
       </div>
-      <div class="proc-grid" id="procGrid"></div>
-      <div class="guides"><h3>Detailed guides to each procedure</h3><div><a href="/procedures/upper-gi-endoscopy/">Upper GI endoscopy</a><a href="/procedures/colonoscopy/">Colonoscopy</a><a href="/procedures/endoscopic-ultrasound-eus/">Endoscopic ultrasound (EUS)</a><a href="/procedures/ercp/">ERCP</a><a href="/procedures/variceal-banding-evl/">Variceal banding (EVL)</a><a href="/procedures/polyp-removal-emr/">Polyp removal and EMR</a><a href="/procedures/gi-bleeding-treatment/">GI bleeding treatment</a><a href="/procedures/peg-feeding-tube/">PEG feeding tube</a><a href="/procedures/dilatation-stenting/">Dilatation and stenting</a></div></div>
+      <div class="ptiles" id="procGrid"></div>
     </div>
   </section>
 
@@ -755,15 +804,6 @@ footer .wrap{display:grid;gap:10px}
     </div>
   </section>
 
-  <section id="answers">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">Your questions answered</p>
-        <h2>Answers to questions patients often ask</h2>
-      </div>
-      <h3 class="ans-h">Liver</h3><div class="answers"><a href="/answers/is-fatty-liver-reversible/">Is fatty liver reversible?<span aria-hidden="true">→</span></a><a href="/answers/diet-in-jaundice/">What should I eat in jaundice?<span aria-hidden="true">→</span></a><a href="/answers/alcoholic-hepatitis/">What is alcoholic hepatitis, and how is it treated?<span aria-hidden="true">→</span></a><a href="/answers/aclf-acute-on-chronic-liver-failure/">What is ACLF (acute-on-chronic liver failure)?<span aria-hidden="true">→</span></a><a href="/answers/high-sgpt-sgot-liver-function-test/">High SGPT or SGOT in a liver test: what does it mean?<span aria-hidden="true">→</span></a><a href="/answers/ascites-fluid-in-abdomen/">What is ascites (fluid in the abdomen), and how is it treated?<span aria-hidden="true">→</span></a><a href="/answers/hepatic-encephalopathy/">What is hepatic encephalopathy (confusion in liver disease)?<span aria-hidden="true">→</span></a><a href="/answers/liver-abscess/">What is a liver abscess, and how is it treated?<span aria-hidden="true">→</span></a><a href="/answers/liver-cancer-screening/">Who needs screening for liver cancer, and how is it done?<span aria-hidden="true">→</span></a><a href="/answers/when-is-liver-transplant-needed/">When is a liver transplant needed?<span aria-hidden="true">→</span></a><a href="/answers/fatty-liver-grade-on-ultrasound/">Grade 1, 2 or 3 fatty liver on ultrasound: what does it mean?<span aria-hidden="true">→</span></a></div><h3 class="ans-h">Stomach and bowel</h3><div class="answers"><a href="/answers/is-ibs-dangerous/">Is IBS dangerous?<span aria-hidden="true">→</span></a><a href="/answers/blood-in-stool-always-piles/">Is blood in the stool always piles?<span aria-hidden="true">→</span></a><a href="/answers/when-is-acidity-serious/">When is acidity a sign of something serious?<span aria-hidden="true">→</span></a><a href="/answers/gas-and-bloating/">Why do I get so much gas and bloating?<span aria-hidden="true">→</span></a><a href="/answers/piles-fissure-fistula/">Piles, fissure or fistula: what is the difference?<span aria-hidden="true">→</span></a><a href="/answers/celiac-disease/">What is celiac disease, and how is it diagnosed?<span aria-hidden="true">→</span></a><a href="/answers/stomach-infection-gastroenteritis/">Stomach infection (gastroenteritis): what helps, and when to see a doctor?<span aria-hidden="true">→</span></a><a href="/answers/lactose-intolerance/">What is lactose intolerance?<span aria-hidden="true">→</span></a><a href="/answers/stomach-cancer-warning-signs/">What are the warning signs of stomach cancer?<span aria-hidden="true">→</span></a><a href="/answers/achalasia/">What is achalasia, and how is it treated?<span aria-hidden="true">→</span></a></div><h3 class="ans-h">Tests and procedures</h3><div class="answers"><a href="/answers/is-endoscopy-painful/">Is endoscopy painful?<span aria-hidden="true">→</span></a><a href="/answers/fibroscan-test/">What is a FibroScan, and what do the results mean?<span aria-hidden="true">→</span></a><a href="/answers/capsule-endoscopy/">What is capsule endoscopy (the pill camera)?<span aria-hidden="true">→</span></a><a href="/answers/stool-tests/">Which stool tests are done for stomach problems, and what do they show?<span aria-hidden="true">→</span></a></div>
-    </div>
-  </section>
 
   <section id="about" class="alt">
     <div class="wrap about">
@@ -1034,32 +1074,31 @@ function showSym(i){
 }
 showSym(0);
 
-/* conditions */
-let filter="all";
-const chips=document.getElementById("chips"), list=document.getElementById("condList"), count=document.getElementById("count");
-[["all","All"],...Object.entries(ORGANS)].forEach(([k,v])=>{
-  const b=document.createElement("button");
-  b.type="button";b.className="chip";b.dataset.k=k;b.textContent=v;b.id="chip-"+k;
-  b.addEventListener("click",()=>setFilter(k));
-  chips.appendChild(b);
-});
-document.querySelectorAll(".organ").forEach(g=>{
-  const go=()=>setFilter(filter===g.dataset.organ?"all":g.dataset.organ);
-  g.addEventListener("click",go);
-  g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});
-});
-function setFilter(k){
-  filter=k;
-  chips.querySelectorAll(".chip").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.k===k)));
-  document.querySelectorAll(".organ").forEach(g=>{const on=g.dataset.organ===k;g.classList.toggle("on",on);g.setAttribute("aria-pressed",String(on));});
-  const items=CONDITIONS.filter(c=>k==="all"||c.o===k);
-  count.textContent=k==="all"?`Showing all ${items.length} conditions`:`${items.length} condition${items.length>1?"s":""} affecting the ${ORGANS[k].toLowerCase()}`;
-  list.innerHTML=items.map(c=>`<details class="cond"><summary><span class="cond-tag">${esc(ORGANS[c.o])}</span><span class="cond-name">${esc(c.n)}</span><span class="cond-short">${esc(c.s)}</span><span class="cond-plus" aria-hidden="true">+</span></summary><div class="cond-body"><p>${esc(c.w)}</p><div><h4>Common signs</h4><ul>${c.g.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div><div><h4>What helps</h4><p>${esc(c.h)}</p></div><div class="cond-see"><h4>When to see a gastroenterologist</h4><p>${esc(c.e)}</p></div><a class="more" href="${PFX}conditions/${CSLUG[CONDITIONS.indexOf(c)]}/">${MORE}</a></div></details>`).join("");
-}
-setFilter("all");
+/* explore hub */
+(function(){
+  const hub=document.getElementById("hub"); if(!hub)return;
+  const tabs=[...hub.querySelectorAll(".hub-tab")];
+  function sel(k,focus){
+    hub.dataset.sel=k;
+    tabs.forEach(t=>{const on=t.dataset.k===k;t.setAttribute("aria-selected",String(on));t.tabIndex=on?0:-1;if(on&&focus)t.focus();});
+    hub.querySelectorAll(".hub-panel").forEach(p=>p.hidden=p.dataset.k!==k);
+    hub.querySelectorAll(".org").forEach(o=>o.classList.toggle("on",o.dataset.organ===k));
+  }
+  hub.addEventListener("click",e=>{
+    const t=e.target.closest(".hub-tab,.org,.pin"); if(!t)return;
+    hub.classList.add("touched"); sel(t.dataset.k||t.dataset.organ);
+    if(!t.classList.contains("hub-tab")&&innerWidth<=760){const m=hub.querySelector(".hub-main");const y=m.getBoundingClientRect().top+scrollY-(document.querySelector(".top").offsetHeight+10);if(y>scrollY)scrollTo({top:y,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}
+  });
+  hub.querySelector(".hub-tabs").addEventListener("keydown",e=>{
+    const i=tabs.findIndex(t=>t.getAttribute("aria-selected")==="true");
+    const d={ArrowDown:1,ArrowRight:1,ArrowUp:-1,ArrowLeft:-1}[e.key]; if(!d)return;
+    e.preventDefault(); hub.classList.add("touched"); sel(tabs[(i+d+tabs.length)%tabs.length].dataset.k,true);
+  });
+  sel(hub.dataset.sel||"stomach");
+})();
 
 /* procedures */
-document.getElementById("procGrid").innerHTML=PROCS.map(p=>`<article class="proc"><div class="proc-fig">${IL[p.il]}</div><span class="proc-abbr">${esc(p.a)}</span><h3>${esc(p.n)}</h3><p>${esc(p.w)}</p><dl>${p.d.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl><a class="more" href="${PFX}procedures/${PSLUG[PROCS.indexOf(p)]}/">${MOREP}</a></article>`).join("");
+document.getElementById("procGrid").innerHTML=PROCS.map((p,i)=>`<a class="ptile" href="${PFX}procedures/${PSLUG[i]}/"><span class="ptile-fig" aria-hidden="true">${IL[p.il]}</span><span class="ptile-t"><span class="proc-abbr">${esc(p.a)}</span><b>${esc(p.n)}</b><span class="ptile-w">${esc(p.w)}</span><span class="more">${MOREP}</span></span></a>`).join("");
 
 
 /* ---------- Gut Health Daily ---------- */

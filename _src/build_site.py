@@ -99,7 +99,7 @@ def hindi_source(s):
     return s
 
 import html as _html
-import seo_en, seo_hi
+import seo_en, seo_hi, hub
 
 def link_lists(lang):
     """Static, crawlable links from the home page to every condition, procedure and answer page."""
@@ -132,13 +132,14 @@ def link_lists(lang):
     season = build_pages.season_bar(lang)
     return {"<!--SEASONAL-->": season, "<!--GUIDES_SECTION-->": guides, "<!--COND_LINKS-->": f'<div class="guides"><h3>{h_c}</h3><div>{cond}</div></div>',
             "<!--PROC_LINKS-->": f'<div class="guides"><h3>{h_p}</h3><div>{proc}</div></div>',
-            "<!--ANSWER_LINKS-->": ans}
+            "<!--ANSWER_LINKS-->": ans,
+            "<!--HUB-->": hub.hub_html(lang, hub.page_data(src[src.index("const ORGANS="):src.index("const esc=")] if lang == "en" else hindi.DATA_JS))}
 
 for key, p in PAGES.items():
     s = src if key == "en" else hindi_source(src)
     for ph, block in link_lists(key).items():
-        assert ph in s, ph
         s = s.replace(ph, block)
+    assert "<!--HUB-->" not in s
     top, body = split(s)
     fonts = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&family=Mukta:wght@400;500;600;700&display=swap">\n'
              if key == "hi" else "")

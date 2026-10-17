@@ -86,7 +86,7 @@ def header(lang, other_path):
     return f"""
 <header class="top"><div class="wrap">
   <a class="brand" href="{p}"><img src="/logo-mark.svg" alt="" width="40" height="40"><span><span class="brand-name">Dr. Kshitij Lochab</span><span class="brand-sub">{'Gastroenterology · Liver · Endoscopy' if lang=='en' else 'पेट · लिवर · एंडोस्कोपी'}</span></span></a>
-  <nav aria-label="Main"><a href="{p}#conditions">{t['conds']}</a><a href="{p}#procedures">{t['procs']}</a><a href="{p}#answers">{t['answers']}</a><a href="{p}#daily">{t['tips']}</a><a class="btn btn-solid btn-sm" href="{p}#visit">{t['book']}</a></nav>
+  <nav aria-label="Main"><a href="{p}#conditions">{t['conds']}</a><a href="{p}#procedures">{t['procs']}</a><a href="{p}#conditions">{t['answers']}</a><a href="{p}#daily">{t['tips']}</a><a class="btn btn-solid btn-sm" href="{p}#visit">{t['book']}</a></nav>
   <a class="lang" href="{other_path}" lang="{'hi' if lang=='en' else 'en'}" aria-label="{t['lang_aria']}">{t['lang_link']}</a>
 </div></header>""" + season_bar(lang, other_path)
 
@@ -267,9 +267,9 @@ def build():
             body = (f'<div class="short"><p class="lbl">{t["short"]}</p><p>{e(a["short"])}</p></div>' + "".join(secs)
                     + f'<section><h2>{t["read"]}</h2>{links(rel + others)}</section>')
             ld = ld_page(lang, path, a["q"], a["desc"], "MedicalCondition" if base.get("cond") is not None else "MedicalProcedure",
-                         rel[0][1] if rel else a["q"], [[a["q"], a["short"]]], t["answers"], "answers")
+                         rel[0][1] if rel else a["q"], [[a["q"], a["short"]]], t["answers"], "conditions")
             page = (head(lang, title, a["desc"], path_en, path_hi, ld) + header(lang, path_hi if lang == "en" else path_en)
-                    + f'<main class="wrap grid"><article>{crumbs(lang, t["answers"], "answers", a["q"])}'
+                    + f'<main class="wrap grid"><article>{crumbs(lang, t["answers"], "conditions", a["q"])}'
                     + f'<p class="eyebrow">{t["answers"]}</p><h1>{e(a["q"])}</h1>{byline(lang)}' + body
                     + f"</article>{aside(lang)}</main>" + footer(lang))
             write(path, page); pages.append((path_en, path_hi))

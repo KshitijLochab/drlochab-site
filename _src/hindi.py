@@ -73,23 +73,15 @@ PAIRS = [
 
  # conditions
  ('<p class="eyebrow">Conditions explained</p>', '<p class="eyebrow">बीमारियों की जानकारी</p>'),
- ('<h2>Common gut and liver problems</h2>', '<h2>पेट और लिवर की आम बीमारियाँ</h2>'),
- ('<p class="lede">Tap a part of the digestive system to see the conditions that affect it. Open any card to read the signs, what helps, and when to get checked.</p>',
-  '<p class="lede">पाचन तंत्र के किसी हिस्से पर टैप करें और उससे जुड़ी बीमारियाँ देखें। किसी भी कार्ड को खोलकर पढ़ें कि लक्षण क्या हैं, क्या मदद करता है, और जाँच कब करवानी चाहिए।</p>'),
- ('aria-label="Digestive system map"', 'aria-label="पाचन तंत्र का नक्शा"'),
- ('role="button" aria-label="Intestines"', 'role="button" aria-label="आँतें"'),
- ('role="button" aria-label="Pancreas"', 'role="button" aria-label="पैंक्रियास"'),
- ('role="button" aria-label="Liver"', 'role="button" aria-label="लिवर"'),
- ('role="button" aria-label="Gallbladder and bile ducts"', 'role="button" aria-label="पित्ताशय और पित्त नली"'),
- ('role="button" aria-label="Food pipe and stomach"', 'role="button" aria-label="खाने की नली और पेट"'),
- ('<p class="map-cap">Tap an organ. Tap it again to show all.</p>', '<p class="map-cap">किसी अंग पर टैप करें। सब देखने के लिए दोबारा टैप करें।</p>'),
- ('aria-label="Filter by organ"', 'aria-label="अंग के हिसाब से देखें"'),
+ ('<h2>Explore your digestive system</h2>', '<h2>अपने पाचन तंत्र को जानें</h2>'),
+ ('<p class="lede">Choose a part of the body to see its common problems, the questions patients ask, and the tests that help.</p>',
+  '<p class="lede">शरीर का कोई हिस्सा चुनें और देखें उसकी आम समस्याएँ, मरीज़ों के सवाल, और कौन-सी जाँचें मदद करती हैं।</p>'),
 
  # procedures
  ('<p class="eyebrow">Tests &amp; procedures</p>', '<p class="eyebrow">जाँच और इलाज</p>'),
  ('<h2>What to expect from an endoscopy</h2>', '<h2>एंडोस्कोपी में क्या होता है</h2>'),
- ('<p class="lede">Most procedures use a thin, flexible tube with a camera. There are no cuts, and most people go home the same day. The simple drawings show where the scope goes and what it does.</p>',
-  '<p class="lede">ज़्यादातर प्रोसीजर में कैमरे वाली एक पतली, मुड़ने वाली नली इस्तेमाल होती है। कोई चीरा नहीं लगता और ज़्यादातर लोग उसी दिन घर चले जाते हैं। आसान चित्रों में दिखाया गया है कि स्कोप कहाँ जाता है और क्या करता है।</p>'),
+ ('<p class="lede">Most procedures use a thin, flexible tube with a camera. There are no cuts, and most people go home the same day. Tap any one to see how it works.</p>',
+  '<p class="lede">ज़्यादातर प्रोसीजर में कैमरे वाली एक पतली, मुड़ने वाली नली इस्तेमाल होती है। कोई चीरा नहीं लगता, और ज़्यादातर लोग उसी दिन घर चले जाते हैं। कैसे होता है, यह देखने के लिए किसी पर भी टैप करें।</p>'),
 
  # myths
 
@@ -174,12 +166,6 @@ PAIRS = [
  # script: interface strings
  ('`<span class="pill ${cls}">${lbl}</span><h3>${esc(x.l)}</h3><dl><div><dt>Common causes</dt><dd>${esc(x.c)}</dd></div><div><dt>What to do</dt>',
   '`<span class="pill ${cls}">${lbl}</span><h3>${esc(x.l)}</h3><dl><div><dt>आम वजहें</dt><dd>${esc(x.c)}</dd></div><div><dt>क्या करें</dt>'),
- ('[["all","All"],...Object.entries(ORGANS)]', '[["all","सभी"],...Object.entries(ORGANS)]'),
- ('count.textContent=k==="all"?`Showing all ${items.length} conditions`:`${items.length} condition${items.length>1?"s":""} affecting the ${ORGANS[k].toLowerCase()}`;',
-  'count.textContent=k==="all"?`सभी ${items.length} बीमारियाँ`:`${ORGANS[k]} की ${items.length} बीमारियाँ`;'),
- ('<h4>Common signs</h4>', '<h4>आम लक्षण</h4>'),
- ('<h4>What helps</h4>', '<h4>क्या मदद करता है</h4>'),
- ('<h4>When to see a gastroenterologist</h4>', '<h4>गैस्ट्रोएंटेरोलॉजिस्ट को कब दिखाएँ</h4>'),
  ('const SITE="https://drlochab.com";', 'const SITE="https://drlochab.com/hi/";'),
  ('new Intl.DateTimeFormat("en-IN",', 'new Intl.DateTimeFormat("hi-IN",'),
  ('<b>Try this today</b>${esc(t.try)}</div><div class="tip-actions">', '<b>आज यह करके देखें</b>${esc(t.try)}</div><div class="tip-actions">'),
@@ -285,8 +271,6 @@ PAIRS += [
  ('const PFX="/";', 'const PFX="/hi/";'),
  ('const MORE="Read the full guide →";', 'const MORE="पूरी जानकारी पढ़ें →";'),
  ('const MOREP="Read more about this procedure →";', 'const MOREP="इस प्रोसीजर के बारे में और पढ़ें →";'),
- ('<p class="eyebrow">Your questions answered</p>', '<p class="eyebrow">आपके सवालों के जवाब</p>'),
- ('<h2>Answers to questions patients often ask</h2>', '<h2>मरीज़ों के आम सवालों के जवाब</h2>'),
 ]
 
 # Replaces the block between /*PLAY*/ and /*/PLAY*/ (Myth Buster and fibre counter text and foods).
