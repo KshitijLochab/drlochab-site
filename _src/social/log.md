@@ -2,6 +2,7 @@
 Newest first. Add every new post here so topics are not repeated.
 
 ## 17 Oct 2026 (social)
+- LinkedIn document post (PDF, 6 slides) + professional caption: same new-tools carousel, last slide without 'link in bio'. Generator: social/new_tools_promo.py.
 - Instagram carousel (6 slides, EN): Your gut, tracked and decoded (Gut Health Tracker, privacy, stool check, Food of the day, CTA with Diwali guide). Generator: social/new_tools_promo.py.
 
 ## 17 Oct 2026 (site)

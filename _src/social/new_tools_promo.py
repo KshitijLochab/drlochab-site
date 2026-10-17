@@ -112,13 +112,13 @@ def slide5():
  <div style="position:absolute;left:84px;right:84px;top:1050px;font-size:34px;line-height:1.3">Why it helps, how to eat it, and who should be careful.</div>
  {foot(5, N, pad=84)}</div>"""
 
-def slide6():
+def slide6(li=False):
     art = diwali("").replace('role="img" aria-label=""', 'aria-hidden="true"').replace('var(--accent-soft)', '#0F7D6E')
     return f"""<div class="s teal" style="width:1080px;height:1350px;padding:96px 84px;text-align:center">
  <div class="kick" style="font-size:26px;color:#F3B84A">Free · English and Hindi</div>
  <h1 style="font-size:100px;margin-top:18px">Try them<br>today on</h1>
  <div style="display:inline-block;margin-top:40px;background:#F3B84A;color:#12302C;font-family:YS;font-size:84px;padding:24px 56px;border-radius:999px">drlochab.com</div>
- <div style="font-size:34px;color:#CFE5E0;margin-top:26px">Link in bio · हिंदी में भी: drlochab.com/hi</div>
+ <div style="font-size:34px;color:#CFE5E0;margin-top:26px">{"No sign-in · hindi: drlochab.com/hi".replace("hindi","हिंदी में") if li else "Link in bio · हिंदी में भी: drlochab.com/hi"}</div>
  <div style="margin:56px auto 0;width:760px;background:rgba(255,255,255,.1);border-radius:34px;padding:22px 30px;display:flex;align-items:center;gap:22px;text-align:left">
   <div style="flex:none;width:220px">{art}</div>
   <div><div class="kick" style="font-size:22px;color:#F3B84A">Also new</div><div style="font-family:YS;font-size:44px;line-height:1.15;margin-top:6px">Diwali food guide: enjoy the sweets without acidity</div></div>
@@ -144,6 +144,24 @@ Black or tarry stools, vomiting blood or severe belly pain are an emergency: cal
 
 #GutHealth #Gastroenterologist #IBS #DigestiveHealth #GutHealthTracker #Gurugram #HealthyGut #DrLochab"""
 
+LINKEDIN = """New on my website: three free, privacy-first gut-health tools for patients
+
+Many patients with IBS, constipation, bloating or reflux come to a consultation unsure how often symptoms happen or what sets them off. To help, I have added three simple tools to drlochab.com, in English and Hindi:
+
+1. Gut Health Tracker: patients log bowel habits, stool type, bloating, pain, acidity, possible food triggers, water and activity in about a minute a day. It shows weekly graphs and creates a one-page summary to bring to the doctor. Warning signs such as blood in the stool or black stools prompt the patient to seek care.
+
+2. Stool check: shape (based on the Bristol stool form scale) and colour, explained separately, with clear advice on when to see a doctor.
+
+3. Food of the day: one gut-friendly Indian food every day, with why it helps and who should be careful.
+
+Privacy was the first design rule. Entries stay only on the patient's own phone: no account, no upload, no tracking, and an optional PIN that encrypts the data. The page is technically blocked from sending data anywhere; patients share a report only when they choose to.
+
+Colleagues: if you see patients with functional bowel symptoms, two to four weeks of tracking before a referral can make the first visit far more productive. The tools are free for anyone to use.
+
+drlochab.com
+
+#Gastroenterology #DigitalHealth #PatientEducation #IBS #Gurugram"""
+
 if __name__ == "__main__":
     with sync_playwright() as p:
         b = p.chromium.launch()
@@ -155,4 +173,14 @@ if __name__ == "__main__":
         b.close()
     os.remove(f"{OUT}/tmp.html")
     open(f"{OUT}/caption.txt", "w").write(CAPTION + "\n")
+    # LinkedIn document post: same slides, LinkedIn wording on the last slide, as one PDF
+    from PIL import Image
+    with sync_playwright() as p:
+        b = p.chromium.launch(); pg = b.new_page(viewport={"width": 1080, "height": 1350})
+        open(f"{OUT}/tmp.html", "w").write(f"<!doctype html><html><head><meta charset=utf-8><style>{CSS}</style></head><body>{slide6(True)}</body></html>")
+        pg.goto(f"file://{OUT}/tmp.html"); pg.wait_for_timeout(400); pg.screenshot(path=f"{OUT}/slide-6-linkedin.png"); b.close()
+    os.remove(f"{OUT}/tmp.html")
+    pages = [Image.open(f"{OUT}/slide-{i}.png").convert("RGB") for i in range(1, 6)] + [Image.open(f"{OUT}/slide-6-linkedin.png").convert("RGB")]
+    pages[0].save(f"{OUT}/linkedin-gut-tools.pdf", save_all=True, append_images=pages[1:], resolution=144, quality=95)
+    open(f"{OUT}/linkedin-caption.txt", "w").write(LINKEDIN + "\n")
     print("done")
