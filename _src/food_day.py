@@ -85,11 +85,11 @@ LABELS = {
  "en": dict(k="Food of the day", serving="Serving", why="Why it helps", how="How to eat it", care="Good to know", tomorrow="Tomorrow", share="Share on WhatsApp",
             shareText="Food of the day: {n}. {k}. {why}", shareTail="A new gut-friendly food every day from Dr. Kshitij Lochab:", go="See why →",
             thaliShare="Share my thali on WhatsApp", thaliText="My thali today on the Thali meter: {f} g fibre, {p} g protein, {t} g fat. How balanced is yours?",
-            ask="Ask your family on WhatsApp", stoolK="Stool check", stoolQ="What does your stool say?", stoolGo="Check shape and colour →"),
+            ask="Ask your family on WhatsApp", trNew="New", trK="Private · free", trQ="Track your gut health", trSub="Bowel habits, symptoms and food triggers, with weekly graphs and a report for your doctor. Stays on your phone.", trGo="Start tracking →", trBackQ="Your gut health tracker", trBackSub="Keep your streak going: it takes less than a minute.", trBackGo="Log today →", stoolK="Stool check", stoolQ="What does your stool say?", stoolGo="Check shape and colour →"),
  "hi": dict(k="आज का खाना", serving="मात्रा", why="क्यों फ़ायदेमंद", how="कैसे खाएँ", care="जानने लायक", tomorrow="कल", share="WhatsApp पर भेजें",
             shareText="आज का खाना: {n}। {k}। {why}", shareTail="डॉ. क्षितिज लोचब की ओर से हर दिन पेट के लिए एक अच्छा खाना:", go="क्यों, जानें →",
             thaliShare="मेरी थाली WhatsApp पर भेजें", thaliText="थाली मीटर पर आज मेरी थाली: {f} ग्राम फ़ाइबर, {p} ग्राम प्रोटीन, {t} ग्राम फ़ैट। आपकी थाली कितनी संतुलित है?",
-            ask="परिवार से WhatsApp पर पूछें", stoolK="मल की जाँच", stoolQ="आपका मल क्या कहता है?", stoolGo="आकार और रंग देखें →"),
+            ask="परिवार से WhatsApp पर पूछें", trNew="नया", trK="निजी · मुफ़्त", trQ="अपने पेट की सेहत ट्रैक करें", trSub="मल की आदत, लक्षण और खाने के ट्रिगर, हफ़्ते के ग्राफ़ और डॉक्टर के लिए रिपोर्ट के साथ। सब आपके फ़ोन पर ही रहता है।", trGo="ट्रैक करना शुरू करें →", trBackQ="आपका पेट की सेहत का ट्रैकर", trBackSub="सिलसिला जारी रखें: एक मिनट से भी कम लगता है।", trBackGo="आज की एंट्री करें →", stoolK="मल की जाँच", stoolQ="आपका मल क्या कहता है?", stoolGo="आकार और रंग देखें →"),
 }
 
 assert len(EN) == len(HI)

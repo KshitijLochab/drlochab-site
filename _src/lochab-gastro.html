@@ -343,6 +343,20 @@ nav a:hover{color:var(--accent)}
 .hook-myth{background:var(--warm-soft);border-color:var(--warm)}
 .hook-fibre{background:var(--accent-soft);border-color:var(--accent)}
 .hook-food{background:#F1F6E6;border-color:#8DB33A}
+.trk{order:-2;max-width:640px;display:grid;grid-template-columns:64px 1fr auto;gap:4px 14px;align-items:center;text-decoration:none;color:#fff;border-radius:20px;padding:14px 18px;
+ background:linear-gradient(120deg,#0B6A5E 0%,#0D7466 55%,#1F8A70 100%);box-shadow:0 10px 24px -12px rgba(11,106,94,.6);transition:transform .15s}
+.trk:hover{transform:translateY(-2px)}
+.trk-art{grid-row:span 2;width:64px;height:64px;border-radius:16px;background:rgba(255,255,255,.14);display:grid;place-items:center}
+.trk-art svg{width:46px;height:46px}
+.trk-k{display:flex;gap:6px;align-items:center;font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.trk-new{background:#F3C66B;color:#12302C;border-radius:6px;padding:3px 7px}
+.trk-q{grid-column:2;font-family:var(--display);font-size:1.15rem;line-height:1.25}
+.trk-q small{display:block;font-family:var(--body);font-size:.85rem;opacity:.9;margin-top:2px}
+.trk-go{grid-row:1/3;grid-column:3;background:#fff;color:#0B6A5E;font-weight:800;font-size:.9rem;border-radius:999px;padding:10px 16px;white-space:nowrap}
+.trk-bar{transform-origin:bottom;animation:trkgrow 1.2s ease-out both}
+@keyframes trkgrow{from{transform:scaleY(.2)}to{transform:scaleY(1)}}
+@media (max-width:560px){.trk{grid-template-columns:52px 1fr;padding:12px 14px;gap:4px 12px}.trk-art{width:52px;height:52px}.trk-art svg{width:38px;height:38px}.trk-q{font-size:1rem}.trk-go{grid-row:auto;grid-column:1/-1;justify-self:start;margin-top:6px;padding:8px 14px}}
+@media (prefers-reduced-motion: reduce){.trk-bar{animation:none}.trk{transition:none}}
 .hook-stool{background:#F7EFE6;border-color:#B07A4C}
 .fod{scroll-margin-top:calc(var(--hdr,70px) + 16px);margin-top:18px;display:grid;grid-template-columns:120px 1fr;gap:22px;align-items:start;background:var(--surface);border:1.5px solid #8DB33A;border-radius:22px;padding:22px}
 .fod-art{width:120px;height:120px;border-radius:50%;background:#F1F6E6;display:grid;place-items:center}
@@ -578,7 +592,7 @@ footer .wrap{display:grid;gap:10px}
           <span>All-India Gold Medal</span>
           <span>Advanced Fellowship in EUS &amp; ERCP</span>
         </div>
-        <div class="hooks" id="hooks"><a class="hook hook-myth" id="mbTeaser" href="#myths" hidden></a><a class="hook hook-fibre" id="fbTeaser" href="#fibre"></a><a class="hook hook-food" id="fodTeaser" href="#food" hidden></a><a class="hook hook-stool" id="scTeaser" href="tools/stool-check/" hidden></a></div>
+        <a class="trk" id="trkCard" href="tools/gut-tracker/" hidden></a><div class="hooks" id="hooks"><a class="hook hook-myth" id="mbTeaser" href="#myths" hidden></a><a class="hook hook-fibre" id="fbTeaser" href="#fibre"></a><a class="hook hook-food" id="fodTeaser" href="#food" hidden></a><a class="hook hook-stool" id="scTeaser" href="tools/stool-check/" hidden></a></div>
       </div>
       <figure class="portrait">
         <img src="dr-lochab.jpg" alt="Dr. Kshitij Lochab in a white doctor's coat" width="800" height="1000">
@@ -1268,6 +1282,17 @@ const ficon=f=>`<svg viewBox="0 0 64 64" aria-hidden="true">${(FICON[f.ic]||FICO
   const sc=document.getElementById("scTeaser");
   sc.innerHTML=`<span class="hook-art" style="background:#F1E3D3"><svg viewBox="0 0 120 64" aria-hidden="true"><path d="M14 40 C30 18 46 18 60 32 S92 48 106 24" fill="none" stroke="#5E3518" stroke-width="20" stroke-linecap="round"/><path d="M14 40 C30 18 46 18 60 32 S92 48 106 24" fill="none" stroke="#8A5530" stroke-width="16" stroke-linecap="round"/></svg></span><span class="hook-k">${FO.stoolK}</span><span class="hook-q">${FO.stoolQ}</span><span class="hook-go">${FO.stoolGo}</span>`; sc.hidden=false;
   if(location.hash==="#food"){selectTab(document.getElementById("tab-today"));setTimeout(()=>el.scrollIntoView(),50);}
+})();
+
+/* tracker highlight */
+(function(){
+  const el=document.getElementById("trkCard"); let used=false;
+  try{used=!!(localStorage.getItem("gt-v1")||localStorage.getItem("gt-v1-lock"));}catch(e){}
+  const art='<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="40" width="38" height="2.5" rx="1.2" fill="rgba(255,255,255,.6)"/>'+
+    [[8,22],[16,12],[24,26],[32,16],[40,30]].map(([x,h],i)=>`<rect class="trk-bar" style="animation-delay:${i*.08}s" x="${x-3}" y="${39-h}" width="6" height="${h}" rx="3" fill="${i===4?"#F3C66B":"#fff"}"/>`).join("")+
+    '<path d="M6 30 L16 22 L24 27 L32 15 L42 10" fill="none" stroke="#F3C66B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/></svg>';
+  el.innerHTML=`<span class="trk-art">${art}</span><span class="trk-k">${used?"":`<span class="trk-new">${FO.trNew}</span>`}${FO.trK}</span><span class="trk-q">${used?FO.trBackQ:FO.trQ}<small>${used?FO.trBackSub:FO.trSub}</small></span><span class="trk-go">${used?FO.trBackGo:FO.trGo}</span>`;
+  el.hidden=false;
 })();
 
 /* copy address and phone */
