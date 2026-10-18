@@ -20,5 +20,9 @@
 .il-cap{fill:var(--ink);font-family:var(--body);font-size:10.5px;font-weight:600}
 
 .il-balloon{fill:var(--accent);fill-opacity:.3;stroke:var(--accent);stroke-width:2}
+.il-cap-body{fill:var(--surface);stroke:var(--ink);stroke-width:2.2}
+.il-cap-lens{fill:var(--accent);fill-opacity:.35;stroke:var(--ink);stroke-width:1.6}
+.il-wave{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:3 3}
+.il-rec{fill:var(--ink)}
 .proc-fig{margin:-24px -24px 4px;aspect-ratio:4/3;max-width:calc(100% + 48px);background:var(--surface);border-bottom:1px solid var(--line);border-radius:18px 18px 0 0;display:grid;place-items:center;overflow:hidden}
 .proc-fig > svg{width:100%;height:100%;display:block}

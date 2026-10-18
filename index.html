@@ -262,6 +262,10 @@ nav a:hover{color:var(--accent)}
 .il-cap{fill:var(--ink);font-family:var(--body);font-size:10.5px;font-weight:600}
 
 .il-balloon{fill:var(--accent);fill-opacity:.3;stroke:var(--accent);stroke-width:2}
+.il-cap-body{fill:var(--surface);stroke:var(--ink);stroke-width:2.2}
+.il-cap-lens{fill:var(--accent);fill-opacity:.35;stroke:var(--ink);stroke-width:1.6}
+.il-wave{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:3 3}
+.il-rec{fill:var(--ink)}
 .proc-fig{margin:-24px -24px 4px;aspect-ratio:4/3;max-width:calc(100% + 48px);background:var(--surface);border-bottom:1px solid var(--line);border-radius:18px 18px 0 0;display:grid;place-items:center;overflow:hidden}
 .proc-fig > svg{width:100%;height:100%;display:block}
 .proc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
@@ -1048,7 +1052,18 @@ const IL=(()=>{
       ${scope("M-4 75 H52")}${tip(52,75)}
       <path d="M52 75 H58" class="il-cath"/>
       ${label(100,148,"Balloon gently widens the narrowing","middle")}`,
-      "Dilatation: a balloon passed through the scope widens a narrowed section")
+      "Dilatation: a balloon passed through the scope widens a narrowed section"),
+    capsule:svg("0 0 200 150",`
+      <path d="M-10 46 C30 46 36 112 80 112 C124 112 128 46 168 46 C186 46 198 56 212 66" class="il-edge on" stroke-width="38"/>
+      <path d="M-10 46 C30 46 36 112 80 112 C124 112 128 46 168 46 C186 46 198 56 212 66" class="il-tube on" stroke-width="34"/>
+      <path d="M96 112 L113 102 A20 20 0 0 1 113 122 Z" class="il-fan"/>
+      <rect x="64" y="104" width="32" height="16" rx="8" class="il-cap-body"/>
+      <path d="M88 105.2 V118.8" stroke="var(--ink)" stroke-width="1.4"/>
+      <circle cx="91" cy="112" r="2.6" class="il-tip"/>
+      <path d="M72 93 a10 10 0 0 1 14 0 M67 87 a17 17 0 0 1 24 0 M62 81 a24 24 0 0 1 34 0" class="il-wave"/>
+      <rect x="58" y="12" width="44" height="26" rx="6" class="il-rec"/><circle cx="91" cy="25" r="3" class="il-tip"/><path d="M65 21 h16 M65 29 h12" stroke="var(--surface)" stroke-width="2.4" stroke-linecap="round"/>
+      ${label(108,29,"Recorder")}${label(80,140,"Pill camera","middle")}${label(196,104,"Small intestine","end")}`,
+      "Capsule endoscopy: a swallowed pill camera travels through the small intestine and sends pictures to a recorder worn on a belt")
   };
 })();
 
@@ -1096,7 +1111,8 @@ const PROCS=[
  {il:"emr",n:"Polyp removal & EMR",a:"Endoscopic resection",w:"Polyps and some early flat growths are lifted and removed through the scope, often avoiding surgery altogether.",d:[["Preparation","As for endoscopy or colonoscopy"],["Time","Depends on size and number"],["Comfort","Done under sedation"],["After","Results of the removed tissue in about a week"]]},
  {il:"stop",n:"Bleeding control",a:"Haemostasis",w:"Bleeding from an ulcer or a damaged blood vessel is stopped through the scope with tiny clips, injections or heat, usually without surgery.",d:[["Preparation","Done urgently when needed, after fluids or blood to stabilise"],["Time","About 20 to 45 minutes"],["Comfort","Done under sedation"],["After","A short hospital stay for observation"]]},
  {il:"peg",n:"Feeding tube (PEG)",a:"Nutrition support",w:"For people who cannot swallow safely, a soft feeding tube is placed through the skin into the stomach with the help of the scope.",d:[["Preparation","Nothing to eat for 6 to 8 hours"],["Time","About 20 to 30 minutes"],["Comfort","Done under sedation"],["After","Feeds usually start within a day"]]},
- {il:"dil",n:"Dilatation & stenting",a:"Opening narrowings",w:"Narrowed sections of the food pipe, bile duct or bowel are widened with a balloon, or kept open with a stent placed through the scope.",d:[["Preparation","Nothing to eat for 6 to 8 hours"],["Time","About 20 to 45 minutes"],["Comfort","Done under sedation"],["After","Diet is advanced step by step"]]}
+ {il:"dil",n:"Dilatation & stenting",a:"Opening narrowings",w:"Narrowed sections of the food pipe, bile duct or bowel are widened with a balloon, or kept open with a stent placed through the scope.",d:[["Preparation","Nothing to eat for 6 to 8 hours"],["Time","About 20 to 45 minutes"],["Comfort","Done under sedation"],["After","Diet is advanced step by step"]]},
+ {il:"capsule",n:"Capsule endoscopy",a:"Pill camera",w:"You swallow a camera the size of a large tablet. It takes thousands of pictures of the small intestine, a part a normal endoscope cannot fully reach, and passes out naturally.",d:[["Preparation","Clear liquids the day before and overnight fasting"],["Time","Recording for about 8 to 12 hours while you go about your day"],["Comfort","No sedation and no tube"],["Used for","Hidden bleeding, unexplained anaemia, suspected Crohn's disease"]]}
 ];
 
 
@@ -1105,7 +1121,7 @@ const PFX="/";
 const MORE="Read the full guide →";
 const MOREP="Read more about this procedure →";
 const CSLUG=["acidity-reflux-gerd","h-pylori-gastritis-ulcer","swallowing-difficulty","fatty-liver","hepatitis-b-c","jaundice","cirrhosis","gallstones","pancreatitis","pancreatic-cysts","ibs-irritable-bowel-syndrome","ulcerative-colitis-crohns-disease","constipation","colon-polyps-colon-cancer"];
-const PSLUG=["upper-gi-endoscopy","colonoscopy","endoscopic-ultrasound-eus","ercp","variceal-banding-evl","polyp-removal-emr","gi-bleeding-treatment","peg-feeding-tube","dilatation-stenting"];
+const PSLUG=["upper-gi-endoscopy","colonoscopy","endoscopic-ultrasound-eus","ercp","variceal-banding-evl","polyp-removal-emr","gi-bleeding-treatment","peg-feeding-tube","dilatation-stenting","answers/capsule-endoscopy"];
 
 /* symptoms */
 const symList=document.getElementById("symList"), symResult=document.getElementById("symResult");
@@ -1148,7 +1164,7 @@ showSym(0);
 })();
 
 /* procedures */
-document.getElementById("procGrid").innerHTML=PROCS.map((p,i)=>`<a class="ptile" href="${PFX}procedures/${PSLUG[i]}/"><span class="ptile-fig" aria-hidden="true">${IL[p.il]}</span><span class="ptile-t"><span class="proc-abbr">${esc(p.a)}</span><b>${esc(p.n)}</b><span class="ptile-w">${esc(p.w)}</span><span class="more">${MOREP}</span></span></a>`).join("");
+document.getElementById("procGrid").innerHTML=PROCS.map((p,i)=>`<a class="ptile" href="${PFX}${PSLUG[i].includes("/")?PSLUG[i]:"procedures/"+PSLUG[i]}/"><span class="ptile-fig" aria-hidden="true">${IL[p.il]}</span><span class="ptile-t"><span class="proc-abbr">${esc(p.a)}</span><b>${esc(p.n)}</b><span class="ptile-w">${esc(p.w)}</span><span class="more">${MOREP}</span></span></a>`).join("");
 
 
 /* ---------- Gut Health Daily ---------- */

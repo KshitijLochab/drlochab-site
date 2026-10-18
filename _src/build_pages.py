@@ -19,6 +19,7 @@ UPDATED = ("2026-10-10", "10 October 2026", "10 अक्टूबर 2026")
 PROC_UPDATED = ("2026-10-17", "17 October 2026", "17 अक्टूबर 2026")
 PHONE, WA = "+91 96671 04882", "https://wa.me/919667104882"
 # WhatsApp Channel for the daily tip. Paste the channel's invite link here (https://whatsapp.com/channel/...); left empty, every channel link stays hidden.
+ANSWER_IL = {"capsule-endoscopy": "capsule"}  # answer pages that show a home-page procedure drawing
 WA_CHANNEL = ""
 FOOT_LINKS = {"en": ("About Dr. Lochab", "Gastroenterologist in Gurgaon", "Gut health tracker"), "hi": ("डॉ. लोचब के बारे में", "गुड़गाँव में गैस्ट्रोएंटेरोलॉजिस्ट", "पेट की सेहत का ट्रैकर")}
 CHANNEL_TXT = {"en": ("Get a daily gut-health tip on WhatsApp", "Join the channel"), "hi": ("पेट की सेहत की रोज़ की सलाह WhatsApp पर पाएँ", "चैनल से जुड़ें")}
@@ -272,7 +273,7 @@ def build():
                     + f"</article>{aside(lang)}</main>" + footer(lang))
             write(path, page); pages.append((path_en, path_hi))
         # ---- procedures
-        for i, pr in enumerate(d["PROCS"]):
+        for i, pr in enumerate(d["PROCS"][:len(seo_en.PROCS)]):  # extra home tiles (capsule) link to answer pages
             base = seo_en.PROCS[i]; x = S.PROCS[i]
             path, path_en, path_hi = url(lang, "procedures", base["slug"]), url("en", "procedures", base["slug"]), url("hi", "procedures", base["slug"])
             title = f"{x['seo']} {t['city']} | Dr. Kshitij Lochab" if lang == "en" else f"{x['seo']}, {t['city']} | डॉ. क्षितिज लोचब"
@@ -332,7 +333,8 @@ def build():
             # the next three answers in turn, so every answer page is linked from three others
             n = len(S.ANSWERS)
             others = [(url(lang, "answers", seo_en.ANSWERS[(i + k) % n]["slug"]), S.ANSWERS[(i + k) % n]["q"]) for k in range(1, min(4, n))]
-            body = (f'<div class="short"><p class="lbl">{t["short"]}</p><p>{e(a["short"])}</p></div>' + "".join(secs)
+            fig = f'<figure class="fig">{d["IL"][ANSWER_IL[base["slug"]]]}</figure>' if base["slug"] in ANSWER_IL else ""
+            body = (fig + f'<div class="short"><p class="lbl">{t["short"]}</p><p>{e(a["short"])}</p></div>' + "".join(secs)
                     + f'<section><h2>{t["read"]}</h2>{links(rel + others)}</section>')
             ld = ld_page(lang, path, a["q"], a["desc"], "MedicalProcedure" if base.get("cond") is None and base.get("proc") is not None else "MedicalCondition",
                          rel[0][1] if rel else a["q"], [[a["q"], a["short"]]] + xfaqs, t["answers"], "conditions")

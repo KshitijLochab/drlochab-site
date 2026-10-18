@@ -263,6 +263,10 @@ nav a:hover{color:var(--accent)}
 .il-cap{fill:var(--ink);font-family:var(--body);font-size:10.5px;font-weight:600}
 
 .il-balloon{fill:var(--accent);fill-opacity:.3;stroke:var(--accent);stroke-width:2}
+.il-cap-body{fill:var(--surface);stroke:var(--ink);stroke-width:2.2}
+.il-cap-lens{fill:var(--accent);fill-opacity:.35;stroke:var(--ink);stroke-width:1.6}
+.il-wave{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:3 3}
+.il-rec{fill:var(--ink)}
 .proc-fig{margin:-24px -24px 4px;aspect-ratio:4/3;max-width:calc(100% + 48px);background:var(--surface);border-bottom:1px solid var(--line);border-radius:18px 18px 0 0;display:grid;place-items:center;overflow:hidden}
 .proc-fig > svg{width:100%;height:100%;display:block}
 .proc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
@@ -997,19 +1001,19 @@ const IL=(()=>{
       tube(P.eso,14,true)+fill(P.liver)+tube(P.duo,12)+fill(P.stomach,true)+
       scope("M126 -10 V100 C126 112 156 104 170 116 C184 128 180 148 162 154 C150 158 140 156 132 152")+tip(132,152)+
       label(196,104,"पेट")+label(134,40,"खाने की नली")+label(56,128,"लिवर","middle"),
-      "Upper GI endoscopy: the scope passes through the food pipe into the stomach"),
+      "अपर GI एंडोस्कोपी: स्कोप खाने की नली से होकर पेट में जाता है"),
     colono:svg("20 186 210 140",
       fill(P.si)+`<path d="${P.coil}" class="il-coil"/>`+tube(P.colon,16,true)+
       scope("M131 318 L132 302 Q140 290 164 286 Q190 282 190 262 V218 Q190 204 176 204 H74 Q62 204 62 216 V272")+tip(62,272)+
       `<circle cx="120" cy="204" r="4.5" class="il-polyp"/>`+
       label(120,195,"पॉलिप","middle")+label(228,318,"बड़ी आँत","end"),
-      "Colonoscopy: the scope travels around the large bowel, where polyps can be removed"),
+      "कोलोनोस्कोपी: स्कोप बड़ी आँत में घूमता है, जहाँ पॉलिप निकाले जा सकते हैं"),
     eus:svg("44 62 204 154",
       tube(P.eso,14)+tube(P.duo,12)+fill(P.pancreas,true)+fill(P.stomach)+
       `<path d="M150 150 L124 192 A48 48 0 0 0 178 192 Z" class="il-fan"/>`+
       scope("M126 60 V100 C126 112 156 104 170 116 C184 128 176 148 150 150")+tip(150,150)+
       label(200,186,"पैंक्रियास")+label(194,104,"पेट")+label(151,212,"अल्ट्रासाउंड से दिखता हिस्सा","middle"),
-      "Endoscopic ultrasound: an ultrasound probe on the scope looks through the stomach wall at the pancreas"),
+      "एंडोस्कोपिक अल्ट्रासाउंड: स्कोप पर लगा अल्ट्रासाउंड पेट की दीवार के पार पैंक्रियास को देखता है"),
     ercp:svg("0 0 200 150",
       `<path d="M60 -10 C90 -14 196 -12 210 6 C204 24 160 30 126 30 C96 30 74 20 60 -10Z" class="il-fill"/>`+
       `<path d="M58 112 C70 98 120 102 204 94 V118 C150 122 96 130 72 128 C60 126 52 120 58 112Z" class="il-fill"/>`+
@@ -1020,22 +1024,22 @@ const IL=(()=>{
       `<circle cx="110" cy="56" r="5" class="il-stone"/>`+
       scope("M100 -8 C76 6 46 30 42 62 C40 84 44 98 50 104")+tip(50,104)+
       label(176,18,"लिवर","middle")+label(124,84,"पित्त नली")+label(120,58,"पथरी")+label(150,142,"पैंक्रियास","middle")+label(14,146,"आँत"),
-      "ERCP: from the intestine, a thin tube enters the bile duct to remove a stone"),
+      "ERCP: आँत से एक पतली नली पित्त नली में जाकर पथरी निकालती है"),
     evl:steps([
       [wall()+`<path d="M14 150 C32 150 34 112 50 112 C66 112 68 150 86 150Z" fill="#5B6FB5"/><path d="M38 124 C44 116 56 116 62 124" fill="none" stroke="#AEB9E4" stroke-width="3" stroke-linecap="round"/>`,["खाने की नली में","फूली हुई नस"]],
       [wall()+scopeDown(84)+`<path d="M34 150 C40 150 40 104 50 100 C60 104 60 150 66 150Z" fill="#5B6FB5"/><rect x="36" y="84" width="28" height="56" rx="4" fill="var(--surface)" fill-opacity=".35" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="3 2"/><rect x="38" y="134" width="24" height="7" rx="3.5" class="il-band"/>`,["नस खींचकर","बैंड लगाया"]],
       [wall()+`<circle cx="50" cy="132" r="13" fill="#5B6FB5" fill-opacity=".55"/><rect x="40" y="141" width="20" height="7" rx="3.5" class="il-band"/>`,["नस सिकुड़कर कुछ","दिनों में गिर जाती है"]]
-    ],"Variceal banding in three steps: a swollen vein, a band placed on it, and the vein shrinking away"),
+    ],"वैरिसियल बैंडिंग तीन चरणों में: फूली हुई नस, उस पर बैंड, और नस का सिकुड़ जाना"),
     emr:steps([
       [wall()+`<path d="M24 150 C28 124 72 124 76 150Z" fill="#D9806F"/><path d="M36 134 C44 128 56 128 64 134" fill="none" stroke="#EDB0A4" stroke-width="3" stroke-linecap="round"/>`,["आँत की परत पर","गाँठ (पॉलिप)"]],
       [wall()+scopeSide(70)+`<path d="M20 150 C22 116 78 116 80 150Z" fill="#B9D6EE"/><path d="M28 124 C32 102 68 102 72 124 C62 130 38 130 28 124Z" fill="#D9806F"/><path d="M44 70 C40 90 24 116 26 124 C30 134 70 134 74 124 C76 116 58 96 52 78" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>`,["उठाकर तार के","फंदे में पकड़ा"]],
       [wall()+`<path d="M34 150 C40 144 60 144 66 150" fill="none" stroke="var(--organ-line)" stroke-width="3"/><path d="M34 84 C38 66 62 66 66 84 C56 90 44 90 34 84Z" fill="#D9806F"/><path d="M50 118 V96 m-6 7 l6 -7 l6 7" class="il-arrow"/>`,["निकालकर जाँच","के लिए भेजा"]]
-    ],"Polyp removal in three steps: a growth on the bowel lining, lifted and caught in a wire loop, then removed"),
+    ],"पॉलिप निकालना तीन चरणों में: आँत की परत पर गाँठ, उसे उठाकर तार के फंदे में पकड़ना, फिर निकालना"),
     stop:steps([
       [ulcer()+`<circle cx="50" cy="160" r="5" fill="#B3261E"/><path d="M50 150 c-5 -8 -5 -12 0 -18 c5 6 5 10 0 18Z M38 136 c-4 -6 -4 -9 0 -13 c4 4 4 7 0 13Z M62 128 c-4 -6 -4 -9 0 -13 c4 4 4 7 0 13Z" fill="#C0392B"/>`,["अल्सर में","खून वाली नस"]],
       [ulcer()+scopeDown(96)+`<circle cx="50" cy="160" r="5" fill="#B3261E"/><path d="M50 96 V122" stroke="var(--muted)" stroke-width="2"/>`+clip(50,122),["छोटी क्लिप से","नस बंद की"]],
       [ulcer()+clip(44,128,-14)+clip(58,128,14)+`<path d="M70 108 l6 7 l12 -16" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`,["खून रुका, क्लिप","बाद में गिर जाती है"]]
-    ],"Bleeding control in three steps: a bleeding ulcer, a clip placed on the vessel, and the bleeding stopped"),
+    ],"खून रोकना तीन चरणों में: खून बहता अल्सर, नस पर क्लिप, और खून रुकना"),
     peg:svg("0 0 200 150",`
       <rect x="-5" y="22" width="210" height="22" class="il-fill"/>
       <path d="M-5 68 H205 V160 H-5Z" class="il-fill on"/>
@@ -1043,7 +1047,7 @@ const IL=(()=>{
       <rect x="80" y="14" width="40" height="7" rx="3.5" fill="var(--accent)"/>
       <ellipse cx="100" cy="98" rx="22" ry="6" fill="var(--accent)"/>
       ${label(130,37,"पेट की दीवार")}${label(130,90,"पेट")}${label(92,58,"फ़ीडिंग ट्यूब","end")}`,
-      "Feeding tube: a soft tube passes through the belly wall into the stomach, held by a small disc on each side"),
+      "फ़ीडिंग ट्यूब: एक नरम नली पेट की दीवार से होकर पेट में जाती है, दोनों तरफ़ छोटी डिस्क से टिकी रहती है"),
     dil:svg("0 0 200 150",`
       <path d="M8 30 H62 C82 30 86 58 100 58 C114 58 118 30 138 30 H192 V12 H8Z" class="il-fill"/>
       <path d="M8 120 H62 C82 120 86 92 100 92 C114 92 118 120 138 120 H192 V138 H8Z" class="il-fill"/>
@@ -1051,7 +1055,18 @@ const IL=(()=>{
       ${scope("M-4 75 H52")}${tip(52,75)}
       <path d="M52 75 H58" class="il-cath"/>
       ${label(100,148,"बैलून धीरे से सिकुड़न को चौड़ा करता है","middle")}`,
-      "Dilatation: a balloon passed through the scope widens a narrowed section")
+      "डाइलेटेशन: स्कोप से डाला गया बैलून सिकुड़े हिस्से को चौड़ा करता है"),
+    capsule:svg("0 0 200 150",`
+      <path d="M-10 46 C30 46 36 112 80 112 C124 112 128 46 168 46 C186 46 198 56 212 66" class="il-edge on" stroke-width="38"/>
+      <path d="M-10 46 C30 46 36 112 80 112 C124 112 128 46 168 46 C186 46 198 56 212 66" class="il-tube on" stroke-width="34"/>
+      <path d="M96 112 L113 102 A20 20 0 0 1 113 122 Z" class="il-fan"/>
+      <rect x="64" y="104" width="32" height="16" rx="8" class="il-cap-body"/>
+      <path d="M88 105.2 V118.8" stroke="var(--ink)" stroke-width="1.4"/>
+      <circle cx="91" cy="112" r="2.6" class="il-tip"/>
+      <path d="M72 93 a10 10 0 0 1 14 0 M67 87 a17 17 0 0 1 24 0 M62 81 a24 24 0 0 1 34 0" class="il-wave"/>
+      <rect x="58" y="12" width="44" height="26" rx="6" class="il-rec"/><circle cx="91" cy="25" r="3" class="il-tip"/><path d="M65 21 h16 M65 29 h12" stroke="var(--surface)" stroke-width="2.4" stroke-linecap="round"/>
+      ${label(108,29,"रिकॉर्डर")}${label(80,140,"पिल कैमरा","middle")}${label(196,104,"छोटी आँत","end")}`,
+      "कैप्सूल एंडोस्कोपी: निगला गया पिल कैमरा छोटी आँत से गुज़रता है और बेल्ट पर बँधे रिकॉर्डर को तस्वीरें भेजता है")
   };
 })();
 
@@ -1099,7 +1114,8 @@ const PROCS=[
  {il:"emr",n:"पॉलिप निकालना और EMR",a:"एंडोस्कोपिक रिसेक्शन",w:"पॉलिप और कुछ शुरुआती चपटी गाँठें स्कोप से उठाकर निकाल दी जाती हैं, अक्सर ऑपरेशन की ज़रूरत ही नहीं पड़ती।",d:[["तैयारी","एंडोस्कोपी या कोलोनोस्कोपी जैसी"],["समय","आकार और संख्या पर निर्भर"],["आराम","हल्की बेहोशी में"],["बाद में","निकाले गए हिस्से की रिपोर्ट लगभग एक हफ़्ते में"]]},
  {il:"stop",n:"खून रोकना",a:"हीमोस्टेसिस",w:"अल्सर या फटी नस से आता खून स्कोप से छोटी क्लिप, इंजेक्शन या गर्मी से रोका जाता है, आम तौर पर बिना ऑपरेशन।",d:[["तैयारी","ज़रूरत पर तुरंत, ड्रिप या खून चढ़ाकर हालत संभालने के बाद"],["समय","लगभग 20 से 45 मिनट"],["आराम","हल्की बेहोशी में"],["बाद में","निगरानी के लिए अस्पताल में थोड़ा रुकना"]]},
  {il:"peg",n:"फ़ीडिंग ट्यूब (PEG)",a:"पोषण सहायता",w:"जो लोग सुरक्षित रूप से निगल नहीं पाते, उनके लिए स्कोप की मदद से त्वचा से होकर पेट में एक नरम फ़ीडिंग ट्यूब लगाई जाती है।",d:[["तैयारी","6 से 8 घंटे कुछ न खाएँ"],["समय","लगभग 20 से 30 मिनट"],["आराम","हल्की बेहोशी में"],["बाद में","आम तौर पर एक दिन के अंदर खाना शुरू"]]},
- {il:"dil",n:"डाइलेटेशन और स्टेंटिंग",a:"सिकुड़न खोलना",w:"खाने की नली, पित्त नली या आँत के सिकुड़े हिस्से को बैलून से चौड़ा किया जाता है, या स्कोप से स्टेंट डालकर खुला रखा जाता है।",d:[["तैयारी","6 से 8 घंटे कुछ न खाएँ"],["समय","लगभग 20 से 45 मिनट"],["आराम","हल्की बेहोशी में"],["बाद में","खाना धीरे-धीरे बढ़ाया जाता है"]]}
+ {il:"dil",n:"डाइलेटेशन और स्टेंटिंग",a:"सिकुड़न खोलना",w:"खाने की नली, पित्त नली या आँत के सिकुड़े हिस्से को बैलून से चौड़ा किया जाता है, या स्कोप से स्टेंट डालकर खुला रखा जाता है।",d:[["तैयारी","6 से 8 घंटे कुछ न खाएँ"],["समय","लगभग 20 से 45 मिनट"],["आराम","हल्की बेहोशी में"],["बाद में","खाना धीरे-धीरे बढ़ाया जाता है"]]},
+ {il:"capsule",n:"कैप्सूल एंडोस्कोपी",a:"पिल कैमरा",w:"आप एक बड़ी गोली जितना कैमरा निगलते हैं। यह छोटी आँत की हज़ारों तस्वीरें लेता है, जहाँ तक सामान्य एंडोस्कोप पूरी तरह नहीं पहुँच पाता, और फिर अपने-आप मल के साथ निकल जाता है।",d:[["तैयारी","एक दिन पहले सिर्फ़ साफ़ तरल और रात भर खाली पेट"],["समय","लगभग 8 से 12 घंटे रिकॉर्डिंग, इस बीच आप अपना काम कर सकते हैं"],["आराम","न बेहोशी, न नली"],["किसके लिए","छिपी हुई ब्लीडिंग, बिना कारण खून की कमी, क्रोन्स बीमारी का शक"]]}
 ];
 
 
@@ -1108,7 +1124,7 @@ const PFX="/hi/";
 const MORE="पूरी जानकारी पढ़ें →";
 const MOREP="इस प्रोसीजर के बारे में और पढ़ें →";
 const CSLUG=["acidity-reflux-gerd","h-pylori-gastritis-ulcer","swallowing-difficulty","fatty-liver","hepatitis-b-c","jaundice","cirrhosis","gallstones","pancreatitis","pancreatic-cysts","ibs-irritable-bowel-syndrome","ulcerative-colitis-crohns-disease","constipation","colon-polyps-colon-cancer"];
-const PSLUG=["upper-gi-endoscopy","colonoscopy","endoscopic-ultrasound-eus","ercp","variceal-banding-evl","polyp-removal-emr","gi-bleeding-treatment","peg-feeding-tube","dilatation-stenting"];
+const PSLUG=["upper-gi-endoscopy","colonoscopy","endoscopic-ultrasound-eus","ercp","variceal-banding-evl","polyp-removal-emr","gi-bleeding-treatment","peg-feeding-tube","dilatation-stenting","answers/capsule-endoscopy"];
 
 /* symptoms */
 const symList=document.getElementById("symList"), symResult=document.getElementById("symResult");
@@ -1151,7 +1167,7 @@ showSym(0);
 })();
 
 /* procedures */
-document.getElementById("procGrid").innerHTML=PROCS.map((p,i)=>`<a class="ptile" href="${PFX}procedures/${PSLUG[i]}/"><span class="ptile-fig" aria-hidden="true">${IL[p.il]}</span><span class="ptile-t"><span class="proc-abbr">${esc(p.a)}</span><b>${esc(p.n)}</b><span class="ptile-w">${esc(p.w)}</span><span class="more">${MOREP}</span></span></a>`).join("");
+document.getElementById("procGrid").innerHTML=PROCS.map((p,i)=>`<a class="ptile" href="${PFX}${PSLUG[i].includes("/")?PSLUG[i]:"procedures/"+PSLUG[i]}/"><span class="ptile-fig" aria-hidden="true">${IL[p.il]}</span><span class="ptile-t"><span class="proc-abbr">${esc(p.a)}</span><b>${esc(p.n)}</b><span class="ptile-w">${esc(p.w)}</span><span class="more">${MOREP}</span></span></a>`).join("");
 
 
 /* ---------- Gut Health Daily ---------- */
