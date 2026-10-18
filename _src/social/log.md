@@ -1,6 +1,9 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 18 Oct 2026 (profiles)
+- Practo cover images: wide 1920x480 (teal, credentials, no contact details) and 16:9 1920x1080 with portrait. Generator: social/practo_cover.py.
+
 ## 18 Oct 2026 (site)
 - Site SEO: 'Gurgaon (Gurugram)' in home, condition and procedure titles and headings; new pages gastroenterologist-in-gurgaon and about-dr-kshitij-lochab (EN + HI) with Physician/MedicalClinic and ProfilePage data; Arcura hours (Mon–Fri 6–8 pm, Sun 9 am–1 pm, Sat closed) on home, every page's side panel and in structured data; sameAs links to Google Business Profile, Instagram and LinkedIn; Hinglish 'also searched as' line on 44 Hindi pages (hinglish.py); footer links to About, Gurgaon page and tracker on every page.
 
