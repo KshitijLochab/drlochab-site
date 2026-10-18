@@ -16,7 +16,7 @@ PAIRS = [
   '<a class="lang" href="/" lang="en" hreflang="en" aria-label="Read this page in English">English</a>'),
 
  # hero
- ('<p class="eyebrow">Gastroenterologist · Gurugram</p>', '<p class="eyebrow">गैस्ट्रोएंटेरोलॉजिस्ट · गुरुग्राम</p>'),
+ ('<p class="eyebrow">Gastroenterologist · Gurgaon (Gurugram)</p>', '<p class="eyebrow">गैस्ट्रोएंटेरोलॉजिस्ट · गुरुग्राम (गुड़गाँव)</p>'),
  ('<h1>Clear answers about your <em>stomach, liver and digestion.</em></h1>', '<h1>आपके <em>पेट, लिवर और पाचन</em> से जुड़े सवालों के सीधे जवाब।</h1>'),
  ('<p class="lede">Many gut and liver problems are easy to treat when they are caught early, and many others are harmless once properly checked. This page explains the common ones in plain language, so you know what to watch for and when to see a specialist.</p>',
   '<p class="lede">पेट और लिवर की कई बीमारियाँ समय पर पकड़ में आ जाएँ तो आसानी से ठीक हो जाती हैं, और कई तकलीफ़ें ठीक से जाँच के बाद मामूली निकलती हैं। यहाँ आम बीमारियों को आसान भाषा में समझाया गया है, ताकि आप जान सकें कि किन बातों पर ध्यान दें और विशेषज्ञ को कब दिखाएँ।</p>'),

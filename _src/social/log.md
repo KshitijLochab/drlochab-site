@@ -1,6 +1,9 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 18 Oct 2026 (site)
+- Site SEO: 'Gurgaon (Gurugram)' in home, condition and procedure titles and headings; new pages gastroenterologist-in-gurgaon and about-dr-kshitij-lochab (EN + HI) with Physician/MedicalClinic and ProfilePage data; Arcura hours (Mon–Fri 6–8 pm, Sun 9 am–1 pm, Sat closed) on home, every page's side panel and in structured data; sameAs links to Google Business Profile, Instagram and LinkedIn; Hinglish 'also searched as' line on 44 Hindi pages (hinglish.py); footer links to About, Gurgaon page and tracker on every page.
+
 ## 17 Oct 2026 (social)
 - LinkedIn document post (PDF, 6 slides) + professional caption: same new-tools carousel, last slide without 'link in bio'. Generator: social/new_tools_promo.py.
 - Instagram carousel (6 slides, EN): Your gut, tracked and decoded (Gut Health Tracker, privacy, stool check, Food of the day, CTA with Diwali guide). Generator: social/new_tools_promo.py.

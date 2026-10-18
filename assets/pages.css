@@ -131,6 +131,8 @@ section h3{margin-top:18px}
 .btn-wa{background:#1E8E4E;color:#fff;border-color:#1E8E4E}
 .chan{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 14px}
 .chan-foot span{font-weight:600}
+.foot-links{font-weight:600}.foot-links a{color:inherit}
+.aka{font-size:.88rem;color:var(--muted);margin:-4px 0 14px}.aka span{font-style:italic}
 /* procedures */
 .il-fill{fill:var(--organ);stroke:var(--organ-line);stroke-width:1.5}
 .il-fill.on{fill:var(--accent-soft);stroke:var(--accent)}

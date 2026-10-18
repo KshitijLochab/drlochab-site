@@ -1,0 +1,53 @@
+"""Roman-script Hindi (Hinglish) phrases people type into Google, shown as a small 'also searched as' line on the Hindi
+condition and answer pages so those searches match. Keyed by page slug. No brand names. Added 18 Oct 2026."""
+
+LABEL = "इसे ऐसे भी खोजा जाता है:"
+
+AKA = {
+ # conditions
+ "acidity-reflux-gerd": ["acidity ka ilaj", "pet me jalan", "seene me jalan", "khatti dakar aana"],
+ "h-pylori-gastritis-ulcer": ["pet me ulcer", "gastritis ka ilaj", "pet me chhale"],
+ "swallowing-difficulty": ["khana nigalne me dikkat", "gale me khana atakna"],
+ "fatty-liver": ["fatty liver ka ilaj", "liver me charbi", "fatty liver grade 1"],
+ "hepatitis-b-c": ["hepatitis b ka ilaj", "kala piliya"],
+ "jaundice": ["piliya ke lakshan", "peeliya ka ilaj", "piliya kaise hota hai"],
+ "cirrhosis": ["liver kharab hone ke lakshan", "liver cirrhosis ka ilaj"],
+ "gallstones": ["pitt ki thaili me pathri", "gallbladder stone ka ilaj"],
+ "pancreatitis": ["pancreas me sujan", "pancreatitis ke lakshan"],
+ "pancreatic-cysts": ["pancreas me cyst", "pancreas me ganth"],
+ "ibs-irritable-bowel-syndrome": ["IBS ka ilaj", "baar baar latrine jana", "pet kharab rehna"],
+ "ulcerative-colitis-crohns-disease": ["aanto me sujan", "potty me khoon aur aanv"],
+ "constipation": ["kabz ka ilaj", "pet saaf na hona", "potty tight aana"],
+ "colon-polyps-colon-cancer": ["aant ka cancer ke lakshan", "aant me ganth"],
+ # answers
+ "blood-in-stool-always-piles": ["potty me blood aana", "latrine me khoon aana", "mal me khoon"],
+ "diet-in-jaundice": ["piliya me kya khana chahiye", "jaundice diet in hindi"],
+ "gas-and-bloating": ["pet me gas banna", "pet phoolna", "gas ka ilaj"],
+ "is-endoscopy-painful": ["endoscopy me dard hota hai kya", "doorbeen se jaanch"],
+ "when-is-acidity-serious": ["acidity kab khatarnak hai", "acidity ke lakshan"],
+ "is-ibs-dangerous": ["IBS khatarnak hai kya"],
+ "is-fatty-liver-reversible": ["fatty liver theek ho sakta hai kya"],
+ "high-sgpt-sgot-liver-function-test": ["SGPT badha hua", "SGOT SGPT high ka matlab"],
+ "ascites-fluid-in-abdomen": ["pet me pani bharna"],
+ "liver-abscess": ["liver me mawad", "liver me fhoda"],
+ "fibroscan-test": ["fibroscan test kya hai"],
+ "piles-fissure-fistula": ["bawasir ka ilaj", "fissure ka ilaj", "bhagandar ka ilaj"],
+ "celiac-disease": ["gehu se allergy", "celiac disease in hindi"],
+ "stomach-infection-gastroenteritis": ["pet me infection", "ulti dast ka ilaj"],
+ "lactose-intolerance": ["doodh se gas banna", "doodh hazam na hona"],
+ "stomach-cancer-warning-signs": ["pet ke cancer ke lakshan"],
+ "gallbladder-cancer": ["pitt ki thaili ka cancer"],
+ "chronic-pancreatitis": ["pancreas me pathri"],
+ "abdominal-tuberculosis": ["pet ki TB ke lakshan", "aanto ki TB"],
+ "hepatitis-a-and-e": ["piliya kitne din me theek hota hai"],
+ "gilberts-syndrome": ["bilirubin thoda badha hua"],
+ "worms-in-stomach": ["pet me keede", "pet me kide ke lakshan"],
+ "chronic-diarrhoea-mucus-in-stool": ["potty me aanv aana", "baar baar dast lagna"],
+ "appendicitis-or-gas-pain": ["pet ke daayi taraf dard", "appendix ke lakshan"],
+ "typhoid-fever": ["typhoid ke lakshan", "typhoid me kya khaye"],
+ "vomiting-blood-black-stools": ["khoon ki ulti", "kali potty aana"],
+ "is-pantoprazole-safe-long-term": ["acidity ki goli roz lena"],
+ "burping-and-hiccups": ["baar baar dakar aana", "hichki kaise roke"],
+ "how-much-alcohol-is-safe-for-liver": ["sharab se liver kharab"],
+ "travellers-diarrhoea": ["safar me dast"],
+}

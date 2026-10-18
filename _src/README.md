@@ -44,3 +44,8 @@ See `BRAND.md` for colours, type, voice and rules.
 - Stool check tool: `stool_check.py`, built at /tools/stool-check/ by `build_pages.build()`.
 - WhatsApp Channel: set `WA_CHANNEL` in `build_pages.py` to the channel invite link; the join block then appears under today's tip and in every page footer.
 - Gut Health Tracker: `gut_tracker.py`, built at /tools/gut-tracker/. Privacy rules are in the module docstring: localStorage only, CSP with connect-src 'none', optional AES-GCM PIN encryption. Never add analytics, fetch calls or third-party scripts to this page.
+
+## Local SEO (18 Oct 2026)
+- `local_pages.py`: Gurgaon landing page and About page (EN + HI), plus the shared Physician structured data (hours, address, sameAs) used on the home page. Update hours and sameAs there.
+- `hinglish.py`: Roman-script Hindi search phrases shown on Hindi pages; add entries for new pages.
+- Titles use 'Gurgaon (Gurugram)' (`city` and `where` in `build_pages.L`).

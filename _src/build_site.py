@@ -1,7 +1,7 @@
 """Builds the deployable drlochab.com folder (English at /, Hindi at /hi/) from lochab-gastro.html."""
 import json, re, shutil, os
 from PIL import Image
-import hindi
+import hindi, local_pages
 
 OUT = "site"
 shutil.rmtree(OUT, ignore_errors=True)
@@ -34,14 +34,14 @@ schema = {
 PAGES = {
     "en": dict(
         lang="en", url="https://drlochab.com/", up="",
-        title="Dr. Kshitij Lochab | Gastroenterologist in Gurugram",
-        desc=("Dr. Kshitij Lochab, gastroenterologist in Gurugram. Plain-language guides to acidity, fatty liver, "
+        title="Dr. Kshitij Lochab | Gastroenterologist in Gurgaon (Gurugram)",
+        desc=("Dr. Kshitij Lochab, gastroenterologist in Gurgaon (Gurugram). Plain-language guides to acidity, fatty liver, "
               "jaundice, IBS and more, daily diet tips, and appointments at Arcura Clinic, Sector 51."),
         og="Clear answers about your stomach, liver and digestion, with a new gut-health tip every day."),
     "hi": dict(
         lang="hi", url="https://drlochab.com/hi/", up="../",
-        title="डॉ. क्षितिज लोचब | गुरुग्राम में पेट और लिवर रोग विशेषज्ञ",
-        desc=("डॉ. क्षितिज लोचब, गुरुग्राम में गैस्ट्रोएंटेरोलॉजिस्ट। एसिडिटी, फैटी लिवर, पीलिया, IBS जैसी बीमारियों की "
+        title="डॉ. क्षितिज लोचब | गुड़गाँव (गुरुग्राम) में पेट और लिवर रोग विशेषज्ञ",
+        desc=("डॉ. क्षितिज लोचब, गुड़गाँव (गुरुग्राम) में गैस्ट्रोएंटेरोलॉजिस्ट। एसिडिटी, फैटी लिवर, पीलिया, IBS जैसी बीमारियों की "
               "आसान भाषा में जानकारी, रोज़ की डाइट सलाह, और आर्क्योरा क्लिनिक, सेक्टर 51 में अपॉइंटमेंट।"),
         og="पेट, लिवर और पाचन से जुड़े सवालों के सीधे जवाब, और हर दिन सेहत की एक नई सलाह।"),
 }
@@ -68,7 +68,7 @@ def head(p, extra_links=""):
 <meta property="og:description" content="{p['og']}">
 <meta property="og:image" content="https://drlochab.com/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{json.dumps(dict(schema, url=p['url']), ensure_ascii=False)}</script>
+<script type="application/ld+json">{json.dumps({"@context": "https://schema.org", "@graph": [dict(local_pages.physician(full=True), url=p["url"], logo="https://drlochab.com/logo-mark.png")]}, ensure_ascii=False)}</script>
 {extra_links}"""
 
 def split(html):
@@ -141,6 +141,11 @@ def link_lists(lang):
             "<!--ANSWER_LINKS-->": ans,
             "/*FOOD*/": food_js(lang),
             "<!--WA_CHANNEL-->": build_pages.channel_html(lang),
+            "<!--HOURS-->": ('<dl class="hours"><dt>Mon–Fri</dt><dd>6 pm – 8 pm</dd><dt>Sunday</dt><dd>9 am – 1 pm</dd><dt>Saturday</dt><dd>Closed</dd></dl>' if lang == "en"
+                             else '<dl class="hours"><dt>सोम–शुक्र</dt><dd>शाम 6 – 8 बजे</dd><dt>रविवार</dt><dd>सुबह 9 – दोपहर 1 बजे</dd><dt>शनिवार</dt><dd>बंद</dd></dl>')
+                            + f'<p><a style="color:var(--warm-on-ink)" href="{pre}gastroenterologist-in-gurgaon/">{local_pages.EN["more_local"] if lang == "en" else local_pages.HI["more_local"]} →</a></p>',
+            "<!--ABOUT_LINK-->": f'<a class="about-more" href="{pre}about-dr-kshitij-lochab/">{local_pages.EN["more_about"] if lang == "en" else local_pages.HI["more_about"]} →</a>',
+            "<!--FOOT_LINKS-->": f'<p class="foot-links"><a href="{pre}about-dr-kshitij-lochab/">{build_pages.FOOT_LINKS[lang][0]}</a> · <a href="{pre}gastroenterologist-in-gurgaon/">{build_pages.FOOT_LINKS[lang][1]}</a> · <a href="{pre}tools/gut-tracker/">{build_pages.FOOT_LINKS[lang][2]}</a></p>',
             "<!--TRACKER-->": ('<a class="ibs-track" href="tools/gut-tracker/">' + ("Track your symptoms privately →" if lang == "en" else "अपने लक्षण निजी रूप से ट्रैक करें →") + '</a>'),
             "<!--HUB-->": hub.hub_html(lang, hub.page_data(src[src.index("const ORGANS="):src.index("const esc=")] if lang == "en" else hindi.DATA_JS))}
 

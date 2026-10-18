@@ -20,6 +20,7 @@ PROC_UPDATED = ("2026-10-17", "17 October 2026", "17 अक्टूबर 2026"
 PHONE, WA = "+91 96671 04882", "https://wa.me/919667104882"
 # WhatsApp Channel for the daily tip. Paste the channel's invite link here (https://whatsapp.com/channel/...); left empty, every channel link stays hidden.
 WA_CHANNEL = ""
+FOOT_LINKS = {"en": ("About Dr. Lochab", "Gastroenterologist in Gurgaon", "Gut health tracker"), "hi": ("डॉ. लोचब के बारे में", "गुड़गाँव में गैस्ट्रोएंटेरोलॉजिस्ट", "पेट की सेहत का ट्रैकर")}
 CHANNEL_TXT = {"en": ("Get a daily gut-health tip on WhatsApp", "Join the channel"), "hi": ("पेट की सेहत की रोज़ की सलाह WhatsApp पर पाएँ", "चैनल से जुड़ें")}
 
 TRACK_CONDS = {"ibs-irritable-bowel-syndrome", "constipation", "acidity-reflux-gerd", "ulcerative-colitis-crohns-disease", "h-pylori-gastritis-ulcer"}
@@ -29,6 +30,13 @@ TRACK_TXT = {"en": ("Keep a symptom diary", "Log your bowel habits, symptoms and
 def tracker_note(lang):
     h, p_, b = TRACK_TXT[lang]
     return f'<section class="note"><p><b>{h}.</b> {p_}</p><p><a class="btn btn-ghost btn-sm" href="{url(lang, "tools", "gut-tracker")}">{b} →</a></p></section>'
+
+def aka(lang, slug):
+    """'Also searched as' Hinglish line on Hindi pages (hinglish.py)."""
+    import hinglish
+    if lang != "hi" or slug not in hinglish.AKA:
+        return ""
+    return f'<p class="aka">{hinglish.LABEL} <span lang="hi-Latn">{e(" · ".join(hinglish.AKA[slug]))}</span></p>'
 
 def channel_html(lang, cls="chan"):
     """A small 'join the WhatsApp channel' block, or nothing while WA_CHANNEL is empty."""
@@ -47,11 +55,11 @@ L = {
    cta_h="Book a consultation", cta_p="Appointments and video consultations", cta_call="Call or WhatsApp", cta_wa="Message on WhatsApp",
    clinic="Arcura Clinic, M2K Corporate Park, 14, Mayfield Garden, Sector 51, Gurugram", also="Also at Apollo Hospitals, Golf Course Road",
    disc="This page is for general health education and does not replace a consultation. In an emergency, call 112 or go to the nearest emergency department.",
-   reg="Haryana Medical Council Reg. No. HN-23524", lang_link="हिंदी", lang_aria="यह पेज हिंदी में पढ़ें", city="in Gurugram",
+   reg="Haryana Medical Council Reg. No. HN-23524", lang_link="हिंदी", lang_aria="यह पेज हिंदी में पढ़ें", city="in Gurgaon (Gurugram)", hours="Mon–Fri 6–8 pm · Sun 9 am–1 pm",
    all_guides="More guides", guides="Guides",
    special="Special guides:", special_p="read the guide for your situation, with diet advice and the warning signs to watch for.",
    about="How it works", prep="Before the procedure", day="On the day", glance="At a glance", after="After the procedure",
-   alarm="Get medical help straight away if you have", alts="Other tests and options", where="{n} in Gurugram",
+   alarm="Get medical help straight away if you have", alts="Other tests and options", where="{n} in Gurgaon (Gurugram)",
    where_p="Dr. Kshitij Lochab, Consultant Gastroenterologist and Therapeutic Endoscopist (DrNB Gastroenterology, Medanta; Advanced Fellowship in EUS and ERCP), sees patients in Gurugram (Gurgaon) at Arcura Clinic, M2K Corporate Park, Sector 51, and at Apollo Hospitals, Golf Course Road. Book a consultation by call or WhatsApp on +91 96671 04882. Video consultations are available to go through your reports before a visit."),
  "hi": dict(home="होम", conds="बीमारियाँ", procs="जाँच और इलाज", answers="सवाल-जवाब", tips="रोज़ की सलाह", book="अपॉइंटमेंट",
    by="लेखक: डॉ. क्षितिज लोचब, कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट", upd="अपडेट", symptoms="आम लक्षण", causes="वजहें और ख़तरे",
@@ -61,11 +69,11 @@ L = {
    cta_h="अपॉइंटमेंट लें", cta_p="अपॉइंटमेंट और वीडियो कंसल्टेशन", cta_call="कॉल या WhatsApp करें", cta_wa="WhatsApp पर मैसेज करें",
    clinic="आर्क्योरा क्लिनिक, M2K कॉर्पोरेट पार्क, 14, मेफ़ील्ड गार्डन, सेक्टर 51, गुरुग्राम", also="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड में भी",
    disc="यह पेज सामान्य स्वास्थ्य जानकारी के लिए है और डॉक्टर की सलाह की जगह नहीं ले सकता। इमरजेंसी में 112 पर कॉल करें या सबसे पास की इमरजेंसी में जाएँ।",
-   reg="हरियाणा मेडिकल काउंसिल रजि. नं. HN-23524", lang_link="English", lang_aria="Read this page in English", city="गुरुग्राम",
+   reg="हरियाणा मेडिकल काउंसिल रजि. नं. HN-23524", lang_link="English", lang_aria="Read this page in English", city="गुरुग्राम (गुड़गाँव)", hours="सोम–शुक्र शाम 6–8 · रवि सुबह 9–1",
    all_guides="और गाइड", guides="गाइड",
    special="ख़ास गाइड:", special_p="अपनी स्थिति के लिए गाइड पढ़ें, जिसमें खाने की सलाह और ख़तरे के संकेत दिए गए हैं।",
    about="यह कैसे होता है", prep="प्रोसीजर से पहले", day="प्रोसीजर वाले दिन", glance="एक नज़र में", after="प्रोसीजर के बाद",
-   alarm="इनमें से कुछ भी हो तो तुरंत डॉक्टर को दिखाएँ", alts="दूसरी जाँचें और विकल्प", where="गुरुग्राम में {n}",
+   alarm="इनमें से कुछ भी हो तो तुरंत डॉक्टर को दिखाएँ", alts="दूसरी जाँचें और विकल्प", where="गुरुग्राम (गुड़गाँव) में {n}",
    where_p="डॉ. क्षितिज लोचब, कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट और थेराप्यूटिक एंडोस्कोपिस्ट (DrNB गैस्ट्रोएंटेरोलॉजी, मेदांता; EUS और ERCP में एडवांस्ड फ़ेलोशिप), गुरुग्राम (गुड़गाँव) में आर्क्योरा क्लिनिक, M2K कॉर्पोरेट पार्क, सेक्टर 51, और अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड में मरीज़ देखते हैं। अपॉइंटमेंट के लिए +91 96671 04882 पर कॉल या WhatsApp करें। मिलने से पहले रिपोर्ट दिखाने के लिए वीडियो कंसल्टेशन भी उपलब्ध है।"),
 }
 
@@ -163,16 +171,19 @@ def aside(lang):
     t = L[lang]
     return f"""<aside class="cta"><h2>{t['cta_h']}</h2><p class="lbl">{t['cta_p']}</p><p class="num">{PHONE}</p><p class="small">{t['cta_call']}</p>
 <a class="btn btn-solid" href="{WA}" target="_blank" rel="noopener">{t['cta_wa']}</a>
-<p class="small">{t['clinic']}</p><p class="small">{t['also']}</p></aside>"""
+<p class="small">{t['clinic']}</p><p class="small"><b>{t['hours']}</b></p><p class="small">{t['also']}</p>
+<p class="small"><a href="{pre(lang)}about-dr-kshitij-lochab/">{FOOT_LINKS[lang][0]} →</a></p></aside>"""
 
 def footer(lang):
     t = L[lang]
-    return f"""<footer><div class="wrap">{channel_html(lang, "chan chan-foot")}<p>{t['disc']}</p><p>Dr. Kshitij Lochab · {t['reg']} · {PHONE}</p><p>© 2026 Dr. Kshitij Lochab</p></div></footer>
+    fl = f'<p class="foot-links"><a href="{pre(lang)}about-dr-kshitij-lochab/">{FOOT_LINKS[lang][0]}</a> · <a href="{pre(lang)}gastroenterologist-in-gurgaon/">{FOOT_LINKS[lang][1]}</a> · <a href="{pre(lang)}tools/gut-tracker/">{FOOT_LINKS[lang][2]}</a></p>'
+    return f"""<footer><div class="wrap">{channel_html(lang, "chan chan-foot")}{fl}<p>{t['disc']}</p><p>Dr. Kshitij Lochab · {t['reg']} · {PHONE}</p><p>© 2026 Dr. Kshitij Lochab</p></div></footer>
 <a class="fab" href="{WA}" target="_blank" rel="noopener">{t['book']}</a>
 </body></html>"""
 
 def physician(lang):
-    return {"@type": "Physician", "name": "Dr. Kshitij Lochab", "url": SITE + pre(lang), "medicalSpecialty": "Gastroenterologic",
+    return {"@type": "Physician", "@id": "https://drlochab.com/#physician", "name": "Dr. Kshitij Lochab", "url": SITE + pre(lang), "medicalSpecialty": "Gastroenterologic",
+            "sameAs": ["https://share.google/9ZndZsg6NHVxeQfYl", "https://www.instagram.com/drlochab/", "https://www.linkedin.com/in/drlochab/"],
             "telephone": "+91-9667104882", "address": {"@type": "PostalAddress", "streetAddress": "Arcura Clinic, M2K Corporate Park, 14, Mayfield Garden, Sector 51",
             "addressLocality": "Gurugram", "addressRegion": "Haryana", "postalCode": "122018", "addressCountry": "IN"}}
 
@@ -257,7 +268,7 @@ def build():
             ld = ld_page(lang, path, c["n"], desc, "MedicalCondition", c["n"], x["faqs"], t["conds"], "conditions")
             page = (head(lang, title, desc, path_en, path_hi, ld) + header(lang, path_hi if lang == "en" else path_en)
                     + f'<main class="wrap grid"><article>{crumbs(lang, t["conds"], "conditions", c["n"])}'
-                    + f'<p class="eyebrow">{e(d["ORGANS"][c["o"]])}</p><h1>{e(c["n"])}</h1>{byline(lang)}' + "".join(body)
+                    + f'<p class="eyebrow">{e(d["ORGANS"][c["o"]])}</p><h1>{e(c["n"])}</h1>{aka(lang, base["slug"])}{byline(lang)}' + "".join(body)
                     + f"</article>{aside(lang)}</main>" + footer(lang))
             write(path, page); pages.append((path_en, path_hi))
         # ---- procedures
@@ -297,7 +308,7 @@ def build():
         for i, a in enumerate(S.ANSWERS):
             base = seo_en.ANSWERS[i]
             path, path_en, path_hi = url(lang, "answers", base["slug"]), url("en", "answers", base["slug"]), url("hi", "answers", base["slug"])
-            title = f"{a['q']} | Dr. Kshitij Lochab, Gurugram" if lang == "en" else f"{a['q']} | डॉ. क्षितिज लोचब, गुरुग्राम"
+            title = f"{a['q']} | Dr. Kshitij Lochab, Gurgaon" if lang == "en" else f"{a['q']} | डॉ. क्षितिज लोचब, गुड़गाँव"
             secs = []
             for h, parts in a["sections"]:
                 items = [p_[2:] for p_ in parts if p_.startswith("- ")]
@@ -327,7 +338,7 @@ def build():
                          rel[0][1] if rel else a["q"], [[a["q"], a["short"]]] + xfaqs, t["answers"], "conditions")
             page = (head(lang, title, a["desc"], path_en, path_hi, ld) + header(lang, path_hi if lang == "en" else path_en)
                     + f'<main class="wrap grid"><article>{crumbs(lang, t["answers"], "conditions", a["q"])}'
-                    + f'<p class="eyebrow">{t["answers"]}</p><h1>{e(a["q"])}</h1>{byline(lang)}' + body
+                    + f'<p class="eyebrow">{t["answers"]}</p><h1>{e(a["q"])}</h1>{aka(lang, base["slug"])}{byline(lang)}' + body
                     + f"</article>{aside(lang)}</main>" + footer(lang))
             write(path, page); pages.append((path_en, path_hi))
         # ---- special guides
@@ -389,6 +400,12 @@ def build():
         import gut_tracker
         path, path_en, path_hi, page = gut_tracker.render(lang, sys.modules[__name__])
         write(path, page); pages.append((path_en, path_hi))
+        import local_pages
+        cl = [(url(lang, "conditions", seo_en.CONDS[j]["slug"]), D[lang]["CONDITIONS"][j]["n"]) for j in range(len(seo_en.CONDS))]
+        pl = [(url(lang, "procedures", seo_en.PROCS[j]["slug"]), D[lang]["PROCS"][j]["n"]) for j in range(len(seo_en.PROCS))]
+        for kind in ("local", "about"):
+            path, path_en, path_hi, page = local_pages.render(lang, sys.modules[__name__], kind, cl, pl)
+            write(path, page); pages.append((path_en, path_hi))
     os.makedirs("site/assets", exist_ok=True)
     il_css = open("insta/illus.css").read()
     open("site/assets/pages.css", "w").write(open("pages.css").read() + il_css)
