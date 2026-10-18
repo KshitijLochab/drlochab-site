@@ -32,6 +32,10 @@ def _check():
             for x, y in zip(a["charts"][pk], b["charts"][pk]):
                 assert len(x) == len(y) and [o.split("|")[0] for o in x] == [o.split("|")[0] for o in y], (slug, pk, x)
         assert ("phase" in a) == ("phase" in b) == (len(plans) > 1), slug
+        assert ("stricture" in a) == ("stricture" in b), slug
+        if "stricture" in a:
+            for k in ("paras", "avoid", "help"):
+                assert len(a["stricture"][k]) == len(b["stricture"][k]), (slug, k)
     assert set(EN.PAGES) == set(HI.PAGES) == {s for s, _, _ in R.PAGES}
 
 def data_js(lang, U):
@@ -39,7 +43,7 @@ def data_js(lang, U):
     for c, en, es, hi, hs, f, p, t, _ in thali_foods.F:
         g, fl, fit = R.TAGS[en].split("|")
         foods.append(dict(k=en, n=en if lang == "en" else hi, e=en, s=es if lang == "en" else hs, c=c, f=f, p=p, t=t, g=g, fl=fl, fit=fit))
-    plans = [dict(key=p["key"], t=p["t"], good=p["good"], limit=p["limit"], avoid=p["avoid"], extra=p.get("extra", {})) for p in R.PLANS]
+    plans = [dict(key=p["key"], t=p["t"], good=p["good"], limit=p["limit"], avoid=p["avoid"], extra=p.get("extra", {}), why=p.get("why", "")) for p in R.PLANS]
     names = (EN if lang == "en" else HI).PLAN_NAME
     return json.dumps(dict(T=U, foods=foods, plans=plans, names=names, co=R.CO, slots=R.SLOTS, slotStart=R.SLOT_START, slotFit=R.SLOT_FIT,
                            cats=CATS[lang], order=[p["key"] for p in R.PLANS]), ensure_ascii=False)
@@ -141,6 +145,11 @@ def render_all(bp):
             sec.append(f'<p class="lead">{e(P["lead"])}</p>')
             sec.append(f'<p class="dc-jump"><a class="btn btn-solid btn-sm" href="#diary">{U["track_cta"]} →</a></p>')
             sec.append(f'<section><h2>{U["goals_h"]}</h2><ul class="dc-goals">' + "".join(f"<li>{e(g)}</li>" for g in P["goals"]) + "</ul></section>")
+            if "stricture" in P:
+                st = P["stricture"]
+                sec.append(f'<section class="dc-str" id="stricture"><h2>{e(st["h"])}</h2>' + "".join(f"<p>{e(x)}</p>" for x in st["paras"])
+                           + f'<div class="dc-two"><div class="gcol less"><h3>{e(st["avoid_h"])}</h3>{bp.ul(st["avoid"])}</div><div class="gcol more"><h3>{e(st["help_h"])}</h3>{bp.ul(st["help"])}</div></div>'
+                           + f'<p class="dc-urgent">{e(st["urgent"])}</p></section>')
             for pk in plans:
                 sub = f' <span class="dc-phase">{e(X.PLAN_NAME[pk].split(": ", 1)[-1])}</span>' if len(plans) > 1 else ""
                 intro = f'<p class="small">{e(P["phase"][pk])}</p>' if len(plans) > 1 else ""
@@ -193,6 +202,10 @@ CSS = r"""
 .dc-care>div{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
 .dc-care h3{font-family:var(--body);font-size:.95rem;font-weight:700;margin-bottom:6px}
 .dc-care p{font-size:.93rem;margin:0}
+.dc-str{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--warm);border-radius:18px;padding:20px}
+.dc-two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}.dc-two .gcol{background:var(--bg)}
+.dc-urgent{margin:14px 0 0;padding:12px 14px;border-radius:12px;background:var(--urgent-soft);color:var(--ink);font-weight:600}
+@media (max-width:640px){.dc-two{grid-template-columns:1fr}}
 .dc-note{font-size:.85rem;color:var(--muted);margin-top:28px}
 .dc-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
 .dc-card{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:start;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:18px;text-decoration:none;color:var(--ink)}
@@ -311,7 +324,7 @@ const match=(r,f)=>r[0]==="@"?f.fl.indexOf(r[1])>=0:r[0]==="#"?f.g===r[1]:r===f.
 const why=(r,f)=>{if(r[0]==="@")return T["r_"+r[1]];if(r[0]==="#")return T["r_"+r[1]]||T.r_name;for(const c of f.fl)if(T["r_"+c])return T["r_"+c];return T["r_"+f.g]||T.r_name;};
 function status(f){const p=P[S.plan],av=p.avoid.slice(),li=p.limit.slice();
   S.co.forEach(c=>{const r=D.co[c];if(r){(r.avoid||[]).forEach(x=>av.push(x));(r.limit||[]).forEach(x=>li.push(x));}});
-  for(const r of av)if(match(r,f))return["avoid",why(r,f)];
+  for(const r of av)if(match(r,f))return["avoid",(p.why&&p.avoid.indexOf(r)>=0)?T["r_"+p.why]:why(r,f)];
   for(const r of li)if(match(r,f))return["limit",why(r,f)];
   return p.good.indexOf(f.k)>=0?["good",""]:["",""];}
 function targets(){const p=P[S.plan],t=p.t,co=S.co,kg=+S.kg>20&&+S.kg<250?+S.kg:60;let pr=t.prot.slice();
