@@ -165,3 +165,39 @@ def diwali(alt):
             + diya(70, 236, .9) + diya(332, 232, .9) + '</svg>')
 
 ART["diwali-food-guide"] = diwali
+
+
+def winter(alt):
+    """A winter meal (viewBox 0 0 400 300): makki roti and sarson saag on a steel plate, a steaming cup of chai, oranges and gajar halwa."""
+    import math
+    flakes = "".join(
+        f'<g transform="translate({x} {y})" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity=".9">'
+        + "".join(f'<path d="M0 0 L{7*math.cos(a*math.pi/3):.1f} {7*math.sin(a*math.pi/3):.1f}"/>' for a in range(6)) + "</g>"
+        for x, y in [(62, 70), (334, 58), (352, 150), (46, 168), (300, 30), (96, 30)])
+    spots = "".join(f'<circle cx="{x}" cy="{y}" r="{r}" fill="#B9781E" opacity=".55"/>' for x, y, r in [(150, 138, 3), (172, 128, 2.5), (160, 158, 3.5), (182, 150, 2), (140, 158, 2.5), (176, 170, 2.8)])
+    halwa = "".join(f'<path d="M{x} {y} l7 -3" stroke="#F4E3C1" stroke-width="3" stroke-linecap="round"/>' for x, y in [(282, 222), (296, 214), (308, 226), (290, 232)])
+    return (f'<svg viewBox="0 0 400 300" role="img" aria-label="{alt}" xmlns="http://www.w3.org/2000/svg">'
+            '<defs><radialGradient id="wn-steel" cx="42%" cy="36%" r="72%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#E4E9EA"/><stop offset="1" stop-color="#B9C3C6"/></radialGradient>'
+            '<radialGradient id="wn-orange" cx="36%" cy="32%" r="70%"><stop offset="0" stop-color="#FFC069"/><stop offset=".7" stop-color="#F28C1E"/><stop offset="1" stop-color="#D96E0B"/></radialGradient>'
+            '<filter id="wn-sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0B2A26" flood-opacity=".22"/></filter></defs>'
+            '<circle cx="200" cy="150" r="140" fill="var(--accent-soft)"/>' + flakes +
+            # plate
+            '<g filter="url(#wn-sh)"><ellipse cx="196" cy="156" rx="104" ry="86" fill="#C8D0D2"/></g><ellipse cx="196" cy="156" rx="95" ry="78" fill="url(#wn-steel)"/>'
+            # makki roti, two stacked
+            '<circle cx="168" cy="152" r="44" fill="#E7B54A" stroke="#C99528" stroke-width="2"/><circle cx="160" cy="148" r="42" fill="#F2C75C" stroke="#C99528" stroke-width="2"/>' + spots +
+            # saag bowl with ghee
+            '<ellipse cx="236" cy="132" rx="40" ry="30" fill="#D5DCDD" stroke="#A9B4B7" stroke-width="2"/><ellipse cx="236" cy="128" rx="33" ry="22" fill="#4E7A2E"/>'
+            '<path d="M214 126 q8 -8 16 0 q8 8 16 0 q8 -8 12 2" fill="none" stroke="#6E9B3F" stroke-width="3" stroke-linecap="round"/><ellipse cx="240" cy="124" rx="9" ry="5" fill="#F7D46A"/>'
+            # chai cup and steam
+            '<g transform="translate(60 196)"><path d="M-30 -24 H30 L24 22 Q22 32 10 32 H-10 Q-22 32 -24 22 Z" fill="#FFFFFF" stroke="#97B6AF" stroke-width="3"/>'
+            '<path d="M-27 -16 H27 L22 18 Q21 26 10 26 H-10 Q-21 26 -22 18 Z" fill="#C68A55"/><path d="M30 -12 C46 -12 46 12 27 12" fill="none" stroke="#97B6AF" stroke-width="4"/>'
+            '<path d="M-12 -32 q6 -10 0 -20 M2 -32 q6 -10 0 -20 M16 -32 q6 -10 0 -20" fill="none" stroke="#97B6AF" stroke-width="3" stroke-linecap="round"/></g>'
+            # oranges
+            '<circle cx="330" cy="104" r="24" fill="url(#wn-orange)"/><circle cx="352" cy="128" r="20" fill="url(#wn-orange)"/>'
+            '<path d="M330 80 c4 -8 12 -10 18 -8 c-4 8 -12 10 -18 8z" fill="#3F8A3A"/><circle cx="330" cy="82" r="2" fill="#5A3A1A"/>'
+            # gajar halwa bowl
+            '<g filter="url(#wn-sh)"><ellipse cx="296" cy="236" rx="40" ry="18" fill="#C8D0D2"/></g><path d="M256 226 Q296 262 336 226 Z" fill="#E4E9EA" stroke="#B9C3C6" stroke-width="2"/>'
+            '<ellipse cx="296" cy="226" rx="38" ry="13" fill="#D8562A"/><ellipse cx="290" cy="222" rx="22" ry="6" fill="#E9733F" opacity=".8"/>' + halwa +
+            '</svg>')
+
+ART["winter-wedding-season-guide"] = winter

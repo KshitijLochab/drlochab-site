@@ -39,6 +39,21 @@ See `BRAND.md` for colours, type, voice and rules.
 ## Festival guides and banners
 - The Diwali guide lives in `diwali_guide.py` (EN, HI and its banner text) and is inserted first in `SPECIAL`. `seo_en.SEASONAL` is a list of banners with `slug`, optional `start` and `until`; `seo_hi.SEASONAL` holds the Hindi text in the same order. Each banner shows only between its start and until (checked at build time and in the browser), so several festivals can be queued ahead.
 
+- Winter and wedding season guide: `winter_guide.py` (EN, HI), inserted after Diwali in `SPECIAL`; its `SEASONS` list also holds the banner calendar to Oct 2027. `seasonal_calendar.md` lists every season, the dates and the guides still to write (Ramzan by 10 Jan 2027, Holi by 20 Feb 2027). Banners can link to an answer page with `kind="answers"`.
+
+## Diet charts and food diary (19 Oct 2026)
+- Pages: /diet-charts/ (index with the food diary) and 12 chart pages, EN + HI, built by `diet_charts.py` from `build_pages.build()`.
+- Rules (language-independent): `diet_rules.py` — food tags (group, flags, meal fit) for every food in `thali_foods.F`, 14 diary plans with targets (protein per kg, fibre, fat limit, vegetables, fruit, water, fried/sugary/salty limits, small meals, bedtime snack) and good/limit/avoid rules, comorbidity rules (diabetes, BP/heart, kidney, pregnancy, lactose, over 65), and the chart pages. `check()` stops the build if a food has no tags or a rule names an unknown food.
+- Text: `diet_text_en.py` / `diet_text_hi.py` (same keys, list lengths and veg/egg/non-veg codes; checked at build). Chart options start with V, E or N (W = Western).
+- Food diary privacy is the same as the gut tracker: localStorage only (`dd-set`, `dd-day-YYYY-MM-DD`, cleared after 30 days), CSP with connect-src 'none'. Never add analytics or fetch calls.
+- New foods go at the end of `thali_foods.F` with tags in `diet_rules.TAGS`; the Thali meter arrays are regenerated with `thali_foods.js()`.
+- Linked from the home page (hook card, nav, Thali tab), every page header and footer, and the diet section of matching condition pages.
+
+## Booking and sharing (19 Oct 2026)
+- Home: a trust strip on phones (photo, credentials, live open/closed status from Arcura hours in India time) and reason/time chips that pre-fill the WhatsApp booking message, ending "(Found you on drlochab.com)".
+- Inner pages: `page_extras()` in `build_pages.py` adds WhatsApp share links (under the byline and at the end of the article) and makes the booking buttons pre-fill a message naming the page the visitor was reading.
+- Search snippets: `fit_title()` / `fit_desc()` in `build_pages.head()` shorten titles (about 60 characters) and descriptions (about 158) for every generated page.
+
 ## Daily features
 - Food of the day: `food_day.py` (EN, HI, labels), injected at `/*FOOD*/` by `build_site.py`; one food per IST day, same order in both languages.
 - Stool check tool: `stool_check.py`, built at /tools/stool-check/ by `build_pages.build()`.

@@ -595,3 +595,8 @@ ANSWERS += _am3.MORE
 import diwali_guide as _dw
 SPECIAL.insert(0, _dw.HI)
 SEASONAL = [dict(SEASONAL), _dw.SEASON_HI]
+
+# Winter and wedding season guide (18 Oct 2026), same position as in seo_en.py.
+import winter_guide as _wg
+SPECIAL.insert(1, _wg.HI)
+SEASONAL = SEASONAL + _wg.SEASON_HI

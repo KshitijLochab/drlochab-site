@@ -35,14 +35,12 @@ PAGES = {
     "en": dict(
         lang="en", url="https://drlochab.com/", up="",
         title="Dr. Kshitij Lochab | Gastroenterologist in Gurgaon (Gurugram)",
-        desc=("Dr. Kshitij Lochab, gastroenterologist in Gurgaon (Gurugram). Plain-language guides to acidity, fatty liver, "
-              "jaundice, IBS and more, daily diet tips, and appointments at Arcura Clinic, Sector 51."),
+        desc=("Gastroenterologist in Gurgaon (Gurugram) at Arcura Clinic, Sector 51. Simple guides to acidity, fatty liver, IBS and jaundice, plus Indian diet charts."),
         og="Clear answers about your stomach, liver and digestion, with a new gut-health tip every day."),
     "hi": dict(
         lang="hi", url="https://drlochab.com/hi/", up="../",
-        title="डॉ. क्षितिज लोचब | गुड़गाँव (गुरुग्राम) में पेट और लिवर रोग विशेषज्ञ",
-        desc=("डॉ. क्षितिज लोचब, गुड़गाँव (गुरुग्राम) में गैस्ट्रोएंटेरोलॉजिस्ट। एसिडिटी, फैटी लिवर, पीलिया, IBS जैसी बीमारियों की "
-              "आसान भाषा में जानकारी, रोज़ की डाइट सलाह, और आर्क्योरा क्लिनिक, सेक्टर 51 में अपॉइंटमेंट।"),
+        title="डॉ. क्षितिज लोचब | गुड़गाँव में पेट और लिवर रोग विशेषज्ञ",
+        desc=("गुड़गाँव (गुरुग्राम) में गैस्ट्रोएंटेरोलॉजिस्ट, आर्क्योरा क्लिनिक, सेक्टर 51। एसिडिटी, फैटी लिवर, पीलिया और IBS की आसान जानकारी और डाइट चार्ट।"),
         og="पेट, लिवर और पाचन से जुड़े सवालों के सीधे जवाब, और हर दिन सेहत की एक नई सलाह।"),
 }
 
@@ -145,7 +143,7 @@ def link_lists(lang):
                              else '<dl class="hours"><dt>सोम–शुक्र</dt><dd>शाम 6 – 8 बजे</dd><dt>रविवार</dt><dd>सुबह 9 – दोपहर 1 बजे</dd><dt>शनिवार</dt><dd>बंद</dd></dl>')
                             + f'<p><a style="color:var(--warm-on-ink)" href="{pre}gastroenterologist-in-gurgaon/">{local_pages.EN["more_local"] if lang == "en" else local_pages.HI["more_local"]} →</a></p>',
             "<!--ABOUT_LINK-->": f'<a class="about-more" href="{pre}about-dr-kshitij-lochab/">{local_pages.EN["more_about"] if lang == "en" else local_pages.HI["more_about"]} →</a>',
-            "<!--FOOT_LINKS-->": f'<p class="foot-links"><a href="{pre}about-dr-kshitij-lochab/">{build_pages.FOOT_LINKS[lang][0]}</a> · <a href="{pre}gastroenterologist-in-gurgaon/">{build_pages.FOOT_LINKS[lang][1]}</a> · <a href="{pre}tools/gut-tracker/">{build_pages.FOOT_LINKS[lang][2]}</a></p>',
+            "<!--FOOT_LINKS-->": f'<p class="foot-links"><a href="{pre}about-dr-kshitij-lochab/">{build_pages.FOOT_LINKS[lang][0]}</a> · <a href="{pre}gastroenterologist-in-gurgaon/">{build_pages.FOOT_LINKS[lang][1]}</a> · <a href="{pre}tools/gut-tracker/">{build_pages.FOOT_LINKS[lang][2]}</a> · <a href="{pre}diet-charts/">{build_pages.L[lang]['dietnav']}</a></p>',
             "<!--TRACKER-->": ('<a class="ibs-track" href="tools/gut-tracker/">' + ("Track your symptoms privately →" if lang == "en" else "अपने लक्षण निजी रूप से ट्रैक करें →") + '</a>'),
             "<!--HUB-->": hub.hub_html(lang, hub.page_data(src[src.index("const ORGANS="):src.index("const esc=")] if lang == "en" else hindi.DATA_JS))}
 

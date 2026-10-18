@@ -142,7 +142,7 @@ PAIRS = [
  ('<p>Visited recently? You can share your experience on <a href="https://g.page/r/CYmK8BpICDd6EBM/review" target="_blank" rel="noopener" style="color:var(--warm-on-ink)">Google</a>. It helps others find the right care.</p>',
   '<p>हाल ही में आए थे? अपना अनुभव <a href="https://g.page/r/CYmK8BpICDd6EBM/review" target="_blank" rel="noopener" style="color:var(--warm-on-ink)">Google</a> पर शेयर करें। इससे दूसरों को सही इलाज ढूँढने में मदद मिलती है।</p>'),
  ('<p>Also consulting at Apollo Hospitals, Golf Course Road, Gurugram.</p>', '<p>अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड, गुरुग्राम में भी देखते हैं।</p>'),
- ('aria-label="Book on WhatsApp">', 'aria-label="WhatsApp पर अपॉइंटमेंट">'),
+ ('<a class="fab" href="#visit" aria-label="Book a visit">', '<a class="fab" href="#visit" aria-label="अपॉइंटमेंट लें">'),
  ('</svg>\n  Book\n</a>', '</svg>\n  अपॉइंटमेंट\n</a>'),
 
  # footer
@@ -153,7 +153,6 @@ PAIRS = [
  ('<p>© 2026 Dr. Kshitij Lochab</p>', '<p>© 2026 डॉ. क्षितिज लोचब</p>'),
 
  # myth buster and fibre counter
- ('<a href="#myths">Myth Buster</a>', '<a href="#myths">भ्रम या सच</a>'),
  ('<p class="eyebrow">Myth Buster</p>', '<p class="eyebrow">भ्रम और सच</p>'),
  ('<h2>Myth or fact? Take a guess</h2>', '<h2>भ्रम या सच? अंदाज़ा लगाइए</h2>'),
  ('<p class="lede">Swipe through common beliefs about the stomach and liver and guess which are true. New ones every Monday and Thursday.</p>',
@@ -185,6 +184,23 @@ PAIRS = [
  ('"addr","Address");', '"addr","पता");'),
  ('"phoneNum","Number");', '"phoneNum","नंबर");'),
 
+ # trust strip, open status, booking chips (18 Oct 2026)
+ ('<b>Dr. Kshitij Lochab</b><span>Gold Medal DrNB · EUS &amp; ERCP fellowship</span><span class="id-open" id="openNow">Arcura Clinic, Sector 51, Gurugram</span></div><a class="btn btn-solid btn-sm" href="#visit">Book</a>',
+  '<b>डॉ. क्षितिज लोचब</b><span>DrNB में ऑल-इंडिया गोल्ड मेडल · EUS और ERCP फ़ेलोशिप</span><span class="id-open" id="openNow">आर्क्योरा क्लिनिक, सेक्टर 51, गुरुग्राम</span></div><a class="btn btn-solid btn-sm" href="#visit">अपॉइंटमेंट</a>'),
+ ('<p class="reason-lbl">What is the visit about? <span>Optional</span></p>', '<p class="reason-lbl">किस बारे में दिखाना है? <span>चाहें तो चुनें</span></p>'),
+ ('<p class="reason-lbl">When suits you? <span>Optional</span></p>', '<p class="reason-lbl">कब आना ठीक रहेगा? <span>चाहें तो चुनें</span></p>'),
+ ('const OPENTXT={open:t=>`Open now · until ${t}`,today:t=>`Opens today at ${t}`,next:(d,t)=>`Next clinic: ${d}, ${t}`,place:"Arcura, Sector 51",t:{9:"9 am",13:"1 pm",18:"6 pm",20:"8 pm"},days:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],tom:"tomorrow"};',
+  'const OPENTXT={open:t=>`अभी खुला है · ${t} तक`,today:t=>`आज ${t} से`,next:(d,t)=>`अगला क्लिनिक: ${d}, ${t}`,place:"आर्क्योरा, सेक्टर 51",t:{9:"सुबह 9 बजे",13:"दोपहर 1 बजे",18:"शाम 6 बजे",20:"रात 8 बजे"},days:["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],tom:"कल"};'),
+ ('const BOOK={hello:"Hello Dr. Lochab, I would like to book a consultation",about:" about: ",when:"Preferred time: ",src:"(Found you on drlochab.com)",',
+  'const BOOK={hello:"नमस्ते डॉ. लोचब, मुझे अपॉइंटमेंट लेना है",about:", इस बारे में: ",when:"मेरे लिए सही समय: ",src:"(drlochab.com से)",'),
+ (' reasons:["Acidity or gastritis","Fatty liver or liver report","Jaundice or hepatitis","Gas, bloating or IBS","Constipation or loose motions","Endoscopy or colonoscopy","EUS or ERCP","Gallbladder or pancreas","Review of reports"],',
+  ' reasons:["एसिडिटी या गैस्ट्राइटिस","फैटी लिवर या लिवर रिपोर्ट","पीलिया या हेपेटाइटिस","गैस, पेट फूलना या IBS","कब्ज़ या दस्त","एंडोस्कोपी या कोलोनोस्कोपी","EUS या ERCP","पित्ताशय या पैंक्रियास","रिपोर्ट दिखानी है"],'),
+ (' times:["Weekday evening","Sunday morning","Video consultation"]};', ' times:["सोम–शुक्र शाम","रविवार सुबह","वीडियो कंसल्टेशन"]};'),
+ ('<span class="hook-k">Diet charts</span><span class="hook-q">What should I eat with fatty liver, acidity or IBS?</span><span class="hook-go">See diet charts →</span>',
+  '<span class="hook-k">डाइट चार्ट</span><span class="hook-q">फैटी लिवर, एसिडिटी या IBS में क्या खाएँ?</span><span class="hook-go">डाइट चार्ट देखें →</span>'),
+ ('<a href="diet-charts/">Diet charts</a>', '<a href="diet-charts/">डाइट चार्ट</a>'),
+ ('<p class="fb-plan"><a href="diet-charts/">Need a full diet plan for a condition, with a daily food diary? Open the diet charts →</a></p>',
+  '<p class="fb-plan"><a href="diet-charts/">किसी बीमारी के लिए पूरा डाइट प्लान और रोज़ की फ़ूड डायरी चाहिए? डाइट चार्ट खोलें →</a></p>'),
  # illustration labels
  ('label(196,104,"Stomach")+label(134,40,"Food pipe")+label(56,128,"Liver","middle")', 'label(196,104,"पेट")+label(134,40,"खाने की नली")+label(56,128,"लिवर","middle")'),
  ('label(120,195,"Polyp","middle")+label(228,318,"Large bowel","end")', 'label(120,195,"पॉलिप","middle")+label(228,318,"बड़ी आँत","end")'),
@@ -327,6 +343,14 @@ const FOODS=[
  {c:"o",n:"वेज मोमोज़, स्टीम्ड",s:"1 प्लेट, 6 मोमोज़",f:2,p:6,t:5},{c:"o",n:"पाव भाजी",s:"1 प्लेट, 2 पाव",f:6,p:9,t:18},{c:"o",n:"पिज़्ज़ा",s:"2 स्लाइस",f:2.5,p:13,t:14},
  {c:"o",n:"इंस्टेंट नूडल्स",s:"1 पैकेट",f:1.5,p:6,t:12},{c:"o",n:"रस्क या सादे बिस्कुट",s:"2 रस्क या 4 बिस्कुट",f:0.5,p:2,t:3},{c:"s",n:"जलेबी",s:"2 जलेबी",f:0,p:1,t:7},
  {c:"s",n:"गुलाब जामुन",s:"1 पीस",f:0,p:1.5,t:6},{c:"s",n:"लड्डू या बर्फ़ी",s:"1 पीस",f:0.5,p:2,t:7},{c:"s",n:"खीर या सेवइयाँ",s:"1 कटोरी",f:0.5,p:5,t:6},
- {c:"s",n:"आइसक्रीम",s:"1 स्कूप",f:0,p:2.5,t:7}
+ {c:"s",n:"आइसक्रीम",s:"1 स्कूप",f:0,p:2.5,t:7},{c:"g",n:"म्यूज़्ली या कॉर्नफ़्लेक्स, दूध के साथ",s:"1 बाउल",f:1.5,p:8,t:6.5},{c:"g",n:"दलिया, सब्ज़ियों के साथ",s:"1 बाउल",f:5,p:5,t:3},
+ {c:"g",n:"रागी (नाचनी) की रोटी या दलिया",s:"1 रोटी या 1 बाउल",f:3.5,p:2,t:0.5},{c:"g",n:"किनोआ, पका हुआ",s:"1 कटोरी",f:4,p:6.5,t:3},{c:"g",n:"रेड सॉस पास्ता",s:"1 प्लेट",f:4,p:10,t:9},
+ {c:"g",n:"व्हाइट सॉस पास्ता",s:"1 प्लेट",f:2.5,p:14,t:20},{c:"g",n:"वेज सैंडविच, होल व्हीट ब्रेड",s:"1 सैंडविच",f:4,p:7,t:6},{c:"g",n:"दही चावल",s:"1 कटोरी",f:0.5,p:7,t:5},
+ {c:"d",n:"मूँग दाल का चीला",s:"1 चीला",f:3,p:8,t:6},{c:"m",n:"हंग कर्ड या ग्रीक योगर्ट",s:"1 कटोरी",f:0,p:12,t:6},{c:"n",n:"ग्रिल्ड या स्टीम्ड मछली",s:"1 टुकड़ा, लगभग 100 ग्राम",f:0,p:22,t:4},
+ {c:"n",n:"ग्रिल्ड चिकन या फ़िश सलाद",s:"1 बाउल",f:3,p:26,t:8},{c:"n",n:"चिकन सूप, साफ़",s:"1 बाउल",f:0.5,p:8,t:3},{c:"v",n:"सब्ज़ियों का साफ़ सूप",s:"1 बाउल",f:2,p:1.5,t:1.5},
+ {c:"f",n:"कीवी",s:"1 फल",f:2.5,p:1,t:0.5},{c:"f",n:"प्रून्स (सूखे आलूबुख़ारे)",s:"4 से 5 प्रून्स",f:3,p:1,t:0},{c:"f",n:"अखरोट",s:"4 साबुत अखरोट, लगभग 15 ग्राम",f:1,p:2.5,t:10},
+ {c:"f",n:"मखाना, भुना",s:"1 बाउल",f:2,p:2.5,t:3},{c:"f",n:"इसबगोल, पानी में",s:"1 बड़ा चम्मच",f:4,p:0,t:0},{c:"k",n:"ORS",s:"1 गिलास",f:0,p:0,t:0},
+ {c:"o",n:"बर्गर (आलू टिक्की या चिकन)",s:"1 बर्गर",f:2.5,p:12,t:15},{c:"o",n:"अचार",s:"1 छोटा चम्मच",f:0,p:0,t:2.5},{c:"o",n:"पापड़",s:"1 पापड़, भुना",f:1,p:2.5,t:0.5},
+ {c:"s",n:"चॉकलेट",s:"2 छोटे टुकड़े, लगभग 20 ग्राम",f:0.5,p:1.5,t:6}
 ];
 '''

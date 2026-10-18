@@ -1,6 +1,13 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 19 Oct 2026 (site)
+- Diet charts section: /diet-charts/ plus 12 condition charts (gut health, fatty liver, acidity, IBS, constipation, gallstones, cirrhosis, jaundice, pancreatitis, colitis/Crohn's, celiac, loose motions), EN + HI, each with key goals, a sample day (veg, egg, non-veg and Western options), daily targets, eat more/cut down, caveats for diabetes, BP/heart, kidney disease, pregnancy and over-65, FAQs and when to see a doctor. Private food diary: log meals by slot, see protein, fibre, fat, vegetables, fruit and water against the chart, warnings for foods to avoid, and suggestions for the rest of the day. 24 foods added (dalia, ragi, quinoa, pasta, sandwich, curd rice, moong chilla, hung curd, grilled fish, chicken salad, soups, kiwi, prunes, walnuts, makhana, isabgol, ORS, burger, pickle, papad, chocolate…), 121 in all.
+- Home: trust strip on phones with live clinic status; booking reason and time chips that pre-fill WhatsApp; diet charts card and nav link.
+- Every article page: WhatsApp share links and booking messages that name the page.
+- Winter and wedding season guide (EN + HI) and a banner calendar to Oct 2027 (seasonal_calendar.md).
+- Search titles and descriptions shortened on all pages. Fix: header "Book a visit" text colour on inner pages.
+
 ## 18 Oct 2026 (profiles)
 - Practo cover images: wide 1920x480 (teal, credentials, no contact details) and 16:9 1920x1080 with portrait. Generator: social/practo_cover.py.
 

@@ -48,7 +48,7 @@ def channel_html(lang, cls="chan"):
 REVIEW = "https://g.page/r/CYmK8BpICDd6EBM/review"
 
 L = {
- "en": dict(home="Home", conds="Conditions", procs="Procedures", answers="Answers", tips="Daily tips", book="Book a visit",
+ "en": dict(home="Home", conds="Conditions", procs="Procedures", answers="Answers", tips="Daily tips", book="Book a visit", dietnav="Diet charts",
    by="By Dr. Kshitij Lochab, Consultant Gastroenterologist", upd="Updated", symptoms="Common symptoms", causes="Causes and risk factors",
    tests="How it is diagnosed", treat="Treatment", proc_help="Procedures that may help", diet="Diet guide", more="Eat more", less="Cut down",
    know="Good to know", when="When to see a gastroenterologist", faq="Common questions", related="Related conditions", read="Read next",
@@ -62,7 +62,7 @@ L = {
    about="How it works", prep="Before the procedure", day="On the day", glance="At a glance", after="After the procedure",
    alarm="Get medical help straight away if you have", alts="Other tests and options", where="{n} in Gurgaon (Gurugram)",
    where_p="Dr. Kshitij Lochab, Consultant Gastroenterologist and Therapeutic Endoscopist (DrNB Gastroenterology, Medanta; Advanced Fellowship in EUS and ERCP), sees patients in Gurugram (Gurgaon) at Arcura Clinic, M2K Corporate Park, Sector 51, and at Apollo Hospitals, Golf Course Road. Book a consultation by call or WhatsApp on +91 96671 04882. Video consultations are available to go through your reports before a visit."),
- "hi": dict(home="होम", conds="बीमारियाँ", procs="जाँच और इलाज", answers="सवाल-जवाब", tips="रोज़ की सलाह", book="अपॉइंटमेंट",
+ "hi": dict(home="होम", conds="बीमारियाँ", procs="जाँच और इलाज", answers="सवाल-जवाब", tips="रोज़ की सलाह", book="अपॉइंटमेंट", dietnav="डाइट चार्ट",
    by="लेखक: डॉ. क्षितिज लोचब, कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट", upd="अपडेट", symptoms="आम लक्षण", causes="वजहें और ख़तरे",
    tests="जाँच कैसे होती है", treat="इलाज", proc_help="इलाज में मदद करने वाले प्रोसीजर", diet="डाइट गाइड", more="ज़्यादा खाएँ", less="कम करें",
    know="जानने लायक", when="गैस्ट्रोएंटेरोलॉजिस्ट को कब दिखाएँ", faq="आम सवाल", related="जुड़ी हुई बीमारियाँ", read="यह भी पढ़ें",
@@ -88,7 +88,35 @@ def load():
 def pre(lang): return "/" if lang == "en" else "/hi/"
 def url(lang, kind, slug): return f"{pre(lang)}{kind}/{slug}/"
 
+TITLE_MAX, DESC_MAX = {"en": 60, "hi": 66}, 158
+
+def fit_title(lang, title):
+    """Shorter search title: drop '(Gurugram)' and shorten the name suffix until it fits (Google cuts titles near 60 characters)."""
+    if len(title) <= TITLE_MAX[lang]:
+        return title
+    if lang == "en":
+        steps = [(" (Gurugram)", ""), (" | Dr. Kshitij Lochab, Gurgaon", " | Dr. Lochab, Gurgaon"), (" | Dr. Kshitij Lochab", " | Dr. Lochab"), (" | Dr. Lochab, Gurgaon", " | Dr. Lochab"), (" | Dr. Lochab", "")]
+    else:
+        steps = [(" (गुड़गाँव)", ""), ("गुड़गाँव (गुरुग्राम) में", "गुड़गाँव में"), (" | डॉ. क्षितिज लोचब, गुड़गाँव", " | डॉ. लोचब, गुड़गाँव"), (" | डॉ. क्षितिज लोचब", " | डॉ. लोचब"), (" | डॉ. लोचब, गुड़गाँव", " | डॉ. लोचब"), (" | डॉ. लोचब", "")]
+    for a_, b_ in steps:
+        title = title.replace(a_, b_)
+        if len(title) <= TITLE_MAX[lang]:
+            break
+    return title
+
+def fit_desc(desc):
+    """Description that fits a search snippet: end at a full sentence when one fits, otherwise at a word, with an ellipsis."""
+    if len(desc) <= DESC_MAX:
+        return desc
+    cut = desc[:DESC_MAX]
+    for mark in (". ", "। ", "? "):
+        k = cut.rfind(mark)
+        if k >= 100:
+            return cut[:k + 1]
+    return cut[:DESC_MAX - 1].rsplit(" ", 1)[0].rstrip(",;:") + "…"
+
 def head(lang, title, desc, path_en, path_hi, ld):
+    title, desc = fit_title(lang, title), fit_desc(desc)
     canon = SITE + (path_en if lang == "en" else path_hi)
     fonts = "family=Young+Serif&family=Figtree:wght@400;500;600;700" + ("&family=Tiro+Devanagari+Hindi&family=Mukta:wght@400;500;600;700" if lang == "hi" else "")
     return f"""<!doctype html>
@@ -124,7 +152,7 @@ def header(lang, other_path):
     return f"""
 <header class="top"><div class="wrap">
   <a class="brand" href="{p}"><img src="/logo-mark.svg" alt="" width="40" height="40"><span><span class="brand-name">Dr. Kshitij Lochab</span><span class="brand-sub">{'Gastroenterology · Liver · Endoscopy' if lang=='en' else 'पेट · लिवर · एंडोस्कोपी'}</span></span></a>
-  <nav aria-label="Main"><a href="{p}#conditions">{t['conds']}</a><a href="{p}#procedures">{t['procs']}</a><a href="{p}#conditions">{t['answers']}</a><a href="{p}#daily">{t['tips']}</a><a class="btn btn-solid btn-sm" href="{p}#visit">{t['book']}</a></nav>
+  <nav aria-label="Main"><a href="{p}#conditions">{t['conds']}</a><a href="{p}#procedures">{t['procs']}</a><a href="{p}diet-charts/">{t['dietnav']}</a><a href="{p}#daily">{t['tips']}</a><a class="btn btn-solid btn-sm" href="{p}#visit">{t['book']}</a></nav>
   <a class="lang" href="{other_path}" lang="{'hi' if lang=='en' else 'en'}" aria-label="{t['lang_aria']}">{t['lang_link']}</a>
 </div></header>""" + season_bar(lang, other_path)
 
@@ -145,7 +173,7 @@ def season_bar(lang, here=""):
         hidden = " hidden" if start and now < datetime.datetime.fromisoformat(start) else ""
         x = cfg if lang == "en" else hx
         out += (f'<aside class="season"{hidden} aria-label="{"Festival guide" if lang == "en" else "त्योहार गाइड"}" data-from="{start or ""}" data-until="{cfg["until"]}"><div class="wrap"><span class="season-dot" aria-hidden="true"></span>'
-                f'<p>{e(x["text"])}</p><a class="season-btn" href="{url(lang, "guides", cfg["slug"])}">{e(x["btn"])} <span aria-hidden="true">→</span></a></div></aside>')
+                f'<p>{e(x["text"])}</p><a class="season-btn" href="{url(lang, cfg.get("kind", "guides"), cfg["slug"])}">{e(x["btn"])} <span aria-hidden="true">→</span></a></div></aside>')
     if not out:
         return ""
     return out + ('<script data-season>(function(){var n=new Date();document.querySelectorAll("aside.season").forEach(function(s){'
@@ -177,7 +205,7 @@ def aside(lang):
 
 def footer(lang):
     t = L[lang]
-    fl = f'<p class="foot-links"><a href="{pre(lang)}about-dr-kshitij-lochab/">{FOOT_LINKS[lang][0]}</a> · <a href="{pre(lang)}gastroenterologist-in-gurgaon/">{FOOT_LINKS[lang][1]}</a> · <a href="{pre(lang)}tools/gut-tracker/">{FOOT_LINKS[lang][2]}</a></p>'
+    fl = f'<p class="foot-links"><a href="{pre(lang)}about-dr-kshitij-lochab/">{FOOT_LINKS[lang][0]}</a> · <a href="{pre(lang)}gastroenterologist-in-gurgaon/">{FOOT_LINKS[lang][1]}</a> · <a href="{pre(lang)}tools/gut-tracker/">{FOOT_LINKS[lang][2]}</a> · <a href="{pre(lang)}diet-charts/">{L[lang]['dietnav']}</a></p>'
     return f"""<footer><div class="wrap">{channel_html(lang, "chan chan-foot")}{fl}<p>{t['disc']}</p><p>Dr. Kshitij Lochab · {t['reg']} · {PHONE}</p><p>© 2026 Dr. Kshitij Lochab</p></div></footer>
 <a class="fab" href="{WA}" target="_blank" rel="noopener">{t['book']}</a>
 </body></html>"""
@@ -200,7 +228,32 @@ def ld_page(lang, path, name, desc, about_type, about_name, faqs, mid_label, mid
             {"@type": "ListItem", "position": 3, "name": name, "item": SITE + path}]},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]}]}
 
+SHARE_TXT = {"en": ("Share on WhatsApp", "Know someone who needs this? Send it to them on WhatsApp.", "From Dr. Kshitij Lochab, gastroenterologist:",
+                    "Hello Dr. Lochab, I would like to book a consultation. I was reading your page: {t}", "(Found you on drlochab.com)"),
+             "hi": ("WhatsApp पर भेजें", "किसी अपने के काम आ सकता है? उन्हें WhatsApp पर भेजें।", "डॉ. क्षितिज लोचब, गैस्ट्रोएंटेरोलॉजिस्ट की ओर से:",
+                    "नमस्ते डॉ. लोचब, मुझे अपॉइंटमेंट लेना है। मैंने आपकी वेबसाइट पर यह पेज पढ़ा: {t}", "(drlochab.com से)")}
+
+def page_extras(path, text):
+    """Every article page gets WhatsApp share links (under the byline and at the end) and booking links whose message names the page."""
+    import re
+    lang = "hi" if path.startswith("/hi/") else "en"
+    m = re.search(r"<h1>(.*?)</h1>", text, re.S)
+    if not m or "<article" not in text:
+        return text
+    t = html.unescape(re.sub(r"<[^>]+>", "", m.group(1))).strip()
+    btn, end, lead, book, src = SHARE_TXT[lang]
+    share = "https://wa.me/?text=" + quote(f"{t}\n{lead} {SITE}{path}")
+    wa_book = WA + "?text=" + quote(book.format(t=t) + "\n" + src)
+    text = text.replace(f'href="{WA}"', f'href="{e(wa_book)}"')
+    top = f'<p class="share-top"><a class="share-link" href="{e(share)}" target="_blank" rel="noopener">{btn}</a></p>'
+    bottom = f'<section class="share-end"><p>{end}</p><a class="btn btn-sm btn-wa share-btn" href="{e(share)}" target="_blank" rel="noopener">{btn}</a></section>'
+    if 'class="byline"' in text:
+        i = text.index('class="byline"'); j = text.index("</p>", i) + 4
+        text = text[:j] + top + text[j:]
+    return text.replace("</article>", bottom + "</article>", 1)
+
 def write(path, text):
+    text = page_extras(path, text)
     full = "site" + path + "index.html"
     os.makedirs(os.path.dirname(full), exist_ok=True)
     open(full, "w").write(text)
@@ -257,6 +310,10 @@ def build():
                             f'<div class="gcol more"><h3>{t["more"]}</h3>{ul(g["more"])}</div>'
                             f'<div class="gcol less"><h3>{t["less"]}</h3>{ul(g["less"])}</div>'
                             f'<div class="gcol know"><h3>{t["know"]}</h3>{ul(g["know"])}</div></div></section>')
+            import diet_rules, diet_text_en, diet_text_hi
+            dc = [s_ for s_, _, c_ in diet_rules.PAGES if c_ == base["slug"]]
+            if dc:
+                body.append(f'<p class="dc-link"><a class="btn btn-ghost btn-sm" href="{url(lang, "diet-charts", dc[0])}">{(diet_text_en if lang == "en" else diet_text_hi).UI["cond_link"]} →</a></p>')
             body.append(f'<section class="see"><h2>{t["when"]}</h2><p>{e(c["e"])}</p></section>')
             if base["slug"] in TRACK_CONDS:
                 body.append(tracker_note(lang))
@@ -408,6 +465,10 @@ def build():
         for kind in ("local", "about"):
             path, path_en, path_hi, page = local_pages.render(lang, sys.modules[__name__], kind, cl, pl)
             write(path, page); pages.append((path_en, path_hi))
+    # ---- diet charts and food diary
+    import diet_charts
+    for path, path_en, path_hi, page in diet_charts.render_all(sys.modules[__name__]):
+        write(path, page); pages.append((path_en, path_hi))
     os.makedirs("site/assets", exist_ok=True)
     il_css = open("insta/illus.css").read()
     open("site/assets/pages.css", "w").write(open("pages.css").read() + il_css)

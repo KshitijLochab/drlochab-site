@@ -655,3 +655,8 @@ for _i, _slugs in _am3.COND_LINKS.items():
 import diwali_guide as _dw
 SPECIAL.insert(0, _dw.EN)
 SEASONAL = [dict(SEASONAL), _dw.SEASON_EN]
+
+# Winter and wedding season guide (18 Oct 2026), after Diwali; plus the banner calendar to Oct 2027.
+import winter_guide as _wg
+SPECIAL.insert(1, _wg.EN)
+SEASONAL = SEASONAL + _wg.SEASON_EN
