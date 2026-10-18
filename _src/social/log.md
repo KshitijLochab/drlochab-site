@@ -1,6 +1,9 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 19 Oct 2026 (social)
+- New-features promo (diet charts, food diary, comorbidity advice, Thali 120+ foods, winter guide, WhatsApp booking, print, home screen): Instagram carousel (7 slides), WhatsApp status (3) with EN and HI broadcast messages, LinkedIn document (PDF) and caption. Generator: social/diet_charts_promo.py.
+
 ## 19 Oct 2026 (site)
 - Site audit: fixed broken photo in the Hindi trust strip, low-contrast WhatsApp buttons and links, unreadable home cards and tracker tab in dark mode, tiny Myth Buster dots, a long heading overflowing on small phones, and diary picker keyboard focus. Added self-hosted fonts (no Google requests), a branded 404 page, web app manifest and icons, print layout for diet charts and guides. axe-core: 0 issues on 13 templates in light and dark mode.
 - Diet charts: 'Colitis and Crohn's' renamed 'Ulcerative colitis and Crohn's disease' (EN + HI). New third stage, 'Crohn's disease with a narrowing (stricture)': its own sample day, targets and diary rules (low residue for as long as the stricture is present; foods that can get stuck marked 'Avoid'), and a section explaining inflammatory, stricturing and penetrating disease, how strictures are found and treated (medicines, endoscopic balloon dilatation, surgery), patency capsule before capsule endoscopy, and the warning signs of a blocked bowel.
