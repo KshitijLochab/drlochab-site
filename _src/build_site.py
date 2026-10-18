@@ -153,7 +153,7 @@ for key, p in PAGES.items():
         s = s.replace(ph, block)
     assert "<!--HUB-->" not in s
     top, body = split(s)
-    fonts = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&family=Mukta:wght@400;500;600;700&display=swap">\n'
+    fonts = ('<link rel="stylesheet" href="/assets/fonts/fonts-hi.css">\n'
              if key == "hi" else "")
     path = f"{OUT}/index.html" if key == "en" else f"{OUT}/hi/index.html"
     open(path, "w").write(head(p, fonts) + top + "\n</head>\n<body>" + body + "\n</body>\n</html>\n")
@@ -171,6 +171,31 @@ apple = Image.new("RGBA", (180, 180), "#F3F7F6")
 apple.paste(mark.resize((180, 180), Image.LANCZOS), (0, 0), mark.resize((180, 180), Image.LANCZOS))
 apple.convert("RGB").save(f"{OUT}/apple-touch-icon.png")
 
+# small round-crop source for the phone trust strip (shown at 56 px)
+ph = Image.open("dr-lochab.jpg").convert("RGB")
+side = ph.width
+ph.crop((0, int(ph.height * 0.04), side, int(ph.height * 0.04) + side)).resize((112, 112), Image.LANCZOS).save(f"{OUT}/dr-lochab-thumb.jpg", quality=82)
+
+# web app manifest and icons ("Add to home screen")
+for size in (192, 512):
+    icon = Image.new("RGBA", (size, size), "#F3F7F6")
+    m = mark.resize((size, size), Image.LANCZOS); icon.paste(m, (0, 0), m); icon.convert("RGB").save(f"{OUT}/icon-{size}.png")
+    mk = Image.new("RGBA", (size, size), "#0B6A5E")          # maskable: mark inside the 80% safe zone
+    inner = int(size * 0.62); mm = mark.resize((inner, inner), Image.LANCZOS)
+    pad = Image.new("RGBA", (inner, inner), "#F3F7F6"); pad.paste(mm, (0, 0), mm)
+    mk.paste(pad, ((size - inner) // 2, (size - inner) // 2)); mk.convert("RGB").save(f"{OUT}/icon-maskable-{size}.png")
+json.dump({"name": "Dr. Kshitij Lochab, Gastroenterologist", "short_name": "Dr. Lochab", "start_url": "/", "scope": "/", "display": "standalone",
+           "background_color": "#F3F7F6", "theme_color": "#0B6A5E", "lang": "en",
+           "description": "Gut and liver health guides, diet charts, a private gut tracker and appointments with Dr. Kshitij Lochab in Gurugram.",
+           "icons": [{"src": "/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"},
+                     {"src": "/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable"},
+                     {"src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}],
+           "shortcuts": [{"name": "Diet charts", "url": "/diet-charts/"}, {"name": "Gut health tracker", "url": "/tools/gut-tracker/"}, {"name": "हिंदी", "url": "/hi/"}]},
+          open(f"{OUT}/site.webmanifest", "w"), ensure_ascii=False, indent=1)
+
+# self-hosted fonts
+shutil.copytree("webfonts", f"{OUT}/assets/fonts", dirs_exist_ok=True)
+
 og = Image.new("RGB", (1200, 630), "#F3F7F6")
 lock = Image.open("brand/logo-horizontal.png").convert("RGBA")
 lw = 640
@@ -184,6 +209,8 @@ open(f"{OUT}/CNAME", "w").write("drlochab.com\n")
 open(f"{OUT}/robots.txt", "w").write("User-agent: *\nAllow: /\nSitemap: https://drlochab.com/sitemap.xml\n")
 import build_pages
 pairs = [("/", "/hi/")] + build_pages.build()
+import not_found
+open(f"{OUT}/404.html", "w").write(not_found.render(build_pages))
 urls = "".join(
     f'  <url><loc>https://drlochab.com{u}</loc><changefreq>{"daily" if en == "/" else "monthly"}</changefreq>'
     f'<xhtml:link rel="alternate" hreflang="en" href="https://drlochab.com{en}"/>'

@@ -1,0 +1,49 @@
+{
+ "name": "Dr. Kshitij Lochab, Gastroenterologist",
+ "short_name": "Dr. Lochab",
+ "start_url": "/",
+ "scope": "/",
+ "display": "standalone",
+ "background_color": "#F3F7F6",
+ "theme_color": "#0B6A5E",
+ "lang": "en",
+ "description": "Gut and liver health guides, diet charts, a private gut tracker and appointments with Dr. Kshitij Lochab in Gurugram.",
+ "icons": [
+  {
+   "src": "/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "/icon-maskable-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
+  {
+   "src": "/icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "Diet charts",
+   "url": "/diet-charts/"
+  },
+  {
+   "name": "Gut health tracker",
+   "url": "/tools/gut-tracker/"
+  },
+  {
+   "name": "हिंदी",
+   "url": "/hi/"
+  }
+ ]
+}

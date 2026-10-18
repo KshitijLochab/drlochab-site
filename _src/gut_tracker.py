@@ -12,8 +12,8 @@ from stool_check import _shape
 SLUG = "gut-tracker"
 UPD = ("2026-10-17", "17 October 2026", "17 अक्टूबर 2026")
 
-CSP = ("default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
-       "font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'")
+CSP = ("default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; "
+       "font-src 'self'; img-src 'self' data: blob:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'")
 
 T_EN = dict(
  title="Gut Health Tracker: log bowel habits, symptoms and triggers | Dr. Kshitij Lochab",
@@ -131,7 +131,7 @@ CSS = r"""
 .gt-priv ul{margin:0;padding-left:20px;font-size:.95rem}
 .gt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:20px 0 8px}
 .gt-tab{font:inherit;font-weight:700;font-size:.92rem;padding:9px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
-.gt-tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.gt-tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .gt-panel{padding-top:8px}
 .gt-row{display:grid;gap:8px;margin:18px 0;padding-bottom:18px;border-bottom:1px solid var(--line)}
 .gt-row>label,.gt-lbl{font-weight:700}

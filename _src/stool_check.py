@@ -152,7 +152,7 @@ CSS = """
 .sc-res p{margin:0 0 6px}
 .sc-act{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
 .sc-act:empty{display:none}
-.btn-wa{background:#1E8E4E;color:#fff;border-color:#1E8E4E}
+.btn-wa{background:#167A3E;color:#fff;border-color:#167A3E}
 .btn-wa svg{width:18px;height:18px;vertical-align:-3px;margin-right:6px}
 """
 

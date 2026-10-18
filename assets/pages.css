@@ -129,7 +129,7 @@ footer{padding-block:36px 56px;font-size:.88rem;color:var(--muted);border-top:1p
 .alarm .small{margin-top:10px}
 section h3{margin-top:18px}
 
-.btn-wa{background:#1E8E4E;color:#fff;border-color:#1E8E4E}
+.btn-wa{background:#167A3E;color:#fff;border-color:#167A3E}
 .chan{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 14px}
 .chan-foot span{font-weight:600}
 .foot-links{font-weight:600}.foot-links a{color:inherit}
@@ -137,7 +137,7 @@ section h3{margin-top:18px}
 
 /* share and booking extras (18 Oct 2026) */
 .share-top{margin:-18px 0 24px}
-.share-link{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:600;color:#1E8E4E;text-decoration:none}
+.share-link{display:inline-flex;align-items:center;gap:7px;min-height:32px;font-size:.88rem;font-weight:600;color:#167A3E;text-decoration:none}
 .share-link::before,.share-btn::before{content:"";width:16px;height:16px;flex:none;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 20l1.4-4.2A8 8 0 1 1 8.6 19z' fill='none' stroke='black' stroke-width='2.2' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 20l1.4-4.2A8 8 0 1 1 8.6 19z' fill='none' stroke='black' stroke-width='2.2' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
 .share-link:hover{text-decoration:underline}
 .share-end{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:36px;padding:16px 18px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
@@ -146,6 +146,19 @@ section h3{margin-top:18px}
 
 .btn-ghost{color:var(--accent);background:transparent}
 .dc-link{margin:14px 0 28px}
+
+/* print: a clean chart or guide on paper */
+@media print{
+ .top,.season,aside.cta,.fab,.dd-wrap,.share-top,.share-end,.dc-jump,.dc-link,footer .foot-links,footer .chan,.links,.toc{display:none!important}
+ body{background:#fff;color:#000;font-size:11pt}
+ .grid{display:block}
+ .dc-slot,.dc-targets>div,.dc-care>div,.gcol,.dc-goals li,.dc-str,.faq{break-inside:avoid;border-color:#bbb}
+ a{color:#000;text-decoration:none}
+ h1{font-size:22pt}
+ main::after{content:"drlochab.com · Dr. Kshitij Lochab, Consultant Gastroenterologist · +91 96671 04882";display:block;margin-top:18pt;font-size:9pt;color:#444}
+}
+
+h1,h2{overflow-wrap:break-word;hyphens:auto}
 /* procedures */
 .il-fill{fill:var(--organ);stroke:var(--organ-line);stroke-width:1.5}
 .il-fill.on{fill:var(--accent-soft);stroke:var(--accent)}

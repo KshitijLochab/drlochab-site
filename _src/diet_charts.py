@@ -7,8 +7,8 @@ import diet_rules as R, diet_text_en as EN, diet_text_hi as HI, thali_foods
 
 KIND = "diet-charts"
 UPD = ("2026-10-19", "19 October 2026", "19 अक्टूबर 2026")
-CSP = ("default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
-       "font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'self'")
+CSP = ("default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; "
+       "font-src 'self'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'self'")
 CATS = {"en": {"g": "Roti, rice & breakfast", "d": "Dal & beans", "m": "Milk, curd & paneer", "n": "Eggs, chicken, fish & meat", "v": "Vegetables",
                "f": "Fruits & nuts", "k": "Tea, coffee & drinks", "o": "Oil, ghee & snacks", "s": "Sweets"},
         "hi": {"g": "रोटी, चावल, पोहा और अनाज", "d": "दाल और चने", "m": "दूध, दही और पनीर", "n": "अंडा, चिकन, मछली और मीट", "v": "सब्ज़ियाँ",
@@ -183,7 +183,7 @@ CSS = r"""
 .dc-legend>span{display:inline-flex;align-items:center;gap:6px}
 .dc-mark{flex:none;display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-radius:3px;position:relative;margin-top:.3em}
 .dc-mark::after{content:"";position:absolute;inset:2px;border-radius:50%;background:currentColor}
-.dc-veg{color:#1E8E4E}.dc-nonveg{color:#9C3B1E}.dc-egg{color:#C9851F}
+.dc-veg{color:#167A3E}.dc-nonveg{color:#9C3B1E}.dc-egg{color:#C9851F}
 .dc-nonveg::after{border-radius:0;clip-path:polygon(50% 5%,95% 95%,5% 95%)}
 .dc-west{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:1px 8px;margin-left:4px;vertical-align:1px}
 .dc-chart{display:grid;gap:10px}
@@ -442,7 +442,9 @@ sheet.addEventListener("click",e=>{if(e.target===sheet){closeSheet();return;}con
   else if(b.dataset.pc!==undefined){PK.cat=b.dataset.pc;drawSheet();}
   else if(b.dataset.k){add(PK.slot,b.dataset.k,1);say(fmt(T.added,{food:BY[b.dataset.k].n}));const y=document.getElementById("ddList").scrollTop;document.getElementById("ddList").innerHTML=listHtml();document.getElementById("ddList").scrollTop=y;}});
 document.getElementById("ddSearch").addEventListener("input",e=>{PK.q=e.target.value;document.getElementById("ddList").innerHTML=listHtml();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!sheet.hidden)closeSheet();});
+document.addEventListener("keydown",e=>{if(sheet.hidden)return;if(e.key==="Escape"){closeSheet();return;}
+  if(e.key==="Tab"){const f=[...sheet.querySelectorAll("button,input")].filter(x=>x.offsetParent);if(!f.length)return;const a=f[0],z=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}}});
 /* main events */
 let clearArmed=false;
 root.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;

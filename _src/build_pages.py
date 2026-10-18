@@ -139,9 +139,10 @@ def head(lang, title, desc, path_en, path_hi, ld):
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:image" content="{SITE}/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?{fonts}&display=swap">
+<link rel="preload" href="/assets/fonts/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/young-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">{'<link rel="stylesheet" href="/assets/fonts/fonts-hi.css">' if lang == "hi" else ""}
+<link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="/assets/pages.css">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 </head>
