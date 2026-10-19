@@ -2,6 +2,7 @@
 Newest first. Add every new post here so topics are not repeated.
 
 ## 19 Oct 2026 (social)
+- Four-tools promo (Food of the day, Gut Health Tracker, Stool check, Diet charts + diary): Instagram carousel (6), Instagram story / WhatsApp status (6 frames), LinkedIn single image + PDF, captions, WhatsApp messages EN + HI. Generator: social/four_tools_promo.py.
 - New-features promo (diet charts, food diary, comorbidity advice, Thali 120+ foods, winter guide, WhatsApp booking, print, home screen): Instagram carousel (7 slides), WhatsApp status (3) with EN and HI broadcast messages, LinkedIn document (PDF) and caption. Generator: social/diet_charts_promo.py.
 
 ## 19 Oct 2026 (site)
