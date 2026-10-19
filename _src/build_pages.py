@@ -221,7 +221,7 @@ def ld_page(lang, path, name, desc, about_type, about_name, faqs, mid_label, mid
     p = pre(lang); u = upd or UPDATED
     return {"@context": "https://schema.org", "@graph": [
         {"@type": "MedicalWebPage", "name": name, "description": desc, "url": SITE + path, "inLanguage": lang,
-         "lastReviewed": u[0], "dateModified": u[0], "author": physician(lang), "reviewedBy": physician(lang),
+         "lastReviewed": u[0], "dateModified": u[0] + "T09:00:00+05:30", "author": physician(lang), "reviewedBy": physician(lang),
          "about": {"@type": about_type, "name": about_name}},
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": L[lang]["home"], "item": SITE + p},

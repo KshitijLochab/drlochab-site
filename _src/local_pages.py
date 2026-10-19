@@ -174,7 +174,7 @@ def render(lang, bp, kind, conds, procs):
                 + sec(X["res_h"], f"<p>{e(X['res'])}</p>")
                 + sec(X["reg_h"], f"<p>{e(X['reg'])}</p>") + sec(X["lang_h"], f"<p>{e(X['langs'])}</p>")
                 + bp.faq_html(lang, X["faqs"]))
-        graph = [{"@type": "ProfilePage", "url": bp.SITE + path, "name": X["title"], "inLanguage": lang, "dateModified": UPD[0], "mainEntity": {"@id": "https://drlochab.com/#physician"}},
+        graph = [{"@type": "ProfilePage", "url": bp.SITE + path, "name": X["title"], "inLanguage": lang, "dateCreated": UPD[0] + "T09:00:00+05:30", "dateModified": UPD[0] + "T09:00:00+05:30", "mainEntity": {"@id": "https://drlochab.com/#physician"}},
                  physician(full=True)]
     ld = {"@context": "https://schema.org", "@graph": graph + [
         {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": t["home"], "item": bp.SITE + bp.pre(lang)},

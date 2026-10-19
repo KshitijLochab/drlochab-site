@@ -105,7 +105,7 @@ def ld(lang, bp, path, name, desc, faqs, idx=False):
              {"@type": "ListItem", "position": 2, "name": U["idx_eyebrow"], "item": bp.SITE + p + KIND + "/"}]
     if not idx:
         items.append({"@type": "ListItem", "position": 3, "name": name, "item": bp.SITE + path})
-    g = [{"@type": "MedicalWebPage", "name": name, "description": desc, "url": bp.SITE + path, "inLanguage": lang, "lastReviewed": UPD[0], "dateModified": UPD[0],
+    g = [{"@type": "MedicalWebPage", "name": name, "description": desc, "url": bp.SITE + path, "inLanguage": lang, "lastReviewed": UPD[0], "dateModified": UPD[0] + "T09:00:00+05:30",
           "author": bp.physician(lang), "reviewedBy": bp.physician(lang), "about": {"@type": "Diet", "name": name}},
          {"@type": "BreadcrumbList", "itemListElement": items}]
     if faqs:
