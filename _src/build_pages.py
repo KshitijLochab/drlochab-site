@@ -199,7 +199,7 @@ def links(items):
 
 def aside(lang):
     t = L[lang]
-    return f"""<aside class="cta"><h2>{t['cta_h']}</h2><p class="lbl">{t['cta_p']}</p><p class="num">{PHONE}</p><p class="small">{t['cta_call']}</p>
+    return f"""<aside class="cta"><h2>{t['cta_h']}</h2><p class="lbl">{t['cta_p']}</p><a class="num" href="tel:+919667104882" aria-label="{t['cta_call']}: {PHONE}"><span class="num-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg></span>{PHONE}</a><p class="small">{t['cta_call']}</p>
 <a class="btn btn-solid" href="{WA}" target="_blank" rel="noopener">{t['cta_wa']}</a>
 <p class="small">{t['clinic']}</p><p class="small"><b>{t['hours']}</b></p><p class="small">{t['also']}</p>
 <p class="small"><a href="{pre(lang)}about-dr-kshitij-lochab/">{FOOT_LINKS[lang][0]} →</a></p></aside>"""

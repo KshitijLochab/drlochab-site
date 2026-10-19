@@ -201,6 +201,7 @@ PAIRS = [
  ('<a href="diet-charts/">Diet charts</a>', '<a href="diet-charts/">डाइट चार्ट</a>'),
  ('<p class="fb-plan"><a href="diet-charts/">Need a full diet plan for a condition, with a daily food diary? Open the diet charts →</a></p>',
   '<p class="fb-plan"><a href="diet-charts/">किसी बीमारी के लिए पूरा डाइट प्लान और रोज़ की फ़ूड डायरी चाहिए? डाइट चार्ट खोलें →</a></p>'),
+ ('aria-label="Call +91 96671 04882"', 'aria-label="+91 96671 04882 पर कॉल करें"'),
  # illustration labels
  ('label(196,104,"Stomach")+label(134,40,"Food pipe")+label(56,128,"Liver","middle")', 'label(196,104,"पेट")+label(134,40,"खाने की नली")+label(56,128,"लिवर","middle")'),
  ('label(120,195,"Polyp","middle")+label(228,318,"Large bowel","end")', 'label(120,195,"पॉलिप","middle")+label(228,318,"बड़ी आँत","end")'),
