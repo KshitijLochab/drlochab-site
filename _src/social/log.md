@@ -1,6 +1,9 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 20 Oct 2026 (site, from Search Console 8–17 Oct)
+- Hindi ERCP title now 'ERCP क्या होता है' (query: ercp operation kya hota hai); Hindi jaundice diet chart title adds 'परहेज' (query: पीलिया में परहेज); Hinglish search line now also on procedure pages (ERCP, EUS, endoscopy, colonoscopy) plus 'piliya me parhej' and 'cirrhosis treatment in hindi'; pregnancy guide FAQ 'How long does bloating last in early pregnancy?' (EN + HI; page was at position 8 for it).
+
 ## 20 Oct 2026 (social)
 - Dussehra greeting story (Instagram + WhatsApp, 1080x1920, EN and HI): bow and flaming arrow, burning effigy, marigold toran, three festive-eating tips. Generator: social/dussehra_story.py.
 

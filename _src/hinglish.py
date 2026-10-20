@@ -11,7 +11,7 @@ AKA = {
  "fatty-liver": ["fatty liver ka ilaj", "liver me charbi", "fatty liver grade 1"],
  "hepatitis-b-c": ["hepatitis b ka ilaj", "kala piliya"],
  "jaundice": ["piliya ke lakshan", "peeliya ka ilaj", "piliya kaise hota hai"],
- "cirrhosis": ["liver kharab hone ke lakshan", "liver cirrhosis ka ilaj"],
+ "cirrhosis": ["liver kharab hone ke lakshan", "liver cirrhosis ka ilaj", "cirrhosis treatment in hindi"],
  "gallstones": ["pitt ki thaili me pathri", "gallbladder stone ka ilaj"],
  "pancreatitis": ["pancreas me sujan", "pancreatitis ke lakshan"],
  "pancreatic-cysts": ["pancreas me cyst", "pancreas me ganth"],
@@ -21,7 +21,7 @@ AKA = {
  "colon-polyps-colon-cancer": ["aant ka cancer ke lakshan", "aant me ganth"],
  # answers
  "blood-in-stool-always-piles": ["potty me blood aana", "latrine me khoon aana", "mal me khoon"],
- "diet-in-jaundice": ["piliya me kya khana chahiye", "jaundice diet in hindi"],
+ "diet-in-jaundice": ["piliya me kya khana chahiye", "piliya me parhej", "jaundice diet in hindi"],
  "gas-and-bloating": ["pet me gas banna", "pet phoolna", "gas ka ilaj"],
  "is-endoscopy-painful": ["endoscopy me dard hota hai kya", "doorbeen se jaanch"],
  "when-is-acidity-serious": ["acidity kab khatarnak hai", "acidity ke lakshan"],
@@ -50,4 +50,9 @@ AKA = {
  "burping-and-hiccups": ["baar baar dakar aana", "hichki kaise roke"],
  "how-much-alcohol-is-safe-for-liver": ["sharab se liver kharab"],
  "travellers-diarrhoea": ["safar me dast"],
+ # procedures (19 Oct 2026, from Search Console queries)
+ "ercp": ["ercp kya hota hai", "ercp operation kya hota hai", "pitt ki nali se pathri nikalna"],
+ "endoscopic-ultrasound-eus": ["eus test kya hai", "endoscopic ultrasound kya hota hai"],
+ "upper-gi-endoscopy": ["endoscopy kaise hoti hai", "doorbeen se pet ki jaanch"],
+ "colonoscopy": ["colonoscopy kya hai", "colonoscopy kaise hoti hai"],
 }

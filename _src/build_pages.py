@@ -360,7 +360,7 @@ def build():
             ld = ld_page(lang, path, pr["n"], desc, "MedicalProcedure", pr["n"], faqs, t["procs"], "procedures", upd)
             page = (head(lang, title, desc, path_en, path_hi, ld) + header(lang, path_hi if lang == "en" else path_en)
                     + f'<main class="wrap grid"><article>{crumbs(lang, t["procs"], "procedures", pr["n"])}'
-                    + f'<p class="eyebrow">{e(pr["a"])}</p><h1>{e(pr["n"])}</h1>{byline(lang, upd)}' + "".join(body)
+                    + f'<p class="eyebrow">{e(pr["a"])}</p><h1>{e(pr["n"])}</h1>{aka(lang, base["slug"])}{byline(lang, upd)}' + "".join(body)
                     + f"</article>{aside(lang)}</main>" + footer(lang))
             write(path, page); pages.append((path_en, path_hi))
         # ---- answers
