@@ -1,6 +1,9 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 20 Oct 2026 (site, links)
+- Arcura Clinic profile (arcuracare.com/dr-kshitij-lochab/) and Instagram @drlochab: in the site's structured data (sameAs), a social line in every page footer, 'Find me online' on the About page, an Arcura button on the Gurgaon page, and a profile link under the address on the home booking panel. Arcura's page lists PIN 122003 vs 122018 on the site: to be confirmed and made consistent; Arcura asked to link back to drlochab.com.
+
 ## 20 Oct 2026 (site, from Search Console 8–17 Oct)
 - Hindi ERCP title now 'ERCP क्या होता है' (query: ercp operation kya hota hai); Hindi jaundice diet chart title adds 'परहेज' (query: पीलिया में परहेज); Hinglish search line now also on procedure pages (ERCP, EUS, endoscopy, colonoscopy) plus 'piliya me parhej' and 'cirrhosis treatment in hindi'; pregnancy guide FAQ 'How long does bloating last in early pregnancy?' (EN + HI; page was at position 8 for it).
 

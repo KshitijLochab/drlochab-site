@@ -22,6 +22,13 @@ PHONE, WA = "+91 96671 04882", "https://wa.me/919667104882"
 ANSWER_IL = {"capsule-endoscopy": "capsule"}  # answer pages that show a home-page procedure drawing
 WA_CHANNEL = ""
 FOOT_LINKS = {"en": ("About Dr. Lochab", "Gastroenterologist in Gurgaon", "Gut health tracker"), "hi": ("डॉ. लोचब के बारे में", "गुड़गाँव में गैस्ट्रोएंटेरोलॉजिस्ट", "पेट की सेहत का ट्रैकर")}
+SOCIAL = {"en": ("Instagram @drlochab", "LinkedIn", "Profile on Arcura Clinic"), "hi": ("Instagram @drlochab", "LinkedIn", "आर्क्योरा क्लिनिक पर प्रोफ़ाइल")}
+
+def social_html(lang):
+    a, b, c = SOCIAL[lang]
+    return (f'<p class="foot-social"><a href="https://www.instagram.com/drlochab/" target="_blank" rel="noopener">{a}</a> · '
+            f'<a href="https://www.linkedin.com/in/drlochab/" target="_blank" rel="noopener">{b}</a> · '
+            f'<a href="https://arcuracare.com/dr-kshitij-lochab/" target="_blank" rel="noopener">{c}</a></p>')
 CHANNEL_TXT = {"en": ("Get a daily gut-health tip on WhatsApp", "Join the channel"), "hi": ("पेट की सेहत की रोज़ की सलाह WhatsApp पर पाएँ", "चैनल से जुड़ें")}
 
 TRACK_CONDS = {"ibs-irritable-bowel-syndrome", "constipation", "acidity-reflux-gerd", "ulcerative-colitis-crohns-disease", "h-pylori-gastritis-ulcer"}
@@ -207,13 +214,13 @@ def aside(lang):
 def footer(lang):
     t = L[lang]
     fl = f'<p class="foot-links"><a href="{pre(lang)}about-dr-kshitij-lochab/">{FOOT_LINKS[lang][0]}</a> · <a href="{pre(lang)}gastroenterologist-in-gurgaon/">{FOOT_LINKS[lang][1]}</a> · <a href="{pre(lang)}tools/gut-tracker/">{FOOT_LINKS[lang][2]}</a> · <a href="{pre(lang)}diet-charts/">{L[lang]['dietnav']}</a></p>'
-    return f"""<footer><div class="wrap">{channel_html(lang, "chan chan-foot")}{fl}<p>{t['disc']}</p><p>Dr. Kshitij Lochab · {t['reg']} · {PHONE}</p><p>© 2026 Dr. Kshitij Lochab</p></div></footer>
+    return f"""<footer><div class="wrap">{channel_html(lang, "chan chan-foot")}{fl}{social_html(lang)}<p>{t['disc']}</p><p>Dr. Kshitij Lochab · {t['reg']} · {PHONE}</p><p>© 2026 Dr. Kshitij Lochab</p></div></footer>
 <a class="fab" href="{WA}" target="_blank" rel="noopener">{t['book']}</a>
 </body></html>"""
 
 def physician(lang):
     return {"@type": "Physician", "@id": "https://drlochab.com/#physician", "name": "Dr. Kshitij Lochab", "url": SITE + pre(lang), "medicalSpecialty": "Gastroenterologic",
-            "sameAs": ["https://share.google/9ZndZsg6NHVxeQfYl", "https://www.instagram.com/drlochab/", "https://www.linkedin.com/in/drlochab/"],
+            "sameAs": ["https://share.google/9ZndZsg6NHVxeQfYl", "https://www.instagram.com/drlochab/", "https://www.linkedin.com/in/drlochab/", "https://arcuracare.com/dr-kshitij-lochab/"],
             "telephone": "+91-9667104882", "address": {"@type": "PostalAddress", "streetAddress": "Arcura Clinic, M2K Corporate Park, 14, Mayfield Garden, Sector 51",
             "addressLocality": "Gurugram", "addressRegion": "Haryana", "postalCode": "122018", "addressCountry": "IN"}}
 

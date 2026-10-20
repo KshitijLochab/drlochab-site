@@ -4,7 +4,9 @@ import json
 
 UPD = ("2026-10-18", "18 October 2026", "18 अक्टूबर 2026")
 GBP = "https://share.google/9ZndZsg6NHVxeQfYl"
-SAME_AS = [GBP, "https://www.instagram.com/drlochab/", "https://www.linkedin.com/in/drlochab/"]
+ARCURA = "https://arcuracare.com/dr-kshitij-lochab/"
+INSTAGRAM, LINKEDIN = "https://www.instagram.com/drlochab/", "https://www.linkedin.com/in/drlochab/"
+SAME_AS = [GBP, INSTAGRAM, LINKEDIN, ARCURA]
 HOURS = [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "18:00", "closes": "20:00"},
          {"@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "09:00", "closes": "13:00"}]
 ADDRESS = {"@type": "PostalAddress", "streetAddress": "Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51",
@@ -147,6 +149,9 @@ CSS = """
 @media (max-width:560px){.lp-head{grid-template-columns:110px 1fr}.lp-head img{width:110px;height:138px}}
 """
 
+ONLINE = {"en": ("Find me online", "Instagram @drlochab: gut-health tips", "LinkedIn", "Profile on Arcura Clinic", "Google Business Profile and reviews"),
+          "hi": ("ऑनलाइन यहाँ मिलें", "Instagram @drlochab: पेट की सेहत की सलाह", "LinkedIn", "आर्क्योरा क्लिनिक पर प्रोफ़ाइल", "Google बिज़नेस प्रोफ़ाइल और रिव्यू")}
+
 def render(lang, bp, kind, conds, procs):
     """kind: 'local' or 'about'. conds/procs: lists of (url, name) in the page language."""
     X = (EN if lang == "en" else HI)[kind]; e = bp.e; t = bp.L[lang]
@@ -157,7 +162,8 @@ def render(lang, bp, kind, conds, procs):
         body = (f'<p class="lead">{e(X["lead"])}</p>'
                 + sec(X["clinic_h"], "".join(f"<p>{e(p)}</p>" for p in X["clinic"]) + f'<h3>{e(X["hours_h"])}</h3>{hours}<p>{e(X["book"])}</p>'
                       f'<div class="lp-act"><a class="btn btn-solid btn-sm" href="{bp.WA}" target="_blank" rel="noopener">{e(X["wa"])}</a>'
-                      f'<a class="btn btn-ghost btn-sm" href="{GBP}" target="_blank" rel="noopener">{e(X["dir"])}</a></div>')
+                      f'<a class="btn btn-ghost btn-sm" href="{GBP}" target="_blank" rel="noopener">{e(X["dir"])}</a>'
+                      f'<a class="btn btn-ghost btn-sm" href="{ARCURA}" target="_blank" rel="noopener">{e(ONLINE[lang][3])}</a></div>')
                 + sec(X["treat_h"], bp.links(conds))
                 + sec(X["proc_h"], f'<p>{e(X["proc_p"])}</p>' + bp.links(procs))
                 + f'<section class="see"><h2>{e(X["when_h"])}</h2>{bp.ul(X["when"])}<p>{e(X["urgent"])}</p></section>'
@@ -173,6 +179,7 @@ def render(lang, bp, kind, conds, procs):
                 + sec(X["proc_h"], bp.links(procs))
                 + sec(X["res_h"], f"<p>{e(X['res'])}</p>")
                 + sec(X["reg_h"], f"<p>{e(X['reg'])}</p>") + sec(X["lang_h"], f"<p>{e(X['langs'])}</p>")
+                + sec(ONLINE[lang][0], '<div class="links">' + "".join(f'<a href="{u}" target="_blank" rel="noopener">{e(n)} <span aria-hidden="true">→</span></a>' for u, n in zip((INSTAGRAM, LINKEDIN, ARCURA, GBP), ONLINE[lang][1:])) + "</div>")
                 + bp.faq_html(lang, X["faqs"]))
         graph = [{"@type": "ProfilePage", "url": bp.SITE + path, "name": X["title"], "inLanguage": lang, "dateCreated": UPD[0] + "T09:00:00+05:30", "dateModified": UPD[0] + "T09:00:00+05:30", "mainEntity": {"@id": "https://drlochab.com/#physician"}},
                  physician(full=True)]
