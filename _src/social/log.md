@@ -1,6 +1,9 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 20 Oct 2026 (social)
+- Dussehra greeting story (Instagram + WhatsApp, 1080x1920, EN and HI): bow and flaming arrow, burning effigy, marigold toran, three festive-eating tips. Generator: social/dussehra_story.py.
+
 ## 19 Oct 2026 (site)
 - Phone number on the home booking panel and every page's booking box is now a highlighted tap-to-call button (phone icon, amber on the home panel, teal on inner pages). 'Ask your family on WhatsApp' in Myth Buster is now a solid WhatsApp-green button instead of dark green text on a dark card.
 
