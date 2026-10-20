@@ -1,7 +1,7 @@
 # Brand and content guide: Dr. Kshitij Lochab
 
 ## Who
-Dr. Kshitij Lochab, Consultant Gastroenterologist and Therapeutic Endoscopist, Gurugram. DrNB Gastroenterology, Medanta – The Medicity (All-India Gold Medal). Advanced Fellowship in EUS and ERCP. Associate Consultant, Apollo Hospitals, Golf Course Road. Private clinic: Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51, Gurugram 122018. Haryana Medical Council Reg. No. HN-23524. Phone and WhatsApp: +91 96671 04882. Website: drlochab.com (English) and drlochab.com/hi (Hindi).
+Dr. Kshitij Lochab, Consultant Gastroenterologist and Therapeutic Endoscopist, Gurugram. DrNB Gastroenterology, Medanta – The Medicity (All-India Gold Medal). Advanced Fellowship in EUS and ERCP. Associate Consultant, Apollo Hospitals, Golf Course Road. Private clinic: Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51, Gurugram 122003. Haryana Medical Council Reg. No. HN-23524. Phone and WhatsApp: +91 96671 04882. Website: drlochab.com (English) and drlochab.com/hi (Hindi).
 Does not perform third-space endoscopy (POEM, ESD): never list these.
 
 ## Look

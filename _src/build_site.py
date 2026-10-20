@@ -26,7 +26,7 @@ schema = {
         "streetAddress": "Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51",
         "addressLocality": "Gurugram",
         "addressRegion": "Haryana",
-        "postalCode": "122018",
+        "postalCode": "122003",
         "addressCountry": "IN",
     },
 }

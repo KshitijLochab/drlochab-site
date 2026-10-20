@@ -1,6 +1,9 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 20 Oct 2026 (site, PIN)
+- Clinic PIN code corrected to 122003 (confirmed by Dr. Lochab) everywhere: visible address, copy-address button, Gurgaon page, structured data, BRAND.md.
+
 ## 20 Oct 2026 (site, links)
 - Arcura Clinic profile (arcuracare.com/dr-kshitij-lochab/) and Instagram @drlochab: in the site's structured data (sameAs), a social line in every page footer, 'Find me online' on the About page, an Arcura button on the Gurgaon page, and a profile link under the address on the home booking panel. Arcura's page lists PIN 122003 vs 122018 on the site: to be confirmed and made consistent; Arcura asked to link back to drlochab.com.
 

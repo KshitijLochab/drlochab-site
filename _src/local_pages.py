@@ -10,7 +10,7 @@ SAME_AS = [GBP, INSTAGRAM, LINKEDIN, ARCURA]
 HOURS = [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "18:00", "closes": "20:00"},
          {"@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "09:00", "closes": "13:00"}]
 ADDRESS = {"@type": "PostalAddress", "streetAddress": "Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51",
-           "addressLocality": "Gurugram", "addressRegion": "Haryana", "postalCode": "122018", "addressCountry": "IN"}
+           "addressLocality": "Gurugram", "addressRegion": "Haryana", "postalCode": "122003", "addressCountry": "IN"}
 
 def physician(full=False):
     p = {"@type": "Physician", "@id": "https://drlochab.com/#physician", "name": "Dr. Kshitij Lochab", "url": "https://drlochab.com/",
@@ -33,7 +33,7 @@ EN = dict(
   desc="Consult Dr. Kshitij Lochab, gastroenterologist and therapeutic endoscopist in Gurgaon (Gurugram), at Arcura Clinic, Sector 51: timings, address, conditions treated, endoscopy, EUS and ERCP.",
   lead="Dr. Kshitij Lochab is a consultant gastroenterologist and therapeutic endoscopist in Gurgaon (Gurugram). He treats problems of the food pipe, stomach, intestines, liver, gallbladder and pancreas in adults and teenagers aged 12 and above, in English and Hindi.",
   clinic_h="Clinic and timings",
-  clinic=["Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51, Gurugram (Gurgaon), Haryana 122018. Near Sohna Road and Nirvana Country.",
+  clinic=["Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51, Gurugram (Gurgaon), Haryana 122003. Near Sohna Road and Nirvana Country.",
           "Also consulting at Apollo Hospitals, Golf Course Road, Gurugram."],
   hours_h="Arcura Clinic hours", hours=[("Monday to Friday", "6 pm to 8 pm"), ("Sunday", "9 am to 1 pm"), ("Saturday", "Closed")],
   book="Appointments and video consultations: call or WhatsApp +91 96671 04882.", wa="Book on WhatsApp", dir="Get directions",
@@ -87,7 +87,7 @@ HI = dict(
   desc="गुड़गाँव (गुरुग्राम) में गैस्ट्रोएंटेरोलॉजिस्ट डॉ. क्षितिज लोचब से आर्क्योरा क्लिनिक, सेक्टर 51 में मिलें: समय, पता, किन बीमारियों का इलाज, एंडोस्कोपी, EUS और ERCP।",
   lead="डॉ. क्षितिज लोचब गुड़गाँव (गुरुग्राम) में कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट और थेराप्यूटिक एंडोस्कोपिस्ट हैं। वे खाने की नली, पेट, आँतों, लिवर, पित्ताशय और पैंक्रियास की बीमारियों का इलाज करते हैं, बड़ों और 12 साल से बड़े किशोरों का, हिंदी और अंग्रेज़ी में।",
   clinic_h="क्लिनिक और समय",
-  clinic=["आर्क्योरा क्लिनिक, M2K कॉर्पोरेट पार्क एंड शॉपिंग प्लाज़ा, 14, मेफ़ील्ड गार्डन, सेक्टर 51, गुरुग्राम (गुड़गाँव), हरियाणा 122018। सोहना रोड और निर्वाणा कंट्री के पास।",
+  clinic=["आर्क्योरा क्लिनिक, M2K कॉर्पोरेट पार्क एंड शॉपिंग प्लाज़ा, 14, मेफ़ील्ड गार्डन, सेक्टर 51, गुरुग्राम (गुड़गाँव), हरियाणा 122003। सोहना रोड और निर्वाणा कंट्री के पास।",
           "अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड, गुरुग्राम में भी परामर्श।"],
   hours_h="आर्क्योरा क्लिनिक का समय", hours=[("सोमवार से शुक्रवार", "शाम 6 से 8 बजे"), ("रविवार", "सुबह 9 से दोपहर 1 बजे"), ("शनिवार", "बंद")],
   book="अपॉइंटमेंट और वीडियो परामर्श: +91 96671 04882 पर कॉल या WhatsApp करें।", wa="WhatsApp पर अपॉइंटमेंट", dir="रास्ता देखें",

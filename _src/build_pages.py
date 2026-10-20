@@ -222,7 +222,7 @@ def physician(lang):
     return {"@type": "Physician", "@id": "https://drlochab.com/#physician", "name": "Dr. Kshitij Lochab", "url": SITE + pre(lang), "medicalSpecialty": "Gastroenterologic",
             "sameAs": ["https://share.google/9ZndZsg6NHVxeQfYl", "https://www.instagram.com/drlochab/", "https://www.linkedin.com/in/drlochab/", "https://arcuracare.com/dr-kshitij-lochab/"],
             "telephone": "+91-9667104882", "address": {"@type": "PostalAddress", "streetAddress": "Arcura Clinic, M2K Corporate Park, 14, Mayfield Garden, Sector 51",
-            "addressLocality": "Gurugram", "addressRegion": "Haryana", "postalCode": "122018", "addressCountry": "IN"}}
+            "addressLocality": "Gurugram", "addressRegion": "Haryana", "postalCode": "122003", "addressCountry": "IN"}}
 
 def ld_page(lang, path, name, desc, about_type, about_name, faqs, mid_label, mid_anchor, upd=None):
     p = pre(lang); u = upd or UPDATED
