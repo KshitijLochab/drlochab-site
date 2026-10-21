@@ -105,6 +105,22 @@ def food_js(lang):
     items = food_day.EN if lang == "en" else [dict(h, ic=e["ic"], col=e["col"]) for h, e in zip(food_day.HI, food_day.EN)]
     return "const FOD=" + json.dumps(items, ensure_ascii=False) + ";\nconst FO=" + json.dumps(food_day.LABELS[lang], ensure_ascii=False) + ";"
 
+def diet_tab(lang):
+    """The 'Diet charts' tab in Gut Health Daily: one card per chart page, plus the food diary. Relative links work from / and /hi/."""
+    import diet_rules, diet_text_en, diet_text_hi
+    T = diet_text_en if lang == "en" else diet_text_hi
+    esc = lambda x: _html.escape(x, quote=True)
+    intro = ("Indian diet charts for 12 gut and liver conditions, with veg and non-veg options. The food diary shows what your day is missing."
+             if lang == "en" else "पेट और लिवर की 12 बीमारियों के लिए भारतीय डाइट चार्ट, शाकाहारी और नॉन-वेज विकल्पों के साथ। फ़ूड डायरी बताती है कि आज के खाने में क्या कम है।")
+    allc = "All diet charts" if lang == "en" else "सभी डाइट चार्ट"
+    note = ("These are general charts. Your own diet may need changes based on your reports, other conditions and medicines."
+            if lang == "en" else "ये सामान्य चार्ट हैं। आपकी रिपोर्ट, दूसरी बीमारियों और दवाइयों के हिसाब से आपकी डाइट में बदलाव की ज़रूरत हो सकती है।")
+    cards = "".join(f'<a href="diet-charts/{slug}/"><b>{esc(T.PAGES[slug]["name"])}</b><span>{esc(T.PAGES[slug]["blurb"])}</span></a>'
+                    for slug, _, _ in diet_rules.PAGES)
+    return (f'<div class="dtab-top"><p>{esc(intro)}</p><div class="btns"><a class="btn btn-solid btn-sm" href="diet-charts/#diary">{T.UI["diary_btn"]}</a>'
+            f'<a class="btn btn-ghost btn-sm" href="diet-charts/">{allc}</a></div></div><div class="dtab">{cards}</div>'
+            f'<p class="small" style="margin-top:16px">{esc(note)}</p>')
+
 def link_lists(lang):
     """Static, crawlable links from the home page to every condition, procedure and answer page."""
     pre = "/" if lang == "en" else "/hi/"
@@ -145,6 +161,8 @@ def link_lists(lang):
             "<!--ABOUT_LINK-->": f'<a class="about-more" href="{pre}about-dr-kshitij-lochab/">{local_pages.EN["more_about"] if lang == "en" else local_pages.HI["more_about"]} →</a>',
             "<!--FOOT_LINKS-->": f'<p class="foot-links"><a href="{pre}about-dr-kshitij-lochab/">{build_pages.FOOT_LINKS[lang][0]}</a> · <a href="{pre}gastroenterologist-in-gurgaon/">{build_pages.FOOT_LINKS[lang][1]}</a> · <a href="{pre}tools/gut-tracker/">{build_pages.FOOT_LINKS[lang][2]}</a> · <a href="{pre}diet-charts/">{build_pages.L[lang]['dietnav']}</a></p>' + build_pages.social_html(lang),
             "<!--TRACKER-->": ('<a class="ibs-track" href="tools/gut-tracker/">' + ("Track your symptoms privately →" if lang == "en" else "अपने लक्षण निजी रूप से ट्रैक करें →") + '</a>'),
+            "<!--DIET_TAB-->": diet_tab(lang),
+            "<!--DIET_FAB-->": build_pages.diet_fab(lang, "diet-charts/"),
             "<!--HUB-->": hub.hub_html(lang, hub.page_data(src[src.index("const ORGANS="):src.index("const esc=")] if lang == "en" else hindi.DATA_JS))}
 
 for key, p in PAGES.items():

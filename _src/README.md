@@ -70,3 +70,9 @@ See `BRAND.md` for colours, type, voice and rules.
 - `local_pages.py`: Gurgaon landing page and About page (EN + HI), plus the shared Physician structured data (hours, address, sameAs) used on the home page. Update hours and sameAs there.
 - `hinglish.py`: Roman-script Hindi search phrases shown on Hindi pages; add entries for new pages.
 - Titles use 'Gurgaon (Gurugram)' (`city` and `where` in `build_pages.L`).
+
+### 21 Oct 2026: one diet section
+- The "Diet guides" tab in Gut Health Daily is now a "Diet charts" tab: cards for the 12 chart pages (from `diet_rules.PAGES` and `diet_text_*.PAGES`), the food diary button and "All diet charts". Built by `build_site.diet_tab()` into `<!--DIET_TAB-->`.
+- The `const GUIDES` data stays in `lochab-gastro.html`: `extract.js` uses it for the diet sections on condition pages. Only the picker UI was removed.
+- Phones (≤760px): a floating "Diet charts" pill bottom left (`build_pages.diet_fab()`, class `fab fab-diet`), on the home page and all inner pages except the diet chart pages themselves (`footer(lang, diet=False)`).
+- Tablets: the header keeps the "Diet charts" link (`.nav-diet`) when the other text links hide. Inner-page header nav now hides at 760px, same as the home page.

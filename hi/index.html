@@ -76,7 +76,7 @@ section{padding-block:72px;scroll-margin-top:70px}
 nav{display:flex;gap:20px;align-items:center;margin-left:auto}
 @media (max-width:1180px){nav{gap:16px}nav a[href="#about"]{display:none}}
 @media (max-width:1100px){nav a[href="#symptoms"],nav a[href="#procedures"]{display:none}}
-@media (max-width:980px){nav a:not(.btn){display:none}.brand-sub{letter-spacing:.06em}}
+@media (max-width:980px){nav a:not(.btn):not(.nav-diet){display:none}.brand-sub{letter-spacing:.06em}}
 nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.95rem;white-space:nowrap}
 nav a:hover{color:var(--accent)}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:.98rem;text-decoration:none;border:1.5px solid var(--accent);cursor:pointer;font-family:var(--body)}
@@ -215,15 +215,15 @@ nav a:hover{color:var(--accent)}
 .ibs-body .try{background:var(--surface)}
 .ibs-body .cat{background:var(--surface)}
 @media (max-width:960px){.today-wrap{grid-template-columns:1fr}}
-.guide-picker{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
-.guide{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.guide-col{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;min-width:0}
-.guide-col h4{margin:0 0 10px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
-.guide-col.more h4{color:var(--accent)}
-.guide-col.less h4{color:var(--urgent)}
-.guide-col.know h4{color:var(--warm-text)}
-.guide-col ul{margin:0;padding-left:18px;display:grid;gap:6px}
-@media (max-width:860px){.guide{grid-template-columns:1fr}}
+.dtab-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin-bottom:18px}
+.dtab-top p{color:var(--muted);max-width:60ch}
+.dtab-top .btns{display:flex;flex-wrap:wrap;gap:10px}
+.dtab{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.dtab a{display:grid;gap:4px;align-content:start;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;text-decoration:none;color:var(--ink);min-width:0}
+.dtab a:hover{border-color:var(--accent)}
+.dtab b{font-size:1rem;color:var(--accent)}
+.dtab span{font-size:.88rem;color:var(--muted)}
+@media (max-width:560px){.dtab{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.dtab a{padding:12px 14px;align-content:center}.dtab span{display:none}.dtab b{font-size:.95rem}}
 .past{display:grid;gap:0;border-top:1px solid var(--line)}
 .past details{border-bottom:1px solid var(--line)}
 .past summary{cursor:pointer;list-style:none;display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:baseline;padding-block:14px}
@@ -247,6 +247,7 @@ nav a:hover{color:var(--accent)}
 @media (max-width:760px){
   .fab{display:flex;align-items:center;gap:8px;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;padding:13px 18px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.22)}
   .fab svg{width:20px;height:20px}
+  .fab-diet{right:auto;left:16px;background:var(--surface);color:var(--accent);border:1.5px solid var(--accent);padding:12px 16px}
   footer{padding-bottom:110px}
 }
 
@@ -627,7 +628,7 @@ body{line-height:1.7}
       <a href="#daily">रोज़ की सलाह</a>
       <a href="#symptoms">लक्षण</a>
       <a href="#conditions">बीमारियाँ</a>
-      <a href="diet-charts/">डाइट चार्ट</a>
+      <a class="nav-diet" href="diet-charts/">डाइट चार्ट</a>
       <a href="#procedures">जाँच और इलाज</a>
       <a href="#about">डॉक्टर के बारे में</a>
       <a class="btn btn-solid btn-sm" href="#visit">अपॉइंटमेंट</a>
@@ -635,7 +636,7 @@ body{line-height:1.7}
     <a class="lang" href="/" lang="en" hreflang="en" aria-label="Read this page in English">English</a>
   </div>
 </header>
-<aside class="season" aria-label="त्योहार गाइड" data-from="" data-until="2026-10-21T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>नवरात्रि 2026: बिना एसिडिटी के व्रत कैसे रखें, व्रत के दिन के आसान प्लान के साथ</p><a class="season-btn" href="/hi/guides/navratri-fasting-guide/">गाइड पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2026-10-21T00:00:00+05:30" data-until="2026-11-12T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>दिवाली 2026: बिना एसिडिटी के मिठाई का मज़ा, खाने की सुरक्षा और दिन के आसान प्लान के साथ</p><a class="season-btn" href="/hi/guides/diwali-food-guide/">गाइड पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2026-11-12T00:00:00+05:30" data-until="2026-12-22T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>शादियों का मौसम: बिना एसिडिटी, कब्ज़ या लिवर की परेशानी के दावतों का मज़ा</p><a class="season-btn" href="/hi/guides/winter-wedding-season-guide/">गाइड पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2026-12-22T00:00:00+05:30" data-until="2027-01-02T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>पार्टी का मौसम: लिवर के लिए कितनी शराब सुरक्षित है?</p><a class="season-btn" href="/hi/answers/how-much-alcohol-is-safe-for-liver/">और पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2027-01-02T00:00:00+05:30" data-until="2027-02-01T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>सर्दी, लोहड़ी और संक्रांति: कब्ज़ से बचें और लिवर का ख़याल रखें</p><a class="season-btn" href="/hi/guides/winter-wedding-season-guide/">गाइड पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2027-03-24T00:00:00+05:30" data-until="2027-04-16T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>चैत्र नवरात्रि 2027: बिना एसिडिटी के व्रत कैसे रखें, व्रत के दिन के आसान प्लान के साथ</p><a class="season-btn" href="/hi/guides/navratri-fasting-guide/">गाइड पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2027-04-16T00:00:00+05:30" data-until="2027-07-01T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>गर्मी: दूषित पानी और खाने से पीलिया, और इससे कैसे बचें</p><a class="season-btn" href="/hi/answers/hepatitis-a-and-e/">और पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2027-07-01T00:00:00+05:30" data-until="2027-09-16T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>बरसात: दस्त और पेट का इंफ़ेक्शन, क्या मदद करता है और कब डॉक्टर को दिखाएँ</p><a class="season-btn" href="/hi/answers/stomach-infection-gastroenteritis/">और पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2027-09-16T00:00:00+05:30" data-until="2027-10-09T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>नवरात्रि 2027: बिना एसिडिटी के व्रत कैसे रखें, व्रत के दिन के आसान प्लान के साथ</p><a class="season-btn" href="/hi/guides/navratri-fasting-guide/">गाइड पढ़ें <span aria-hidden="true">→</span></a></div></aside><script data-season>(function(){var n=new Date();document.querySelectorAll("aside.season").forEach(function(s){var f=s.dataset.from,u=s.dataset.until;if(n>=new Date(u)||(f&&n<new Date(f)))s.remove();else s.hidden=false;});})();</script>
+<aside class="season" aria-label="त्योहार गाइड" data-from="2026-10-21T00:00:00+05:30" data-until="2026-11-12T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>दिवाली 2026: बिना एसिडिटी के मिठाई का मज़ा, खाने की सुरक्षा और दिन के आसान प्लान के साथ</p><a class="season-btn" href="/hi/guides/diwali-food-guide/">गाइड पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2026-11-12T00:00:00+05:30" data-until="2026-12-22T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>शादियों का मौसम: बिना एसिडिटी, कब्ज़ या लिवर की परेशानी के दावतों का मज़ा</p><a class="season-btn" href="/hi/guides/winter-wedding-season-guide/">गाइड पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2026-12-22T00:00:00+05:30" data-until="2027-01-02T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>पार्टी का मौसम: लिवर के लिए कितनी शराब सुरक्षित है?</p><a class="season-btn" href="/hi/answers/how-much-alcohol-is-safe-for-liver/">और पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2027-01-02T00:00:00+05:30" data-until="2027-02-01T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>सर्दी, लोहड़ी और संक्रांति: कब्ज़ से बचें और लिवर का ख़याल रखें</p><a class="season-btn" href="/hi/guides/winter-wedding-season-guide/">गाइड पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2027-03-24T00:00:00+05:30" data-until="2027-04-16T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>चैत्र नवरात्रि 2027: बिना एसिडिटी के व्रत कैसे रखें, व्रत के दिन के आसान प्लान के साथ</p><a class="season-btn" href="/hi/guides/navratri-fasting-guide/">गाइड पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2027-04-16T00:00:00+05:30" data-until="2027-07-01T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>गर्मी: दूषित पानी और खाने से पीलिया, और इससे कैसे बचें</p><a class="season-btn" href="/hi/answers/hepatitis-a-and-e/">और पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2027-07-01T00:00:00+05:30" data-until="2027-09-16T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>बरसात: दस्त और पेट का इंफ़ेक्शन, क्या मदद करता है और कब डॉक्टर को दिखाएँ</p><a class="season-btn" href="/hi/answers/stomach-infection-gastroenteritis/">और पढ़ें <span aria-hidden="true">→</span></a></div></aside><aside class="season" hidden aria-label="त्योहार गाइड" data-from="2027-09-16T00:00:00+05:30" data-until="2027-10-09T00:00:00+05:30"><div class="wrap"><span class="season-dot" aria-hidden="true"></span><p>नवरात्रि 2027: बिना एसिडिटी के व्रत कैसे रखें, व्रत के दिन के आसान प्लान के साथ</p><a class="season-btn" href="/hi/guides/navratri-fasting-guide/">गाइड पढ़ें <span aria-hidden="true">→</span></a></div></aside><script data-season>(function(){var n=new Date();document.querySelectorAll("aside.season").forEach(function(s){var f=s.dataset.from,u=s.dataset.until;if(n>=new Date(u)||(f&&n<new Date(f)))s.remove();else s.hidden=false;});})();</script>
 
 <main id="top">
   <section class="hero">
@@ -693,7 +694,7 @@ body{line-height:1.7}
       <div class="tabs" role="tablist" aria-label="रोज़ की सेहत सलाह">
         <button class="tab" role="tab" id="tab-today" aria-controls="panel-today" aria-selected="true">आज की सलाह</button>
         <button class="tab" role="tab" id="tab-fibre" aria-controls="fibre" aria-selected="false" tabindex="-1">थाली मीटर</button>
-        <button class="tab" role="tab" id="tab-guides" aria-controls="panel-guides" aria-selected="false" tabindex="-1">डाइट गाइड</button>
+        <button class="tab" role="tab" id="tab-guides" aria-controls="panel-guides" aria-selected="false" tabindex="-1">डाइट चार्ट</button>
         <button class="tab" role="tab" id="tab-past" aria-controls="panel-past" aria-selected="false" tabindex="-1">पुरानी सलाह</button>
       </div>
       <div role="tabpanel" id="panel-today" aria-labelledby="tab-today">
@@ -720,9 +721,7 @@ body{line-height:1.7}
         <div class="fb" id="fb"></div>
       </div>
       <div role="tabpanel" id="panel-guides" aria-labelledby="tab-guides" hidden>
-        <div class="guide-picker" id="guidePicker" role="group" aria-label="डाइट गाइड चुनें"></div>
-        <div class="guide" id="guideBody"></div>
-        <p class="small" style="margin-top:16px">ये सामान्य गाइड हैं। आपकी रिपोर्ट, दूसरी बीमारियों और दवाइयों के हिसाब से आपकी डाइट में बदलाव की ज़रूरत हो सकती है।</p>
+        <div class="dtab-top"><p>पेट और लिवर की 12 बीमारियों के लिए भारतीय डाइट चार्ट, शाकाहारी और नॉन-वेज विकल्पों के साथ। फ़ूड डायरी बताती है कि आज के खाने में क्या कम है।</p><div class="btns"><a class="btn btn-solid btn-sm" href="diet-charts/#diary">फ़ूड डायरी खोलें →</a><a class="btn btn-ghost btn-sm" href="diet-charts/">सभी डाइट चार्ट</a></div></div><div class="dtab"><a href="diet-charts/gut-healthy-diet/"><b>रोज़ की पेट की सेहत</b><span>फ़ाइबर, प्रोटीन, पानी और समय पर खाना, एक आम भारतीय दिन में।</span></a><a href="diet-charts/fatty-liver/"><b>फैटी लिवर</b><span>कम चीनी और मैदा, ज़्यादा फ़ाइबर और प्रोटीन, और धीरे-धीरे वज़न घटाना।</span></a><a href="diet-charts/acidity-gastritis/"><b>एसिडिटी और गैस्ट्राइटिस</b><span>खाने की मात्रा और समय, आम ट्रिगर, और हल्का रोज़ का खाना।</span></a><a href="diet-charts/ibs-bloating/"><b>IBS और पेट फूलना</b><span>तय समय पर खाना, घुलने वाला फ़ाइबर, और अपने ट्रिगर खाने पहचानना।</span></a><a href="diet-charts/constipation/"><b>कब्ज़</b><span>धीरे-धीरे बढ़ाया फ़ाइबर, असरदार फल, पानी और नियमित आदत।</span></a><a href="diet-charts/gallstones/"><b>पित्ताशय की पथरी</b><span>दर्द के अटैक से बचने के लिए तय समय पर खाना और संतुलित फ़ैट।</span></a><a href="diet-charts/cirrhosis/"><b>सिरोसिस</b><span>पर्याप्त प्रोटीन, छोटे-छोटे बार-बार खाने, रात का नाश्ता और कम नमक।</span></a><a href="diet-charts/jaundice-hepatitis/"><b>पीलिया और हेपेटाइटिस</b><span>सामान्य संतुलित खाना, साफ़ पानी, और शराब या बिना पर्ची के नुस्ख़े नहीं।</span></a><a href="diet-charts/pancreatitis/"><b>पैंक्रियाटाइटिस</b><span>अटैक के बाद हल्के खाने; लंबे समय में पर्याप्त कैलोरी और प्रोटीन।</span></a><a href="diet-charts/ulcerative-colitis-crohns/"><b>अल्सरेटिव कोलाइटिस और क्रोहन बीमारी</b><span>बीमारी बढ़ने पर या क्रोहन में सिकुड़न होने पर नरम, कम रेशे वाला खाना; शांत होने पर विविध ताज़ा खाना।</span></a><a href="diet-charts/celiac-gluten-free/"><b>सीलिएक बीमारी</b><span>पूरी तरह ग्लूटेन-फ़्री, मोटे अनाज, चावल और दाल के साथ, बिना छिपे ग्लूटेन के।</span></a><a href="diet-charts/loose-motions/"><b>दस्त</b><span>हर दस्त के बाद ORS, हल्का खाना, और ख़तरे के संकेतों पर नज़र।</span></a></div><p class="small" style="margin-top:16px">ये सामान्य चार्ट हैं। आपकी रिपोर्ट, दूसरी बीमारियों और दवाइयों के हिसाब से आपकी डाइट में बदलाव की ज़रूरत हो सकती है।</p>
       </div>
       <div role="tabpanel" id="panel-past" aria-labelledby="tab-past" hidden>
         <div class="chips" role="group" aria-label="कौन-सी सलाह देखनी है चुनें">
@@ -973,6 +972,7 @@ body{line-height:1.7}
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>
   अपॉइंटमेंट
 </a>
+<a class="fab fab-diet" href="diet-charts/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M2 3v6M4 3v18M6 3v6M2 9h4M20 3c-1.5 1-2 3-2 6h2v12"/></svg>डाइट चार्ट</a>
 
 <footer>
   <div class="wrap">
@@ -1256,15 +1256,6 @@ getJSON("ibs.json").then(all=>{
   renderIbs(l[0]); PAST.ibs=l.slice(1);
 }).catch(()=>{document.getElementById("ibsBody").innerHTML=`<p class="small">आज की IBS सलाह लोड नहीं हो पाई। कृपया पेज रीफ़्रेश करें।</p>`;});
 
-const picker=document.getElementById("guidePicker"), guideBody=document.getElementById("guideBody");
-GUIDES.forEach((g,i)=>{const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=g.n;b.id="guide-"+i;b.addEventListener("click",()=>showGuide(i));picker.appendChild(b);});
-function showGuide(i){
-  const g=GUIDES[i];
-  picker.querySelectorAll(".chip").forEach((b,j)=>b.setAttribute("aria-pressed",String(i===j)));
-  const col=(cls,h,items)=>`<div class="guide-col ${cls}"><h4>${h}</h4><ul>${items.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`;
-  guideBody.innerHTML=col("more","ज़्यादा खाएँ",g.more)+col("less","कम करें",g.less)+col("know","जानने लायक",g.know);
-}
-showGuide(0);
 
 const tabs=[...document.querySelectorAll(".tab")];
 function selectTab(tab){

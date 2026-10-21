@@ -160,7 +160,7 @@ def header(lang, other_path):
     return f"""
 <header class="top"><div class="wrap">
   <a class="brand" href="{p}"><img src="/logo-mark.svg" alt="" width="40" height="40"><span><span class="brand-name">Dr. Kshitij Lochab</span><span class="brand-sub">{'Gastroenterology · Liver · Endoscopy' if lang=='en' else 'पेट · लिवर · एंडोस्कोपी'}</span></span></a>
-  <nav aria-label="Main"><a href="{p}#conditions">{t['conds']}</a><a href="{p}#procedures">{t['procs']}</a><a href="{p}diet-charts/">{t['dietnav']}</a><a href="{p}#daily">{t['tips']}</a><a class="btn btn-solid btn-sm" href="{p}#visit">{t['book']}</a></nav>
+  <nav aria-label="Main"><a href="{p}#conditions">{t['conds']}</a><a href="{p}#procedures">{t['procs']}</a><a class="nav-diet" href="{p}diet-charts/">{t['dietnav']}</a><a href="{p}#daily">{t['tips']}</a><a class="btn btn-solid btn-sm" href="{p}#visit">{t['book']}</a></nav>
   <a class="lang" href="{other_path}" lang="{'hi' if lang=='en' else 'en'}" aria-label="{t['lang_aria']}">{t['lang_link']}</a>
 </div></header>""" + season_bar(lang, other_path)
 
@@ -211,11 +211,19 @@ def aside(lang):
 <p class="small">{t['clinic']}</p><p class="small"><b>{t['hours']}</b></p><p class="small">{t['also']}</p>
 <p class="small"><a href="{pre(lang)}about-dr-kshitij-lochab/">{FOOT_LINKS[lang][0]} →</a></p></aside>"""
 
-def footer(lang):
+PLATE_SVG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'
+             '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M2 3v6M4 3v18M6 3v6M2 9h4M20 3c-1.5 1-2 3-2 6h2v12"/></svg>')
+
+def diet_fab(lang, href):
+    """Phone-only floating link to the diet charts, bottom left (the Book button sits bottom right)."""
+    return f'<a class="fab fab-diet" href="{href}">{PLATE_SVG}{L[lang]["dietnav"]}</a>'
+
+def footer(lang, diet=True):
     t = L[lang]
     fl = f'<p class="foot-links"><a href="{pre(lang)}about-dr-kshitij-lochab/">{FOOT_LINKS[lang][0]}</a> · <a href="{pre(lang)}gastroenterologist-in-gurgaon/">{FOOT_LINKS[lang][1]}</a> · <a href="{pre(lang)}tools/gut-tracker/">{FOOT_LINKS[lang][2]}</a> · <a href="{pre(lang)}diet-charts/">{L[lang]['dietnav']}</a></p>'
     return f"""<footer><div class="wrap">{channel_html(lang, "chan chan-foot")}{fl}{social_html(lang)}<p>{t['disc']}</p><p>Dr. Kshitij Lochab · {t['reg']} · {PHONE}</p><p>© 2026 Dr. Kshitij Lochab</p></div></footer>
 <a class="fab" href="{WA}" target="_blank" rel="noopener">{t['book']}</a>
+{diet_fab(lang, pre(lang) + "diet-charts/") if diet else ""}
 </body></html>"""
 
 def physician(lang):

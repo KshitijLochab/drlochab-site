@@ -119,7 +119,7 @@ def page(lang, bp, head_args, body, plan_js=True):
     h = h.replace("<head>", f'<head>\n<meta http-equiv="Content-Security-Policy" content="{CSP}">\n<meta name="referrer" content="no-referrer">', 1)
     h = h.replace("</head>", f"<style>{CSS}</style></head>", 1)
     return (h + bp.header(lang, path_hi if lang == "en" else path_en) + f'<main class="wrap grid"><article>{body}</article>{bp.aside(lang)}</main>'
-            + f"<script>{JS.replace('__DATA__', data_js(lang, U))}</script>" + bp.footer(lang))
+            + f"<script>{JS.replace('__DATA__', data_js(lang, U))}</script>" + bp.footer(lang, diet=False))
 
 def render_all(bp):
     """Yields (path, path_en, path_hi, html) for every diet chart page in both languages."""
