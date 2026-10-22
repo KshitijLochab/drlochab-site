@@ -113,7 +113,7 @@ MORE = [
   ]),
 
  # ---------------- other GI cancers ----------------
- dict(slug="oesophageal-cancer", q="What are the warning signs of food pipe (oesophageal) cancer?", cond=2, proc=0,
+ dict(slug="oesophageal-cancer", q="What are the warning signs of food pipe (oesophageal) cancer?", seo="Food pipe (oesophageal) cancer: warning signs", cond=2, proc=0,
   desc="Food pipe (oesophageal) cancer: difficulty swallowing that gets worse, weight loss and other warning signs, risk factors in India such as tobacco and very hot drinks, tests and treatment. Dr. Kshitij Lochab, Gurugram.",
   short="Cancer of the food pipe usually shows up as difficulty swallowing that slowly gets worse, first with solid food and then with liquids, along with weight loss. It is more common in parts of India such as the North-East and Kashmir, and is strongly linked to tobacco, alcohol and very hot drinks. An endoscopy with biopsy is the key test.",
   sections=[

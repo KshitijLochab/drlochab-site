@@ -175,6 +175,7 @@ def link_lists(lang):
             "<!--FOOT_LINKS-->": f'<p class="foot-links"><a href="{pre}about-dr-kshitij-lochab/">{build_pages.FOOT_LINKS[lang][0]}</a> · <a href="{pre}gastroenterologist-in-gurgaon/">{build_pages.FOOT_LINKS[lang][1]}</a> · <a href="{pre}tools/gut-tracker/">{build_pages.FOOT_LINKS[lang][2]}</a> · <a href="{pre}diet-charts/">{build_pages.L[lang]['dietnav']}</a></p>' + build_pages.social_html(lang),
             "<!--TRACKER-->": ('<a class="ibs-track" href="tools/gut-tracker/">' + ("Track your symptoms privately →" if lang == "en" else "अपने लक्षण निजी रूप से ट्रैक करें →") + '</a>'),
             "<!--TRK_CARD-->": trk_card(lang),
+            "<!--PREP_LINKS-->": __import__("prep_guides").home_links(lang),
             "<!--DIET_TAB-->": diet_tab(lang),
             "<!--DIET_FAB-->": build_pages.diet_fab(lang, "diet-charts/"),
             "<!--HUB-->": hub.hub_html(lang, hub.page_data(src[src.index("const ORGANS="):src.index("const esc=")] if lang == "en" else hindi.DATA_JS))}
@@ -207,6 +208,9 @@ apple.convert("RGB").save(f"{OUT}/apple-touch-icon.png")
 ph = Image.open("dr-lochab.jpg").convert("RGB")
 side = ph.width
 ph.crop((0, int(ph.height * 0.04), side, int(ph.height * 0.04) + side)).resize((112, 112), Image.LANCZOS).save(f"{OUT}/dr-lochab-thumb.jpg", quality=82)
+# tighter face crop for the phone portrait card (shown at 96px, so 2x = 192px)
+fw = int(ph.width * 0.62); fx = (ph.width - fw) // 2 + int(ph.width * 0.04)
+ph.crop((fx, int(ph.height * 0.06), fx + fw, int(ph.height * 0.06) + fw)).resize((192, 192), Image.LANCZOS).save(f"{OUT}/dr-lochab-face.jpg", quality=82)
 
 # web app manifest and icons ("Add to home screen")
 for size in (192, 512):
@@ -256,6 +260,13 @@ for d, _, fs in os.walk(OUT):
         if f.endswith(".html"):
             fp = os.path.join(d, f); h = open(fp, encoding="utf-8").read()
             h2 = h.replace(" →", "\u00a0→").replace("← ", "←\u00a0")
+            # Devanagari fonts load after the page has rendered (font-display: optional keeps the page from jumping)
+            h2 = h2.replace('<link rel="stylesheet" href="/assets/fonts/fonts-hi.css">',
+                            '<link rel="stylesheet" href="/assets/fonts/fonts-hi.css" media="print" onload="this.media=\'all\'"><noscript><link rel="stylesheet" href="/assets/fonts/fonts-hi.css"></noscript>')
+            # the diet-guide data is only needed by extract.js (already run), not by visitors
+            if f == "index.html" and os.path.relpath(d, OUT) in (".", "hi") and "const GUIDES=[" in h2:
+                i = h2.index("const GUIDES=["); j = h2.index("];", i) + 3
+                h2 = h2[:i] + h2[j:]
             if h2 != h: open(fp, "w", encoding="utf-8").write(h2)
 print("pages:", len(pairs) * 2)
 print("built:", sorted(os.listdir(OUT)), sorted(os.listdir(f"{OUT}/hi")))

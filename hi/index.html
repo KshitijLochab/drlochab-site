@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://drlochab.com/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Physician", "@id": "https://drlochab.com/#physician", "name": "Dr. Kshitij Lochab", "url": "https://drlochab.com/hi/", "image": "https://drlochab.com/dr-lochab.jpg", "telephone": "+91-9667104882", "medicalSpecialty": "Gastroenterologic", "address": {"@type": "PostalAddress", "streetAddress": "Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51", "addressLocality": "Gurugram", "addressRegion": "Haryana", "postalCode": "122003", "addressCountry": "IN"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "18:00", "closes": "20:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "09:00", "closes": "13:00"}], "areaServed": ["Gurugram", "Gurgaon", "Delhi NCR"], "availableLanguage": ["English", "Hindi"], "sameAs": ["https://share.google/9ZndZsg6NHVxeQfYl", "https://www.instagram.com/drlochab/", "https://www.linkedin.com/in/drlochab/", "https://arcuracare.com/dr-kshitij-lochab/"], "hasMap": "https://share.google/9ZndZsg6NHVxeQfYl", "description": "Consultant gastroenterologist and therapeutic endoscopist in Gurgaon (Gurugram), trained in endoscopic ultrasound (EUS) and ERCP.", "award": "All-India Gold Medal, DrNB Gastroenterology", "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Armed Forces Medical College, Pune"}, {"@type": "CollegeOrUniversity", "name": "Medical College Baroda"}, {"@type": "Hospital", "name": "Medanta – The Medicity, Gurugram"}], "logo": "https://drlochab.com/logo-mark.png"}]}</script>
-<link rel="stylesheet" href="/assets/fonts/fonts-hi.css">
+<link rel="stylesheet" href="/assets/fonts/fonts-hi.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/fonts/fonts-hi.css"></noscript>
 <link rel="preload" href="/assets/fonts/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/young-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
@@ -74,19 +74,20 @@ section{padding-block:72px;scroll-margin-top:70px}
 .brand svg{width:42px;height:42px;flex:none}
 .brand-name{font-family:var(--display);font-size:1.15rem;line-height:1.1;display:block;white-space:nowrap}
 .brand-sub{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;white-space:nowrap}
-nav{display:flex;gap:20px;align-items:center;margin-left:auto}
-@media (max-width:1180px){nav{gap:16px}nav a[href="#about"]{display:none}}
-@media (max-width:1100px){nav a[href="#symptoms"],nav a[href="#procedures"]{display:none}}
-@media (max-width:980px){nav a:not(.btn):not(.nav-diet){display:none}.brand-sub{letter-spacing:.06em}}
-nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.95rem;white-space:nowrap}
-nav a:hover{color:var(--accent)}
+.top nav{display:flex;gap:20px;align-items:center;margin-left:auto}
+@media (max-width:1180px){.top nav{gap:16px}.top nav a[href="#about"]{display:none}}
+@media (max-width:1100px){.top nav a[href="#symptoms"],.top nav a[href="#procedures"]{display:none}}
+@media (max-width:980px){.top nav a:not(.btn):not(.nav-diet){display:none}.brand-sub{letter-spacing:.06em}}
+.top nav a{text-decoration:none;font-weight:500;font-size:.95rem;white-space:nowrap}
+.top nav a:not(.btn){color:var(--ink)}
+.top nav a:not(.btn):hover{color:var(--accent)}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:.98rem;text-decoration:none;border:1.5px solid var(--accent);cursor:pointer;font-family:var(--body)}
 .btn-solid{background:var(--accent);color:var(--accent-ink)}
 .btn-ghost{background:transparent;color:var(--accent)}
 .btn-sm{padding:8px 16px;font-size:.9rem}
 .lang{flex:none;font-weight:600;font-size:.95rem;color:var(--ink);text-decoration:none;border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;margin-left:12px}
 .lang:hover{border-color:var(--accent);color:var(--accent)}
-@media (max-width:760px){nav{display:none}.brand-sub{font-size:.66rem}}
+@media (max-width:760px){.top nav{display:none}.brand-sub{font-size:.66rem}}
 
 /* hero */
 .hero{padding-block:56px 64px}
@@ -108,7 +109,8 @@ nav a:hover{color:var(--accent)}
 .creds span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--warm)}
 .hero .wrap{grid-template-columns:1.3fr 1fr;align-items:center}
 .portrait{margin:0;position:relative;min-width:0;justify-self:center;width:100%;max-width:440px}
-.portrait img{display:block;width:100%;max-width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;border-radius:28px;background:var(--line)}
+@media (min-width:861px){.portrait{align-self:start;position:sticky;top:calc(var(--hdr,70px) + 24px)}}
+.portrait img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center top;border-radius:28px;background:var(--line)}
 .portrait figcaption{position:absolute;left:14px;right:14px;bottom:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 16px;display:grid;gap:2px}
 .portrait figcaption b{font-family:var(--display);font-weight:400;font-size:1.1rem}
 .portrait figcaption span{font-size:.85rem;color:var(--muted)}
@@ -146,6 +148,9 @@ nav a:hover{color:var(--accent)}
 .result dl{margin:0;display:grid;gap:14px}
 .result dt{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .result dd{margin:4px 0 0}
+.sym-go{justify-self:start;background:#167A3E;border-color:#167A3E;color:#fff}.sym-go svg{width:18px;height:18px}
+.sym-112{background:var(--urgent);border-color:var(--urgent);color:var(--surface)}
+.sym-note{font-weight:600;color:var(--urgent)}
 .legend{display:flex;flex-wrap:wrap;gap:16px;font-size:.88rem;color:var(--muted);margin-top:18px}
 .legend span{display:flex;align-items:center;gap:6px}
 .legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
@@ -332,7 +337,7 @@ nav a:hover{color:var(--accent)}
 .focus{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .focus span{font-size:.88rem;padding:6px 12px;border-radius:999px;background:var(--accent-soft);color:var(--ink)}
 @media (max-width:860px){.about{grid-template-columns:1fr}}
-@media (max-width:520px){.cv li{grid-template-columns:1fr;gap:4px}}
+@media (max-width:520px){.cv li{grid-template-columns:92px minmax(0,1fr);gap:10px;padding-block:10px;font-size:.95rem}.cv .k{font-size:.68rem;letter-spacing:.06em}}
 
 /* myth buster */
 .mb{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:44px;align-items:center;background:var(--ink);color:var(--bg);border-radius:32px;padding:44px;position:relative;overflow:hidden}
@@ -568,6 +573,7 @@ nav a:hover{color:var(--accent)}
 .ptile-t b{font-family:var(--display);font-weight:400;font-size:1.15rem;line-height:1.25}
 .ptile-w{font-size:.88rem;color:var(--muted);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .ptile .more{font-size:.85rem;font-weight:600;color:var(--accent)}
+.prep-links{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}.prep-links a{font-weight:600;padding:8px 14px;border-radius:999px;background:var(--surface);border:1.5px solid var(--line);text-decoration:none}.prep-links a:hover{border-color:var(--accent)}
 @media (max-width:760px){
  .ptiles{grid-auto-flow:column;grid-auto-columns:84%;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:thin}
  .ptile{scroll-snap-align:start;grid-template-columns:1fr;align-content:start}
@@ -601,6 +607,16 @@ nav a:hover{color:var(--accent)}
 
 footer{padding-block:40px 56px;font-size:.9rem;color:var(--muted);border-top:1px solid var(--line)}
 footer .wrap{display:grid;gap:10px}
+/* phones: shorter page */
+@media (max-width:560px){
+ section{padding-block:48px}
+ .sec-head{margin-bottom:24px}
+ .portrait{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:center;max-width:none;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:10px}
+ .portrait img{width:96px;aspect-ratio:1;border-radius:14px}
+ .portrait figcaption{position:static;border:0;padding:0;background:none}
+ .hc{padding:12px 14px}.hc span{display:none}
+ .fod-art{width:56px;height:56px}.fod-art svg{width:38px;height:38px}
+}
 *{letter-spacing:0!important}
 body{line-height:1.7}
 </style>
@@ -661,7 +677,7 @@ body{line-height:1.7}
         </div>
       </div>
       <figure class="portrait">
-        <img src="../dr-lochab.jpg" alt="सफ़ेद कोट में डॉ. क्षितिज लोचब" width="800" height="1000">
+        <picture><source media="(max-width:560px)" srcset="/dr-lochab-face.jpg" width="192" height="192"><img src="/dr-lochab.jpg" alt="सफ़ेद कोट में डॉ. क्षितिज लोचब" width="800" height="1000"></picture>
         <figcaption><b>डॉ. क्षितिज लोचब</b><span>हरियाणा मेडिकल काउंसिल रजि. नं. HN-23524</span></figcaption>
       </figure>
     </div>
@@ -787,6 +803,7 @@ body{line-height:1.7}
         <p class="lede">ज़्यादातर प्रोसीजर में कैमरे वाली एक पतली, मुड़ने वाली नली इस्तेमाल होती है। कोई चीरा नहीं लगता, और ज़्यादातर लोग उसी दिन घर चले जाते हैं। कैसे होता है, यह देखने के लिए किसी पर भी टैप करें।</p>
       </div>
       <div class="ptiles" id="procGrid"></div>
+      <p class="prep-links"><b>जाँच की तैयारी?</b> <a href="guides/colonoscopy-preparation/">कोलोनोस्कोपी की तैयारी →</a><a href="guides/endoscopy-preparation/">एंडोस्कोपी की तैयारी →</a></p>
     </div>
   </section>
 
@@ -971,11 +988,11 @@ body{line-height:1.7}
   </section>
 </main>
 
-<a class="fab" href="#visit" aria-label="अपॉइंटमेंट लें">
+<nav class="fabs" aria-label="तुरंत करें"><a class="fab" href="#visit" aria-label="अपॉइंटमेंट लें">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>
   अपॉइंटमेंट
 </a>
-<a class="fab fab-diet" href="diet-charts/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M2 3v6M4 3v18M6 3v6M2 9h4M20 3c-1.5 1-2 3-2 6h2v12"/></svg>डाइट चार्ट</a>
+<a class="fab fab-diet" href="diet-charts/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M2 3v6M4 3v18M6 3v6M2 9h4M20 3c-1.5 1-2 3-2 6h2v12"/></svg>डाइट चार्ट</a></nav>
 
 <footer>
   <div class="wrap">
@@ -1163,6 +1180,11 @@ const CSLUG=["acidity-reflux-gerd","h-pylori-gastritis-ulcer","swallowing-diffic
 const PSLUG=["upper-gi-endoscopy","colonoscopy","endoscopic-ultrasound-eus","ercp","variceal-banding-evl","polyp-removal-emr","gi-bleeding-treatment","peg-feeding-tube","dilatation-stenting","answers/capsule-endoscopy"];
 
 /* symptoms */
+const BOOK={hello:"नमस्ते डॉ. लोचब, मुझे अपॉइंटमेंट लेना है",about:", इस बारे में: ",when:"मेरे लिए सही समय: ",src:"(drlochab.com से)",
+ reasons:["एसिडिटी या गैस्ट्राइटिस","फैटी लिवर या लिवर रिपोर्ट","पीलिया या हेपेटाइटिस","गैस, पेट फूलना या IBS","कब्ज़ या दस्त","एंडोस्कोपी या कोलोनोस्कोपी","EUS या ERCP","पित्ताशय या पैंक्रियास","रिपोर्ट दिखानी है"],
+ times:["सोम–शुक्र शाम","रविवार सुबह","वीडियो कंसल्टेशन"]};
+const waText=(reason,time)=>"https://wa.me/919667104882?text="+encodeURIComponent(BOOK.hello+(reason?BOOK.about+reason:"")+"."+(time?"\n"+BOOK.when+time+".":"")+"\n"+BOOK.src);
+const SYMBOOK={book:"इसके लिए अपॉइंटमेंट लें",wa:"WhatsApp",urgent:"एम्बुलेंस के लिए 112 पर कॉल करें",urgentNote:"अपॉइंटमेंट का इंतज़ार न करें। सबसे पास के इमरजेंसी विभाग में जाएँ।"};
 const symList=document.getElementById("symList"), symResult=document.getElementById("symResult");
 SYMPTOMS.forEach((x,i)=>{
   const b=document.createElement("button");
@@ -1175,7 +1197,9 @@ function showSym(i){
   const x=SYMPTOMS[i];
   symList.querySelectorAll(".sym").forEach((b,j)=>b.setAttribute("aria-pressed",String(i===j)));
   const [cls,lbl]=TIERS[x.t];
-  symResult.innerHTML=`<span class="pill ${cls}">${lbl}</span><h3>${esc(x.l)}</h3><dl><div><dt>आम वजहें</dt><dd>${esc(x.c)}</dd></div><div><dt>क्या करें</dt><dd>${esc(x.a)}</dd></div></dl>`;
+  symResult.innerHTML=`<span class="pill ${cls}">${lbl}</span><h3>${esc(x.l)}</h3><dl><div><dt>आम वजहें</dt><dd>${esc(x.c)}</dd></div><div><dt>क्या करें</dt><dd>${esc(x.a)}</dd></div></dl>`+(x.t==="urgent"
+    ?`<p class="sym-note">${SYMBOOK.urgentNote}</p><a class="btn sym-go sym-112" href="tel:112">${SYMBOOK.urgent}</a>`
+    :`<a class="btn btn-solid sym-go" href="${waText(x.l,"")}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>${SYMBOOK.book}</a>`);
 }
 showSym(0);
 
@@ -1208,16 +1232,6 @@ document.getElementById("procGrid").innerHTML=PROCS.map((p,i)=>`<a class="ptile"
 
 /* ---------- Gut Health Daily ---------- */
 const SITE="https://drlochab.com/hi/";
-const GUIDES=[
- {n:"फैटी लिवर",more:["हर खाने में सब्ज़ियाँ और सलाद","साबुत अनाज: चोकर वाला आटा, बाजरा-रागी, ओट्स, ब्राउन राइस","प्रोटीन के लिए दाल, चना, राजमा और अंकुरित अनाज","जूस की जगह साबुत फल","कम चीनी वाली सादी चाय या कॉफ़ी"],less:["कोल्ड ड्रिंक, पैकेट वाले जूस और मिठाइयाँ","तले स्नैक्स, नमकीन और बेकरी की चीज़ें","मैदा: सफ़ेद ब्रेड, बिस्किट, नूडल्स","प्रोसेस्ड और रेड मीट","शराब, जिसे पूरी तरह छोड़ना सबसे अच्छा है"],know:["शरीर का 7 से 10% वज़न घटाने से शुरुआती फैटी लिवर ठीक हो सकता है; दुबले लोगों में 3 से 5% भी मदद करता है","हफ़्ते में लगभग 150 मिनट तेज़ चलना वज़न घटने से पहले ही फ़ायदा देता है","स्कारिंग की जाँच के लिए लिवर स्टिफ़नेस टेस्ट करवाएँ"]},
- {n:"एसिडिटी और रिफ़्लक्स",more:["थोड़ा-थोड़ा, बार-बार खाना","सोने से कम से कम 3 घंटे पहले रात का खाना","ओट्स, पकी सब्ज़ियाँ, केला और पपीता जैसे कम खट्टे फल","खाने के बीच में पानी","खाने के बाद थोड़ी देर टहलना"],less:["देर रात भारी खाना","तला और बहुत चिकना खाना","ज़्यादा चाय, कॉफ़ी और सोडा","चॉकलेट और पुदीना, जो अक्सर जलन बढ़ाते हैं","शराब और तंबाकू"],know:["ज़्यादा वज़न हो तो वज़न घटाना सबसे असरदार क़दमों में से एक है","हर व्यक्ति में जलन बढ़ाने वाली चीज़ें अलग होती हैं; दो हफ़्ते की खाने की डायरी से अपनी चीज़ें पहचानें","रात की तकलीफ़ में पलंग का सिर वाला हिस्सा 6 से 8 इंच ऊँचा करें","निगलने में दिक्कत या वज़न घटे तो विशेषज्ञ को दिखाएँ"]},
- {n:"IBS और पेट फूलना",more:["खाने का तय समय","घुलने वाला फ़ाइबर: ओट्स, इसबगोल, पकी सब्ज़ियाँ","दही और छाछ, अगर सूट करें","दिन भर में पर्याप्त पानी","धीरे-धीरे, चबाकर खाना"],less:["राजमा, चना, प्याज़ और लहसुन ज़्यादा मात्रा में, अगर इनसे तकलीफ़ बढ़े","सोडा और कोल्ड ड्रिंक","सॉर्बिटॉल वाली शुगर-फ़्री च्युइंग गम और मिठाइयाँ","ज़्यादा मात्रा में गेहूँ का चोकर, जिससे पेट और फूल सकता है","ज़्यादा चाय और कॉफ़ी","बहुत तीखा या तैलीय खाना"],know:["सही मार्गदर्शन में लो-FODMAP डाइट कई लोगों की मदद करती है","तनाव और कम नींद से लक्षण बढ़ते हैं","45 के बाद नए लक्षण, खून आना या वज़न घटे तो पहले जाँच ज़रूरी है"]},
- {n:"कब्ज़",more:["रोज़ 25 से 30 ग्राम फ़ाइबर, धीरे-धीरे बढ़ाएँ","कीवी और सूखे आलूबुखारे (प्रून), जो अच्छा असर करते हैं, साथ में अमरूद, नाशपाती और पपीता","साबुत अनाज, दाल और सब्ज़ियाँ","इतना पानी कि पेशाब हल्का पीला रहे","रोज़ टहलना या व्यायाम"],less:["मैदा और पैकेट वाले स्नैक्स","नाश्ता छोड़ना","शौच की इच्छा को रोकना","बिना सलाह लंबे समय तक तेज़ जुलाब"],know:["नाश्ते के बाद छोटे स्टूल पर पैर रखकर शौच के लिए बैठें","इसबगोल पर्याप्त पानी के साथ ही काम करता है","45 के बाद नई कब्ज़ या मल में खून हो तो जाँच करवाएँ"]},
- {n:"पीलिया के बाद",more:["पर्याप्त कैलोरी वाला सामान्य, संतुलित घर का खाना","दाल, दही, फल और सब्ज़ियाँ","भरपूर साफ़, उबला या फ़िल्टर किया पानी","भूख कम हो तो थोड़ा-थोड़ा बार-बार खाना","थकान रहने तक आराम"],less:["शराब, पूरी तरह","डॉक्टर के लिखे बिना जड़ी-बूटी और दवाइयाँ","सड़क का खाना और असुरक्षित पानी"],know:["आम खाने में डलने वाली हल्दी, तेल या नमक छोड़ने की ज़रूरत नहीं","सिर्फ़ उबला खाना खाने से कमज़ोरी आती है और ठीक होने में देर लगती है","बुखार, भ्रम, ज़्यादा नींद या खून आए तो तुरंत दिखाएँ"]},
- {n:"सिरोसिस",more:["पर्याप्त प्रोटीन: दाल, पनीर, दही, अंडे, मछली या चिकन","हर 3 से 4 घंटे में थोड़ा खाना","सोने से पहले हल्का नाश्ता, जैसे रोटी के साथ दूध या पोहा","ताज़ा घर का खाना"],less:["ऊपर से नमक, पापड़, अचार, नमकीन और पैकेट वाला खाना, अगर सूजन है","शराब, पूरी तरह","कच्चा या अधपका मीट और सी-फ़ूड"],know:["डॉक्टर न कहें तो प्रोटीन कम न करें","सोने से पहले का नाश्ता माँसपेशियों को बचाता है","सूजन हो तो: दिन भर में 2 ग्राम से ज़्यादा सोडियम नहीं (कुल लगभग एक समतल छोटा चम्मच, यानी 5 ग्राम नमक), बिना सलाह के लो-सोडियम नमक नहीं, और पानी डॉक्टर के बताए अनुसार"]},
- {n:"पैंक्रियाटाइटिस के बाद",more:["पहले कुछ हफ़्ते: थोड़ा-थोड़ा, बार-बार, हल्का खाना","उबला, भाप में पका या हल्का पका खाना","प्रोटीन: दाल, दही, पनीर, अंडे, मछली, चिकन","भरपूर पानी और तरल"],less:["शराब, पूरी तरह और हमेशा के लिए","धूम्रपान","तला खाना और एक बार में बहुत ज़्यादा खाना","ट्राइग्लिसराइड या शुगर ज़्यादा हो तो चीनी, मिठाई और मीठे पेय"],know:["एक बार के दौरे के बाद, ठीक होने पर ज़्यादातर लोग सामान्य, संतुलित खाना खा सकते हैं","क्रॉनिक पैंक्रियाटाइटिस में फ़ैट बहुत कम न करें; खाने के साथ एंज़ाइम कैप्सूल इसे पचाने में मदद करते हैं","अगर दौरा पित्त की पथरी से हुआ था, तो पित्ताशय निकालने से दोबारा दौरा नहीं होता","उल्टी के साथ अचानक तेज़ दर्द में इमरजेंसी इलाज चाहिए"]},
- {n:"दस्त (लूज़ मोशन)",more:["ORS, घूँट-घूँट बार-बार","खिचड़ी, दही-चावल, केला, दाल का पानी","नारियल पानी और पतला सूप","आराम"],less:["तला और तीखा खाना","दूध, अगर इससे दस्त बढ़ें","फलों के जूस और कोल्ड ड्रिंक","खून या बुखार हो तो बिना सलाह दस्त रोकने की गोली"],know:["पैकेट वाला WHO ORS सबसे अच्छा है। घर पर: 1 लीटर साफ़ पानी में 6 समतल चम्मच चीनी और आधा समतल चम्मच नमक","मल में खून, तेज़ बुखार या बहुत कम पेशाब हो तो डॉक्टर को दिखाएँ","दो हफ़्ते से ज़्यादा दस्त में जाँच ज़रूरी है"]}
-];
 
 const fmtIST=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"});
 const TODAY=fmtIST.format(new Date());
@@ -1483,6 +1497,14 @@ const ficon=f=>`<svg viewBox="0 0 64 64" aria-hidden="true">${(FICON[f.ic]||FICO
   if(location.hash==="#food"){selectTab(document.getElementById("tab-today"));setTimeout(()=>el.scrollIntoView(),50);}
 })();
 
+/* links like drlochab.com/#visit: content loads in above the target after the first jump, so jump again once it settles (unless the reader has scrolled) */
+(function(){
+  const id=decodeURIComponent(location.hash.slice(1)); const t=id&&document.getElementById(id); if(!t)return;
+  let moved=false; const stop=()=>{moved=true;}; ["wheel","touchmove","keydown"].forEach(ev=>addEventListener(ev,stop,{once:true,passive:true}));
+  const fix=()=>{if(!moved)t.scrollIntoView({behavior:"instant",block:"start"});};
+  addEventListener("load",()=>{fix();setTimeout(fix,600);setTimeout(fix,1500);});
+})();
+
 /* tracker highlight: card is in the HTML; only returning users get different wording */
 (function(){
   let used=false;
@@ -1513,10 +1535,6 @@ const HOURS=[[9,13],[18,20],[18,20],[18,20],[18,20],[18,20],null];
   if(H&&h<H[0]){el.textContent=OPENTXT.today(OPENTXT.t[H[0]])+" · "+OPENTXT.place;el.classList.add("is-soon");return;}
   for(let k=1;k<8;k++){const n=(d+k)%7;if(HOURS[n]){el.textContent=OPENTXT.next(k===1?OPENTXT.tom:OPENTXT.days[n],OPENTXT.t[HOURS[n][0]])+" · "+OPENTXT.place;break;}}
 })();
-const BOOK={hello:"नमस्ते डॉ. लोचब, मुझे अपॉइंटमेंट लेना है",about:", इस बारे में: ",when:"मेरे लिए सही समय: ",src:"(drlochab.com से)",
- reasons:["एसिडिटी या गैस्ट्राइटिस","फैटी लिवर या लिवर रिपोर्ट","पीलिया या हेपेटाइटिस","गैस, पेट फूलना या IBS","कब्ज़ या दस्त","एंडोस्कोपी या कोलोनोस्कोपी","EUS या ERCP","पित्ताशय या पैंक्रियास","रिपोर्ट दिखानी है"],
- times:["सोम–शुक्र शाम","रविवार सुबह","वीडियो कंसल्टेशन"]};
-const waText=(reason,time)=>"https://wa.me/919667104882?text="+encodeURIComponent(BOOK.hello+(reason?BOOK.about+reason:"")+"."+(time?"\n"+BOOK.when+time+".":"")+"\n"+BOOK.src);
 (function(){
   const pick={r:"",t:""}, a=document.getElementById("waBook");
   document.getElementById("waHero").href=waText("","");

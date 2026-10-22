@@ -52,19 +52,20 @@ section{padding-block:72px;scroll-margin-top:70px}
 .brand svg{width:42px;height:42px;flex:none}
 .brand-name{font-family:var(--display);font-size:1.15rem;line-height:1.1;display:block;white-space:nowrap}
 .brand-sub{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;white-space:nowrap}
-nav{display:flex;gap:20px;align-items:center;margin-left:auto}
-@media (max-width:1180px){nav{gap:16px}nav a[href="#about"]{display:none}}
-@media (max-width:1100px){nav a[href="#symptoms"],nav a[href="#procedures"]{display:none}}
-@media (max-width:980px){nav a:not(.btn):not(.nav-diet){display:none}.brand-sub{letter-spacing:.06em}}
-nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.95rem;white-space:nowrap}
-nav a:hover{color:var(--accent)}
+.top nav{display:flex;gap:20px;align-items:center;margin-left:auto}
+@media (max-width:1180px){.top nav{gap:16px}.top nav a[href="#about"]{display:none}}
+@media (max-width:1100px){.top nav a[href="#symptoms"],.top nav a[href="#procedures"]{display:none}}
+@media (max-width:980px){.top nav a:not(.btn):not(.nav-diet){display:none}.brand-sub{letter-spacing:.06em}}
+.top nav a{text-decoration:none;font-weight:500;font-size:.95rem;white-space:nowrap}
+.top nav a:not(.btn){color:var(--ink)}
+.top nav a:not(.btn):hover{color:var(--accent)}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:.98rem;text-decoration:none;border:1.5px solid var(--accent);cursor:pointer;font-family:var(--body)}
 .btn-solid{background:var(--accent);color:var(--accent-ink)}
 .btn-ghost{background:transparent;color:var(--accent)}
 .btn-sm{padding:8px 16px;font-size:.9rem}
 .lang{flex:none;font-weight:600;font-size:.95rem;color:var(--ink);text-decoration:none;border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;margin-left:12px}
 .lang:hover{border-color:var(--accent);color:var(--accent)}
-@media (max-width:760px){nav{display:none}.brand-sub{font-size:.66rem}}
+@media (max-width:760px){.top nav{display:none}.brand-sub{font-size:.66rem}}
 
 /* hero */
 .hero{padding-block:56px 64px}
@@ -86,7 +87,8 @@ nav a:hover{color:var(--accent)}
 .creds span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--warm)}
 .hero .wrap{grid-template-columns:1.3fr 1fr;align-items:center}
 .portrait{margin:0;position:relative;min-width:0;justify-self:center;width:100%;max-width:440px}
-.portrait img{display:block;width:100%;max-width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;border-radius:28px;background:var(--line)}
+@media (min-width:861px){.portrait{align-self:start;position:sticky;top:calc(var(--hdr,70px) + 24px)}}
+.portrait img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center top;border-radius:28px;background:var(--line)}
 .portrait figcaption{position:absolute;left:14px;right:14px;bottom:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 16px;display:grid;gap:2px}
 .portrait figcaption b{font-family:var(--display);font-weight:400;font-size:1.1rem}
 .portrait figcaption span{font-size:.85rem;color:var(--muted)}
@@ -124,6 +126,9 @@ nav a:hover{color:var(--accent)}
 .result dl{margin:0;display:grid;gap:14px}
 .result dt{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .result dd{margin:4px 0 0}
+.sym-go{justify-self:start;background:#167A3E;border-color:#167A3E;color:#fff}.sym-go svg{width:18px;height:18px}
+.sym-112{background:var(--urgent);border-color:var(--urgent);color:var(--surface)}
+.sym-note{font-weight:600;color:var(--urgent)}
 .legend{display:flex;flex-wrap:wrap;gap:16px;font-size:.88rem;color:var(--muted);margin-top:18px}
 .legend span{display:flex;align-items:center;gap:6px}
 .legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
@@ -310,7 +315,7 @@ nav a:hover{color:var(--accent)}
 .focus{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .focus span{font-size:.88rem;padding:6px 12px;border-radius:999px;background:var(--accent-soft);color:var(--ink)}
 @media (max-width:860px){.about{grid-template-columns:1fr}}
-@media (max-width:520px){.cv li{grid-template-columns:1fr;gap:4px}}
+@media (max-width:520px){.cv li{grid-template-columns:92px minmax(0,1fr);gap:10px;padding-block:10px;font-size:.95rem}.cv .k{font-size:.68rem;letter-spacing:.06em}}
 
 /* myth buster */
 .mb{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:44px;align-items:center;background:var(--ink);color:var(--bg);border-radius:32px;padding:44px;position:relative;overflow:hidden}
@@ -546,6 +551,7 @@ nav a:hover{color:var(--accent)}
 .ptile-t b{font-family:var(--display);font-weight:400;font-size:1.15rem;line-height:1.25}
 .ptile-w{font-size:.88rem;color:var(--muted);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .ptile .more{font-size:.85rem;font-weight:600;color:var(--accent)}
+.prep-links{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}.prep-links a{font-weight:600;padding:8px 14px;border-radius:999px;background:var(--surface);border:1.5px solid var(--line);text-decoration:none}.prep-links a:hover{border-color:var(--accent)}
 @media (max-width:760px){
  .ptiles{grid-auto-flow:column;grid-auto-columns:84%;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:thin}
  .ptile{scroll-snap-align:start;grid-template-columns:1fr;align-content:start}
@@ -579,6 +585,16 @@ nav a:hover{color:var(--accent)}
 
 footer{padding-block:40px 56px;font-size:.9rem;color:var(--muted);border-top:1px solid var(--line)}
 footer .wrap{display:grid;gap:10px}
+/* phones: shorter page */
+@media (max-width:560px){
+ section{padding-block:48px}
+ .sec-head{margin-bottom:24px}
+ .portrait{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:center;max-width:none;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:10px}
+ .portrait img{width:96px;aspect-ratio:1;border-radius:14px}
+ .portrait figcaption{position:static;border:0;padding:0;background:none}
+ .hc{padding:12px 14px}.hc span{display:none}
+ .fod-art{width:56px;height:56px}.fod-art svg{width:38px;height:38px}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -635,7 +651,7 @@ footer .wrap{display:grid;gap:10px}
         </div>
       </div>
       <figure class="portrait">
-        <img src="dr-lochab.jpg" alt="Dr. Kshitij Lochab in a white doctor's coat" width="800" height="1000">
+        <picture><source media="(max-width:560px)" srcset="/dr-lochab-face.jpg" width="192" height="192"><img src="/dr-lochab.jpg" alt="Dr. Kshitij Lochab in a white doctor's coat" width="800" height="1000"></picture>
         <figcaption><b>Dr. Kshitij Lochab</b><span>Haryana Medical Council Reg. No. HN-23524</span></figcaption>
       </figure>
     </div>
@@ -761,6 +777,7 @@ footer .wrap{display:grid;gap:10px}
         <p class="lede">Most procedures use a thin, flexible tube with a camera. There are no cuts, and most people go home the same day. Tap any one to see how it works.</p>
       </div>
       <div class="ptiles" id="procGrid"></div>
+      <!--PREP_LINKS-->
     </div>
   </section>
 
@@ -852,11 +869,11 @@ footer .wrap{display:grid;gap:10px}
   </section>
 </main>
 
-<a class="fab" href="#visit" aria-label="Book a visit">
+<nav class="fabs" aria-label="Quick actions"><a class="fab" href="#visit" aria-label="Book a visit">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>
   Book
 </a>
-<!--DIET_FAB-->
+<!--DIET_FAB--></nav>
 
 <footer>
   <div class="wrap">
@@ -1044,6 +1061,11 @@ const CSLUG=["acidity-reflux-gerd","h-pylori-gastritis-ulcer","swallowing-diffic
 const PSLUG=["upper-gi-endoscopy","colonoscopy","endoscopic-ultrasound-eus","ercp","variceal-banding-evl","polyp-removal-emr","gi-bleeding-treatment","peg-feeding-tube","dilatation-stenting","answers/capsule-endoscopy"];
 
 /* symptoms */
+const BOOK={hello:"Hello Dr. Lochab, I would like to book a consultation",about:" about: ",when:"Preferred time: ",src:"(Found you on drlochab.com)",
+ reasons:["Acidity or gastritis","Fatty liver or liver report","Jaundice or hepatitis","Gas, bloating or IBS","Constipation or loose motions","Endoscopy or colonoscopy","EUS or ERCP","Gallbladder or pancreas","Review of reports"],
+ times:["Weekday evening","Sunday morning","Video consultation"]};
+const waText=(reason,time)=>"https://wa.me/919667104882?text="+encodeURIComponent(BOOK.hello+(reason?BOOK.about+reason:"")+"."+(time?"\n"+BOOK.when+time+".":"")+"\n"+BOOK.src);
+const SYMBOOK={book:"Book a visit about this",wa:"WhatsApp",urgent:"Call 112 for an ambulance",urgentNote:"Do not wait for an appointment. Go to the nearest emergency department."};
 const symList=document.getElementById("symList"), symResult=document.getElementById("symResult");
 SYMPTOMS.forEach((x,i)=>{
   const b=document.createElement("button");
@@ -1056,7 +1078,9 @@ function showSym(i){
   const x=SYMPTOMS[i];
   symList.querySelectorAll(".sym").forEach((b,j)=>b.setAttribute("aria-pressed",String(i===j)));
   const [cls,lbl]=TIERS[x.t];
-  symResult.innerHTML=`<span class="pill ${cls}">${lbl}</span><h3>${esc(x.l)}</h3><dl><div><dt>Common causes</dt><dd>${esc(x.c)}</dd></div><div><dt>What to do</dt><dd>${esc(x.a)}</dd></div></dl>`;
+  symResult.innerHTML=`<span class="pill ${cls}">${lbl}</span><h3>${esc(x.l)}</h3><dl><div><dt>Common causes</dt><dd>${esc(x.c)}</dd></div><div><dt>What to do</dt><dd>${esc(x.a)}</dd></div></dl>`+(x.t==="urgent"
+    ?`<p class="sym-note">${SYMBOOK.urgentNote}</p><a class="btn sym-go sym-112" href="tel:112">${SYMBOOK.urgent}</a>`
+    :`<a class="btn btn-solid sym-go" href="${waText(x.l,"")}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>${SYMBOOK.book}</a>`);
 }
 showSym(0);
 
@@ -1363,6 +1387,14 @@ const ficon=f=>`<svg viewBox="0 0 64 64" aria-hidden="true">${(FICON[f.ic]||FICO
   if(location.hash==="#food"){selectTab(document.getElementById("tab-today"));setTimeout(()=>el.scrollIntoView(),50);}
 })();
 
+/* links like drlochab.com/#visit: content loads in above the target after the first jump, so jump again once it settles (unless the reader has scrolled) */
+(function(){
+  const id=decodeURIComponent(location.hash.slice(1)); const t=id&&document.getElementById(id); if(!t)return;
+  let moved=false; const stop=()=>{moved=true;}; ["wheel","touchmove","keydown"].forEach(ev=>addEventListener(ev,stop,{once:true,passive:true}));
+  const fix=()=>{if(!moved)t.scrollIntoView({behavior:"instant",block:"start"});};
+  addEventListener("load",()=>{fix();setTimeout(fix,600);setTimeout(fix,1500);});
+})();
+
 /* tracker highlight: card is in the HTML; only returning users get different wording */
 (function(){
   let used=false;
@@ -1393,10 +1425,6 @@ const HOURS=[[9,13],[18,20],[18,20],[18,20],[18,20],[18,20],null];
   if(H&&h<H[0]){el.textContent=OPENTXT.today(OPENTXT.t[H[0]])+" · "+OPENTXT.place;el.classList.add("is-soon");return;}
   for(let k=1;k<8;k++){const n=(d+k)%7;if(HOURS[n]){el.textContent=OPENTXT.next(k===1?OPENTXT.tom:OPENTXT.days[n],OPENTXT.t[HOURS[n][0]])+" · "+OPENTXT.place;break;}}
 })();
-const BOOK={hello:"Hello Dr. Lochab, I would like to book a consultation",about:" about: ",when:"Preferred time: ",src:"(Found you on drlochab.com)",
- reasons:["Acidity or gastritis","Fatty liver or liver report","Jaundice or hepatitis","Gas, bloating or IBS","Constipation or loose motions","Endoscopy or colonoscopy","EUS or ERCP","Gallbladder or pancreas","Review of reports"],
- times:["Weekday evening","Sunday morning","Video consultation"]};
-const waText=(reason,time)=>"https://wa.me/919667104882?text="+encodeURIComponent(BOOK.hello+(reason?BOOK.about+reason:"")+"."+(time?"\n"+BOOK.when+time+".":"")+"\n"+BOOK.src);
 (function(){
   const pick={r:"",t:""}, a=document.getElementById("waBook");
   document.getElementById("waHero").href=waText("","");

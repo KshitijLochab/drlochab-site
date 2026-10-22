@@ -15,7 +15,7 @@ MORE = [
    ("What you can do", ["- Stop alcohol until the cause is known","- Do not start new herbal or 'liver tonic' products","- Tell your doctor about every medicine and supplement you take","- If you are overweight, losing 7 to 10% of body weight often brings enzymes back to normal"]),
    ("When to see a doctor quickly", ["See a doctor the same day if raised enzymes come with yellow eyes, dark urine, vomiting, confusion, drowsiness or bleeding. In an emergency, call 112."]),
   ]),
- dict(slug="ascites-fluid-in-abdomen", q="What is ascites (fluid in the abdomen), and how is it treated?", cond=6,
+ dict(slug="ascites-fluid-in-abdomen", q="What is ascites (fluid in the abdomen), and how is it treated?", seo="Ascites (fluid in the abdomen): causes and treatment", cond=6,
   desc="Ascites, fluid in the belly: causes such as cirrhosis, symptoms, tests, salt advice, treatment with tablets and fluid removal, and warning signs of infection. Dr. Kshitij Lochab, Gurugram.",
   short="Ascites is a build-up of fluid inside the abdomen. The commonest cause is cirrhosis of the liver; tuberculosis, cancer, heart failure and kidney disease are other causes. It is treated by finding the cause, cutting down salt, tablets that remove extra water, and draining the fluid when needed.",
   sections=[
@@ -78,7 +78,7 @@ MORE = [
    ("Who needs it", ["- Fatty liver with diabetes, raised liver enzymes or a bigger waist","- Hepatitis B or C","- Regular alcohol use","- Following up known liver scarring over time"]),
    ("What happens after", ["If scarring is low, lifestyle changes and periodic checks are usually enough. If scarring is high, further tests are done, including screening for varices and liver cancer. Scarring can improve when the cause is treated, such as weight loss in fatty liver or stopping alcohol."]),
   ]),
- dict(slug="fatty-liver-grade-on-ultrasound", q="Grade 1, 2 or 3 fatty liver on ultrasound: what does it mean?", cond=3,
+ dict(slug="fatty-liver-grade-on-ultrasound", q="Grade 1, 2 or 3 fatty liver on ultrasound: what does it mean?", seo="Grade 1, 2 or 3 fatty liver on ultrasound: meaning", cond=3,
   desc="What grade 1, grade 2 and grade 3 fatty liver on an ultrasound report mean, why the grade does not show scarring, which tests come next and how to reverse it. Dr. Kshitij Lochab, Gurugram.",
   short="The grade of fatty liver on an ultrasound describes how bright the liver looks, which roughly reflects how much fat it contains: grade 1 is mild, grade 2 moderate and grade 3 severe. The grade does not tell you whether the liver is scarred, which matters more. Blood tests and a FibroScan show that.",
   sections=[
@@ -112,7 +112,7 @@ MORE = [
      "The gut usually heals within months on a strict diet. A dietitian helps a lot in the first few months."]),
    ("Follow-up", ["Blood tests are repeated to check that antibodies are falling and anaemia is recovering. Family members, especially brothers, sisters and children, should be tested, as celiac disease runs in families."]),
   ]),
- dict(slug="stomach-infection-gastroenteritis", q="Stomach infection (gastroenteritis): what helps, and when to see a doctor?", cond=1,
+ dict(slug="stomach-infection-gastroenteritis", q="Stomach infection (gastroenteritis): what helps, and when to see a doctor?", seo="Stomach infection (gastroenteritis): what helps", cond=1,
   desc="Stomach infection or gastroenteritis: causes such as viruses and food poisoning, home care with ORS, what to eat, warning signs of dehydration and when to see a doctor. Dr. Kshitij Lochab, Gurugram.",
   short="A stomach infection (gastroenteritis) causes loose motions, vomiting, cramps and sometimes fever. Most are caused by viruses or contaminated food and settle within a few days. The most important treatment is replacing lost fluid with ORS. Antibiotics are usually not needed.",
   sections=[
@@ -162,7 +162,7 @@ MORE = [
    ("Risks and limits", ["- The main risk is the capsule getting stuck at a narrowing, which is uncommon. In people with suspected narrowing, a dissolvable 'patency' capsule or a scan is used first.","- It cannot take biopsies or treat problems. If something is found, a special scope (enteroscopy) or other treatment may be needed.","- Tell the doctor if you have a pacemaker, swallowing problems, or previous bowel surgery or blockage."]),
    ("Results", ["The doctor reviews the video, which takes time, and the results are usually explained within a few days."]),
   ]),
- dict(slug="stool-tests", q="Which stool tests are done for stomach problems, and what do they show?", cond=13, proc=1,
+ dict(slug="stool-tests", q="Which stool tests are done for stomach problems, and what do they show?", seo="Stool tests for stomach problems: what they show", cond=13, proc=1,
   desc="Stool tests explained: routine microscopy, culture, hidden blood (FIT), calprotectin for bowel inflammation, H. pylori antigen and elastase, and how to collect a sample. Dr. Kshitij Lochab, Gurugram.",
   short="Stool tests are simple, painless tests that help find infections, hidden bleeding, inflammation in the bowel and problems with digestion. Different tests answer different questions, so your doctor chooses the right ones based on your symptoms.",
   sections=[

@@ -25,7 +25,7 @@ PAIRS = [
  ('<span>DrNB Gastroenterology, Medanta</span>', '<span>DrNB गैस्ट्रोएंटेरोलॉजी, मेदांता</span>'),
  ('<span>All-India Gold Medal</span>', '<span>ऑल-इंडिया गोल्ड मेडल</span>'),
  ('<span>Advanced Fellowship in EUS &amp; ERCP</span>', '<span>EUS और ERCP में एडवांस्ड फ़ेलोशिप</span>'),
- ('src="dr-lochab.jpg" alt="Dr. Kshitij Lochab in a white doctor\'s coat"', 'src="../dr-lochab.jpg" alt="सफ़ेद कोट में डॉ. क्षितिज लोचब"'),
+ ('src="/dr-lochab.jpg" alt="Dr. Kshitij Lochab in a white doctor\'s coat"', 'src="/dr-lochab.jpg" alt="सफ़ेद कोट में डॉ. क्षितिज लोचब"'),
  ('<figcaption><b>Dr. Kshitij Lochab</b><span>Haryana Medical Council Reg. No. HN-23524</span></figcaption>',
   '<figcaption><b>डॉ. क्षितिज लोचब</b><span>हरियाणा मेडिकल काउंसिल रजि. नं. HN-23524</span></figcaption>'),
 
@@ -140,6 +140,7 @@ PAIRS = [
   '<p>हाल ही में आए थे? अपना अनुभव <a href="https://g.page/r/CYmK8BpICDd6EBM/review" target="_blank" rel="noopener" style="color:var(--warm-on-ink)">Google</a> पर शेयर करें। इससे दूसरों को सही इलाज ढूँढने में मदद मिलती है।</p>'),
  ('<p>Also consulting at Apollo Hospitals, Golf Course Road, Gurugram.</p>', '<p>अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड, गुरुग्राम में भी देखते हैं।</p>'),
  ('<a class="fab" href="#visit" aria-label="Book a visit">', '<a class="fab" href="#visit" aria-label="अपॉइंटमेंट लें">'),
+ ('<nav class="fabs" aria-label="Quick actions">', '<nav class="fabs" aria-label="तुरंत करें">'),
  ('</svg>\n  Book\n</a>', '</svg>\n  अपॉइंटमेंट\n</a>'),
 
  # footer
@@ -294,6 +295,8 @@ GUIDES_JS = r'''const GUIDES=[
 
 PAIRS += [
  ('const PFX="/";', 'const PFX="/hi/";'),
+ ('const SYMBOOK={book:"Book a visit about this",wa:"WhatsApp",urgent:"Call 112 for an ambulance",urgentNote:"Do not wait for an appointment. Go to the nearest emergency department."};',
+  'const SYMBOOK={book:"इसके लिए अपॉइंटमेंट लें",wa:"WhatsApp",urgent:"एम्बुलेंस के लिए 112 पर कॉल करें",urgentNote:"अपॉइंटमेंट का इंतज़ार न करें। सबसे पास के इमरजेंसी विभाग में जाएँ।"};'),
  ('const MORE="Read the full guide →";', 'const MORE="पूरी जानकारी पढ़ें →";'),
  ('const MOREP="Read more about this procedure →";', 'const MOREP="इस प्रोसीजर के बारे में और पढ़ें →";'),
 ]

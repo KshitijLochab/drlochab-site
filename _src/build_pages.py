@@ -1,5 +1,6 @@
 """Generates condition, procedure and answer pages (English and Hindi) into site/.
 Run after build_site.py has written site/index.html and site/hi/index.html."""
+import prep_guides, sys
 import json, os, html, subprocess
 from urllib.parse import quote
 import seo_en, seo_hi, guide_art, seo_proc_en, seo_proc_hi, answers_extra_en, answers_extra_hi, cond_diet_en, cond_diet_hi
@@ -55,7 +56,7 @@ def channel_html(lang, cls="chan"):
 REVIEW = "https://g.page/r/CYmK8BpICDd6EBM/review"
 
 L = {
- "en": dict(home="Home", conds="Conditions", procs="Procedures", answers="Answers", tools="Tools", tips="Daily tips", book="Book a visit", dietnav="Diet charts",
+ "en": dict(home="Home", conds="Conditions", procs="Procedures", answers="Answers", tools="Tools", book_this="Book a visit about this", quick="Quick actions", tips="Daily tips", book="Book a visit", dietnav="Diet charts",
    by="By Dr. Kshitij Lochab, Consultant Gastroenterologist", upd="Updated", symptoms="Common symptoms", causes="Causes and risk factors",
    tests="How it is diagnosed", treat="Treatment", proc_help="Procedures that may help", diet="What to eat", more="Eat more", less="Cut down",
    know="Good to know", when="When to see a gastroenterologist", faq="Common questions", related="Related conditions", read="Read next",
@@ -69,7 +70,7 @@ L = {
    about="How it works", prep="Before the procedure", day="On the day", glance="At a glance", after="After the procedure",
    alarm="Get medical help straight away if you have", alts="Other tests and options", where="{n} in Gurgaon (Gurugram)",
    where_p="Dr. Kshitij Lochab, Consultant Gastroenterologist and Therapeutic Endoscopist (DrNB Gastroenterology, Medanta; Advanced Fellowship in EUS and ERCP), sees patients in Gurugram (Gurgaon) at Arcura Clinic, M2K Corporate Park, Sector 51, and at Apollo Hospitals, Golf Course Road. Book a consultation by call or WhatsApp on +91 96671 04882. Video consultations are available to go through your reports before a visit."),
- "hi": dict(home="होम", conds="बीमारियाँ", procs="जाँच और इलाज", answers="सवाल-जवाब", tools="टूल्स", tips="रोज़ की सलाह", book="अपॉइंटमेंट", dietnav="डाइट चार्ट",
+ "hi": dict(home="होम", conds="बीमारियाँ", procs="जाँच और इलाज", answers="सवाल-जवाब", tools="टूल्स", book_this="इसके लिए अपॉइंटमेंट लें", quick="तुरंत करें", tips="रोज़ की सलाह", book="अपॉइंटमेंट", dietnav="डाइट चार्ट",
    by="लेखक: डॉ. क्षितिज लोचब, कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट", upd="अपडेट", symptoms="आम लक्षण", causes="वजहें और ख़तरे",
    tests="जाँच कैसे होती है", treat="इलाज", proc_help="इलाज में मदद करने वाले प्रोसीजर", diet="क्या खाएँ", more="ज़्यादा खाएँ", less="कम करें",
    know="जानने लायक", when="गैस्ट्रोएंटेरोलॉजिस्ट को कब दिखाएँ", faq="आम सवाल", related="जुड़ी हुई बीमारियाँ", read="यह भी पढ़ें",
@@ -215,6 +216,9 @@ def aside(lang):
 PLATE_SVG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'
              '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M2 3v6M4 3v18M6 3v6M2 9h4M20 3c-1.5 1-2 3-2 6h2v12"/></svg>')
 
+WA_ICON = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+           '<path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>')
+
 def diet_fab(lang, href):
     """Phone-only floating link to the diet charts, bottom left (the Book button sits bottom right)."""
     return f'<a class="fab fab-diet" href="{href}">{PLATE_SVG}{L[lang]["dietnav"]}</a>'
@@ -223,8 +227,8 @@ def footer(lang, diet=True):
     t = L[lang]
     fl = f'<p class="foot-links"><a href="{pre(lang)}about-dr-kshitij-lochab/">{FOOT_LINKS[lang][0]}</a> · <a href="{pre(lang)}gastroenterologist-in-gurgaon/">{FOOT_LINKS[lang][1]}</a> · <a href="{pre(lang)}tools/gut-tracker/">{FOOT_LINKS[lang][2]}</a> · <a href="{pre(lang)}diet-charts/">{L[lang]['dietnav']}</a></p>'
     return f"""<footer><div class="wrap">{channel_html(lang, "chan chan-foot")}{fl}{social_html(lang)}<p>{t['disc']}</p><p>Dr. Kshitij Lochab · {t['reg']} · {PHONE}</p><p>© 2026 Dr. Kshitij Lochab</p></div></footer>
-<a class="fab" href="{WA}" target="_blank" rel="noopener">{t['book']}</a>
-{diet_fab(lang, pre(lang) + "diet-charts/") if diet else ""}
+<nav class="fabs" aria-label="{t['quick']}"><a class="fab" href="{WA}" target="_blank" rel="noopener">{t['book']}</a>
+{diet_fab(lang, pre(lang) + "diet-charts/") if diet else ""}</nav>
 </body></html>"""
 
 def physician(lang):
@@ -331,7 +335,7 @@ def build():
             dc = [s_ for s_, _, c_ in diet_rules.PAGES if c_ == base["slug"]]
             if dc:
                 body.append(f'<p class="dc-link"><a class="btn btn-ghost btn-sm" href="{url(lang, "diet-charts", dc[0])}">{(diet_text_en if lang == "en" else diet_text_hi).UI["cond_link"]} →</a></p>')
-            body.append(f'<section class="see"><h2>{t["when"]}</h2><p>{e(c["e"])}</p></section>')
+            body.append(f'<section class="see"><h2>{t["when"]}</h2><p>{e(c["e"])}</p><a class="btn btn-sm see-book" href="{WA}" target="_blank" rel="noopener">{WA_ICON}{t["book_this"]}</a></section>')
             if base["slug"] in TRACK_CONDS:
                 body.append(tracker_note(lang))
             body.append(guide_notes(lang, "conds", i))
@@ -360,6 +364,7 @@ def build():
             if M.get("intro"): body.append(sec(t["about"], "".join(f"<p>{e(p_)}</p>" for p_ in M["intro"])))
             body.append(sec(t["uses"], ul(x["uses"])))
             if M.get("prep"): body.append(sec(t["prep"], ul(M["prep"])))
+            body.append(prep_guides.proc_note(lang, __import__(__name__), base["slug"]))
             if M.get("day"): body.append(sec(t["day"], f"<p>{e(M['day'])}</p><h3>{t['glance']}</h3>{table}"))
             else: body.append(sec(t["expect"], table))
             if M.get("after"): body.append(sec(t["after"], ul(M["after"])))
@@ -383,7 +388,7 @@ def build():
         for i, a in enumerate(S.ANSWERS):
             base = seo_en.ANSWERS[i]
             path, path_en, path_hi = url(lang, "answers", base["slug"]), url("en", "answers", base["slug"]), url("hi", "answers", base["slug"])
-            title = f"{a['q']} | Dr. Kshitij Lochab, Gurgaon" if lang == "en" else f"{a['q']} | डॉ. क्षितिज लोचब, गुड़गाँव"
+            title = f"{a.get('seo', a['q'])} | Dr. Kshitij Lochab, Gurgaon" if lang == "en" else f"{a.get('seo', a['q'])} | डॉ. क्षितिज लोचब, गुड़गाँव"
             secs = []
             for h, parts in a["sections"]:
                 items = [p_[2:] for p_ in parts if p_.startswith("- ")]
@@ -476,6 +481,13 @@ def build():
         import gut_tracker
         path, path_en, path_hi, page = gut_tracker.render(lang, sys.modules[__name__])
         write(path, page); pages.append((path_en, path_hi))
+        import liver_test
+        if liver_test.LIVE:   # held until the clinical wording is approved
+            path, path_en, path_hi, page = liver_test.render(lang, sys.modules[__name__])
+            write(path, page); pages.append((path_en, path_hi))
+        for kind in ("colonoscopy", "endoscopy"):
+            path, path_en, path_hi, page = prep_guides.render(lang, sys.modules[__name__], kind, D[lang])
+            write(path, page); pages.append((path_en, path_hi))
         import local_pages
         cl = [(url(lang, "conditions", seo_en.CONDS[j]["slug"]), D[lang]["CONDITIONS"][j]["n"]) for j in range(len(seo_en.CONDS))]
         pl = [(url(lang, "procedures", seo_en.PROCS[j]["slug"]), D[lang]["PROCS"][j]["n"]) for j in range(len(seo_en.PROCS))]

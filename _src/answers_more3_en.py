@@ -3,7 +3,7 @@ Keep answers_more3_hi.py in the same order. Diet box and FAQs for each are in an
 
 MORE = [
  # ---------------- liver ----------------
- dict(slug="hepatitis-a-and-e", q="What are hepatitis A and E, and how long does the jaundice last?", cond=5,
+ dict(slug="hepatitis-a-and-e", q="What are hepatitis A and E, and how long does the jaundice last?", seo="Hepatitis A and E: how long does the jaundice last?", cond=5,
   desc="Hepatitis A and E, the commonest causes of jaundice in India: how they spread, symptoms, recovery time, diet, danger signs, pregnancy risk and the hepatitis A vaccine. Dr. Kshitij Lochab, Gurugram.",
   short="Hepatitis A and E are liver infections spread through contaminated water and food. They are the commonest cause of jaundice in India, especially in the monsoon. Most people recover fully in 4 to 8 weeks with rest and normal food. Hepatitis E can be dangerous in pregnancy, and confusion, bleeding or repeated vomiting need hospital care at once.",
   sections=[
@@ -15,7 +15,7 @@ MORE = [
    ("Danger signs, pregnancy and prevention", ["Go to hospital straight away for confusion or unusual sleepiness, bleeding or bruising, vomiting that stops you keeping fluids down, or jaundice that keeps deepening after two weeks. Hepatitis E in the last three months of pregnancy can be severe: any pregnant woman with jaundice should see a doctor the same day.",
      "- Drink boiled or filtered water, and avoid cut fruit, golgappe and street juices in the monsoon","- Wash hands with soap before eating and after the toilet","- Hepatitis A vaccine protects children and adults who are not immune; ask your doctor","- People with fatty liver, hepatitis B or C, or cirrhosis should ask about the hepatitis A vaccine"]),
   ]),
- dict(slug="gilberts-syndrome", q="Bilirubin slightly high but I feel fine: is it Gilbert's syndrome?", cond=5,
+ dict(slug="gilberts-syndrome", q="Bilirubin slightly high but I feel fine: is it Gilbert's syndrome?", seo="Slightly high bilirubin: is it Gilbert's syndrome?", cond=5,
   desc="Gilbert's syndrome: why bilirubin is mildly high with normal liver enzymes, why eyes turn yellow during fasting or illness, how it is confirmed, and why it is harmless. Dr. Kshitij Lochab, Gurugram.",
   short="Gilbert's syndrome is a common, harmless inherited condition in which the liver processes bilirubin a little slowly. Bilirubin, mostly the indirect type, is mildly raised while all other liver tests are normal. The eyes may look slightly yellow during fasting, illness, stress or poor sleep. It needs no treatment and does not damage the liver.",
   sections=[
@@ -106,7 +106,7 @@ MORE = [
    ("Hiccups", ["Most hiccups follow a big meal, fizzy drinks, alcohol, spicy food or excitement, and stop within minutes. Holding your breath briefly, sipping cold water slowly or swallowing a spoon of sugar may help. Hiccups that keep returning can be linked to reflux or some medicines."]),
    ("See a doctor if", ["- Hiccups last more than 48 hours, or keep you from eating or sleeping","- Burping comes with weight loss, vomiting, difficulty swallowing or black stools","- New burping or indigestion starts after age 45 to 50"]),
   ]),
- dict(slug="weight-loss-injections-and-gut", q="Weight-loss injections (semaglutide, tirzepatide): what do they do to the gut?", cond=3,
+ dict(slug="weight-loss-injections-and-gut", q="Weight-loss injections (semaglutide, tirzepatide): what do they do to the gut?", seo="Weight-loss injections and the gut: side effects", cond=3,
   desc="Weight-loss and diabetes injections such as semaglutide and tirzepatide: nausea, constipation, gallstones and pancreatitis risk, eating tips, and safety before endoscopy. Dr. Kshitij Lochab, Gurugram.",
   short="Medicines such as semaglutide and tirzepatide (GLP-1 medicines) slow stomach emptying and reduce appetite. They help weight, diabetes and fatty liver, but often cause nausea, fullness, constipation or loose motions, especially when the dose goes up. Rarely, they can trigger gallstones or pancreatitis. Use them only under a doctor's care.",
   sections=[
@@ -127,7 +127,7 @@ MORE = [
    ("When to see a gastroenterologist", ["- Raised liver enzymes or fatty liver with diabetes","- Repeated vomiting, early fullness or weight loss","- Loose motions or constipation that do not settle","- New diabetes with weight loss, belly pain or oily stools"]),
   ]),
  # ---------------- intestines ----------------
- dict(slug="worms-in-stomach", q="Worms in the stomach (pet mein keede): symptoms and treatment", cond=10,
+ dict(slug="worms-in-stomach", q="Worms in the stomach (pet mein keede): symptoms and treatment", seo="Worms in the stomach (pet mein keede): symptoms", cond=10,
   desc="Intestinal worms in adults and teenagers: roundworm, hookworm, pinworm and tapeworm, real symptoms versus myths, stool tests, deworming and prevention. Dr. Kshitij Lochab, Gurugram.",
   short="Intestinal worms are still common in India, spread through contaminated soil, water and food. Many people have no symptoms; others have belly pain, anaemia, itching around the back passage at night, or see worms in the stool. Teeth grinding or craving sweets do not mean worms. A stool test confirms them, and treatment is simple.",
   sections=[
@@ -137,7 +137,7 @@ MORE = [
    ("Tests and treatment", ["A stool examination finds worms or eggs; two or three samples on different days may be needed. A blood count may show anaemia or raised eosinophils. Treatment is a short course of a deworming medicine prescribed by your doctor; family members are often treated together for pinworms, and anaemia is corrected with iron."]),
    ("Prevention", ["- Wash hands with soap after the toilet and before eating, and keep nails short","- Wash vegetables and fruit well, and cook meat thoroughly","- Wear footwear outdoors","- Drink boiled or filtered water","- Children and teenagers receive free deworming tablets under the National Deworming Day programme"]),
   ]),
- dict(slug="chronic-diarrhoea-mucus-in-stool", q="Loose motions for weeks, or mucus in stool: what does it mean?", cond=11, proc=1,
+ dict(slug="chronic-diarrhoea-mucus-in-stool", q="Loose motions for weeks, or mucus in stool: what does it mean?", seo="Loose motions for weeks or mucus in stool", cond=11, proc=1,
   desc="Chronic diarrhoea and mucus in stool: common causes such as IBS, infections, lactose and celiac, warning signs of IBD or cancer, and the tests that find the cause. Dr. Kshitij Lochab, Gurugram.",
   short="Loose motions lasting more than four weeks are chronic diarrhoea, and they need a cause found. Common causes are IBS, lactose intolerance, long-standing infections such as giardia or amoeba, celiac disease, medicines, thyroid problems, and inflammatory bowel disease. Some mucus in stool is common with IBS, but mucus with blood, weight loss or night-time motions needs tests.",
   sections=[
@@ -146,7 +146,7 @@ MORE = [
    ("Tests", ["- Blood tests: blood counts, thyroid, celiac antibody, inflammation markers","- Stool tests: microscopy for parasites, and calprotectin to look for inflammation","- Colonoscopy with biopsies, which also finds microscopic colitis and TB","- Sometimes an upper endoscopy, breath tests or a CT scan"]),
    ("Warning signs", ["See a doctor soon for blood in the stool, weight loss, motions that wake you at night, fever, anaemia, symptoms starting after age 45 to 50, or a family history of bowel cancer or IBD. Drink ORS to avoid dehydration while the cause is being found."]),
   ]),
- dict(slug="appendicitis-or-gas-pain", q="Is it appendicitis or just gas? Pain in the lower right belly", cond=10,
+ dict(slug="appendicitis-or-gas-pain", q="Is it appendicitis or just gas? Pain in the lower right belly", seo="Appendicitis or gas? Pain in the lower right belly", cond=10,
   desc="Appendicitis or gas pain: how the pain differs, warning signs, other causes of lower right belly pain, what to do and what not to take, and how appendicitis is treated. Dr. Kshitij Lochab, Gurugram.",
   short="Appendicitis pain usually starts around the navel and moves to the lower right belly over several hours, getting steadily worse, with loss of appetite, nausea and sometimes fever. Gas pain moves around, comes and goes, and eases after passing gas or stool. Suspected appendicitis is an emergency and needs a doctor the same day.",
   sections=[
