@@ -200,7 +200,10 @@ def render(lang, bp):
             f'<section class="see"><h2>{e(X["see_h"])}</h2>{bp.ul(X["see"])}</section>'
             + bp.faq_html(lang, X["faqs"]))
     ld = bp.ld_page(lang, path, X["h1"], X["desc"], "MedicalCondition", X["h1"], X["faqs"], t["answers"], "conditions", UPD)
-    html = (bp.head(lang, X["title"], X["desc"], path_en, path_hi, ld).replace("</head>", f"<style>{CSS}</style></head>", 1)
+    import gut_tracker   # same Content-Security-Policy: the page itself cannot send data anywhere
+    hd = bp.head(lang, X["title"], X["desc"], path_en, path_hi, ld).replace("</head>", f"<style>{CSS}</style></head>", 1)
+    hd = hd.replace("<head>", f'<head>\n<meta http-equiv="Content-Security-Policy" content="{gut_tracker.CSP}">\n<meta name="referrer" content="no-referrer">', 1)
+    html = (hd
             + bp.header(lang, path_hi if lang == "en" else path_en)
             + f'<main class="wrap grid"><article>{bp.crumbs(lang, t["tools"], "daily", X["h1"])}'
             + f'<p class="eyebrow">{e(X["eyebrow"])}</p><h1>{e(X["h1"])}</h1>{bp.byline(lang, UPD)}' + body

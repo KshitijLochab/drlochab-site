@@ -385,6 +385,8 @@ section{padding-block:72px;scroll-margin-top:70px}
 .mb-ans a{font-weight:600;font-size:.9rem}
 .hooks{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:640px}
 .hook{display:grid;grid-template-columns:48px 1fr;gap:5px 12px;align-content:start;text-decoration:none;color:var(--ink);border-radius:18px;padding:14px 16px;border:1.5px solid;min-width:0;transition:transform .15s}
+.hook:empty{display:none}
+a.sym{text-decoration:none}
 .hook:hover{transform:translateY(-2px)}
 .hook-myth{background:var(--warm-soft);border-color:var(--warm)}
 .hook-fibre{background:var(--accent-soft);border-color:var(--accent)}
@@ -622,6 +624,7 @@ body{line-height:1.7}
 </style>
 </head>
 <body>
+<noscript><style>#reasonBox{display:none}</style></noscript>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -719,12 +722,11 @@ body{line-height:1.7}
       <div role="tabpanel" id="panel-today" aria-labelledby="tab-today">
         <div class="today-wrap">
           <article class="today" id="todayCard">
-            <div class="cal" aria-hidden="true"><span class="cal-m" id="calM"></span><span class="cal-d" id="calD"></span><span class="cal-w" id="calW"></span></div>
-            <div class="tip" id="tipBody"><p class="small">आज की सलाह लोड हो रही है…</p></div>
+            <div class="cal" aria-hidden="true"><span class="cal-m" id="calM">अक्तू॰</span><span class="cal-d" id="calD">22</span><span class="cal-w" id="calW">गुरुवार</span></div><div class="tip" id="tipBody"><span class="cat">आँत</span><h3>सुबह की प्राकृतिक इच्छा का फ़ायदा उठाएँ</h3><p>नाश्ता करने से आँत अपने आप चलने लगती है। इस इच्छा को बार-बार टालना कब्ज़ की आम वजह है।</p><div class="try"><b>आज यह करके देखें</b>नाश्ते के बाद 5 से 10 मिनट शौचालय में बैठें, फ़ोन के बिना। पैरों के नीचे छोटा स्टूल रखकर घुटने ऊपर करने से आसानी होती है।</div></div>
           </article>
           <aside class="ibs" aria-labelledby="ibs-h">
             <div class="ibs-head"><span class="ibs-badge">IBS कॉर्नर</span><span class="small" id="ibs-h">IBS वाले लोगों के लिए रोज़ की सलाह</span></div>
-            <div class="ibs-body" id="ibsBody"><p class="small">लोड हो रहा है…</p></div>
+            <div class="ibs-body" id="ibsBody"><span class="cat">जानकारी</span><h3>ये संकेत IBS नहीं हैं</h3><p>IBS से मल में खून, वज़न घटना, बुखार, खून की कमी, या रात में नींद तोड़ने वाले लक्षण नहीं होते। इनकी पूरी जाँच ज़रूरी है।</p><div class="try"><b>आज यह करके देखें</b>अगर इनमें से कुछ भी है, या लक्षण 45 की उम्र के बाद शुरू हुए हैं, तो इसे IBS मानने के बजाय जाँच करवाएँ।</div></div>
             <a class="ibs-track" href="tools/gut-tracker/">अपने लक्षण निजी रूप से ट्रैक करें →</a>
           </aside>
         </div>
@@ -737,7 +739,7 @@ body{line-height:1.7}
           <p class="lede">आज आपने जो खाया है उस पर टैप करें। तीन मीटर दिखाते हैं कि आपका फ़ाइबर, प्रोटीन और फ़ैट ज़्यादातर बड़ों की ज़रूरत के मुकाबले कितना है।</p>
           <p class="fb-plan"><a href="diet-charts/">किसी बीमारी के लिए पूरा डाइट प्लान और रोज़ की फ़ूड डायरी चाहिए? डाइट चार्ट खोलें →</a></p>
         </div>
-        <div class="fb" id="fb"></div>
+        <div class="fb" id="fb"><noscript><p class="small">थाली मीटर इस्तेमाल करने के लिए अपने ब्राउज़र में JavaScript चालू करें।</p></noscript></div>
       </div>
       <div role="tabpanel" id="panel-guides" aria-labelledby="tab-guides" hidden>
         <div class="dtab-top"><p>पेट और लिवर की 12 बीमारियों के लिए भारतीय डाइट चार्ट, शाकाहारी और नॉन-वेज विकल्पों के साथ। फ़ूड डायरी बताती है कि आज के खाने में क्या कम है।</p><div class="btns"><a class="btn btn-solid btn-sm" href="diet-charts/#diary">फ़ूड डायरी खोलें →</a><a class="btn btn-ghost btn-sm" href="diet-charts/">सभी डाइट चार्ट</a></div></div><div class="dtab"><a href="diet-charts/gut-healthy-diet/"><b>रोज़ की पेट की सेहत</b><span>फ़ाइबर, प्रोटीन, पानी और समय पर खाना, एक आम भारतीय दिन में।</span></a><a href="diet-charts/fatty-liver/"><b>फैटी लिवर</b><span>कम चीनी और मैदा, ज़्यादा फ़ाइबर और प्रोटीन, और धीरे-धीरे वज़न घटाना।</span></a><a href="diet-charts/acidity-gastritis/"><b>एसिडिटी और गैस्ट्राइटिस</b><span>खाने की मात्रा और समय, आम ट्रिगर, और हल्का रोज़ का खाना।</span></a><a href="diet-charts/ibs-bloating/"><b>IBS और पेट फूलना</b><span>तय समय पर खाना, घुलने वाला फ़ाइबर, और अपने ट्रिगर खाने पहचानना।</span></a><a href="diet-charts/constipation/"><b>कब्ज़</b><span>धीरे-धीरे बढ़ाया फ़ाइबर, असरदार फल, पानी और नियमित आदत।</span></a><a href="diet-charts/gallstones/"><b>पित्ताशय की पथरी</b><span>दर्द के अटैक से बचने के लिए तय समय पर खाना और संतुलित फ़ैट।</span></a><a href="diet-charts/cirrhosis/"><b>सिरोसिस</b><span>पर्याप्त प्रोटीन, छोटे-छोटे बार-बार खाने, रात का नाश्ता और कम नमक।</span></a><a href="diet-charts/jaundice-hepatitis/"><b>पीलिया और हेपेटाइटिस</b><span>सामान्य संतुलित खाना, साफ़ पानी, और शराब या बिना पर्ची के नुस्ख़े नहीं।</span></a><a href="diet-charts/pancreatitis/"><b>पैंक्रियाटाइटिस</b><span>अटैक के बाद हल्के खाने; लंबे समय में पर्याप्त कैलोरी और प्रोटीन।</span></a><a href="diet-charts/ulcerative-colitis-crohns/"><b>अल्सरेटिव कोलाइटिस और क्रोहन बीमारी</b><span>बीमारी बढ़ने पर या क्रोहन में सिकुड़न होने पर नरम, कम रेशे वाला खाना; शांत होने पर विविध ताज़ा खाना।</span></a><a href="diet-charts/celiac-gluten-free/"><b>सीलिएक बीमारी</b><span>पूरी तरह ग्लूटेन-फ़्री, मोटे अनाज, चावल और दाल के साथ, बिना छिपे ग्लूटेन के।</span></a><a href="diet-charts/loose-motions/"><b>दस्त</b><span>हर दस्त के बाद ORS, हल्का खाना, और ख़तरे के संकेतों पर नज़र।</span></a></div><p class="small" style="margin-top:16px">ये सामान्य चार्ट हैं। आपकी रिपोर्ट, दूसरी बीमारियों और दवाइयों के हिसाब से आपकी डाइट में बदलाव की ज़रूरत हो सकती है।</p>
@@ -759,7 +761,7 @@ body{line-height:1.7}
         <h2>भ्रम या सच? अंदाज़ा लगाइए</h2>
         <p class="lede">पेट और लिवर से जुड़ी आम धारणाओं को स्वाइप करें और अंदाज़ा लगाइए कि कौन-सी सच है। हर सोमवार और गुरुवार नई जुड़ती हैं।</p>
       </div>
-      <div class="mbc" id="mb"><p class="small">लोड हो रहा है…</p></div>
+      <div class="mbc" id="mb"><article class="mb mb-fb"><div class="mb-body"><p class="mb-eyebrow">भ्रम या सच?</p><p class="mb-claim">“पित्त की हर पथरी का ऑपरेशन ज़रूरी है।”</p><p><b>भ्रम:</b> बिना तकलीफ़ वाली पथरी में अक्सर ऑपरेशन की ज़रूरत नहीं होती। कई पथरियाँ संयोग से अल्ट्रासाउंड में दिखती हैं और कभी परेशान नहीं करतीं। ऑपरेशन आमतौर पर तब सलाह दिया जाता है जब पथरी दर्द या इंफ़ेक्शन, पीलिया या पैंक्रियाटाइटिस जैसी परेशानी करे।</p><p><a href="/hi/conditions/gallstones/" style="color:var(--warm-on-ink)">और पढ़ें&nbsp;→</a></p></div></article></div>
     </div>
   </section>
 
@@ -772,14 +774,14 @@ body{line-height:1.7}
       </div>
       <div class="sym-grid">
         <div>
-          <div class="sym-list" id="symList" role="group" aria-label="लक्षण"></div>
+          <div class="sym-list" id="symList" role="group" aria-label="लक्षण"><a class="sym" data-tier="routine" href="#symptoms">सीने में जलन या एसिडिटी</a><a class="sym" data-tier="routine" href="#symptoms">पेट फूलना और गैस</a><a class="sym" data-tier="routine" href="#symptoms">कब्ज़</a><a class="sym" data-tier="routine" href="#symptoms">रिपोर्ट में फैटी लिवर</a><a class="sym" data-tier="soon" href="#symptoms">2 हफ़्ते से ज़्यादा दस्त</a><a class="sym" data-tier="soon" href="#symptoms">पीली आँखें या गहरा पेशाब</a><a class="sym" data-tier="soon" href="#symptoms">निगलते समय खाना अटकना</a><a class="sym" data-tier="soon" href="#symptoms">बिना कोशिश वज़न घटना</a><a class="sym" data-tier="soon" href="#symptoms">मल में लाल खून</a><a class="sym" data-tier="urgent" href="#symptoms">काला, तारकोल जैसा मल</a><a class="sym" data-tier="urgent" href="#symptoms">उल्टी में खून</a><a class="sym" data-tier="urgent" href="#symptoms">पेट में तेज़ दर्द</a></div>
           <div class="legend">
             <span><i style="background:var(--accent)"></i>आम दिनों में दिखाएँ</span>
             <span><i style="background:var(--warm)"></i>कुछ दिनों के अंदर</span>
             <span><i style="background:var(--urgent)"></i>आज ही</span>
           </div>
         </div>
-        <div class="result" id="symResult" aria-live="polite"></div>
+        <div class="result" id="symResult" aria-live="polite"><span class="pill pill-routine">आम दिनों में दिखाएँ</span><h3>सीने में जलन या एसिडिटी</h3><dl><div><dt>आम वजहें</dt><dd>एसिड रिफ़्लक्स (GERD), गैस्ट्राइटिस, या H. pylori इन्फ़ेक्शन।</dd></div><div><dt>क्या करें</dt><dd>थोड़ा-थोड़ा खाएँ और रात का खाना जल्दी खाएँ। अगर हफ़्ते में दो बार या उससे ज़्यादा हो, या 2 से 4 हफ़्ते से ज़्यादा चले, तो दिखाएँ।</dd></div></dl></div>
       </div>
     </div>
   </section>
@@ -802,7 +804,7 @@ body{line-height:1.7}
         <h2>एंडोस्कोपी में क्या होता है</h2>
         <p class="lede">ज़्यादातर प्रोसीजर में कैमरे वाली एक पतली, मुड़ने वाली नली इस्तेमाल होती है। कोई चीरा नहीं लगता, और ज़्यादातर लोग उसी दिन घर चले जाते हैं। कैसे होता है, यह देखने के लिए किसी पर भी टैप करें।</p>
       </div>
-      <div class="ptiles" id="procGrid"></div>
+      <div class="ptiles" id="procGrid"><a class="ptile ptile-fb" href="/hi/procedures/upper-gi-endoscopy/"><span class="ptile-t"><b>अपर GI एंडोस्कोपी</b></span><span class="ptile-w">मुँह से एक पतला कैमरा डालकर खाने की नली, पेट और आँत का पहला हिस्सा देखा जाता है। ज़रूरत हो तो बिना दर्द के छोटी बायोप्सी ली जाती है।</span></a><a class="ptile ptile-fb" href="/hi/procedures/colonoscopy/"><span class="ptile-t"><b>कोलोनोस्कोपी</b></span><span class="ptile-w">मल द्वार से कैमरा डालकर बड़ी आँत की जाँच होती है। जाँच में मिले पॉलिप उसी समय निकाल दिए जाते हैं।</span></a><a class="ptile ptile-fb" href="/hi/procedures/endoscopic-ultrasound-eus/"><span class="ptile-t"><b>एंडोस्कोपिक अल्ट्रासाउंड</b></span><span class="ptile-w">स्कोप के सिरे पर लगे अल्ट्रासाउंड से शरीर के अंदर से पैंक्रियास, पित्त नली और आसपास की ग्रंथियों की साफ़ तस्वीर मिलती है। इससे सुई से सैंपल और पानी की थैलियाँ भी निकाली जा सकती हैं।</span></a><a class="ptile ptile-fb" href="/hi/procedures/ercp/"><span class="ptile-t"><b>ERCP</b></span><span class="ptile-w">एक्स-रे की मदद से स्कोप पित्त और पैंक्रियास की नली के मुँह तक पहुँचता है, और बिना चीरे के पथरी निकालता है और रुकावट में स्टेंट डालता है।</span></a><a class="ptile ptile-fb" href="/hi/procedures/variceal-banding-evl/"><span class="ptile-t"><b>वैरिसियल बैंडिंग</b></span><span class="ptile-w">लिवर की बीमारी में खाने की नली की नसें फूलकर फट सकती हैं। स्कोप से छोटे रबर बैंड लगाकर इन्हें सिकोड़ा जाता है और खून आने से रोका जाता है।</span></a><a class="ptile ptile-fb" href="/hi/procedures/polyp-removal-emr/"><span class="ptile-t"><b>पॉलिप निकालना और EMR</b></span><span class="ptile-w">पॉलिप और कुछ शुरुआती चपटी गाँठें स्कोप से उठाकर निकाल दी जाती हैं, अक्सर ऑपरेशन की ज़रूरत ही नहीं पड़ती।</span></a><a class="ptile ptile-fb" href="/hi/procedures/gi-bleeding-treatment/"><span class="ptile-t"><b>खून रोकना</b></span><span class="ptile-w">अल्सर या फटी नस से आता खून स्कोप से छोटी क्लिप, इंजेक्शन या गर्मी से रोका जाता है, आम तौर पर बिना ऑपरेशन।</span></a><a class="ptile ptile-fb" href="/hi/procedures/peg-feeding-tube/"><span class="ptile-t"><b>फ़ीडिंग ट्यूब (PEG)</b></span><span class="ptile-w">जो लोग सुरक्षित रूप से निगल नहीं पाते, उनके लिए स्कोप की मदद से त्वचा से होकर पेट में एक नरम फ़ीडिंग ट्यूब लगाई जाती है।</span></a><a class="ptile ptile-fb" href="/hi/procedures/dilatation-stenting/"><span class="ptile-t"><b>डाइलेटेशन और स्टेंटिंग</b></span><span class="ptile-w">खाने की नली, पित्त नली या आँत के सिकुड़े हिस्से को बैलून से चौड़ा किया जाता है, या स्कोप से स्टेंट डालकर खुला रखा जाता है।</span></a><a class="ptile ptile-fb" href="/hi/answers/capsule-endoscopy/"><span class="ptile-t"><b>कैप्सूल एंडोस्कोपी</b></span><span class="ptile-w">आप एक बड़ी गोली जितना कैमरा निगलते हैं। यह छोटी आँत की हज़ारों तस्वीरें लेता है, जहाँ तक सामान्य एंडोस्कोप पूरी तरह नहीं पहुँच पाता, और फिर अपने-आप मल के साथ निकल जाता है।</span></a></div>
       <p class="prep-links"><b>जाँच की तैयारी?</b> <a href="guides/colonoscopy-preparation/">कोलोनोस्कोपी की तैयारी →</a><a href="guides/endoscopy-preparation/">एंडोस्कोपी की तैयारी →</a></p>
     </div>
   </section>
@@ -959,7 +961,7 @@ body{line-height:1.7}
             <a class="phone-num" id="phoneNum" href="tel:+919667104882" aria-label="+91 96671 04882 पर कॉल करें"><span class="phone-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg></span>+91 96671 04882</a>
             <span class="phone-lbl">कॉल या WhatsApp करें</span>
           </div>
-          <div class="reason">
+          <div class="reason" id="reasonBox">
             <p class="reason-lbl">किस बारे में दिखाना है? <span>चाहें तो चुनें</span></p>
             <div class="reason-chips" id="reasonChips"></div>
             <p class="reason-lbl">कब आना ठीक रहेगा? <span>चाहें तो चुनें</span></p>
@@ -1186,6 +1188,7 @@ const BOOK={hello:"नमस्ते डॉ. लोचब, मुझे अप�
 const waText=(reason,time)=>"https://wa.me/919667104882?text="+encodeURIComponent(BOOK.hello+(reason?BOOK.about+reason:"")+"."+(time?"\n"+BOOK.when+time+".":"")+"\n"+BOOK.src);
 const SYMBOOK={book:"इसके लिए अपॉइंटमेंट लें",wa:"WhatsApp",urgent:"एम्बुलेंस के लिए 112 पर कॉल करें",urgentNote:"अपॉइंटमेंट का इंतज़ार न करें। सबसे पास के इमरजेंसी विभाग में जाएँ।"};
 const symList=document.getElementById("symList"), symResult=document.getElementById("symResult");
+symList.innerHTML="";  /* drop the static fallback list */
 SYMPTOMS.forEach((x,i)=>{
   const b=document.createElement("button");
   b.type="button";b.className="sym";b.dataset.tier=x.t;b.textContent=x.l;b.id="sym-"+i;

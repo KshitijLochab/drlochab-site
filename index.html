@@ -384,6 +384,8 @@ section{padding-block:72px;scroll-margin-top:70px}
 .mb-ans a{font-weight:600;font-size:.9rem}
 .hooks{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:640px}
 .hook{display:grid;grid-template-columns:48px 1fr;gap:5px 12px;align-content:start;text-decoration:none;color:var(--ink);border-radius:18px;padding:14px 16px;border:1.5px solid;min-width:0;transition:transform .15s}
+.hook:empty{display:none}
+a.sym{text-decoration:none}
 .hook:hover{transform:translateY(-2px)}
 .hook-myth{background:var(--warm-soft);border-color:var(--warm)}
 .hook-fibre{background:var(--accent-soft);border-color:var(--accent)}
@@ -619,6 +621,7 @@ footer .wrap{display:grid;gap:10px}
 </style>
 </head>
 <body>
+<noscript><style>#reasonBox{display:none}</style></noscript>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -716,12 +719,11 @@ footer .wrap{display:grid;gap:10px}
       <div role="tabpanel" id="panel-today" aria-labelledby="tab-today">
         <div class="today-wrap">
           <article class="today" id="todayCard">
-            <div class="cal" aria-hidden="true"><span class="cal-m" id="calM"></span><span class="cal-d" id="calD"></span><span class="cal-w" id="calW"></span></div>
-            <div class="tip" id="tipBody"><p class="small">Loading today's tip…</p></div>
+            <div class="cal" aria-hidden="true"><span class="cal-m" id="calM">Oct</span><span class="cal-d" id="calD">22</span><span class="cal-w" id="calW">Thursday</span></div><div class="tip" id="tipBody"><span class="cat">Bowel</span><h3>Use your morning reflex</h3><p>Eating breakfast naturally triggers the bowel to move. Ignoring that urge repeatedly is a common cause of constipation.</p><div class="try"><b>Try this today</b>Sit on the toilet for 5 to 10 minutes after breakfast, without your phone. Resting your feet on a small stool to raise your knees makes passing stool easier.</div></div>
           </article>
           <aside class="ibs" aria-labelledby="ibs-h">
             <div class="ibs-head"><span class="ibs-badge">IBS Corner</span><span class="small" id="ibs-h">A daily tip for people living with IBS</span></div>
-            <div class="ibs-body" id="ibsBody"><p class="small">Loading…</p></div>
+            <div class="ibs-body" id="ibsBody"><span class="cat">Know</span><h3>Signs that are not IBS</h3><p>IBS does not cause blood in the stool, weight loss, fever, anaemia or symptoms that wake you at night. These need proper tests.</p><div class="try"><b>Try this today</b>If you have any of these, or your symptoms started after age 45, book a check-up rather than treating it as IBS.</div></div>
             <a class="ibs-track" href="tools/gut-tracker/">Track your symptoms privately →</a>
           </aside>
         </div>
@@ -734,7 +736,7 @@ footer .wrap{display:grid;gap:10px}
           <p class="lede">Tap what you have eaten today. Three meters show your fibre, protein and fat against what most adults need.</p>
           <p class="fb-plan"><a href="diet-charts/">Need a full diet plan for a condition, with a daily food diary? Open the diet charts →</a></p>
         </div>
-        <div class="fb" id="fb"></div>
+        <div class="fb" id="fb"><noscript><p class="small">Turn on JavaScript in your browser to use the Thali meter.</p></noscript></div>
       </div>
       <div role="tabpanel" id="panel-guides" aria-labelledby="tab-guides" hidden>
         <div class="dtab-top"><p>Indian diet charts for 12 gut and liver conditions, with veg and non-veg options. The food diary shows what your day is missing.</p><div class="btns"><a class="btn btn-solid btn-sm" href="diet-charts/#diary">Open the food diary →</a><a class="btn btn-ghost btn-sm" href="diet-charts/">All diet charts</a></div></div><div class="dtab"><a href="diet-charts/gut-healthy-diet/"><b>Everyday gut health</b><span>Fibre, protein, water and regular meals, made into a normal Indian day.</span></a><a href="diet-charts/fatty-liver/"><b>Fatty liver</b><span>Less sugar and maida, more fibre and protein, and steady weight loss.</span></a><a href="diet-charts/acidity-gastritis/"><b>Acidity and gastritis</b><span>Meal size and timing, common triggers, and gentle everyday food.</span></a><a href="diet-charts/ibs-bloating/"><b>IBS and bloating</b><span>Regular meals, soluble fibre, and finding your own trigger foods.</span></a><a href="diet-charts/constipation/"><b>Constipation</b><span>Fibre built up slowly, the fruits that work, water and routine.</span></a><a href="diet-charts/gallstones/"><b>Gallstones</b><span>Regular meals and moderate fat to prevent painful attacks.</span></a><a href="diet-charts/cirrhosis/"><b>Cirrhosis</b><span>Enough protein, small frequent meals, a bedtime snack and less salt.</span></a><a href="diet-charts/jaundice-hepatitis/"><b>Jaundice and hepatitis</b><span>Normal balanced food, clean water, and no alcohol or unprescribed remedies.</span></a><a href="diet-charts/pancreatitis/"><b>Pancreatitis</b><span>Lighter meals after an attack; enough calories and protein long-term.</span></a><a href="diet-charts/ulcerative-colitis-crohns/"><b>Ulcerative colitis and Crohn&#x27;s disease</b><span>Soft, low-residue food in a flare or with a Crohn&#x27;s stricture; varied fresh food in remission.</span></a><a href="diet-charts/celiac-gluten-free/"><b>Celiac disease</b><span>Strictly gluten-free, with millets, rice and dal, and no hidden gluten.</span></a><a href="diet-charts/loose-motions/"><b>Loose motions</b><span>ORS after every stool, light food, and the warning signs to watch.</span></a></div><p class="small" style="margin-top:16px">These are general charts. Your own diet may need changes based on your reports, other conditions and medicines.</p>
@@ -756,7 +758,7 @@ footer .wrap{display:grid;gap:10px}
         <h2>Myth or fact? Take a guess</h2>
         <p class="lede">Swipe through common beliefs about the stomach and liver and guess which are true. New ones every Monday and Thursday.</p>
       </div>
-      <div class="mbc" id="mb"><p class="small">Loading…</p></div>
+      <div class="mbc" id="mb"><article class="mb mb-fb"><div class="mb-body"><p class="mb-eyebrow">Myth or fact?</p><p class="mb-claim">“Every gallstone needs an operation.”</p><p><b>Myth:</b> Silent gallstones often need no surgery. Many gallstones are found by chance on an ultrasound and never cause trouble. Surgery is usually advised once stones cause pain or complications such as infection, jaundice or pancreatitis.</p><p><a href="/conditions/gallstones/" style="color:var(--warm-on-ink)">Read more&nbsp;→</a></p></div></article></div>
     </div>
   </section>
 
@@ -769,14 +771,14 @@ footer .wrap{display:grid;gap:10px}
       </div>
       <div class="sym-grid">
         <div>
-          <div class="sym-list" id="symList" role="group" aria-label="Symptoms"></div>
+          <div class="sym-list" id="symList" role="group" aria-label="Symptoms"><a class="sym" data-tier="routine" href="#symptoms">Heartburn or acidity</a><a class="sym" data-tier="routine" href="#symptoms">Bloating and gas</a><a class="sym" data-tier="routine" href="#symptoms">Constipation</a><a class="sym" data-tier="routine" href="#symptoms">Fatty liver on a report</a><a class="sym" data-tier="soon" href="#symptoms">Loose motions for over 2 weeks</a><a class="sym" data-tier="soon" href="#symptoms">Yellow eyes or dark urine</a><a class="sym" data-tier="soon" href="#symptoms">Food sticking when swallowing</a><a class="sym" data-tier="soon" href="#symptoms">Weight loss without trying</a><a class="sym" data-tier="soon" href="#symptoms">Red blood in stool</a><a class="sym" data-tier="urgent" href="#symptoms">Black, tar-like stools</a><a class="sym" data-tier="urgent" href="#symptoms">Vomiting blood</a><a class="sym" data-tier="urgent" href="#symptoms">Severe belly pain</a></div>
           <div class="legend">
             <span><i style="background:var(--accent)"></i>Routine visit</span>
             <span><i style="background:var(--warm)"></i>Within a few days</span>
             <span><i style="background:var(--urgent)"></i>Today</span>
           </div>
         </div>
-        <div class="result" id="symResult" aria-live="polite"></div>
+        <div class="result" id="symResult" aria-live="polite"><span class="pill pill-routine">Routine visit</span><h3>Heartburn or acidity</h3><dl><div><dt>Common causes</dt><dd>Acid reflux (GERD), gastritis, or an H. pylori infection.</dd></div><div><dt>What to do</dt><dd>Try smaller meals and an early dinner. Book a visit if it happens twice a week or more, or lasts beyond 2 to 4 weeks.</dd></div></dl></div>
       </div>
     </div>
   </section>
@@ -799,7 +801,7 @@ footer .wrap{display:grid;gap:10px}
         <h2>What to expect from an endoscopy</h2>
         <p class="lede">Most procedures use a thin, flexible tube with a camera. There are no cuts, and most people go home the same day. Tap any one to see how it works.</p>
       </div>
-      <div class="ptiles" id="procGrid"></div>
+      <div class="ptiles" id="procGrid"><a class="ptile ptile-fb" href="/procedures/upper-gi-endoscopy/"><span class="ptile-t"><b>Upper GI endoscopy</b></span><span class="ptile-w">A thin camera passed through the mouth to look at the food pipe, stomach and first part of the intestine. Small painless biopsies can be taken.</span></a><a class="ptile ptile-fb" href="/procedures/colonoscopy/"><span class="ptile-t"><b>Colonoscopy</b></span><span class="ptile-w">A camera passed through the back passage to examine the large bowel. Polyps found during the test are removed at the same time.</span></a><a class="ptile ptile-fb" href="/procedures/endoscopic-ultrasound-eus/"><span class="ptile-t"><b>Endoscopic ultrasound</b></span><span class="ptile-w">An ultrasound probe on the tip of the scope gives close images of the pancreas, bile duct and nearby glands from inside the body. It can take needle samples and drain fluid collections.</span></a><a class="ptile ptile-fb" href="/procedures/ercp/"><span class="ptile-t"><b>ERCP</b></span><span class="ptile-w">A scope with X-ray guidance reaches the opening of the bile and pancreatic ducts to remove stones and place stents through blockages, without any cuts.</span></a><a class="ptile ptile-fb" href="/procedures/variceal-banding-evl/"><span class="ptile-t"><b>Variceal banding</b></span><span class="ptile-w">In liver disease, veins in the food pipe can swell and bleed. Small rubber bands placed through the scope shrink them and prevent or stop bleeding.</span></a><a class="ptile ptile-fb" href="/procedures/polyp-removal-emr/"><span class="ptile-t"><b>Polyp removal &amp; EMR</b></span><span class="ptile-w">Polyps and some early flat growths are lifted and removed through the scope, often avoiding surgery altogether.</span></a><a class="ptile ptile-fb" href="/procedures/gi-bleeding-treatment/"><span class="ptile-t"><b>Bleeding control</b></span><span class="ptile-w">Bleeding from an ulcer or a damaged blood vessel is stopped through the scope with tiny clips, injections or heat, usually without surgery.</span></a><a class="ptile ptile-fb" href="/procedures/peg-feeding-tube/"><span class="ptile-t"><b>Feeding tube (PEG)</b></span><span class="ptile-w">For people who cannot swallow safely, a soft feeding tube is placed through the skin into the stomach with the help of the scope.</span></a><a class="ptile ptile-fb" href="/procedures/dilatation-stenting/"><span class="ptile-t"><b>Dilatation &amp; stenting</b></span><span class="ptile-w">Narrowed sections of the food pipe, bile duct or bowel are widened with a balloon, or kept open with a stent placed through the scope.</span></a><a class="ptile ptile-fb" href="/answers/capsule-endoscopy/"><span class="ptile-t"><b>Capsule endoscopy</b></span><span class="ptile-w">You swallow a camera the size of a large tablet. It takes thousands of pictures of the small intestine, a part a normal endoscope cannot fully reach, and passes out naturally.</span></a></div>
       <p class="prep-links"><b>Getting ready for a test?</b> <a href="guides/colonoscopy-preparation/">Colonoscopy preparation →</a><a href="guides/endoscopy-preparation/">Endoscopy preparation →</a></p>
     </div>
   </section>
@@ -956,7 +958,7 @@ footer .wrap{display:grid;gap:10px}
             <a class="phone-num" id="phoneNum" href="tel:+919667104882" aria-label="Call +91 96671 04882"><span class="phone-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg></span>+91 96671 04882</a>
             <span class="phone-lbl">Call or WhatsApp</span>
           </div>
-          <div class="reason">
+          <div class="reason" id="reasonBox">
             <p class="reason-lbl">What is the visit about? <span>Optional</span></p>
             <div class="reason-chips" id="reasonChips"></div>
             <p class="reason-lbl">When suits you? <span>Optional</span></p>
@@ -1183,6 +1185,7 @@ const BOOK={hello:"Hello Dr. Lochab, I would like to book a consultation",about:
 const waText=(reason,time)=>"https://wa.me/919667104882?text="+encodeURIComponent(BOOK.hello+(reason?BOOK.about+reason:"")+"."+(time?"\n"+BOOK.when+time+".":"")+"\n"+BOOK.src);
 const SYMBOOK={book:"Book a visit about this",wa:"WhatsApp",urgent:"Call 112 for an ambulance",urgentNote:"Do not wait for an appointment. Go to the nearest emergency department."};
 const symList=document.getElementById("symList"), symResult=document.getElementById("symResult");
+symList.innerHTML="";  /* drop the static fallback list */
 SYMPTOMS.forEach((x,i)=>{
   const b=document.createElement("button");
   b.type="button";b.className="sym";b.dataset.tier=x.t;b.textContent=x.l;b.id="sym-"+i;

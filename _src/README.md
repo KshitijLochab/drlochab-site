@@ -97,3 +97,8 @@ See `BRAND.md` for colours, type, voice and rules.
 - Phones: the large portrait becomes a small card (`dr-lochab-face.jpg`), section padding is tighter, qualifications are a compact two-column list. Home page 19.1 → 17.3 screens.
 - Answer pages can carry `seo="..."` for a shorter search title; 10 added (EN + HI).
 - Home header CSS is scoped to `.top nav` (floating buttons now sit in `<nav class="fabs">`). Keep `:not(.btn)` on colour rules so "Book a visit" stays white.
+
+### 22 Oct 2026: automated checks
+- `_src/tests/` holds the checks (data, static, browser). `publish.sh` refuses to publish if the static or data checks fail; GitHub Actions (`.github/workflows/site-checks.yml`) runs all three on every pull request and push. See `RELEASE.md` for releases, staging and rollback.
+- Home page has built-in fallback content (`build_site.home_fallbacks`): today's tip, IBS tip, a myth, the symptom list and first answer, and the procedure tiles are in the HTML, so nothing is blank without JavaScript. Scripts replace them with the live versions.
+- Stool check page now has the same Content-Security-Policy as the tracker (it can't send data anywhere).

@@ -1,0 +1,35 @@
+# Runs on every pull request (including the weekly tips) and every change to main.
+# A red cross on the pull request means something is broken: do not merge until it is green.
+name: Site checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Tip, IBS and myth files
+        run: python3 _src/tests/check_data.py
+      - name: Links, search tags, sitemap and privacy
+        run: python3 _src/tests/check_site.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install browser
+        run: |
+          npm install --no-save playwright@1.56.0
+          npx playwright install --with-deps chromium
+      - name: Patient journeys in a real browser
+        run: |
+          python3 -m http.server 8765 >/dev/null 2>&1 &
+          sleep 2
+          node _src/tests/browser_check.js

@@ -1,5 +1,5 @@
 """Builds the deployable drlochab.com folder (English at /, Hindi at /hi/) from lochab-gastro.html."""
-import json, re, shutil, os
+import json, re, shutil, os, subprocess
 from PIL import Image
 import hindi, local_pages
 
@@ -106,6 +106,52 @@ def food_js(lang):
     items = food_day.EN if lang == "en" else [dict(h, ic=e["ic"], col=e["col"]) for h, e in zip(food_day.HI, food_day.EN)]
     return "const FOD=" + json.dumps(items, ensure_ascii=False) + ";\nconst FO=" + json.dumps(food_day.LABELS[lang], ensure_ascii=False) + ";"
 
+def home_fallbacks(lang, s):
+    """Content built into the home page so nothing is blank or stuck on 'Loading' when JavaScript is off or fails
+    (link previews, some crawlers, old phones). The page scripts replace all of it with the live versions."""
+    import datetime
+    esc = lambda x: _html.escape(str(x), quote=True)
+    hi = lang == "hi"
+    today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=5, minutes=30))).date().isoformat()
+    blk = s[s.index("const ORGANS="):s.index("const esc=")]
+    out = subprocess.run(["node", "-e", blk + ";console.log(JSON.stringify({TIERS,SYMPTOMS,PROCS}))"], capture_output=True, text=True, check=True).stdout
+    D = json.loads(out)
+    pslug = json.loads(re.search(r"const PSLUG=(\[.*?\]);", s).group(1))
+    pfx = "/hi/" if hi else "/"
+    L = dict(try_=("आज यह करके देखें" if hi else "Try this today"), causes=("आम वजहें" if hi else "Common causes"), todo=("क्या करें" if hi else "What to do"),
+             myth=("भ्रम" if hi else "Myth"), fact=("सच" if hi else "Fact"), mq=("भ्रम या सच?" if hi else "Myth or fact?"), more=("और पढ़ें" if hi else "Read more"),
+             ibs_more=("IBS की और सलाह" if hi else "More IBS tips"),
+             fb=("थाली मीटर इस्तेमाल करने के लिए अपने ब्राउज़र में JavaScript चालू करें।" if hi else "Turn on JavaScript in your browser to use the Thali meter."))
+    def latest(fn):
+        items = [t for t in json.load(open(fn, encoding="utf-8")) if t["date"] <= today]
+        return max(items, key=lambda t: t["date"]) if items else None
+    def tip_html(t):
+        return (f'<span class="cat">{esc(t["cat"])}</span><h3>{esc(t["title"])}</h3><p>{esc(t["body"])}</p>'
+                f'<div class="try"><b>{L["try_"]}</b>{esc(t["try"])}</div>')
+    t = latest("tips-hi.json" if hi else "tips.json")
+    d = datetime.date.fromisoformat(t["date"]) if t else None
+    months = ["जन॰", "फ़र॰", "मार्च", "अप्रैल", "मई", "जून", "जुल॰", "अग॰", "सित॰", "अक्तू॰", "नव॰", "दिस॰"] if hi else ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    days = ["सोमवार", "मंगलवार", "बुधवार", "गुरुवार", "शुक्रवार", "शनिवार", "रविवार"] if hi else ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    cal = (f'<div class="cal" aria-hidden="true"><span class="cal-m" id="calM">{months[d.month-1] if d else ""}</span><span class="cal-d" id="calD">{d.day if d else ""}</span>'
+           f'<span class="cal-w" id="calW">{days[d.weekday()] if d else ""}</span></div>')
+    tip = cal + f'<div class="tip" id="tipBody">{tip_html(t) if t else ""}</div>'
+    ib = latest("ibs-hi.json" if hi else "ibs.json")
+    m = latest("myths-hi.json" if hi else "myths.json")
+    myth = ""
+    if m:
+        myth = (f'<article class="mb mb-fb"><div class="mb-body"><p class="mb-eyebrow">{L["mq"]}</p><p class="mb-claim">“{esc(m["claim"])}”</p>'
+                f'<p><b>{L["myth"] if m["answer"] == "myth" else L["fact"]}:</b> {esc(m["verdict"])} {esc(m["truth"])}</p>'
+                + (f'<p><a href="{pfx}{m["link"]}/" style="color:var(--warm-on-ink)">{L["more"]}&nbsp;→</a></p>' if m.get("link") else "") + "</div></article>")
+    sym = "".join(f'<a class="sym" data-tier="{x["t"]}" href="#symptoms">{esc(x["l"])}</a>' for x in D["SYMPTOMS"])
+    x0 = D["SYMPTOMS"][0]; cls, lbl = D["TIERS"][x0["t"]]
+    symres = (f'<span class="pill {cls}">{esc(lbl)}</span><h3>{esc(x0["l"])}</h3><dl><div><dt>{L["causes"]}</dt><dd>{esc(x0["c"])}</dd></div>'
+              f'<div><dt>{L["todo"]}</dt><dd>{esc(x0["a"])}</dd></div></dl>')
+    procs = "".join(f'<a class="ptile ptile-fb" href="{pfx}{(sl if "/" in sl else "procedures/" + sl)}/"><span class="ptile-t"><b>{esc(p["n"])}</b></span>'
+                    f'<span class="ptile-w">{esc(p["w"])}</span></a>' for p, sl in zip(D["PROCS"], pslug))
+    return {"<!--TIP_FB-->": tip, "<!--IBS_FB-->": tip_html(ib) if ib else "", "<!--MYTH_FB-->": myth, "<!--SYM_FB-->": sym,
+            "<!--SYMRES_FB-->": symres, "<!--PROC_FB-->": procs,
+            "<!--FB_FB-->": f'<noscript><p class="small">{L["fb"]}</p></noscript>'}
+
 def trk_card(lang):
     """The gut tracker card at the top of the home page, rendered in HTML so the hero does not jump when the script runs."""
     import food_day
@@ -183,6 +229,9 @@ def link_lists(lang):
 for key, p in PAGES.items():
     s = src if key == "en" else hindi_source(src)
     for ph, block in link_lists(key).items():
+        s = s.replace(ph, block)
+    for ph, block in home_fallbacks(key, s).items():
+        assert ph in s, ph
         s = s.replace(ph, block)
     assert "<!--HUB-->" not in s
     top, body = split(s)

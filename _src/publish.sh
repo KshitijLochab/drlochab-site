@@ -3,6 +3,9 @@
 set -e
 cd "$(dirname "$0")"
 python3 build_site.py
+# stop here if the build has broken links, search tags or privacy settings
+python3 tests/check_site.py site
+(cd .. && python3 _src/tests/check_data.py)
 cd site
 tar --exclude=./tips.json --exclude=./ibs.json --exclude=./hi/tips.json --exclude=./hi/ibs.json --exclude=./myths.json --exclude=./hi/myths.json -cf - . | tar -xf - -C ../..
 echo "Published to repository root."
