@@ -319,9 +319,6 @@ def build():
                     f'<section><h2>{t["causes"]}</h2>{ul(x["causes"])}</section>',
                     f'<section><h2>{t["tests"]}</h2><p>{e(x["tests"])}</p></section>',
                     f'<section><h2>{t["treat"]}</h2><p>{e(c["h"])}</p></section>']
-            import medical_review
-            deep = medical_review.deep_sections(lang, base["slug"], e)
-            if deep: body.append(deep)
             if base["procs"]:
                 body.append(f'<section><h2>{t["proc_help"]}</h2>' + links([(url(lang, "procedures", seo_en.PROCS[j]["slug"]), d["PROCS"][j]["n"]) for j in base["procs"]]) + "</section>")
             if base["guide"] is not None:

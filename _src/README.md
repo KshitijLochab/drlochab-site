@@ -103,8 +103,10 @@ See `BRAND.md` for colours, type, voice and rules.
 - Home page has built-in fallback content (`build_site.home_fallbacks`): today's tip, IBS tip, a myth, the symptom list and first answer, and the procedure tiles are in the HTML, so nothing is blank without JavaScript. Scripts replace them with the live versions.
 - Stool check page now has the same Content-Security-Policy as the tracker (it can't send data anywhere).
 
-### 22 Oct 2026 (late): medical review, references, deeper pages, research (all held for approval)
+### 22 Oct 2026 (late): references live; deeper pages and research list dropped
 - `medical_review.py`: references (17 verified guidelines, `PAGE_REFS`), the "Medically reviewed by … on [date]" byline (`REVIEW_LOG`, filled only with dates Dr. Lochab actually reviewed), and `DEEP_LIVE` for approved deeper sections. `REFS_LIVE = False`, `REVIEW_LOG = {}`, `DEEP_LIVE = set()` until he approves.
 - `cond_more_en.py` / `cond_more_hi.py`: batch 1 deeper sections (acidity/GERD, fatty liver), ~1,200 words per page with them.
 - `research.py`: publications and presentations for the About page; `RESEARCH_LIVE = False` until titles and authors are confirmed.
 - `PREVIEW=1 python3 build_site.py` shows all held content locally. **Never publish a PREVIEW build** (publish.sh builds without it).
+
+- 22 Oct 2026, 21:30: Dr. Lochab approved the references (now live, collapsed at the end of 14 pages) and dropped the deeper sections and the publications list; those files were removed. The reviewed-by line stays off until he gives real review dates (`REVIEW_LOG`).

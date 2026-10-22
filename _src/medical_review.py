@@ -1,7 +1,7 @@
 """Medical review line and references on article pages (EN + HI), 22 Oct 2026.
 
 HELD FOR DR. LOCHAB'S REVIEW. Nothing here appears on the live site until he approves it:
-- REFS_LIVE = False keeps every References section off the site.
+- REFS_LIVE = True   # approved by Dr. Lochab, 22 Oct 2026 keeps every References section off the site.
 - REVIEW_LOG starts empty. Add a page only after Dr. Lochab has actually reviewed it, with the date he did:
       "/conditions/fatty-liver/": "2026-11-02",
   The byline on that page (and its Hindi twin) then reads "Medically reviewed by Dr. Kshitij Lochab on 2 November 2026"
@@ -13,8 +13,7 @@ Page numbers are left out on purpose: the DOI link is the reliable pointer."""
 import os, re, datetime, html as _html
 
 PREVIEW = os.environ.get("PREVIEW") == "1"
-REFS_LIVE = False
-DEEP_LIVE = set()        # condition slugs whose deeper sections (cond_more_en/hi.py) are approved and shown
+REFS_LIVE = True   # approved by Dr. Lochab, 22 Oct 2026
 REVIEW_LOG = {}          # "/conditions/slug/": "YYYY-MM-DD", English path; the Hindi twin follows automatically
 
 # key: (authors, title, journal, year, doi)
@@ -73,7 +72,8 @@ def refs_html(lang, path):
     link = lambda d: (f'<a href="{d}" target="_blank" rel="noopener">{d.split("//")[1].split("/")[0]}</a>' if d.startswith("http")
                       else f'<a href="https://doi.org/{d}" target="_blank" rel="noopener">doi:{d}</a>')
     items = "".join(f'<li>{e(a)} {e(t)}. <i>{e(j)}</i> {y}. {link(d)}</li>' for a, t, j, y, d in (REFS[k] for k in keys))
-    return f'<section class="refs" lang="en"><h2 lang="{lang}">{T[lang]["h"]}</h2><p class="small" lang="{lang}">{T[lang]["note"]}</p><ol>{items}</ol></section>'
+    return (f'<details class="refs" lang="en"><summary lang="{lang}">{T[lang]["h"]} ({len(keys)})</summary>'
+            f'<p class="small" lang="{lang}">{T[lang]["note"]}</p><ol>{items}</ol></details>')
 
 def review_date(path):
     d = REVIEW_LOG.get(_en_path(path))
@@ -93,32 +93,9 @@ def apply(path, text):
         text = re.sub(r'"lastReviewed": "[^"]*"', f'"lastReviewed": "{d.isoformat()}"', text)
     return text
 
-def deep_sections(lang, slug, e):
-    """Extra sections for a condition page, if approved (or PREVIEW). Returns HTML."""
-    if slug not in DEEP_LIVE and not PREVIEW:
-        return ""
-    import cond_more_en, cond_more_hi
-    M = (cond_more_en if lang == "en" else cond_more_hi).MORE.get(slug)
-    if not M:
-        return ""
-    out = ""
-    for h, items in M:
-        body, ul = "", []
-        for it in items + [""]:
-            if it.startswith("- "):
-                ul.append(f"<li>{e(it[2:])}</li>"); continue
-            if ul: body += "<ul>" + "".join(ul) + "</ul>"; ul = []
-            if it: body += f"<p>{e(it)}</p>"
-        out += f"<section><h2>{e(h)}</h2>{body}</section>"
-    return out
-
 def check():
     for p, ks in PAGE_REFS.items():
         assert all(k in REFS for k in ks), p
     for p, d in REVIEW_LOG.items():
         datetime.date.fromisoformat(d); assert not p.startswith("/hi/"), p
 check()
-import cond_more_en as _ce, cond_more_hi as _ch
-assert set(_ce.MORE) == set(_ch.MORE)
-for _k in _ce.MORE:
-    assert [len(i) for _, i in _ce.MORE[_k]] == [len(i) for _, i in _ch.MORE[_k]], _k
