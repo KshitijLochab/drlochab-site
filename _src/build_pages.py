@@ -55,9 +55,9 @@ def channel_html(lang, cls="chan"):
 REVIEW = "https://g.page/r/CYmK8BpICDd6EBM/review"
 
 L = {
- "en": dict(home="Home", conds="Conditions", procs="Procedures", answers="Answers", tips="Daily tips", book="Book a visit", dietnav="Diet charts",
+ "en": dict(home="Home", conds="Conditions", procs="Procedures", answers="Answers", tools="Tools", tips="Daily tips", book="Book a visit", dietnav="Diet charts",
    by="By Dr. Kshitij Lochab, Consultant Gastroenterologist", upd="Updated", symptoms="Common symptoms", causes="Causes and risk factors",
-   tests="How it is diagnosed", treat="Treatment", proc_help="Procedures that may help", diet="Diet guide", more="Eat more", less="Cut down",
+   tests="How it is diagnosed", treat="Treatment", proc_help="Procedures that may help", diet="What to eat", more="Eat more", less="Cut down",
    know="Good to know", when="When to see a gastroenterologist", faq="Common questions", related="Related conditions", read="Read next",
    uses="What it is used for", expect="What to expect", risks="Risks", treats="Conditions it is used for", short="Short answer",
    cta_h="Book a consultation", cta_p="Appointments and video consultations", cta_call="Call or WhatsApp", cta_wa="Message on WhatsApp",
@@ -69,9 +69,9 @@ L = {
    about="How it works", prep="Before the procedure", day="On the day", glance="At a glance", after="After the procedure",
    alarm="Get medical help straight away if you have", alts="Other tests and options", where="{n} in Gurgaon (Gurugram)",
    where_p="Dr. Kshitij Lochab, Consultant Gastroenterologist and Therapeutic Endoscopist (DrNB Gastroenterology, Medanta; Advanced Fellowship in EUS and ERCP), sees patients in Gurugram (Gurgaon) at Arcura Clinic, M2K Corporate Park, Sector 51, and at Apollo Hospitals, Golf Course Road. Book a consultation by call or WhatsApp on +91 96671 04882. Video consultations are available to go through your reports before a visit."),
- "hi": dict(home="होम", conds="बीमारियाँ", procs="जाँच और इलाज", answers="सवाल-जवाब", tips="रोज़ की सलाह", book="अपॉइंटमेंट", dietnav="डाइट चार्ट",
+ "hi": dict(home="होम", conds="बीमारियाँ", procs="जाँच और इलाज", answers="सवाल-जवाब", tools="टूल्स", tips="रोज़ की सलाह", book="अपॉइंटमेंट", dietnav="डाइट चार्ट",
    by="लेखक: डॉ. क्षितिज लोचब, कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट", upd="अपडेट", symptoms="आम लक्षण", causes="वजहें और ख़तरे",
-   tests="जाँच कैसे होती है", treat="इलाज", proc_help="इलाज में मदद करने वाले प्रोसीजर", diet="डाइट गाइड", more="ज़्यादा खाएँ", less="कम करें",
+   tests="जाँच कैसे होती है", treat="इलाज", proc_help="इलाज में मदद करने वाले प्रोसीजर", diet="क्या खाएँ", more="ज़्यादा खाएँ", less="कम करें",
    know="जानने लायक", when="गैस्ट्रोएंटेरोलॉजिस्ट को कब दिखाएँ", faq="आम सवाल", related="जुड़ी हुई बीमारियाँ", read="यह भी पढ़ें",
    uses="यह किसके लिए किया जाता है", expect="क्या उम्मीद करें", risks="जोखिम", treats="किन बीमारियों में किया जाता है", short="छोटा जवाब",
    cta_h="अपॉइंटमेंट लें", cta_p="अपॉइंटमेंट और वीडियो कंसल्टेशन", cta_call="कॉल या WhatsApp करें", cta_wa="WhatsApp पर मैसेज करें",
@@ -138,7 +138,8 @@ def head(lang, title, desc, path_en, path_hi, ld):
 <link rel="alternate" hreflang="hi" href="{SITE}{path_hi}">
 <link rel="alternate" hreflang="x-default" href="{SITE}{path_en}">
 <meta name="theme-color" content="#0B6A5E">
-<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" href="/logo-mark.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:url" content="{canon}">
@@ -181,7 +182,7 @@ def season_bar(lang, here=""):
         hidden = " hidden" if start and now < datetime.datetime.fromisoformat(start) else ""
         x = cfg if lang == "en" else hx
         out += (f'<aside class="season"{hidden} aria-label="{"Festival guide" if lang == "en" else "त्योहार गाइड"}" data-from="{start or ""}" data-until="{cfg["until"]}"><div class="wrap"><span class="season-dot" aria-hidden="true"></span>'
-                f'<p>{e(x["text"])}</p><a class="season-btn" href="{url(lang, cfg.get("kind", "guides"), cfg["slug"])}">{e(x["btn"])} <span aria-hidden="true">→</span></a></div></aside>')
+                f'<p>{e(x["text"])}</p><a class="season-btn" href="{url(lang, cfg.get("kind", "guides"), cfg["slug"])}" aria-label="{e(x["btn"])}"><span class="sb-t">{e(x["btn"])} </span><span aria-hidden="true">→</span></a></div></aside>')
     if not out:
         return ""
     return out + ('<script data-season>(function(){var n=new Date();document.querySelectorAll("aside.season").forEach(function(s){'

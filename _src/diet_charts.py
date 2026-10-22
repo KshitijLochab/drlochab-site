@@ -143,7 +143,7 @@ def render_all(bp):
             path, pe, ph = bp.url(lang, KIND, slug), bp.url("en", KIND, slug), bp.url("hi", KIND, slug)
             sec = []
             sec.append(f'<p class="lead">{e(P["lead"])}</p>')
-            sec.append(f'<p class="dc-jump"><a class="btn btn-solid btn-sm" href="#diary">{U["track_cta"]} →</a></p>')
+            sec.append(f'<p class="dc-jump"><a class="btn btn-solid btn-sm" href="#diary">{U["track_cta"]} →</a><button type="button" class="btn btn-ghost btn-sm dc-print" onclick="print()">{U["print_btn"]}</button></p>')
             sec.append(f'<section><h2>{U["goals_h"]}</h2><ul class="dc-goals">' + "".join(f"<li>{e(g)}</li>" for g in P["goals"]) + "</ul></section>")
             if "stricture" in P:
                 st = P["stricture"]
@@ -173,7 +173,7 @@ def render_all(bp):
             yield path, pe, ph, page(lang, bp, (path, pe, ph, P["title"], P["desc"], ld(lang, bp, path, P["h1"], P["desc"], P["faqs"])), body)
 
 CSS = r"""
-.dc-jump{margin:4px 0 8px}
+.dc-jump{margin:4px 0 8px;display:flex;flex-wrap:wrap;gap:10px}
 .dc-goals{list-style:none;padding:0;display:grid;gap:8px}
 .dc-goals li{position:relative;padding:12px 14px 12px 44px;background:var(--surface);border:1px solid var(--line);border-radius:14px}
 .dc-goals li::before{content:"";position:absolute;left:14px;top:14px;width:18px;height:18px;border-radius:50%;background:var(--accent);

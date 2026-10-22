@@ -49,8 +49,8 @@ p{margin:0 0 12px}
 /* layout */
 .grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:56px;align-items:start;padding-block:32px 72px}
 article{min-width:0;max-width:720px}
-.crumbs{font-size:.88rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
-.crumbs a{color:var(--muted)}
+.crumbs{font-size:.88rem;color:var(--muted);display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin-bottom:20px}
+.crumbs a{color:var(--muted);display:inline-block;padding-block:4px;min-height:24px}
 .eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
 .byline{font-size:.9rem;color:var(--muted);margin:12px 0 28px}
 .lead{font-size:1.2rem;line-height:1.6}
@@ -93,6 +93,7 @@ li::marker{color:var(--accent)}
 .season p{margin:0;font-weight:600;font-size:.95rem;color:var(--ink);flex:1 1 260px}
 .season-dot{width:12px;height:12px;border-radius:50%;background:#E46F10;box-shadow:0 0 0 4px rgba(228,111,16,.2);flex:none}
 .season-btn{flex:none;font-weight:700;font-size:.9rem;text-decoration:none;color:var(--accent-ink);background:var(--accent);padding:8px 16px;border-radius:999px}
+@media (max-width:560px){.season .wrap{flex-wrap:nowrap;gap:10px;padding-block:8px}.season p{font-size:.84rem;line-height:1.3;flex:1 1 auto;font-weight:500}.season-btn{padding:7px 10px;font-size:.84rem}.season-btn .sb-t{display:none}}
 
 /* special guides (e.g. pregnancy) */
 .tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}

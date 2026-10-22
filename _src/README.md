@@ -76,3 +76,14 @@ See `BRAND.md` for colours, type, voice and rules.
 - The `const GUIDES` data stays in `lochab-gastro.html`: `extract.js` uses it for the diet sections on condition pages. Only the picker UI was removed.
 - Phones (≤760px): a floating "Diet charts" pill bottom left (`build_pages.diet_fab()`, class `fab fab-diet`), on the home page and all inner pages except the diet chart pages themselves (`footer(lang, diet=False)`).
 - Tablets: the header keeps the "Diet charts" link (`.nav-diet`) when the other text links hide. Inner-page header nav now hides at 760px, same as the home page.
+
+### 22 Oct 2026: audit fixes
+- Home page no longer jumps while loading (layout shift 0.17 → 0.04 on phones): the gut tracker card is rendered in HTML by `build_site.trk_card()` (`<!--TRK_CARD-->`), and the card and hook tiles sit above the heading in the source instead of being moved there with CSS `order`. JS only swaps the wording for returning tracker users.
+- Seasonal banner is one compact row on phones (button shows only the arrow, with an aria-label).
+- Gut Health Daily tabs fit on a 360px phone without sideways scrolling.
+- Diet chart pages have a "Print or save as PDF" button (`print_btn`).
+- Tracker and stool check breadcrumbs say "Tools" and link to Gut Health Daily, not "Answers".
+- Condition pages: the diet box heading is "What to eat" ("क्या खाएँ"), since full diet charts are separate.
+- Breadcrumb links are at least 24px tall (tap targets).
+- Favicon: SVG first, 96px PNG fallback (was a 58 KB 512px PNG).
+- The build joins " →" with a non-breaking space so arrows never wrap alone onto a new line.

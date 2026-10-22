@@ -58,7 +58,8 @@ def head(p, extra_links=""):
 <link rel="alternate" hreflang="hi" href="https://drlochab.com/hi/">
 <link rel="alternate" hreflang="x-default" href="https://drlochab.com/">
 <meta name="theme-color" content="#0B6A5E">
-<link rel="icon" type="image/png" sizes="512x512" href="{up}favicon.png">
+<link rel="icon" href="{up}logo-mark.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="96x96" href="{up}favicon.png">
 <link rel="apple-touch-icon" href="{up}apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{p['url']}">
@@ -104,6 +105,18 @@ def food_js(lang):
     import food_day
     items = food_day.EN if lang == "en" else [dict(h, ic=e["ic"], col=e["col"]) for h, e in zip(food_day.HI, food_day.EN)]
     return "const FOD=" + json.dumps(items, ensure_ascii=False) + ";\nconst FO=" + json.dumps(food_day.LABELS[lang], ensure_ascii=False) + ";"
+
+def trk_card(lang):
+    """The gut tracker card at the top of the home page, rendered in HTML so the hero does not jump when the script runs."""
+    import food_day
+    FO = food_day.LABELS[lang]
+    esc = lambda x: _html.escape(x, quote=True)
+    bars = "".join(f'<rect class="trk-bar" style="animation-delay:{i*.08:g}s" x="{x-3}" y="{39-h}" width="6" height="{h}" rx="3" fill="{"#F3C66B" if i == 4 else "#fff"}"/>'
+                   for i, (x, h) in enumerate([[8,22],[16,12],[24,26],[32,16],[40,30]]))
+    art = ('<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="40" width="38" height="2.5" rx="1.2" fill="rgba(255,255,255,.6)"/>' + bars
+           + '<path d="M6 30 L16 22 L24 27 L32 15 L42 10" fill="none" stroke="#F3C66B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/></svg>')
+    return (f'<a class="trk" id="trkCard" href="tools/gut-tracker/"><span class="trk-art">{art}</span><span class="trk-k"><span class="trk-new">{esc(FO["trNew"])}</span>{esc(FO["trK"])}</span>'
+            f'<span class="trk-q">{esc(FO["trQ"])}<small>{esc(FO["trSub"])}</small></span><span class="trk-go">{esc(FO["trGo"])}</span></a>')
 
 def diet_tab(lang):
     """The 'Diet charts' tab in Gut Health Daily: one card per chart page, plus the food diary. Relative links work from / and /hi/."""
@@ -161,6 +174,7 @@ def link_lists(lang):
             "<!--ABOUT_LINK-->": f'<a class="about-more" href="{pre}about-dr-kshitij-lochab/">{local_pages.EN["more_about"] if lang == "en" else local_pages.HI["more_about"]} →</a>',
             "<!--FOOT_LINKS-->": f'<p class="foot-links"><a href="{pre}about-dr-kshitij-lochab/">{build_pages.FOOT_LINKS[lang][0]}</a> · <a href="{pre}gastroenterologist-in-gurgaon/">{build_pages.FOOT_LINKS[lang][1]}</a> · <a href="{pre}tools/gut-tracker/">{build_pages.FOOT_LINKS[lang][2]}</a> · <a href="{pre}diet-charts/">{build_pages.L[lang]['dietnav']}</a></p>' + build_pages.social_html(lang),
             "<!--TRACKER-->": ('<a class="ibs-track" href="tools/gut-tracker/">' + ("Track your symptoms privately →" if lang == "en" else "अपने लक्षण निजी रूप से ट्रैक करें →") + '</a>'),
+            "<!--TRK_CARD-->": trk_card(lang),
             "<!--DIET_TAB-->": diet_tab(lang),
             "<!--DIET_FAB-->": build_pages.diet_fab(lang, "diet-charts/"),
             "<!--HUB-->": hub.hub_html(lang, hub.page_data(src[src.index("const ORGANS="):src.index("const esc=")] if lang == "en" else hindi.DATA_JS))}
@@ -184,7 +198,7 @@ shutil.copy("myths-hi.json", f"{OUT}/hi/myths.json")
 shutil.copy("brand/logo-mark.png", f"{OUT}/logo-mark.png")
 shutil.copy("brand/logo-mark.svg", f"{OUT}/logo-mark.svg")
 mark = Image.open("brand/logo-mark.png").convert("RGBA")
-mark.resize((512, 512), Image.LANCZOS).save(f"{OUT}/favicon.png")
+mark.resize((96, 96), Image.LANCZOS).save(f"{OUT}/favicon.png", optimize=True)
 apple = Image.new("RGBA", (180, 180), "#F3F7F6")
 apple.paste(mark.resize((180, 180), Image.LANCZOS), (0, 0), mark.resize((180, 180), Image.LANCZOS))
 apple.convert("RGB").save(f"{OUT}/apple-touch-icon.png")
@@ -236,5 +250,12 @@ urls = "".join(
     for en, hi in pairs for u in (en, hi))
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n'
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + urls + "</urlset>\n")
+# Keep "→" on the same line as the word before it, everywhere.
+for d, _, fs in os.walk(OUT):
+    for f in fs:
+        if f.endswith(".html"):
+            fp = os.path.join(d, f); h = open(fp, encoding="utf-8").read()
+            h2 = h.replace(" →", "\u00a0→").replace("← ", "←\u00a0")
+            if h2 != h: open(fp, "w", encoding="utf-8").write(h2)
 print("pages:", len(pairs) * 2)
 print("built:", sorted(os.listdir(OUT)), sorted(os.listdir(f"{OUT}/hi")))

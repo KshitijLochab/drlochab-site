@@ -463,7 +463,7 @@ def render(lang, bp):
     head = head.replace("<head>", f'<head>\n<meta http-equiv="Content-Security-Policy" content="{CSP}">\n<meta name="referrer" content="no-referrer">', 1)
     head = head.replace("</head>", f"<style>{CSS}</style></head>", 1)
     html = (head + bp.header(lang, path_hi if lang == "en" else path_en)
-            + f'<main class="wrap grid"><article>{bp.crumbs(lang, t["answers"], "conditions", X["h1"])}'
+            + f'<main class="wrap grid"><article>{bp.crumbs(lang, t["tools"], "daily", X["h1"])}'
             + f'<p class="eyebrow">{e(X["eyebrow"])}</p><h1>{e(X["h1"])}</h1>{bp.byline(lang, UPD)}' + body
             + f"</article>{bp.aside(lang)}</main><script>{js}</script>" + bp.footer(lang))
     return path, path_en, path_hi, html

@@ -44,7 +44,7 @@ UI = dict(
  nostore="This browser is not saving data (private mode or storage blocked), so the diary will reset when you leave the page.",
  hook_k="Diet charts", hook_q="What should I eat with fatty liver, acidity or IBS?", hook_go="See diet charts →",
  nav="Diet charts", foot="Diet charts", cond_link="See the full diet chart, with a sample day and a food diary",
- card_btn="Open chart →", diary_btn="Open the food diary →", phase="Stage",
+ print_btn="Print or save as PDF", card_btn="Open chart →", diary_btn="Open the food diary →", phase="Stage",
 )
 
 PLAN_NAME = {

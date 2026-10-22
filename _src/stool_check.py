@@ -202,7 +202,7 @@ def render(lang, bp):
     ld = bp.ld_page(lang, path, X["h1"], X["desc"], "MedicalCondition", X["h1"], X["faqs"], t["answers"], "conditions", UPD)
     html = (bp.head(lang, X["title"], X["desc"], path_en, path_hi, ld).replace("</head>", f"<style>{CSS}</style></head>", 1)
             + bp.header(lang, path_hi if lang == "en" else path_en)
-            + f'<main class="wrap grid"><article>{bp.crumbs(lang, t["answers"], "conditions", X["h1"])}'
+            + f'<main class="wrap grid"><article>{bp.crumbs(lang, t["tools"], "daily", X["h1"])}'
             + f'<p class="eyebrow">{e(X["eyebrow"])}</p><h1>{e(X["h1"])}</h1>{bp.byline(lang, UPD)}' + body
             + f"</article>{bp.aside(lang)}</main>" + js + bp.footer(lang))
     return path, path_en, path_hi, html
