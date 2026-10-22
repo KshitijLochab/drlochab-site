@@ -481,10 +481,6 @@ def build():
         import gut_tracker
         path, path_en, path_hi, page = gut_tracker.render(lang, sys.modules[__name__])
         write(path, page); pages.append((path_en, path_hi))
-        import liver_test
-        if liver_test.LIVE:   # held until the clinical wording is approved
-            path, path_en, path_hi, page = liver_test.render(lang, sys.modules[__name__])
-            write(path, page); pages.append((path_en, path_hi))
         for kind in ("colonoscopy", "endoscopy"):
             path, path_en, path_hi, page = prep_guides.render(lang, sys.modules[__name__], kind, D[lang])
             write(path, page); pages.append((path_en, path_hi))
