@@ -177,7 +177,7 @@ def render(lang, bp, kind, conds, procs):
                 + sec(X["q_h"], tl(X["q"])) + sec(X["x_h"], tl(X["x"]))
                 + sec(X["care_h"], '<div class="lp-tags">' + "".join(f"<span>{e(c)}</span>" for c in X["care"]) + "</div>")
                 + sec(X["proc_h"], bp.links(procs))
-                + sec(X["res_h"], f"<p>{e(X['res'])}</p>")
+                + sec(X["res_h"], f"<p>{e(X['res'])}</p>" + __import__("research").html(lang, e))
                 + sec(X["reg_h"], f"<p>{e(X['reg'])}</p>") + sec(X["lang_h"], f"<p>{e(X['langs'])}</p>")
                 + sec(ONLINE[lang][0], '<div class="links">' + "".join(f'<a href="{u}" target="_blank" rel="noopener">{e(n)} <span aria-hidden="true">→</span></a>' for u, n in zip((INSTAGRAM, LINKEDIN, ARCURA, GBP), ONLINE[lang][1:])) + "</div>")
                 + bp.faq_html(lang, X["faqs"]))
@@ -187,7 +187,7 @@ def render(lang, bp, kind, conds, procs):
         {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": t["home"], "item": bp.SITE + bp.pre(lang)},
                                                        {"@type": "ListItem", "position": 2, "name": X["h1"], "item": bp.SITE + path}]},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in X["faqs"]]}]}
-    head = bp.head(lang, X["title"], X["desc"], path_en, path_hi, ld).replace("</head>", f"<style>{CSS}</style></head>", 1)
+    head = bp.head(lang, X["title"], X["desc"], path_en, path_hi, ld).replace("</head>", f"<style>{CSS}{__import__('research').CSS}</style></head>", 1)
     crumbs = f'<nav class="crumbs" aria-label="Breadcrumb"><a href="{bp.pre(lang)}">{e(t["home"])}</a><span>›</span><span aria-current="page">{e(X["h1"])}</span></nav>'
     html = (head + bp.header(lang, path_hi if lang == "en" else path_en)
             + f'<main class="wrap grid"><article>{crumbs}<p class="eyebrow">{e(X["eyebrow"])}</p><h1>{e(X["h1"])}</h1>{bp.byline(lang, UPD)}' + body

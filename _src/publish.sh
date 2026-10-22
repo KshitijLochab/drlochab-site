@@ -2,7 +2,7 @@
 # Rebuild the site from _src and copy it to the repository root, leaving the live tip and myth files alone.
 set -e
 cd "$(dirname "$0")"
-python3 build_site.py
+PREVIEW= python3 build_site.py   # never publish held content
 # stop here if the build has broken links, search tags or privacy settings
 python3 tests/check_site.py site
 (cd .. && python3 _src/tests/check_data.py)
