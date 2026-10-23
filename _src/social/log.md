@@ -1,6 +1,14 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 23 Oct 2026: preparation guides promo
+Generator: social/prep_guides_promo.py (output in _src/out/prep-guides-promo/).
+- Instagram carousel (4 slides, EN): Colonoscopy or endoscopy coming up? (cover with the planner on a phone; colonoscopy 2-day plan with stool colour scale; endoscopy: 6 hours food, 2 hours water, BP/thyroid tablets, ask about diabetes medicines and blood thinners; 3 steps to your plan).
+- Instagram story (EN): same cover, space for a link sticker to /guides/colonoscopy-preparation/.
+- WhatsApp Status (EN and HI): key steps for both tests, drlochab.com / drlochab.com/hi.
+- Google Business Profile (EN, 1200x900, no phone number in text): Getting ready for a colonoscopy or endoscopy? Learn more: /guides/colonoscopy-preparation/.
+- WhatsApp messages (EN, HI) with links to both guides.
+
 ## 20 Oct 2026 (site, PIN)
 - Clinic PIN code corrected to 122003 (confirmed by Dr. Lochab) everywhere: visible address, copy-address button, Gurgaon page, structured data, BRAND.md.
 
