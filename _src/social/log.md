@@ -1,6 +1,12 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 23 Oct 2026: Apollo Clinic announcement, redesigned (breaking news style)
+Generator: social/apollo_clinic_news.py (replaces the apollo_clinic_launch.py images; output in _src/out/apollo-clinic-news/).
+- Dark news background, red BREAKING / white NEW CLINIC tags, huge NOW OPEN, photo with a NOW CONSULTING badge, yellow Mon–Sat 4–6 pm block, full address, yellow LIVE ticker.
+- Instagram post and story, WhatsApp Status EN and HI, Google Business image; captions now include the address.
+- Site: Apollo Clinic address added (Netaji Subhash Marg, Indira Colony 1, Sector 52, Gurugram 122003).
+
 ## 23 Oct 2026: Apollo Clinic, Sector 52 announcement
 Generator: social/apollo_clinic_launch.py (timings read from clinics.py; output in _src/out/apollo-clinic-launch/).
 - Instagram post and story (EN): Now also at Apollo Clinic, Sector 52 (map with both sectors, both clinics' timings, book on WhatsApp/call or at the clinic, timings may change).
