@@ -364,6 +364,7 @@ section{padding-block:72px;scroll-margin-top:70px}
 .hooks{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:640px}
 .hook{display:grid;grid-template-columns:48px 1fr;gap:5px 12px;align-content:start;text-decoration:none;color:var(--ink);border-radius:18px;padding:14px 16px;border:1.5px solid;min-width:0;transition:transform .15s}
 .hook:empty{display:none}
+.clinic2{margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.18);display:grid;gap:10px}.clinic2 address{font-style:normal}
 a.sym{text-decoration:none}
 .hook:hover{transform:translateY(-2px)}
 .hook-myth{background:var(--warm-soft);border-color:var(--warm)}
@@ -859,9 +860,10 @@ footer .wrap{display:grid;gap:10px}
           <!--HOURS-->
           <p><a style="color:var(--warm-on-ink)" href="https://arcuracare.com/dr-kshitij-lochab/" target="_blank" rel="noopener">My profile on the Arcura Clinic website →</a></p>
           <div class="hero-cta">
-            <a class="btn btn-solid" href="https://share.google/9ZndZsg6NHVxeQfYl" target="_blank" rel="noopener">Get directions</a>
+            <a class="btn btn-solid" href="https://share.google/9ZndZsg6NHVxeQfYl" target="_blank" rel="noopener">Directions to Arcura</a>
             <button class="btn btn-ghost" id="copyAddr" type="button">Copy address</button>
           </div>
+          <!--CLINIC2-->
           <p class="copied" id="copied" aria-live="polite"></p>
           <p>Visited recently? You can share your experience on <a href="https://g.page/r/CYmK8BpICDd6EBM/review" target="_blank" rel="noopener" style="color:var(--warm-on-ink)">Google</a>. It helps others find the right care.</p>
           <p>Also consulting at Apollo Hospitals, Golf Course Road, Gurugram.</p>
@@ -1065,7 +1067,7 @@ const PSLUG=["upper-gi-endoscopy","colonoscopy","endoscopic-ultrasound-eus","erc
 /* symptoms */
 const BOOK={hello:"Hello Dr. Lochab, I would like to book a consultation",about:" about: ",when:"Preferred time: ",src:"(Found you on drlochab.com)",
  reasons:["Acidity or gastritis","Fatty liver or liver report","Jaundice or hepatitis","Gas, bloating or IBS","Constipation or loose motions","Endoscopy or colonoscopy","EUS or ERCP","Gallbladder or pancreas","Review of reports"],
- times:["Weekday evening","Sunday morning","Video consultation"]};
+ times:/*TIMES*/};
 const waText=(reason,time)=>"https://wa.me/919667104882?text="+encodeURIComponent(BOOK.hello+(reason?BOOK.about+reason:"")+"."+(time?"\n"+BOOK.when+time+".":"")+"\n"+BOOK.src);
 const SYMBOOK={book:"Book a visit about this",wa:"WhatsApp",urgent:"Call 112 for an ambulance",urgentNote:"Do not wait for an appointment. Go to the nearest emergency department."};
 const symList=document.getElementById("symList"), symResult=document.getElementById("symResult");
@@ -1418,15 +1420,17 @@ function copyBtn(btnId,text,nodeId,label){
   });
 }
 copyBtn("copyAddr","Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51, Gurugram, Haryana 122003","addr","Address");
-/* clinic open status (Arcura hours, India time) and booking messages */
-const OPENTXT={open:t=>`Open now · until ${t}`,today:t=>`Opens today at ${t}`,next:(d,t)=>`Next clinic: ${d}, ${t}`,place:"Arcura, Sector 51",t:{9:"9 am",13:"1 pm",18:"6 pm",20:"8 pm"},days:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],tom:"tomorrow"};
-const HOURS=[[9,13],[18,20],[18,20],[18,20],[18,20],[18,20],null];
+/* clinic open status (all clinics, India time; sessions come from clinics.py) and booking messages */
+/*OPEN_JS*/
 (function(){
   const el=document.getElementById("openNow"); if(!el)return;
-  const now=new Date(Date.now()+(330+new Date().getTimezoneOffset())*6e4), d=now.getDay(), h=now.getHours()+now.getMinutes()/60, H=HOURS[d];
-  if(H&&h>=H[0]&&h<H[1]){el.textContent=OPENTXT.open(OPENTXT.t[H[1]])+" · "+OPENTXT.place;el.classList.add("is-open");return;}
-  if(H&&h<H[0]){el.textContent=OPENTXT.today(OPENTXT.t[H[0]])+" · "+OPENTXT.place;el.classList.add("is-soon");return;}
-  for(let k=1;k<8;k++){const n=(d+k)%7;if(HOURS[n]){el.textContent=OPENTXT.next(k===1?OPENTXT.tom:OPENTXT.days[n],OPENTXT.t[HOURS[n][0]])+" · "+OPENTXT.place;break;}}
+  const now=new Date(Date.now()+(330+new Date().getTimezoneOffset())*6e4), d=now.getDay(), h=now.getHours()+now.getMinutes()/60;
+  const on=day=>SESS.filter(s=>s.d.includes(day)).sort((x,y)=>x.a-y.a);
+  const cur=on(d).find(s=>h>=s.a&&h<s.b);
+  if(cur){el.textContent=OPENTXT.open(OPENTXT.t[cur.b])+" · "+cur.p;el.classList.add("is-open");return;}
+  const later=on(d).find(s=>h<s.a);
+  if(later){el.textContent=OPENTXT.today(OPENTXT.t[later.a])+" · "+later.p;el.classList.add("is-soon");return;}
+  for(let k=1;k<8;k++){const n=(d+k)%7,f=on(n)[0];if(f){el.textContent=OPENTXT.next(k===1?OPENTXT.tom:OPENTXT.days[n],OPENTXT.t[f.a])+" · "+f.p;break;}}
 })();
 (function(){
   const pick={r:"",t:""}, a=document.getElementById("waBook");

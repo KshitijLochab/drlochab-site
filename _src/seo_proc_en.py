@@ -25,7 +25,7 @@ MORE = {
  faqs=[["How long does an endoscopy take?","The test itself takes about 5 to 10 minutes. With preparation and recovery, plan for 1 to 2 hours at the hospital."],
        ["Do I need to stop my blood thinner?","Do not stop it on your own. Some blood thinners can continue for a simple endoscopy; others are paused if biopsies or treatment are likely. Your doctor will plan this with the doctor who prescribed them."],
        ["Can I go home the same day?","Yes. Routine endoscopy is a day procedure and you go home within a couple of hours."],
-       ["Where can I get an endoscopy in Gurugram?","Dr. Kshitij Lochab sees patients at Arcura Clinic, Sector 51, and at Apollo Hospitals, Golf Course Road. The endoscopy is done in a hospital endoscopy unit. Call or WhatsApp to book a consultation first."]]),
+       ["Where can I get an endoscopy in Gurugram?","Dr. Kshitij Lochab sees patients at Arcura Clinic, Sector 51, Apollo Clinic, Sector 52, and Apollo Hospitals, Golf Course Road. The endoscopy is done in a hospital endoscopy unit. Call or WhatsApp to book a consultation first."]]),
 
 "colonoscopy": dict(
  desc="Colonoscopy in Gurugram: why it is done, bowel preparation, what to expect, polyp removal, recovery, risks and screening advice, explained by gastroenterologist Dr. Kshitij Lochab.",
@@ -48,7 +48,7 @@ MORE = {
  faqs=[["How long does a colonoscopy take?","Usually 20 to 40 minutes, plus time for preparation and recovery. Plan for about 2 to 3 hours at the hospital."],
        ["When should I have a screening colonoscopy?","Many guidelines suggest starting around age 45 to 50 for people at average risk. If a parent, brother or sister had colon cancer or large polyps, screening usually starts earlier. Discuss your own risk with your doctor."],
        ["What if my bowel preparation is not clear?","Small polyps can be missed, and the test may need to be repeated. Following the diet and drink timing carefully makes a big difference."],
-       ["Where can I get a colonoscopy in Gurugram?","Dr. Kshitij Lochab sees patients at Arcura Clinic, Sector 51, and at Apollo Hospitals, Golf Course Road. The colonoscopy is done in a hospital endoscopy unit after a consultation."]]),
+       ["Where can I get a colonoscopy in Gurugram?","Dr. Kshitij Lochab sees patients at Arcura Clinic, Sector 51, Apollo Clinic, Sector 52, and Apollo Hospitals, Golf Course Road. The colonoscopy is done in a hospital endoscopy unit after a consultation."]]),
 
 "endoscopic-ultrasound-eus": dict(
  desc="Endoscopic ultrasound (EUS) in Gurugram for pancreas, bile duct and stomach problems: uses, EUS biopsy (FNA/FNB), drainage, preparation, recovery and risks. Dr. Kshitij Lochab, Advanced Fellowship in EUS and ERCP.",
@@ -73,7 +73,7 @@ MORE = {
  faqs=[["Is EUS painful?","No. It is done under sedation, and most people remember nothing of the procedure. A mild sore throat afterwards is common."],
        ["Is EUS better than CT or MRI for the pancreas?","For small lumps, small cysts and tiny bile duct stones, EUS often shows more detail, and it can take samples. CT and MRI give a wider view of the whole abdomen. The tests are often used together."],
        ["Who needs EUS for a pancreatic cyst?","Many cysts are small and harmless. EUS is advised when a cyst has worrying features on a scan, is growing, or when its type is unclear and a fluid sample would change the plan."],
-       ["Where can I get EUS in Gurugram (Gurgaon)?","Dr. Kshitij Lochab, who has an Advanced Fellowship in EUS and ERCP, sees patients at Arcura Clinic, Sector 51, and at Apollo Hospitals, Golf Course Road. EUS is done in a hospital endoscopy unit after a consultation and review of your scans."]]),
+       ["Where can I get EUS in Gurugram (Gurgaon)?","Dr. Kshitij Lochab, who has an Advanced Fellowship in EUS and ERCP, sees patients at Arcura Clinic, Sector 51, Apollo Clinic, Sector 52, and Apollo Hospitals, Golf Course Road. EUS is done in a hospital endoscopy unit after a consultation and review of your scans."]]),
 
 "ercp": dict(
  desc="ERCP in Gurugram for bile duct stones, jaundice and blocked bile ducts: how it works, preparation, stenting, recovery and risks. Dr. Kshitij Lochab, Advanced Fellowship in EUS and ERCP.",
@@ -97,7 +97,7 @@ MORE = {
  faqs=[["Is ERCP the same as MRCP?","No. MRCP is a scan that only takes pictures. ERCP is a procedure that can remove stones and place stents, so it is used when treatment is needed."],
        ["How long will I stay in hospital?","Often one night, sometimes only a few hours. Longer stays are needed if there is infection, pancreatitis or another illness."],
        ["Can bile duct stones come back?","They can, especially if the gallbladder still has stones. Removing the gallbladder after ERCP greatly lowers this risk."],
-       ["Where can I get ERCP in Gurugram (Gurgaon)?","Dr. Kshitij Lochab, who has an Advanced Fellowship in EUS and ERCP, sees patients at Arcura Clinic, Sector 51, and at Apollo Hospitals, Golf Course Road. ERCP is done in a hospital with X-ray facilities, after a consultation and review of your reports."]]),
+       ["Where can I get ERCP in Gurugram (Gurgaon)?","Dr. Kshitij Lochab, who has an Advanced Fellowship in EUS and ERCP, sees patients at Arcura Clinic, Sector 51, Apollo Clinic, Sector 52, and Apollo Hospitals, Golf Course Road. ERCP is done in a hospital with X-ray facilities, after a consultation and review of your reports."]]),
 
 "variceal-banding-evl": dict(
  desc="Variceal banding (EVL) in Gurugram for swollen veins (varices) in liver disease and cirrhosis: why it is done, preparation, sessions, diet after banding and risks. Dr. Kshitij Lochab.",
@@ -119,7 +119,7 @@ MORE = {
  faqs=[["Does banding cure cirrhosis?","No. Banding treats the swollen veins and lowers the risk of bleeding. Treating the cause of liver disease and regular follow-up remain essential."],
        ["Is banding painful?","It is done under sedation. Afterwards, some chest discomfort or pain on swallowing for a day or two is common."],
        ["Who needs banding?","People with cirrhosis who have large varices, those who have bled from varices, and some with high-risk features on endoscopy. Everyone with cirrhosis should have a screening endoscopy to check."],
-       ["Where can I get variceal banding in Gurugram?","Dr. Kshitij Lochab sees patients at Arcura Clinic, Sector 51, and at Apollo Hospitals, Golf Course Road. In case of vomiting blood, go straight to the nearest emergency department or call 112."]]),
+       ["Where can I get variceal banding in Gurugram?","Dr. Kshitij Lochab sees patients at Arcura Clinic, Sector 51, Apollo Clinic, Sector 52, and Apollo Hospitals, Golf Course Road. In case of vomiting blood, go straight to the nearest emergency department or call 112."]]),
 
 "polyp-removal-emr": dict(
  desc="Polyp removal (polypectomy) and endoscopic mucosal resection (EMR) in Gurugram: why polyps are removed, preparation, recovery, risks and follow-up colonoscopy. Dr. Kshitij Lochab.",
@@ -141,7 +141,7 @@ MORE = {
  faqs=[["Are all polyps cancer?","No. Most polyps are not cancer. Some types can become cancer over years, which is why they are removed and tested."],
        ["Will removing a polyp hurt?","No. It is done under sedation, and the bowel lining does not feel cutting. Mild bloating afterwards is common."],
        ["Can polyps come back?","New polyps can form, and large polyps removed in pieces can regrow at the same spot. Follow-up colonoscopy on time catches these early."],
-       ["Where can I get polyp removal or EMR in Gurugram?","Dr. Kshitij Lochab sees patients at Arcura Clinic, Sector 51, and at Apollo Hospitals, Golf Course Road. The procedure is done in a hospital endoscopy unit after a consultation."]]),
+       ["Where can I get polyp removal or EMR in Gurugram?","Dr. Kshitij Lochab sees patients at Arcura Clinic, Sector 51, Apollo Clinic, Sector 52, and Apollo Hospitals, Golf Course Road. The procedure is done in a hospital endoscopy unit after a consultation."]]),
 
 "gi-bleeding-treatment": dict(
  desc="GI bleeding treatment by endoscopy in Gurugram: signs of bleeding from the stomach or bowel, emergency care, how bleeding is stopped, recovery and preventing it again. Dr. Kshitij Lochab.",
@@ -163,7 +163,7 @@ MORE = {
  faqs=[["Why do painkillers cause bleeding ulcers?","Common painkillers such as NSAIDs reduce the stomach's natural protection, especially in older people and with long use. Ask your doctor before taking them regularly."],
        ["Will I need a blood transfusion?","Only if the blood count is low or bleeding is heavy. Many people do not need one."],
        ["How soon is the endoscopy done?","Usually within 24 hours of arriving in hospital, and sooner if the bleeding is heavy or there are signs of varices."],
-       ["Where should I go for GI bleeding in Gurugram?","Go straight to the nearest hospital emergency department or call 112. For follow-up care and preventing another bleed, Dr. Kshitij Lochab sees patients at Arcura Clinic, Sector 51, and at Apollo Hospitals, Golf Course Road."]]),
+       ["Where should I go for GI bleeding in Gurugram?","Go straight to the nearest hospital emergency department or call 112. For follow-up care and preventing another bleed, Dr. Kshitij Lochab sees patients at Arcura Clinic, Sector 51, Apollo Clinic, Sector 52, and Apollo Hospitals, Golf Course Road."]]),
 
 "peg-feeding-tube": dict(
  desc="PEG feeding tube in Gurugram: who needs it, how it is placed by endoscopy, preparation, feeding and tube care at home, and problems to watch for. Dr. Kshitij Lochab.",
@@ -185,7 +185,7 @@ MORE = {
  faqs=[["Is getting a PEG painful?","It is done under sedation and local anaesthetic. Some soreness at the site for a few days is common and settles with simple painkillers."],
        ["Can medicines be given through the tube?","Yes, most can, as liquids or crushed and mixed with water, but some tablets must not be crushed. Check each medicine with your doctor or pharmacist."],
        ["What should I do if the tube comes out?","Cover the site with a clean dressing and contact the doctor or hospital straight away. The opening starts closing within hours, so prompt replacement is important."],
-       ["Where can I get a PEG tube placed in Gurugram?","Dr. Kshitij Lochab sees patients at Arcura Clinic, Sector 51, and at Apollo Hospitals, Golf Course Road. PEG is placed in a hospital endoscopy unit after a consultation with the patient and family."]]),
+       ["Where can I get a PEG tube placed in Gurugram?","Dr. Kshitij Lochab sees patients at Arcura Clinic, Sector 51, Apollo Clinic, Sector 52, and Apollo Hospitals, Golf Course Road. PEG is placed in a hospital endoscopy unit after a consultation with the patient and family."]]),
 
 "dilatation-stenting": dict(
  desc="Endoscopic dilatation and stenting in Gurugram for narrowing of the food pipe, achalasia, blocked bile ducts and bowel: how it is done, preparation, eating after, and risks. Dr. Kshitij Lochab.",
@@ -206,5 +206,5 @@ MORE = {
  faqs=[["Will I be able to eat normally after dilatation?","Most people swallow much better after one or more sessions. If the narrowing returns, the dilatation can be repeated."],
        ["What is achalasia?","A condition in which the muscle at the lower end of the food pipe does not relax, so food and liquids collect above it. It causes difficulty swallowing, regurgitation and weight loss, and is treated by stretching or cutting the tight muscle."],
        ["How long does a stent last?","Stents placed for growths are usually left in place for symptom relief. Stents for non-cancer narrowings are often removed after some weeks."],
-       ["Where can I get dilatation or stenting in Gurugram?","Dr. Kshitij Lochab sees patients at Arcura Clinic, Sector 51, and at Apollo Hospitals, Golf Course Road. The procedure is done in a hospital endoscopy unit after a consultation and review of your reports."]]),
+       ["Where can I get dilatation or stenting in Gurugram?","Dr. Kshitij Lochab sees patients at Arcura Clinic, Sector 51, Apollo Clinic, Sector 52, and Apollo Hospitals, Golf Course Road. The procedure is done in a hospital endoscopy unit after a consultation and review of your reports."]]),
 }

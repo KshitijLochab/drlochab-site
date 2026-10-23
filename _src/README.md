@@ -110,3 +110,6 @@ See `BRAND.md` for colours, type, voice and rules.
 - `PREVIEW=1 python3 build_site.py` shows all held content locally. **Never publish a PREVIEW build** (publish.sh builds without it).
 
 - 22 Oct 2026, 21:30: Dr. Lochab approved the references (now live, collapsed at the end of 14 pages) and dropped the deeper sections and the publications list; those files were removed. The reviewed-by line stays off until he gives real review dates (`REVIEW_LOG`).
+
+### 23 Oct 2026: second clinic
+- `clinics.py` holds both clinics' sessions and the Apollo Clinic, Sector 52 details (Mon–Sat 4–6 pm, booking by WhatsApp/phone or at the clinic). Change timings there only: it feeds the home 'open now' line, the visit section, booking chips, the 'Book a consultation' box, the Gurgaon and About pages and structured data. Street address of Apollo Clinic still to come (only 'Sector 52' confirmed).

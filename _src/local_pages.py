@@ -16,7 +16,7 @@ def physician(full=False):
     p = {"@type": "Physician", "@id": "https://drlochab.com/#physician", "name": "Dr. Kshitij Lochab", "url": "https://drlochab.com/",
          "image": "https://drlochab.com/dr-lochab.jpg", "telephone": "+91-9667104882", "medicalSpecialty": "Gastroenterologic",
          "address": ADDRESS, "openingHoursSpecification": HOURS, "areaServed": ["Gurugram", "Gurgaon", "Delhi NCR"],
-         "availableLanguage": ["English", "Hindi"], "sameAs": SAME_AS, "hasMap": GBP}
+         "availableLanguage": ["English", "Hindi"], "sameAs": SAME_AS, "hasMap": GBP, "location": [__import__("clinics").location_ld()]}
     if full:
         p.update({"description": "Consultant gastroenterologist and therapeutic endoscopist in Gurgaon (Gurugram), trained in endoscopic ultrasound (EUS) and ERCP.",
                   "award": "All-India Gold Medal, DrNB Gastroenterology",
@@ -65,6 +65,7 @@ EN = dict(
   x_h="Experience",
   x=[("2026", "Associate Consultant, Gastroenterology, Medanta – The Medicity, Gurugram"),
      ("Now", "Consultant Gastroenterologist, Arcura Clinic, Sector 51, Gurugram"),
+     ("Now", "Consultant Gastroenterologist, Apollo Clinic, Sector 52, Gurugram"),
      ("Now", "Associate Consultant, Gastroenterology & Therapeutic Endoscopy, Apollo Hospitals, Golf Course Road, Gurugram")],
   care_h="Areas of care", care=["Fatty liver and hepatitis", "Cirrhosis and GI bleeding", "Bile duct and pancreas", "Acidity and ulcers", "IBS and IBD", "Colon polyps and screening", "Swallowing problems", "Gut and liver care in pregnancy"],
   proc_h="Procedures",
@@ -119,6 +120,7 @@ HI = dict(
   x_h="अनुभव",
   x=[("2026", "एसोसिएट कंसल्टेंट, गैस्ट्रोएंटेरोलॉजी, मेदांता – द मेडिसिटी, गुरुग्राम"),
      ("अभी", "कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट, आर्क्योरा क्लिनिक, सेक्टर 51, गुरुग्राम"),
+     ("अभी", "कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट, अपोलो क्लिनिक, सेक्टर 52, गुरुग्राम"),
      ("अभी", "एसोसिएट कंसल्टेंट, गैस्ट्रोएंटेरोलॉजी और थेराप्यूटिक एंडोस्कोपी, अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड, गुरुग्राम")],
   care_h="इलाज के क्षेत्र", care=["फ़ैटी लिवर और हेपेटाइटिस", "सिरोसिस और GI ब्लीडिंग", "पित्त की नली और पैंक्रियास", "एसिडिटी और अल्सर", "IBS और IBD", "आँत के पॉलिप और स्क्रीनिंग", "निगलने की समस्याएँ", "गर्भावस्था में पेट और लिवर की देखभाल"],
   proc_h="प्रोसीजर",
@@ -154,15 +156,21 @@ ONLINE = {"en": ("Find me online", "Instagram @drlochab: gut-health tips", "Link
 
 def render(lang, bp, kind, conds, procs):
     """kind: 'local' or 'about'. conds/procs: lists of (url, name) in the page language."""
-    X = (EN if lang == "en" else HI)[kind]; e = bp.e; t = bp.L[lang]
+    import clinics, copy
+    X = copy.deepcopy((EN if lang == "en" else HI)[kind]); e = bp.e; t = bp.L[lang]
+    A = clinics.APOLLO_CLINIC[lang]
+    when2 = "; ".join(f"{d}, {h}" for d, h in A["hours"])
+    X["faqs"][0][1] += (f" Also at {A['line']}: {when2}." if lang == "en" else f" {A['line']} में भी: {when2}।")
     path, path_en, path_hi = f"{bp.pre(lang)}{X['slug']}/", f"/{X['slug']}/", f"/hi/{X['slug']}/"
     sec = lambda h, inner: f"<section><h2>{e(h)}</h2>{inner}</section>"
     if kind == "local":
         hours = '<dl class="lp-hours">' + "".join(f"<dt>{e(d)}</dt><dd>{e(h)}</dd>" for d, h in X["hours"]) + "</dl>"
         body = (f'<p class="lead">{e(X["lead"])}</p>'
                 + sec(X["clinic_h"], "".join(f"<p>{e(p)}</p>" for p in X["clinic"]) + f'<h3>{e(X["hours_h"])}</h3>{hours}<p>{e(X["book"])}</p>'
+                      + f'<h3>{e(A["name"])}</h3><dl class="lp-hours">' + "".join(f"<dt>{e(d)}</dt><dd>{e(h)}</dd>" for d, h in A["hours"]) + f'</dl><p>{e(A["book"])}</p>'
                       f'<div class="lp-act"><a class="btn btn-solid btn-sm" href="{bp.WA}" target="_blank" rel="noopener">{e(X["wa"])}</a>'
-                      f'<a class="btn btn-ghost btn-sm" href="{GBP}" target="_blank" rel="noopener">{e(X["dir"])}</a>'
+                      f'<a class="btn btn-ghost btn-sm" href="{GBP}" target="_blank" rel="noopener">{"Directions to Arcura Clinic" if lang == "en" else "आर्क्योरा क्लिनिक का रास्ता"}</a>'
+                      f'<a class="btn btn-ghost btn-sm" href="{clinics.APOLLO_CLINIC["map"]}" target="_blank" rel="noopener">{e(A["dir"])}</a>'
                       f'<a class="btn btn-ghost btn-sm" href="{ARCURA}" target="_blank" rel="noopener">{e(ONLINE[lang][3])}</a></div>')
                 + sec(X["treat_h"], bp.links(conds))
                 + sec(X["proc_h"], f'<p>{e(X["proc_p"])}</p>' + bp.links(procs))
