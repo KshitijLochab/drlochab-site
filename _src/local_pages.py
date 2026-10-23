@@ -57,11 +57,17 @@ EN = dict(
   role="Consultant Gastroenterologist & Therapeutic Endoscopist, Gurgaon (Gurugram)",
   desc="Dr. Kshitij Lochab: DrNB Gastroenterology (Medanta, All-India Gold Medal), Advanced Fellowship in EUS and ERCP, consultant gastroenterologist in Gurgaon. Qualifications, experience, research and how to book.",
   lead="I treat diseases of the food pipe, stomach, intestines, liver, gallbladder and pancreas. My special training is in advanced endoscopy, including endoscopic ultrasound (EUS) and ERCP, which lets many problems that once needed surgery be treated through a scope. I take time to explain your condition and your options, so that every decision is one we make together.",
-  q_h="Qualifications and training",
-  q=[("2018", "MBBS, Armed Forces Medical College (AFMC), Pune"), ("2022", "MD Internal Medicine, Medical College Baroda"),
-     ("2022", "Senior Resident, Internal Medicine, Lady Hardinge Medical College, New Delhi"),
-     ("2026", "DrNB Gastroenterology, Medanta – The Medicity, Gurugram (Institute of Digestive & Hepatobiliary Sciences), All-India Gold Medal"),
-     ("2026", "Advanced Fellowship in Endoscopic Ultrasound (EUS) and ERCP, under Dr Malay Sharma")],
+  q_h="Training and qualifications",
+  q_sum="MBBS · MD Internal Medicine · DrNB Gastroenterology (All-India Gold Medal) · Advanced Fellowship in EUS & ERCP",
+  q=[("2018", "MBBS", "Armed Forces Medical College (AFMC), Pune",
+      "Founded in 1948, AFMC trains doctors for the Army, Navy and Air Force. Each year about 2,000 candidates are shortlisted from the national NEET merit list for around 150 places, through a written test, interview and medical examination."),
+     ("2022", "MD Internal Medicine", "Medical College Baroda",
+      "Established in 1949 under the Maharaja Sayajirao University of Baroda and attached to Sir Sayajirao General Hospital, a major public teaching hospital in Gujarat. Training as a physician first means digestive problems are seen alongside diabetes, heart, kidney and other conditions."),
+     ("2022", "Senior Residency, Internal Medicine", "Lady Hardinge Medical College, New Delhi", ""),
+     ("2026", "DrNB Gastroenterology, All-India Gold Medal", "Medanta – The Medicity, Gurugram",
+      "Trained at the Institute of Digestive & Hepatobiliary Sciences, led by Padma Shri awardee Dr Randhir Sud."),
+     ("2026", "Advanced Fellowship in EUS and ERCP", "Under Dr Malay Sharma",
+      "Dedicated training in endoscopic ultrasound and ERCP, used for bile duct, pancreas and gallbladder problems, and for many conditions that once needed surgery.")],
   x_h="Experience",
   x=[("2026", "Associate Consultant, Gastroenterology, Medanta – The Medicity, Gurugram"),
      ("Now", "Consultant Gastroenterologist, Arcura Clinic, Sector 51, Gurugram"),
@@ -112,11 +118,17 @@ HI = dict(
   role="कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट और थेराप्यूटिक एंडोस्कोपिस्ट, गुड़गाँव (गुरुग्राम)",
   desc="डॉ. क्षितिज लोचब: DrNB गैस्ट्रोएंटेरोलॉजी (मेदांता, ऑल-इंडिया गोल्ड मेडल), EUS और ERCP में एडवांस्ड फ़ेलोशिप, गुड़गाँव में कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट। योग्यता, अनुभव, शोध और अपॉइंटमेंट।",
   lead="मैं खाने की नली, पेट, आँतों, लिवर, पित्ताशय और पैंक्रियास की बीमारियों का इलाज करता हूँ। मेरी ख़ास ट्रेनिंग एडवांस्ड एंडोस्कोपी में है, जिसमें एंडोस्कोपिक अल्ट्रासाउंड (EUS) और ERCP शामिल हैं, जिनसे कई समस्याएँ जिनमें पहले ऑपरेशन लगता था, अब दूरबीन से ठीक हो जाती हैं। मैं आपकी बीमारी और विकल्प समझाने में समय लेता हूँ, ताकि हर फ़ैसला हम साथ मिलकर लें।",
-  q_h="योग्यता और ट्रेनिंग",
-  q=[("2018", "MBBS, आर्म्ड फ़ोर्सेज़ मेडिकल कॉलेज (AFMC), पुणे"), ("2022", "MD इंटरनल मेडिसिन, मेडिकल कॉलेज बड़ौदा"),
-     ("2022", "सीनियर रेज़िडेंट, इंटरनल मेडिसिन, लेडी हार्डिंग मेडिकल कॉलेज, नई दिल्ली"),
-     ("2026", "DrNB गैस्ट्रोएंटेरोलॉजी, मेदांता – द मेडिसिटी, गुरुग्राम (इंस्टिट्यूट ऑफ़ डाइजेस्टिव एंड हेपेटोबिलियरी साइंसेज़), ऑल-इंडिया गोल्ड मेडल"),
-     ("2026", "एंडोस्कोपिक अल्ट्रासाउंड (EUS) और ERCP में एडवांस्ड फ़ेलोशिप, डॉ. मलय शर्मा के मार्गदर्शन में")],
+  q_h="ट्रेनिंग और योग्यता",
+  q_sum="MBBS · MD इंटरनल मेडिसिन · DrNB गैस्ट्रोएंटेरोलॉजी (ऑल-इंडिया गोल्ड मेडल) · EUS और ERCP में एडवांस्ड फ़ेलोशिप",
+  q=[("2018", "MBBS", "आर्म्ड फ़ोर्सेज़ मेडिकल कॉलेज (AFMC), पुणे",
+      "1948 में स्थापित AFMC थल सेना, नौसेना और वायु सेना के लिए डॉक्टर तैयार करता है। हर साल राष्ट्रीय NEET मेरिट सूची से करीब 2,000 उम्मीदवार चुने जाते हैं, और लिखित परीक्षा, इंटरव्यू और मेडिकल जाँच के बाद लगभग 150 सीटें भरी जाती हैं।"),
+     ("2022", "MD इंटरनल मेडिसिन", "मेडिकल कॉलेज बड़ौदा",
+      "1949 में महाराजा सयाजीराव यूनिवर्सिटी ऑफ़ बड़ौदा के तहत स्थापित, और गुजरात के बड़े सरकारी टीचिंग अस्पताल, सर सयाजीराव जनरल अस्पताल से जुड़ा। पहले फ़िज़िशियन की ट्रेनिंग का मतलब है कि पेट की बीमारी को डायबिटीज़, दिल, किडनी और दूसरी बीमारियों के साथ जोड़कर देखा जाता है।"),
+     ("2022", "सीनियर रेज़िडेंसी, इंटरनल मेडिसिन", "लेडी हार्डिंग मेडिकल कॉलेज, नई दिल्ली", ""),
+     ("2026", "DrNB गैस्ट्रोएंटेरोलॉजी, ऑल-इंडिया गोल्ड मेडल", "मेदांता – द मेडिसिटी, गुरुग्राम",
+      "इंस्टिट्यूट ऑफ़ डाइजेस्टिव एंड हेपेटोबिलियरी साइंसेज़ में ट्रेनिंग, जिसका नेतृत्व पद्म श्री से सम्मानित डॉ. रणधीर सूद करते हैं।"),
+     ("2026", "EUS और ERCP में एडवांस्ड फ़ेलोशिप", "डॉ. मलय शर्मा के मार्गदर्शन में",
+      "एंडोस्कोपिक अल्ट्रासाउंड और ERCP की विशेष ट्रेनिंग, जो पित्त की नली, पैंक्रियास और पित्ताशय की समस्याओं में, और कई ऐसी बीमारियों में काम आती है जिनमें पहले ऑपरेशन करना पड़ता था।")],
   x_h="अनुभव",
   x=[("2026", "एसोसिएट कंसल्टेंट, गैस्ट्रोएंटेरोलॉजी, मेदांता – द मेडिसिटी, गुरुग्राम"),
      ("अभी", "कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट, आर्क्योरा क्लिनिक, सेक्टर 51, गुरुग्राम"),
@@ -138,6 +150,11 @@ for k in ("local", "about"):
     HI[k]["slug"] = EN[k]["slug"]
 
 CSS = """
+.lp-qsum{font-weight:600;color:var(--accent);margin:0 0 14px}
+.lp-q{display:grid;gap:12px}
+.lp-qc{display:grid;gap:3px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.lp-qc b{font-size:1.02rem}.lp-qy{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--muted)}
+.lp-qp{color:var(--accent);font-weight:600;font-size:.95rem}.lp-qc p{margin:4px 0 0;font-size:.92rem;color:var(--muted);line-height:1.5}
 .lp-hours{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin:8px 0 14px;max-width:460px}
 .lp-hours dt{font-weight:700}.lp-hours dd{margin:0}
 .lp-act{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
@@ -182,7 +199,9 @@ def render(lang, bp, kind, conds, procs):
         tl = lambda items: '<ul class="lp-tl">' + "".join(f"<li><b>{e(y)}</b><span>{e(v)}</span></li>" for y, v in items) + "</ul>"
         body = (f'<div class="lp-head"><img src="/dr-lochab.jpg" alt="{e(X["h1"])}" width="160" height="200"><div><p class="lp-role">{e(X["role"])}</p></div></div>'
                 f'<p class="lead">{e(X["lead"])}</p>'
-                + sec(X["q_h"], tl(X["q"])) + sec(X["x_h"], tl(X["x"]))
+                + sec(X["q_h"], f'<p class="lp-qsum">{e(X["q_sum"])}</p><div class="lp-q">' + "".join(
+                      f'<div class="lp-qc"><span class="lp-qy">{e(y)}</span><b>{e(d)}</b><span class="lp-qp">{e(pl)}</span>' + (f'<p>{e(c)}</p>' if c else "") + "</div>"
+                      for y, d, pl, c in X["q"]) + "</div>") + sec(X["x_h"], tl(X["x"]))
                 + sec(X["care_h"], '<div class="lp-tags">' + "".join(f"<span>{e(c)}</span>" for c in X["care"]) + "</div>")
                 + sec(X["proc_h"], bp.links(procs))
                 + sec(X["res_h"], f"<p>{e(X['res'])}</p>")

@@ -169,6 +169,7 @@ h1,h2{overflow-wrap:break-word;hyphens:auto}
 .cta .num:hover{background:var(--accent-soft)}
 .num-ic{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--accent-ink)}.num-ic svg{width:20px;height:20px}
 
+.ai-note{font-size:.72rem;color:var(--muted)}
 .foot-social{font-size:.92rem}.foot-social a{color:inherit;font-weight:600}
 
 /* references (medical_review.py) */

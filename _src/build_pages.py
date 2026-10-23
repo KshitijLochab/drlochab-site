@@ -225,10 +225,12 @@ def diet_fab(lang, href):
     """Phone-only floating link to the diet charts, bottom left (the Book button sits bottom right)."""
     return f'<a class="fab fab-diet" href="{href}">{PLATE_SVG}{L[lang]["dietnav"]}</a>'
 
+AI_NOTE = {'en': 'Prepared with AI assistance and reviewed by Dr. Kshitij Lochab.', 'hi': 'AI की सहायता से तैयार और डॉ. क्षितिज लोचब द्वारा समीक्षित।'}
+
 def footer(lang, diet=True):
     t = L[lang]
     fl = f'<p class="foot-links"><a href="{pre(lang)}about-dr-kshitij-lochab/">{FOOT_LINKS[lang][0]}</a> · <a href="{pre(lang)}gastroenterologist-in-gurgaon/">{FOOT_LINKS[lang][1]}</a> · <a href="{pre(lang)}tools/gut-tracker/">{FOOT_LINKS[lang][2]}</a> · <a href="{pre(lang)}diet-charts/">{L[lang]['dietnav']}</a></p>'
-    return f"""<footer><div class="wrap">{channel_html(lang, "chan chan-foot")}{fl}{social_html(lang)}<p>{t['disc']}</p><p>Dr. Kshitij Lochab · {t['reg']} · {PHONE}</p><p>© 2026 Dr. Kshitij Lochab</p></div></footer>
+    return f"""<footer><div class="wrap">{channel_html(lang, "chan chan-foot")}{fl}{social_html(lang)}<p>{t['disc']}</p><p>Dr. Kshitij Lochab · {t['reg']} · {PHONE}</p><p>© 2026 Dr. Kshitij Lochab</p><p class="ai-note">{AI_NOTE[lang]}</p></div></footer>
 <nav class="fabs" aria-label="{t['quick']}"><a class="fab" href="{WA}" target="_blank" rel="noopener">{t['book']}</a>
 {diet_fab(lang, pre(lang) + "diet-charts/") if diet else ""}</nav>
 </body></html>"""

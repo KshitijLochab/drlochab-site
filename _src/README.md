@@ -113,3 +113,7 @@ See `BRAND.md` for colours, type, voice and rules.
 
 ### 23 Oct 2026: second clinic
 - `clinics.py` holds both clinics' sessions and the Apollo Clinic, Sector 52 details (Mon–Sat 4–6 pm, booking by WhatsApp/phone or at the clinic). Change timings there only: it feeds the home 'open now' line, the visit section, booking chips, the 'Book a consultation' box, the Gurgaon and About pages and structured data. Apollo Clinic address: Netaji Subhash Marg, Indira Colony 1, Sector 52, Gurugram 122003.
+
+### 23 Oct 2026: About page and AI note
+- About page 'Training and qualifications' rewritten as cards with factual context for AFMC, Medical College Baroda, Lady Hardinge, Medanta (Padma Shri Dr Randhir Sud) and the EUS/ERCP fellowship; gold medal kept as part of the DrNB line. No rankings or superlatives (NMC guidelines on ethical advertising, 6 Oct 2026).
+- Every page footer carries a small line: 'Prepared with AI assistance and reviewed by Dr. Kshitij Lochab.' (`build_pages.AI_NOTE`, NMC clause 7.2). Keep it in the muted text colour: lighter than that fails contrast.

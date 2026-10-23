@@ -222,6 +222,7 @@ def link_lists(lang):
             "<!--FOOT_LINKS-->": f'<p class="foot-links"><a href="{pre}about-dr-kshitij-lochab/">{build_pages.FOOT_LINKS[lang][0]}</a> · <a href="{pre}gastroenterologist-in-gurgaon/">{build_pages.FOOT_LINKS[lang][1]}</a> · <a href="{pre}tools/gut-tracker/">{build_pages.FOOT_LINKS[lang][2]}</a> · <a href="{pre}diet-charts/">{build_pages.L[lang]['dietnav']}</a></p>' + build_pages.social_html(lang),
             "<!--TRACKER-->": ('<a class="ibs-track" href="tools/gut-tracker/">' + ("Track your symptoms privately →" if lang == "en" else "अपने लक्षण निजी रूप से ट्रैक करें →") + '</a>'),
             "<!--TRK_CARD-->": trk_card(lang),
+            "<!--AI_NOTE-->": f'<p class="ai-note">{build_pages.AI_NOTE[lang]}</p>',
             "/*OPEN_JS*/": clinics.open_js(lang),
             "/*TIMES*/": json.dumps([clinics.APOLLO_CLINIC[lang]["chip"]] + (["Arcura, weekday evening", "Arcura, Sunday morning", "Video consultation"] if lang == "en"
                                      else ["आर्क्योरा, सोम–शुक्र शाम", "आर्क्योरा, रविवार सुबह", "वीडियो कंसल्टेशन"]), ensure_ascii=False),
