@@ -166,6 +166,10 @@ def render_all(bp):
             if cond:
                 k = [c["slug"] for c in bp.seo_en.CONDS].index(cond)
                 rel.append((bp.url(lang, "conditions", cond), (bp.seo_en if lang == "en" else bp.seo_hi).CONDS[k]["seo"]))
+            for a_slug, d_slug in bp.ANSWER_DIET.items():
+                if d_slug == slug:
+                    k = [a["slug"] for a in bp.seo_en.ANSWERS].index(a_slug)
+                    rel.append((bp.url(lang, "answers", a_slug), (bp.seo_en if lang == "en" else bp.seo_hi).ANSWERS[k]["q"]))
             rel += [(bp.url(lang, KIND, s2), X.PAGES[s2]["name"]) for s2, _, _ in R.PAGES if s2 != slug]
             sec.append(f'<section><h2>{U["others_h"]}</h2>{bp.links(rel)}</section>')
             sec.append(f'<p class="dc-note">{e(U["note"])}</p>')

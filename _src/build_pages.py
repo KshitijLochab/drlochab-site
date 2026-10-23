@@ -21,6 +21,8 @@ PROC_UPDATED = ("2026-10-17", "17 October 2026", "17 अक्टूबर 2026"
 PHONE, WA = "+91 96671 04882", "https://wa.me/919667104882"
 # WhatsApp Channel for the daily tip. Paste the channel's invite link here (https://whatsapp.com/channel/...); left empty, every channel link stays hidden.
 ANSWER_IL = {"capsule-endoscopy": "capsule"}  # answer pages that show a home-page procedure drawing
+# answer pages that are really diet questions -> their full diet chart (linked both ways)
+ANSWER_DIET = {"diet-in-jaundice": "jaundice-hepatitis", "is-fatty-liver-reversible": "fatty-liver"}
 WA_CHANNEL = ""
 FOOT_LINKS = {"en": ("About Dr. Lochab", "Gastroenterologist in Gurgaon", "Gut health tracker"), "hi": ("डॉ. लोचब के बारे में", "गुड़गाँव में गैस्ट्रोएंटेरोलॉजिस्ट", "पेट की सेहत का ट्रैकर")}
 SOCIAL = {"en": ("Instagram @drlochab", "LinkedIn", "Profile on Arcura Clinic"), "hi": ("Instagram @drlochab", "LinkedIn", "आर्क्योरा क्लिनिक पर प्रोफ़ाइल")}
@@ -414,6 +416,9 @@ def build():
             # the next three answers in turn, so every answer page is linked from three others
             n = len(S.ANSWERS)
             others = [(url(lang, "answers", seo_en.ANSWERS[(i + k) % n]["slug"]), S.ANSWERS[(i + k) % n]["q"]) for k in range(1, min(4, n))]
+            if base["slug"] in ANSWER_DIET:
+                import diet_text_en, diet_text_hi
+                secs.append(f'<p class="dc-link"><a class="btn btn-ghost btn-sm" href="{url(lang, "diet-charts", ANSWER_DIET[base["slug"]])}">{(diet_text_en if lang == "en" else diet_text_hi).UI["cond_link"]} →</a></p>')
             fig = f'<figure class="fig">{d["IL"][ANSWER_IL[base["slug"]]]}</figure>' if base["slug"] in ANSWER_IL else ""
             body = (fig + f'<div class="short"><p class="lbl">{t["short"]}</p><p>{e(a["short"])}</p></div>' + "".join(secs)
                     + f'<section><h2>{t["read"]}</h2>{links(rel + others)}</section>')
