@@ -55,7 +55,6 @@ def channel_html(lang, cls="chan"):
         return ""
     a, b = CHANNEL_TXT[lang]
     return f'<p class="{cls}"><span>{a}</span> <a class="btn btn-wa btn-sm" href="{WA_CHANNEL}" target="_blank" rel="noopener">{b} <span aria-hidden="true">→</span></a></p>'
-REVIEW = "https://g.page/r/CYmK8BpICDd6EBM/review"
 
 L = {
  "en": dict(home="Home", conds="Conditions", procs="Procedures", answers="Answers", tools="Tools", book_this="Book a visit about this", quick="Quick actions", tips="Daily tips", book="Book a visit", dietnav="Diet charts",

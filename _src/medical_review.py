@@ -1,12 +1,11 @@
-"""Medical review line and references on article pages (EN + HI), 22 Oct 2026.
+"""References and the medically-reviewed line on article pages (EN + HI), 22 Oct 2026.
 
-HELD FOR DR. LOCHAB'S REVIEW. Nothing here appears on the live site until he approves it:
-- REFS_LIVE = True   # approved by Dr. Lochab, 22 Oct 2026 keeps every References section off the site.
+- REFS_LIVE = True: approved by Dr. Lochab on 22 Oct 2026; a collapsed References list sits at the end of the 14 pages in PAGE_REFS.
 - REVIEW_LOG starts empty. Add a page only after Dr. Lochab has actually reviewed it, with the date he did:
       "/conditions/fatty-liver/": "2026-11-02",
-  The byline on that page (and its Hindi twin) then reads "Medically reviewed by Dr. Kshitij Lochab on 2 November 2026"
-  and the structured data 'lastReviewed' uses that date.
-- PREVIEW=1 in the environment shows everything locally for checking (never publish a PREVIEW build).
+  The byline then reads "Medically reviewed by Dr. Kshitij Lochab on 2 November 2026" (English and Hindi) and
+  the structured data 'lastReviewed' uses that date.
+- Deeper page sections and a publications list were drafted and dropped at his request (22 Oct 2026).
 
 References are clinical guidelines checked on 22 Oct 2026 against the publisher or journal record (title, journal, year, DOI).
 Page numbers are left out on purpose: the DOI link is the reliable pointer."""
