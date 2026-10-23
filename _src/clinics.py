@@ -3,8 +3,7 @@ Used by the home page (visit section, 'open now' line, booking chips), the 'Book
 the Gurgaon and About pages, and structured data. Change hours here, run publish.sh, and the whole site follows.
 
 APOLLO_CLINIC started 23 Oct 2026, Mon–Sat 4–6 pm; Dr. Lochab expects the timing to change in about 3 weeks.
-Booking at Apollo Clinic: his WhatsApp/phone or directly at the clinic. Street address still to come from him
-(only 'Sector 52, Gurugram' confirmed); the map link is the one he sent."""
+Booking at Apollo Clinic: his WhatsApp/phone or directly at the clinic. Address confirmed by him on 23 Oct 2026; the map link is the one he sent."""
 
 # Sessions for the 'open now / next clinic' line. Day numbers: 0 = Sunday ... 6 = Saturday. Hours are 24h, IST.
 SESSIONS = [
@@ -15,7 +14,9 @@ SESSIONS = [
 
 APOLLO_CLINIC = dict(
  map="https://maps.app.goo.gl/6K7YkaDWh5TRgQPh8",
- street="Sector 52",            # replace with the full street address once confirmed
+ street="Netaji Subhash Marg, Indira Colony 1, Sector 52", postal="122003",
+ addr={"en": "Netaji Subhash Marg, Indira Colony 1, Sector 52, Gurugram, Haryana 122003",
+       "hi": "नेताजी सुभाष मार्ग, इंदिरा कॉलोनी 1, सेक्टर 52, गुरुग्राम, हरियाणा 122003"},
  en=dict(name="Apollo Clinic, Sector 52", line="Apollo Clinic, Sector 52, Gurugram", place="Apollo Clinic, Sector 52",
          hours=[("Monday to Saturday", "4 pm to 6 pm")], short="Mon–Sat 4–6 pm",
          book="Book on WhatsApp or call, or directly at the clinic.", dir="Directions to Apollo Clinic", chip="Apollo Clinic, Sector 52 (4–6 pm)"),
@@ -52,7 +53,7 @@ def opening_spec():
 def location_ld():
     """Second practice location for the Physician structured data."""
     return {"@type": "MedicalClinic", "name": "Apollo Clinic, Sector 52, Gurugram",
-            "address": {"@type": "PostalAddress", "streetAddress": APOLLO_CLINIC["street"], "addressLocality": "Gurugram", "addressRegion": "Haryana", "addressCountry": "IN"},
+            "address": {"@type": "PostalAddress", "streetAddress": APOLLO_CLINIC["street"], "addressLocality": "Gurugram", "addressRegion": "Haryana", "postalCode": APOLLO_CLINIC["postal"], "addressCountry": "IN"},
             "hasMap": APOLLO_CLINIC["map"], "telephone": "+91-9667104882", "openingHoursSpecification": opening_spec()}
 
 def home_block(lang):
@@ -60,5 +61,5 @@ def home_block(lang):
     import html
     X = APOLLO_CLINIC[lang]; e = lambda s: html.escape(s, quote=True)
     hours = '<dl class="hours">' + "".join(f"<dt>{e(d)}</dt><dd>{e(h)}</dd>" for d, h in X["hours"]) + "</dl>"
-    return (f'<div class="clinic2"><address><strong>{e(X["name"])}</strong><br>Gurugram, Haryana</address>{hours}<p>{e(X["book"])}</p>'
+    return (f'<div class="clinic2"><address><strong>{e(X["name"])}</strong><br>{e(APOLLO_CLINIC["addr"][lang])}</address>{hours}<p>{e(X["book"])}</p>'
             f'<div class="hero-cta"><a class="btn btn-ghost" href="{APOLLO_CLINIC["map"]}" target="_blank" rel="noopener">{e(X["dir"])}</a></div></div>')

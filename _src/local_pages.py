@@ -167,7 +167,7 @@ def render(lang, bp, kind, conds, procs):
         hours = '<dl class="lp-hours">' + "".join(f"<dt>{e(d)}</dt><dd>{e(h)}</dd>" for d, h in X["hours"]) + "</dl>"
         body = (f'<p class="lead">{e(X["lead"])}</p>'
                 + sec(X["clinic_h"], "".join(f"<p>{e(p)}</p>" for p in X["clinic"]) + f'<h3>{e(X["hours_h"])}</h3>{hours}<p>{e(X["book"])}</p>'
-                      + f'<h3>{e(A["name"])}</h3><dl class="lp-hours">' + "".join(f"<dt>{e(d)}</dt><dd>{e(h)}</dd>" for d, h in A["hours"]) + f'</dl><p>{e(A["book"])}</p>'
+                      + f'<h3>{e(A["name"])}</h3><p>{e(clinics.APOLLO_CLINIC["addr"][lang])}</p><dl class="lp-hours">' + "".join(f"<dt>{e(d)}</dt><dd>{e(h)}</dd>" for d, h in A["hours"]) + f'</dl><p>{e(A["book"])}</p>'
                       f'<div class="lp-act"><a class="btn btn-solid btn-sm" href="{bp.WA}" target="_blank" rel="noopener">{e(X["wa"])}</a>'
                       f'<a class="btn btn-ghost btn-sm" href="{GBP}" target="_blank" rel="noopener">{"Directions to Arcura Clinic" if lang == "en" else "आर्क्योरा क्लिनिक का रास्ता"}</a>'
                       f'<a class="btn btn-ghost btn-sm" href="{clinics.APOLLO_CLINIC["map"]}" target="_blank" rel="noopener">{e(A["dir"])}</a>'
