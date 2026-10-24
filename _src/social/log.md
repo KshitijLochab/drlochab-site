@@ -1,6 +1,16 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## Week of 26 Oct 2026 (Karwa Chauth, Thu 29 Oct)
+Generator: social/week_2026_10_26.py (output in _src/out/week-2026-10-26/).
+- Instagram carousel (5 slides, EN), Mon 26 Oct: Myth or fact? "Loose motions need antibiotics" (Myth Buster entry of 26 Oct): capsule with a question mark, MYTH stamp with a virus shrugging off capsules, ORS / light home food / 2 to 3 days, see-a-doctor signs with 112, play more at drlochab.com. Links to answers/stomach-infection-gastroenteritis.
+- Instagram post (HI), Wed 28 Oct: करवा चौथ, व्रत खोलें आराम से (moon through a chalni, karwa, glass of water, diya; sargi, break the fast with sips of water then light food, ask a doctor first with diabetes, pregnancy or a stomach illness). Links to hi/guides/navratri-fasting-guide.
+- Instagram carousel (5 slides, EN), Fri 30 Oct: Heavy after every meal? Indigestion (stomach hanging from a kg weight; usual causes; smaller meals, early dinner, fewer painkillers; endoscopy warning signs with 112; new answer page).
+- Google Business Profile (EN): Heavy after every meal? (Learn more: answers/indigestion-heaviness-after-meals).
+- WhatsApp Status: Myth: loose motions and antibiotics (EN); करवा चौथ (HI); Heavy after every meal? (EN).
+- WhatsApp broadcast (EN + HI): new answer page, Indigestion and heaviness after meals.
+- Site: new answer page indigestion-heaviness-after-meals (EN and HI).
+
 ## 23 Oct 2026: Apollo Clinic announcement, redesigned (breaking news style)
 Generator: social/apollo_clinic_news.py (replaces the apollo_clinic_launch.py images; output in _src/out/apollo-clinic-news/).
 - Dark news background, red BREAKING / white NEW CLINIC tags, huge NOW OPEN, photo with a NOW CONSULTING badge, yellow Mon–Sat 4–6 pm block, full address, yellow LIVE ticker.

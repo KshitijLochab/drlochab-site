@@ -424,10 +424,10 @@ def build():
             body = (fig + f'<div class="short"><p class="lbl">{t["short"]}</p><p>{e(a["short"])}</p></div>' + "".join(secs)
                     + f'<section><h2>{t["read"]}</h2>{links(rel + others)}</section>')
             ld = ld_page(lang, path, a["q"], a["desc"], "MedicalProcedure" if base.get("cond") is None and base.get("proc") is not None else "MedicalCondition",
-                         rel[0][1] if rel else a["q"], [[a["q"], a["short"]]] + xfaqs, t["answers"], "conditions")
+                         rel[0][1] if rel else a["q"], [[a["q"], a["short"]]] + xfaqs, t["answers"], "conditions", base.get("updated"))
             page = (head(lang, title, a["desc"], path_en, path_hi, ld) + header(lang, path_hi if lang == "en" else path_en)
                     + f'<main class="wrap grid"><article>{crumbs(lang, t["answers"], "conditions", a["q"])}'
-                    + f'<p class="eyebrow">{t["answers"]}</p><h1>{e(a["q"])}</h1>{aka(lang, base["slug"])}{byline(lang)}' + body
+                    + f'<p class="eyebrow">{t["answers"]}</p><h1>{e(a["q"])}</h1>{aka(lang, base["slug"])}{byline(lang, base.get("updated"))}' + body
                     + f"</article>{aside(lang)}</main>" + footer(lang))
             write(path, page); pages.append((path_en, path_hi))
         # ---- special guides

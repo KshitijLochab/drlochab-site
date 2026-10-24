@@ -438,9 +438,9 @@ a.sym{text-decoration:none}
 .mbc-arrow:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
 .mbc-arrow:disabled{opacity:.35;cursor:default}
 .mbc-dots{display:flex;flex-wrap:wrap;justify-content:center;gap:0;max-width:70%}
-.mbc-dot{width:24px;height:24px;border-radius:50%;border:0;padding:7px;background:var(--line);background-clip:content-box;cursor:pointer;transition:transform .2s}
+.mbc-dot{flex:0 0 24px;width:24px;height:24px;border-radius:50%;border:0;padding:7px;background:var(--line);background-clip:content-box;cursor:pointer;transition:padding .2s}
 .mbc-dot.done{background:var(--warm)}
-.mbc-dot[aria-current="true"]{background:var(--accent);transform:scale(1.4)}
+.mbc-dot[aria-current="true"]{background:var(--accent);padding:5px}
 .mbc-foot{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;font-size:.9rem;color:var(--muted);margin-top:12px}
 .mbc-foot b{color:var(--warm-text)}
 .mb-new{display:inline-block;background:#B0362B;color:#fff;border-radius:6px;padding:2px 8px;margin-right:10px;letter-spacing:.08em}
