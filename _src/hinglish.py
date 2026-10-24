@@ -47,6 +47,7 @@ AKA = {
  "typhoid-fever": ["typhoid ke lakshan", "typhoid me kya khaye"],
  "vomiting-blood-black-stools": ["khoon ki ulti", "kali potty aana"],
  "is-pantoprazole-safe-long-term": ["acidity ki goli roz lena"],
+ "indigestion-heaviness-after-meals": ["badhazmi ka ilaj", "khana khane ke baad pet bhari lagna", "khana hajam na hona"],
  "burping-and-hiccups": ["baar baar dakar aana", "hichki kaise roke"],
  "how-much-alcohol-is-safe-for-liver": ["sharab se liver kharab"],
  "travellers-diarrhoea": ["safar me dast"],

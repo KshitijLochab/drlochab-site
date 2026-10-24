@@ -171,6 +171,21 @@ MORE = [
    ("Before the test", ["Some medicines affect results. For the H. pylori test, acidity tablets and antibiotics are usually stopped for 2 to 4 weeks beforehand, as advised by your doctor. Tell the lab about recent antibiotics."]),
    ("What results mean", ["A positive occult blood test needs a colonoscopy to find the cause; it does not mean cancer. A high calprotectin usually leads to a colonoscopy. A normal stool test does not rule out every problem, so persistent symptoms still need review."]),
   ]),
+ dict(slug="indigestion-heaviness-after-meals", q="Indigestion and heaviness after meals: what causes it, and when is it serious?", seo="Indigestion and heaviness after meals: causes and help", cond=1, proc=0,
+  updated=("2026-10-24", "24 October 2026", "24 अक्टूबर 2026"),
+  desc="Indigestion (dyspepsia): heaviness, early fullness and upper belly burning after meals, common causes such as functional dyspepsia and H. pylori, tests, what helps, and warning signs. Dr. Kshitij Lochab, Gurugram.",
+  short="Indigestion (dyspepsia) means discomfort in the upper belly: heaviness after meals, feeling full after a few bites, or burning above the navel, often with nausea or burping. In most people no serious cause is found; this is called functional dyspepsia and it is treatable. H. pylori, ulcers and some painkillers are other causes. Weight loss, vomiting, black stools or difficulty swallowing need an endoscopy.",
+  sections=[
+   ("What it feels like", ["- Heaviness or uncomfortable fullness after a normal-sized meal","- Feeling full after only a few bites","- Burning or pain in the upper belly, above the navel","- Bloating in the upper belly, nausea or frequent burping",
+     "Burning that rises into the chest or throat is reflux (acidity), which often occurs with indigestion but is treated a little differently."]),
+   ("Common causes", ["- Functional dyspepsia, the commonest cause: the stomach is more sensitive or empties more slowly, often worse with stress, poor sleep and irregular meals","- H. pylori infection of the stomach","- Gastritis or an ulcer, often from regular painkillers (NSAIDs) or alcohol","- Some medicines, such as iron tablets and some antibiotics, and long-standing diabetes, which can slow the stomach",
+     "Gallstones usually cause separate attacks of strong pain under the right ribs, not daily heaviness. Stomach cancer is an uncommon cause, but it is the reason warning signs are never ignored."]),
+   ("Tests", ["If you are young and have no warning signs, a test for H. pylori (stool antigen or breath test) is often the first step, and the infection is treated if found. An upper GI endoscopy is advised if you have any warning sign, if the symptoms are new after about 45 to 50 years of age, if there is a family history of stomach cancer, or if symptoms do not settle with treatment. Blood tests and an ultrasound are added when the story suggests another cause."]),
+   ("What helps", ["- Eat smaller meals at regular times, and do not skip breakfast and then eat a heavy dinner","- Eat slowly, and finish dinner 2 to 3 hours before lying down","- Cut down on fried and very rich food, alcohol and smoking","- Avoid painkillers you do not need; ask your doctor for a safer option","- Work on sleep and stress, which affect a sensitive stomach",
+     "When a check-up shows no serious cause, a short course of acid-lowering tablets, a medicine that helps the stomach empty, or a low dose of a gut-calming medicine can help. These should be chosen by your doctor, not started on your own for months."]),
+   ("Warning signs: see a doctor soon", ["- Weight loss without trying, or loss of appetite","- Repeated vomiting, or vomiting blood","- Black, tarry stools, or anaemia","- Difficulty or pain in swallowing","- A lump in the belly, or yellow eyes",
+     "Sudden severe belly pain, or chest pain with sweating or breathlessness, is an emergency: call 112 or go to the nearest emergency department."]),
+  ]),
 ]
 
 # Extra links from condition pages to these answers (index into CONDS -> slugs), merged in seo_en.py.
@@ -181,7 +196,8 @@ COND_LINKS = {
  4: ["liver-cancer-screening"],
  12: ["piles-fissure-fistula"],
  10: ["celiac-disease", "lactose-intolerance"],
- 1: ["stomach-cancer-warning-signs", "stomach-infection-gastroenteritis"],
+ 1: ["stomach-cancer-warning-signs", "stomach-infection-gastroenteritis", "indigestion-heaviness-after-meals"],
+ 0: ["indigestion-heaviness-after-meals"],
  2: ["achalasia"],
  11: ["capsule-endoscopy", "stool-tests"],
  13: ["stool-tests", "piles-fissure-fistula"],
