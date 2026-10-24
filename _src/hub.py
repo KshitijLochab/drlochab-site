@@ -65,6 +65,7 @@ PROBLEMS = {
  "herbal-supplement-liver-damage": ("liver", "Liver injury from supplements", "Herbal, Ayurvedic and gym products.", "सप्लीमेंट से लिवर को नुकसान", "हर्बल, आयुर्वेदिक और जिम प्रोडक्ट।"),
  "wilsons-disease": ("liver", "Wilson's disease", "Inherited copper build-up in young people.", "विल्सन डिज़ीज़", "युवाओं में ख़ानदानी तांबे का जमाव।"),
  "vomiting-blood-black-stools": ("stomach", "Vomiting blood, black stools", "Upper GI bleeding: an emergency.", "ख़ून की उल्टी, काला मल", "ऊपरी पेट की ब्लीडिंग: इमरजेंसी।"),
+ "indigestion-heaviness-after-meals": ("stomach", "Indigestion", "Heaviness and early fullness after meals.", "बदहज़मी", "खाने के बाद भारीपन, जल्दी पेट भरना।"),
  "hiatus-hernia": ("stomach", "Hiatus hernia", "The stomach slides up into the chest.", "हाइटस हर्निया", "पेट का हिस्सा छाती में खिसकना।"),
  "worms-in-stomach": ("intestine", "Worms in the stomach", "Real signs, myths and simple treatment.", "पेट में कीड़े", "असली संकेत, भ्रम और आसान इलाज।"),
  "chronic-diarrhoea-mucus-in-stool": ("intestine", "Long-lasting loose motions", "Diarrhoea for weeks, or mucus in stool.", "लंबे समय के दस्त", "हफ़्तों से दस्त, या मल में आँव।"),
