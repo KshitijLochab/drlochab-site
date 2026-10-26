@@ -1,6 +1,13 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 26 Oct 2026: Diwali food guide promo, "The smart mithai box" (new visual format)
+Generator: social/diwali_mithai_box.py (output in _src/out/diwali-mithai-box/).
+- New look: top-down illustrated mithai box in maroon and gold foil, six drawn compartments (kaju katli, besan ladoo, roasted makhana and chana, nimbu paani, clock, fresh box) each with one tip; no doctor photo.
+- Instagram post (EN, 1080x1350), Instagram story (EN, gap for a link sticker), WhatsApp Status EN and HI, Google Business image (1200x900; Learn more: /guides/diwali-food-guide/).
+- Tips: 1–2 pieces after a meal; diabetes; roasted not fried; nimbu paani over colas and binge drinking; dinner by 9 pm and a walk; licensed shop and fridge within 2 hours. Emergency note: severe upper belly pain to the back with vomiting after a party.
+- Captions carry name, qualifications, HMC Reg. No. HN-23524 and the AI line.
+
 ## Week of 26 Oct 2026 (Karwa Chauth, Thu 29 Oct)
 Generator: social/week_2026_10_26.py (output in _src/out/week-2026-10-26/).
 - Instagram carousel (5 slides, EN), Mon 26 Oct: Myth or fact? "Loose motions need antibiotics" (Myth Buster entry of 26 Oct): capsule with a question mark, MYTH stamp with a virus shrugging off capsules, ORS / light home food / 2 to 3 days, see-a-doctor signs with 112, play more at drlochab.com. Links to answers/stomach-infection-gastroenteritis.
