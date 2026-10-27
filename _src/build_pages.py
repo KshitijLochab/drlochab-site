@@ -1,7 +1,7 @@
 """Generates condition, procedure and answer pages (English and Hindi) into site/.
 Run after build_site.py has written site/index.html and site/hi/index.html."""
 import prep_guides, sys
-import json, os, html, subprocess
+import json, os, html, subprocess, re
 from urllib.parse import quote
 import seo_en, seo_hi, guide_art, seo_proc_en, seo_proc_hi, answers_extra_en, answers_extra_hi, cond_diet_en, cond_diet_hi
 
@@ -113,16 +113,39 @@ def fit_title(lang, title):
             break
     return title
 
+_DOC_SUFFIX = re.compile(r"\s+(?:Dr\. Kshitij Lochab|डॉ\. क्षितिज लोचब)[^.।]*[.।]$")
+_SENT_END = re.compile(r"(?<!\bDr)(?<!डॉ)[.?।](?=\s)")
+
 def fit_desc(desc):
-    """Description that fits a search snippet: end at a full sentence when one fits, otherwise at a word, with an ellipsis."""
+    """Description that fits a search snippet (27 Oct 2026: no more cut-offs ending in '…' or a stray 'Dr.').
+    1. Shorten or drop the closing 'Dr. Kshitij Lochab, Gurugram.' line.  2. End at a full sentence.
+    3. Otherwise end at the last whole list item, joined with 'and'/'और', with a full stop."""
     if len(desc) <= DESC_MAX:
         return desc
+    m = _DOC_SUFFIX.search(desc)
+    if m:
+        body, hi = desc[:m.start()].rstrip(), "डॉ." in m.group(0)
+        for suf in ((" डॉ. लोचब, गुरुग्राम।", " डॉ. लोचब।") if hi else (" Dr. Lochab, Gurugram.", " Dr. Lochab.")):
+            if len(body) + len(suf) <= DESC_MAX:
+                return body + suf
+        if len(body) <= DESC_MAX:
+            return body
+        desc = body
+    hi = bool(re.search("[\u0900-\u097F]", desc))
     cut = desc[:DESC_MAX]
-    for mark in (". ", "। ", "? "):
-        k = cut.rfind(mark)
-        if k >= 100:
-            return cut[:k + 1]
-    return cut[:DESC_MAX - 1].rsplit(" ", 1)[0].rstrip(",;:") + "…"
+    ends = [x.end() for x in _SENT_END.finditer(cut + " ") if x.end() >= 100]
+    if ends:
+        return cut[:ends[-1]]
+    k = cut.rfind(", ")
+    head_, tail = (cut[:k], "") if k > 90 else (cut[:DESC_MAX - 1].rsplit(" ", 1)[0], "…")
+    head_ = re.sub(r"\s+(?:and|or|the|a|an|of|to|in|for|with|how|why|what|when|और|या|की|के|का|में)$", "", head_.rstrip(",;: "))
+    if not tail:
+        conj = " और " if hi else " and "
+        j = head_.rfind(", ")
+        if j > head_.find(":") and conj.strip() not in head_[j:]:
+            head_ = head_[:j] + conj + head_[j + 2:]
+        tail = "।" if hi else "."
+    return head_ + tail
 
 def head(lang, title, desc, path_en, path_hi, ld):
     title, desc = fit_title(lang, title), fit_desc(desc)
@@ -316,7 +339,9 @@ def build():
             base = seo_en.CONDS[i]; x = S.CONDS[i]
             path, path_en, path_hi = url(lang, "conditions", base["slug"]), url("en", "conditions", base["slug"]), url("hi", "conditions", base["slug"])
             title = f"{x['seo']} {t['city']} | Dr. Kshitij Lochab" if lang == "en" else f"{x['seo']}, {t['city']} | डॉ. क्षितिज लोचब"
-            desc = (c["s"] + " " + c["w"])[:155].rsplit(" ", 1)[0] + "…"
+            lead = c["s"] if lang == "hi" or c["s"][1:2].isupper() else c["s"][0].lower() + c["s"][1:]
+            desc = (f'{c["n"]}: {lead} Symptoms, causes, tests and treatment. Dr. Kshitij Lochab, Gurugram.' if lang == "en"
+                    else f'{c["n"]}: {lead} लक्षण, कारण, जाँच और इलाज। डॉ. क्षितिज लोचब, गुरुग्राम।')
             body = [f'<p class="lead">{e(c["w"])}</p>',
                     f'<section><h2>{t["symptoms"]}</h2>{ul(c["g"])}</section>',
                     f'<section><h2>{t["causes"]}</h2>{ul(x["causes"])}</section>',
@@ -361,7 +386,8 @@ def build():
             path, path_en, path_hi = url(lang, "procedures", base["slug"]), url("en", "procedures", base["slug"]), url("hi", "procedures", base["slug"])
             title = f"{x['seo']} {t['city']} | Dr. Kshitij Lochab" if lang == "en" else f"{x['seo']}, {t['city']} | डॉ. क्षितिज लोचब"
             M = (seo_proc_en if lang == "en" else seo_proc_hi).MORE.get(base["slug"], {})
-            desc = M.get("desc") or (pr["w"][:155].rsplit(" ", 1)[0] + "…")
+            desc = M.get("desc") or (f'{x["seo"]} in Gurugram: uses, what to expect, risks and recovery. Dr. Kshitij Lochab.' if lang == "en"
+                                     else f'{x["seo"]}, गुरुग्राम: कब किया जाता है, क्या उम्मीद करें, जोखिम और रिकवरी। डॉ. क्षितिज लोचब।')
             faqs = x["faqs"] + M.get("faqs", [])
             table = '<dl class="expect">' + "".join(f"<dt>{e(k)}</dt><dd>{e(v)}</dd>" for k, v in pr["d"]) + "</dl>"
             sec = lambda h, inner: f"<section><h2>{h}</h2>{inner}</section>"

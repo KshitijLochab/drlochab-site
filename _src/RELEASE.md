@@ -21,7 +21,7 @@ Plain-language notes for Dr. Lochab and anyone who works on the site.
 | Check | What it catches |
 |---|---|
 | `check_data.py` | Tip, IBS-tip and myth files: missing fields, bad or repeated dates, English and Hindi files out of step, myth links to pages that do not exist. Warns when fewer than 7 days of tips are left. |
-| `check_site.py` | Every page: title, description, one main heading, canonical and English–Hindi links, valid structured data, broken links or anchors, missing images, wrong phone or WhatsApp numbers, sitemap coverage, and privacy (no outside scripts; tracker, stool check and diet pages keep their "send nothing" setting). |
+| `check_site.py` | Every page: title, description (present, complete and under 160 characters), one main heading, canonical and English–Hindi links, valid structured data, broken links or anchors, missing images, wrong phone or WhatsApp numbers, sitemap coverage, and privacy (no outside scripts; tracker, stool check and diet pages keep their "send nothing" setting). |
 | `browser_check.js` | In a real browser at phone and desktop width: no script errors, nothing wider than the screen, today's tip loads, a symptom gives a booking button, the WhatsApp booking link is right, a link to #visit lands on the booking section, the preparation planner makes a calendar file, the diet diary adds food, the stool check answers, the tracker keeps its privacy setting. |
 
 Run them locally from the repository root:

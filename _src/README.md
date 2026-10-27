@@ -118,3 +118,7 @@ See `BRAND.md` for colours, type, voice and rules.
 ### 23 Oct 2026: About page and AI note
 - About page 'Training and qualifications' rewritten as cards with factual context for AFMC, Medical College Baroda, Lady Hardinge, Medanta (Padma Shri Dr Randhir Sud) and the EUS/ERCP fellowship; gold medal kept as part of the DrNB line. No rankings or superlatives (NMC guidelines on ethical advertising, 6 Oct 2026).
 - Every page footer carries a small line: 'Prepared with AI assistance and reviewed by Dr. Kshitij Lochab.' (`build_pages.AI_NOTE`, NMC clause 7.2). Keep it in the muted text colour: lighter than that fails contrast.
+
+## 27 Oct 2026: search descriptions
+- `build_pages.fit_desc` no longer cuts descriptions off mid-sentence (120 pages ended in "…" or a stray "Dr."). It shortens the closing "Dr. Kshitij Lochab, Gurugram." line first, then ends at a full sentence (ignoring "Dr."), then at the last whole list item with "and"/"और".
+- Condition pages: "<name>: <one-line summary> Symptoms, causes, tests and treatment. Dr. Kshitij Lochab, Gurugram." (EN + HI) instead of cut-off page text. Procedures without their own description get a complete fallback sentence.

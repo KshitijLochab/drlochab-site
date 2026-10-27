@@ -82,6 +82,8 @@ for u in sorted(pages):
     if not is404:
         if p.h1 != 1: err(u, f"{p.h1} <h1> headings (should be 1)")
         if not p.meta.get("description"): err(u, "no meta description")
+        elif re.search(r"(…|\.\.\.|\bDr\.|डॉ\.|,)\s*$", p.meta["description"]) or len(p.meta["description"]) > 160:
+            err(u, "meta description is cut off or longer than 160 characters (shown cut off in Google)")
         if p.canon != SITE + u: err(u, f"canonical is {p.canon}")
         for k in ("en", "hi", "x-default"):
             if k not in p.alt: err(u, f"missing hreflang {k}")
