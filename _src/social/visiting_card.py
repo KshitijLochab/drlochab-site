@@ -22,10 +22,10 @@ W, H, BLEED, SAFE = 3.5, 2.0, 0.0625, 0.125
 PW, PH = W + 2 * BLEED, H + 2 * BLEED
 PAD = BLEED + SAFE
 
-PLACES = [
-    ("Apollo Hospitals", "Golf Course Road, Gurugram", None, "Associate Consultant, Gastroenterology &amp; Therapeutic Endoscopy"),
-    ("Apollo Clinic", "Sector 52, Gurugram", "2 – 5 pm", None),
-    ("Arcura Clinic", "M2K Corporate Park, 14 Mayfield Garden, Sector 51", "Mon–Fri 6 – 8 pm<br>Sun 9 am – 1 pm", None),
+PLACES = [  # updated 30 Oct 2026 (timings from Dr. Lochab)
+    ("Arcura Clinic", "M2K Corporate Park, 14 Mayfield Garden, Sector 51", "Mon–Sat 10 am – 5 pm<br>Sun 9 am – 1 pm", None),
+    ("Apollo Clinic", "Netaji Subhash Marg, Sector 52, Gurugram", "OPD from<br>6 November", None),
+    ("Apollo Hospitals", "Golf Course Road, Gurugram", "OPD from<br>6 November", "Associate Consultant, Gastroenterology &amp; Therapeutic Endoscopy"),
 ]
 
 CSS = f"""
@@ -82,7 +82,7 @@ def front():
  <div class="mark">{MARK}</div>
  <div>
   <div class="name">Dr. Kshitij Lochab</div>
-  <div class="deg">MBBS · MD (Medicine) · DrNB (Gastroenterology)</div>
+  <div class="deg">MBBS · MD (Internal Medicine) · DrNB (Gastroenterology)</div>
   <div class="role">Consultant Gastroenterologist &amp;<br>Therapeutic Endoscopist · Fellowship in EUS &amp; ERCP</div>
   <div class="gold">All-India Gold Medal, DrNB</div>
  </div>
