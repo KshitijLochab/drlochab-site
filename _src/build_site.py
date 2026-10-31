@@ -215,8 +215,7 @@ def link_lists(lang):
             "<!--ANSWER_LINKS-->": ans,
             "/*FOOD*/": food_js(lang),
             "<!--WA_CHANNEL-->": build_pages.channel_html(lang),
-            "<!--HOURS-->": ('<dl class="hours"><dt>Mon–Fri</dt><dd>6 pm – 8 pm</dd><dt>Sunday</dt><dd>9 am – 1 pm</dd><dt>Saturday</dt><dd>Closed</dd></dl>' if lang == "en"
-                             else '<dl class="hours"><dt>सोम–शुक्र</dt><dd>शाम 6 – 8 बजे</dd><dt>रविवार</dt><dd>सुबह 9 – दोपहर 1 बजे</dd><dt>शनिवार</dt><dd>बंद</dd></dl>')
+            "<!--HOURS-->": ('<dl class="hours">' + "".join(f"<dt>{d}</dt><dd>{h}</dd>" for d, h in clinics.ARCURA[lang]["dl"]) + '</dl>')
                             + f'<p><a style="color:var(--warm-on-ink)" href="{pre}gastroenterologist-in-gurgaon/">{local_pages.EN["more_local"] if lang == "en" else local_pages.HI["more_local"]} →</a></p>',
             "<!--ABOUT_LINK-->": f'<a class="about-more" href="{pre}about-dr-kshitij-lochab/">{local_pages.EN["more_about"] if lang == "en" else local_pages.HI["more_about"]} →</a>',
             "<!--FOOT_LINKS-->": f'<p class="foot-links"><a href="{pre}about-dr-kshitij-lochab/">{build_pages.FOOT_LINKS[lang][0]}</a> · <a href="{pre}gastroenterologist-in-gurgaon/">{build_pages.FOOT_LINKS[lang][1]}</a> · <a href="{pre}tools/gut-tracker/">{build_pages.FOOT_LINKS[lang][2]}</a> · <a href="{pre}diet-charts/">{build_pages.L[lang]['dietnav']}</a></p>' + build_pages.social_html(lang),
@@ -224,8 +223,7 @@ def link_lists(lang):
             "<!--TRK_CARD-->": trk_card(lang),
             "<!--AI_NOTE-->": f'<p class="ai-note">{build_pages.AI_NOTE[lang]}</p>',
             "/*OPEN_JS*/": clinics.open_js(lang),
-            "/*TIMES*/": json.dumps([clinics.APOLLO_CLINIC[lang]["chip"]] + (["Arcura, weekday evening", "Arcura, Sunday morning", "Video consultation"] if lang == "en"
-                                     else ["आर्क्योरा, सोम–शुक्र शाम", "आर्क्योरा, रविवार सुबह", "वीडियो कंसल्टेशन"]), ensure_ascii=False),
+            "/*TIMES*/": json.dumps(clinics.ARCURA[lang]["chips"] + [clinics.APOLLO_CLINIC[lang]["chip"]] + (["Video consultation"] if lang == "en" else ["वीडियो कंसल्टेशन"]), ensure_ascii=False),
             "<!--CLINIC2-->": clinics.home_block(lang),
             "<!--PREP_LINKS-->": __import__("prep_guides").home_links(lang),
             "<!--DIET_TAB-->": diet_tab(lang),

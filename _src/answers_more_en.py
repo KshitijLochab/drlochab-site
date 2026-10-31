@@ -186,11 +186,26 @@ MORE = [
    ("Warning signs: see a doctor soon", ["- Weight loss without trying, or loss of appetite","- Repeated vomiting, or vomiting blood","- Black, tarry stools, or anaemia","- Difficulty or pain in swallowing","- A lump in the belly, or yellow eyes",
      "Sudden severe belly pain, or chest pain with sweating or breathlessness, is an emergency: call 112 or go to the nearest emergency department."]),
   ]),
+ dict(slug="pain-under-right-ribs", q="Pain under the right ribs: is it the liver, the gallbladder or something else?", seo="Pain under the right ribs: causes and when to worry", cond=7, proc=0,
+  updated=("2026-10-31", "31 October 2026", "31 अक्टूबर 2026"),
+  desc="Pain under the right ribs (right upper belly): common causes such as gallstones, liver problems, ulcers and muscle strain, clues from the type of pain, tests, and warning signs. Dr. Kshitij Lochab, Gurugram.",
+  short="Pain under the right ribs most often comes from the gallbladder (gallstones), the liver, the stomach or duodenum, or the muscles and ribs themselves. Gallstone pain comes in attacks, often after a heavy meal, and can spread to the right shoulder or back. Fatty liver rarely causes real pain. Pain with fever, yellow eyes or repeated vomiting needs a doctor the same day.",
+  sections=[
+   ("Common causes", ["- Gallstones: attacks of strong pain (biliary colic), or a longer, constant pain with fever if the gallbladder is inflamed (cholecystitis)","- Liver: hepatitis, a liver abscess (fever and pain, more common in India), or a swollen liver; fatty liver usually causes only a dull heaviness, if anything","- Stomach or duodenum: an ulcer or gastritis, usually felt higher up and more in the middle","- Muscles and ribs: a strain from lifting, exercise or a bad cough, or inflamed rib cartilage",
+     "Most pain here comes from one of the four places below. Less common causes are a right kidney stone (pain to the side and groin), pneumonia at the base of the right lung (cough, fever, pain on breathing), shingles (a rash appears a few days later) and trapped gas in the bend of the large bowel under the liver. Rarely, a heart problem is felt in the upper belly, especially in people with diabetes."]),
+   ("Clues from the type of pain", ["- Comes in attacks lasting 30 minutes to a few hours, often after a heavy or fried meal or at night: think of the gallbladder","- Constant pain with fever and chills: an infection such as cholecystitis, a liver abscess or a blocked bile duct","- With yellow eyes, dark urine or pale stools: the liver or the bile duct","- Burning, linked to meals or an empty stomach: an ulcer or gastritis","- Worse on pressing one spot, twisting or a deep breath: usually muscle or rib",
+     "These are only clues. The same pain can have different causes, so a doctor's examination matters more than any list."]),
+   ("Tests", ["After examining you, the usual first test is an ultrasound of the abdomen, which shows gallstones, the liver, a liver abscess and the kidneys well. Blood tests such as a liver function test and blood count are often done at the same time. If ulcer symptoms are present, an upper GI endoscopy may be advised, because an ultrasound cannot see the lining of the stomach. When the ultrasound does not explain the pain, a CT scan, MRCP or endoscopic ultrasound (EUS) can look for small bile duct stones and other causes."]),
+   ("What you can do", ["- Note when the pain comes, how long it lasts, and what you ate before it","- Avoid heavy, fried meals and alcohol until the cause is known","- Do not keep taking painkillers on your own: some cause ulcers, and too much of others can harm the liver","- Do not try remedies that claim to dissolve or flush out gallstones; they do not work and can delay treatment",
+     "Painless gallstones found by chance on a scan usually need no operation. Gallstones that cause attacks usually do, because the attacks tend to come back and can lead to complications."]),
+   ("Warning signs: see a doctor the same day", ["- Pain lasting more than 4 to 6 hours, or getting steadily worse","- Fever or shivering with the pain","- Yellow eyes or skin, dark urine or pale stools","- Repeated vomiting, or pain spreading through to the back",
+     "Severe pain with fainting, or chest pain with sweating or breathlessness, is an emergency: call 112 or go to the nearest emergency department."]),
+  ]),
 ]
 
 # Extra links from condition pages to these answers (index into CONDS -> slugs), merged in seo_en.py.
 COND_LINKS = {
- 3: ["high-sgpt-sgot-liver-function-test", "fibroscan-test", "fatty-liver-grade-on-ultrasound"],
+ 3: ["high-sgpt-sgot-liver-function-test", "fibroscan-test", "fatty-liver-grade-on-ultrasound", "pain-under-right-ribs"],
  6: ["ascites-fluid-in-abdomen", "hepatic-encephalopathy", "liver-cancer-screening", "when-is-liver-transplant-needed"],
  5: ["high-sgpt-sgot-liver-function-test", "liver-abscess"],
  4: ["liver-cancer-screening"],
@@ -198,6 +213,7 @@ COND_LINKS = {
  10: ["celiac-disease", "lactose-intolerance"],
  1: ["stomach-cancer-warning-signs", "stomach-infection-gastroenteritis", "indigestion-heaviness-after-meals"],
  0: ["indigestion-heaviness-after-meals"],
+ 7: ["pain-under-right-ribs"],
  2: ["achalasia"],
  11: ["capsule-endoscopy", "stool-tests"],
  13: ["stool-tests", "piles-fissure-fistula"],

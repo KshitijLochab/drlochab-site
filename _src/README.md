@@ -113,7 +113,7 @@ See `BRAND.md` for colours, type, voice and rules.
 - 22 Oct 2026, 21:30: Dr. Lochab approved the references (now live, collapsed at the end of 14 pages) and dropped the deeper sections and the publications list; those files were removed. The reviewed-by line stays off until he gives real review dates (`REVIEW_LOG`).
 
 ### 23 Oct 2026: second clinic
-- `clinics.py` holds both clinics' sessions and the Apollo Clinic, Sector 52 details (Mon–Sat 4–6 pm, booking by WhatsApp/phone or at the clinic). Change timings there only: it feeds the home 'open now' line, the visit section, booking chips, the 'Book a consultation' box, the Gurgaon and About pages and structured data. Apollo Clinic address: Netaji Subhash Marg, Indira Colony 1, Sector 52, Gurugram 122003.
+- `clinics.py` holds both clinics' sessions, the Arcura hours text (`ARCURA`: Mon–Sat 10 am–5 pm, Sun 9 am–1 pm from 30 Oct 2026) and the Apollo Clinic, Sector 52 details (OPD from 6 Nov 2026, timings to be added; booking by WhatsApp/phone or at the clinic). Change timings there only: it feeds the home 'open now' line, the visit section, booking chips, the 'Book a consultation' box, the Gurgaon and About pages and structured data. Apollo Clinic address: Netaji Subhash Marg, Indira Colony 1, Sector 52, Gurugram 122003.
 
 ### 23 Oct 2026: About page and AI note
 - About page 'Training and qualifications' rewritten as cards with factual context for AFMC, Medical College Baroda, Lady Hardinge, Medanta (Padma Shri Dr Randhir Sud) and the EUS/ERCP fellowship; gold medal kept as part of the DrNB line. No rankings or superlatives (NMC guidelines on ethical advertising, 6 Oct 2026).
