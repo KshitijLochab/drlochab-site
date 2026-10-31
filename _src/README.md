@@ -32,6 +32,7 @@ Requirements: Python Playwright with Chromium (`python3 -m playwright install ch
 - `social/make_catalogue.py` + `social/condition_art.py`: square WhatsApp catalogue images and custom condition drawings.
 - `social/week_2026_10_12.py`: example of a full week (Instagram EN and HI, Google post, WhatsApp Status) in one script.
 - `social/week_2026_10_26.py`: week of 26 Oct 2026 (Myth or fact? carousel from myths.json, Karwa Chauth in Hindi, indigestion carousel, Google post, 3 WhatsApp Status, broadcast).
+- `social/week_2026_11_02.py`: week of 2 Nov 2026 (Myth or fact? ultrasound carousel, pain under the right ribs carousel, Diwali "5 days, 5 diyas" in Hindi, Google post, 3 WhatsApp Status, broadcast).
 - `social/log.md`: what has already been made and posted, to avoid repeats.
 
 See `BRAND.md` for colours, type, voice and rules.
