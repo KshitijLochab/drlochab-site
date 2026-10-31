@@ -1,6 +1,17 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## Week of 2 Nov 2026 (Dhanteras Fri 6 Nov, Diwali Sun 8 Nov)
+Generator: social/week_2026_11_02.py (output in _src/out/week-2026-11-02/).
+- Instagram carousel (5 slides, EN), Mon 2 Nov: Myth or fact? "My ultrasound is normal, so my stomach is fine" (Myth Buster entry of 2 Nov): ultrasound probe and scan fan with the liver seen and the stomach hidden behind gas bubbles; MYTH; endoscopy view of the lining with an ulcer + H. pylori test; see-a-doctor signs with 112; play more at drlochab.com (phone shows Thursday's pancreatitis myth). Links to procedures/upper-gi-endoscopy.
+- Instagram carousel (5 slides, EN), Wed 4 Nov: Pain under the right ribs? (trunk with rib cage over liver, gallbladder and stomach, pain burst; four usual causes; note it down, lighter meals, no painkillers on your own, no stone-dissolving cures, ultrasound first; same-day signs with 112; new answer page).
+- Instagram post (HI), Fri 6 Nov (Dhanteras): दिवाली, पाँच दिन, पाँच दीये (one tip per festival day: eat before shopping, fewer sweet drinks, salad and dal first, leftovers in the fridge within 2 hours, one light day; pancreatitis-type pain → 112). Links to hi/guides/diwali-food-guide.
+- Google Business Profile (EN): Pain under the right ribs? (Learn more: answers/pain-under-right-ribs).
+- WhatsApp Status: Myth: normal ultrasound (EN); पाँच दिन, पाँच दीये (HI); Pain under the right ribs (EN).
+- WhatsApp broadcast (EN + HI): new answer page, Pain under the right ribs, with Diwali wishes.
+- Captions carry name, qualifications, HMC Reg. No. HN-23524 and the AI line.
+- Site: new answer page pain-under-right-ribs (EN and HI); Arcura hours Mon–Sat 10 am–5 pm, Sun 9 am–1 pm, Apollo Clinic from 6 Nov.
+
 ## 26 Oct 2026: Diwali food guide promo, "The smart mithai box" (new visual format)
 Generator: social/diwali_mithai_box.py (output in _src/out/diwali-mithai-box/).
 - New look: top-down illustrated mithai box in maroon and gold foil, six drawn compartments (kaju katli, besan ladoo, roasted makhana and chana, nimbu paani, clock, fresh box) each with one tip; no doctor photo.

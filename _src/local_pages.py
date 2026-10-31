@@ -7,7 +7,7 @@ GBP = "https://share.google/9ZndZsg6NHVxeQfYl"
 ARCURA = "https://arcuracare.com/dr-kshitij-lochab/"
 INSTAGRAM, LINKEDIN = "https://www.instagram.com/drlochab/", "https://www.linkedin.com/in/drlochab/"
 SAME_AS = [GBP, INSTAGRAM, LINKEDIN, ARCURA]
-HOURS = [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "18:00", "closes": "20:00"},
+HOURS = [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "10:00", "closes": "17:00"},
          {"@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "09:00", "closes": "13:00"}]
 ADDRESS = {"@type": "PostalAddress", "streetAddress": "Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51",
            "addressLocality": "Gurugram", "addressRegion": "Haryana", "postalCode": "122003", "addressCountry": "IN"}
@@ -35,7 +35,7 @@ EN = dict(
   clinic_h="Clinic and timings",
   clinic=["Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51, Gurugram (Gurgaon), Haryana 122003. Near Sohna Road and Nirvana Country.",
           "Also consulting at Apollo Hospitals, Golf Course Road, Gurugram."],
-  hours_h="Arcura Clinic hours", hours=[("Monday to Friday", "6 pm to 8 pm"), ("Sunday", "9 am to 1 pm"), ("Saturday", "Closed")],
+  hours_h="Arcura Clinic hours", hours=__import__("clinics").ARCURA["en"]["hours"],
   book="Appointments and video consultations: call or WhatsApp +91 96671 04882.", wa="Book on WhatsApp", dir="Get directions",
   treat_h="Conditions treated", proc_h="Endoscopy and procedures",
   proc_p="Procedures are done in a fully equipped hospital endoscopy unit with monitoring and anaesthesia support.",
@@ -45,7 +45,7 @@ EN = dict(
         "Long-lasting loose motions, constipation, bloating or belly pain", "Gallstones, pancreatitis or a scan finding that needs explaining"],
   urgent="Vomiting blood, black and tarry stools, severe belly pain or confusion in liver disease are emergencies: call 112 or go to the nearest emergency department.",
   visit_h="Before your visit", visit=["Bring all previous reports, scans, endoscopy and biopsy reports", "Bring a list of every medicine and supplement you take", "No fasting is needed for a consultation"],
-  faqs=[["What are the clinic timings?", "Arcura Clinic, Sector 51, Gurugram: Monday to Friday 6 pm to 8 pm, and Sunday 9 am to 1 pm. The clinic is closed on Saturday. Call or WhatsApp to book a time."],
+  faqs=[["What are the clinic timings?", "Arcura Clinic, Sector 51, Gurugram: Monday to Saturday 10 am to 5 pm, and Sunday 9 am to 1 pm. Call or WhatsApp to book a time."],
         ["Do you offer video consultations?", "Yes, for follow-ups, reviewing reports and diet advice. A first visit for new symptoms is better in person, so that you can be examined."],
         ["Do you see children?", "Teenagers aged 12 and above, and adults. Babies and younger children should first see their paediatrician."],
         ["Do I need a referral?", "No. You can book directly. Bring any notes from doctors you have already seen."]],
@@ -78,7 +78,7 @@ EN = dict(
   res_h="Research", res="Work presented at the World Congress of Gastroenterology 2026, on bleeding after variceal banding, EUS-guided procedures, restoring the passage in complete oesophageal strictures, and closing a gastro-colic fistula through the endoscope.",
   reg_h="Registration", reg="Haryana Medical Council, Reg. No. HN-23524",
   lang_h="Languages", langs="English and Hindi. Sees adults and teenagers aged 12 and above.",
-  faqs=[["Where does Dr. Kshitij Lochab consult?", "At Arcura Clinic, Mayfield Garden, Sector 51, Gurugram (Monday to Friday 6 to 8 pm, Sunday 9 am to 1 pm), and at Apollo Hospitals, Golf Course Road, Gurugram."],
+  faqs=[["Where does Dr. Kshitij Lochab consult?", "At Arcura Clinic, Mayfield Garden, Sector 51, Gurugram (Monday to Saturday 10 am to 5 pm, Sunday 9 am to 1 pm), and at Apollo Hospitals, Golf Course Road, Gurugram."],
         ["What is Dr. Lochab's specialisation?", "Gastroenterology and therapeutic endoscopy, with advanced training in endoscopic ultrasound (EUS) and ERCP for bile duct and pancreas problems."],
         ["How can I book an appointment?", "Call or WhatsApp +91 96671 04882. Video consultations are available for follow-ups and report reviews."]],
  ),
@@ -96,7 +96,7 @@ HI = dict(
   clinic_h="क्लिनिक और समय",
   clinic=["आर्क्योरा क्लिनिक, M2K कॉर्पोरेट पार्क एंड शॉपिंग प्लाज़ा, 14, मेफ़ील्ड गार्डन, सेक्टर 51, गुरुग्राम (गुड़गाँव), हरियाणा 122003। सोहना रोड और निर्वाणा कंट्री के पास।",
           "अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड, गुरुग्राम में भी परामर्श।"],
-  hours_h="आर्क्योरा क्लिनिक का समय", hours=[("सोमवार से शुक्रवार", "शाम 6 से 8 बजे"), ("रविवार", "सुबह 9 से दोपहर 1 बजे"), ("शनिवार", "बंद")],
+  hours_h="आर्क्योरा क्लिनिक का समय", hours=__import__("clinics").ARCURA["hi"]["hours"],
   book="अपॉइंटमेंट और वीडियो परामर्श: +91 96671 04882 पर कॉल या WhatsApp करें।", wa="WhatsApp पर अपॉइंटमेंट", dir="रास्ता देखें",
   treat_h="किन बीमारियों का इलाज", proc_h="एंडोस्कोपी और प्रोसीजर",
   proc_p="प्रोसीजर मॉनिटरिंग और एनेस्थीसिया सुविधा वाली पूरी तरह सुसज्जित अस्पताल की एंडोस्कोपी यूनिट में होते हैं।",
@@ -106,7 +106,7 @@ HI = dict(
         "लंबे दस्त, क़ब्ज़, पेट फूलना या पेट दर्द", "पित्त की पथरी, पैंक्रियाटाइटिस या स्कैन की कोई बात जिसे समझना हो"],
   urgent="ख़ून की उल्टी, काला तारकोल जैसा मल, पेट में तेज़ दर्द या लिवर की बीमारी में बेहोशी जैसा लगना इमरजेंसी है: 112 पर कॉल करें या नज़दीकी इमरजेंसी में जाएँ।",
   visit_h="आने से पहले", visit=["पुरानी सभी रिपोर्ट, स्कैन, एंडोस्कोपी और बायोप्सी रिपोर्ट लाएँ", "हर दवा और सप्लीमेंट की सूची लाएँ", "परामर्श के लिए भूखे रहने की ज़रूरत नहीं"],
-  faqs=[["क्लिनिक का समय क्या है?", "आर्क्योरा क्लिनिक, सेक्टर 51, गुरुग्राम: सोमवार से शुक्रवार शाम 6 से 8 बजे, और रविवार सुबह 9 से दोपहर 1 बजे। शनिवार को क्लिनिक बंद रहता है। समय तय करने के लिए कॉल या WhatsApp करें।"],
+  faqs=[["क्लिनिक का समय क्या है?", "आर्क्योरा क्लिनिक, सेक्टर 51, गुरुग्राम: सोमवार से शनिवार सुबह 10 से शाम 5 बजे, और रविवार सुबह 9 से दोपहर 1 बजे। समय तय करने के लिए कॉल या WhatsApp करें।"],
         ["क्या वीडियो परामर्श होता है?", "हाँ, फ़ॉलो-अप, रिपोर्ट देखने और डाइट सलाह के लिए। नए लक्षणों में पहली बार आमने-सामने दिखाना बेहतर है, ताकि जाँच हो सके।"],
         ["क्या आप बच्चों को देखते हैं?", "12 साल और उससे बड़े किशोरों और बड़ों को। शिशु और छोटे बच्चे पहले अपने बाल रोग विशेषज्ञ को दिखाएँ।"],
         ["क्या रेफ़रल चाहिए?", "नहीं। आप सीधे अपॉइंटमेंट ले सकते हैं। जिन डॉक्टरों को पहले दिखाया है उनके नोट्स साथ लाएँ।"]],
@@ -139,7 +139,7 @@ HI = dict(
   res_h="शोध", res="वर्ल्ड कांग्रेस ऑफ़ गैस्ट्रोएंटेरोलॉजी 2026 में प्रस्तुत काम: वैरिसियल बैंडिंग के बाद ब्लीडिंग, EUS-गाइडेड प्रोसीजर, खाने की नली के पूरी तरह बंद होने पर रास्ता खोलना, और एंडोस्कोप से गैस्ट्रो-कोलिक फ़िस्टुला बंद करना।",
   reg_h="रजिस्ट्रेशन", reg="हरियाणा मेडिकल काउंसिल, रजि. नं. HN-23524",
   lang_h="भाषाएँ", langs="हिंदी और अंग्रेज़ी। बड़ों और 12 साल से बड़े किशोरों को देखते हैं।",
-  faqs=[["डॉ. क्षितिज लोचब कहाँ परामर्श देते हैं?", "आर्क्योरा क्लिनिक, मेफ़ील्ड गार्डन, सेक्टर 51, गुरुग्राम में (सोमवार से शुक्रवार शाम 6 से 8, रविवार सुबह 9 से दोपहर 1), और अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड, गुरुग्राम में।"],
+  faqs=[["डॉ. क्षितिज लोचब कहाँ परामर्श देते हैं?", "आर्क्योरा क्लिनिक, मेफ़ील्ड गार्डन, सेक्टर 51, गुरुग्राम में (सोमवार से शनिवार सुबह 10 से शाम 5, रविवार सुबह 9 से दोपहर 1), और अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड, गुरुग्राम में।"],
         ["डॉ. लोचब की विशेषज्ञता क्या है?", "गैस्ट्रोएंटेरोलॉजी और थेराप्यूटिक एंडोस्कोपी, पित्त की नली और पैंक्रियास की समस्याओं के लिए एंडोस्कोपिक अल्ट्रासाउंड (EUS) और ERCP में एडवांस्ड ट्रेनिंग के साथ।"],
         ["अपॉइंटमेंट कैसे लें?", "+91 96671 04882 पर कॉल या WhatsApp करें। फ़ॉलो-अप और रिपोर्ट देखने के लिए वीडियो परामर्श उपलब्ध है।"]],
  ),

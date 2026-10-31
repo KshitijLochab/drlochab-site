@@ -32,6 +32,7 @@ Requirements: Python Playwright with Chromium (`python3 -m playwright install ch
 - `social/make_catalogue.py` + `social/condition_art.py`: square WhatsApp catalogue images and custom condition drawings.
 - `social/week_2026_10_12.py`: example of a full week (Instagram EN and HI, Google post, WhatsApp Status) in one script.
 - `social/week_2026_10_26.py`: week of 26 Oct 2026 (Myth or fact? carousel from myths.json, Karwa Chauth in Hindi, indigestion carousel, Google post, 3 WhatsApp Status, broadcast).
+- `social/week_2026_11_02.py`: week of 2 Nov 2026 (Myth or fact? ultrasound carousel, pain under the right ribs carousel, Diwali "5 days, 5 diyas" in Hindi, Google post, 3 WhatsApp Status, broadcast).
 - `social/log.md`: what has already been made and posted, to avoid repeats.
 
 See `BRAND.md` for colours, type, voice and rules.
@@ -113,7 +114,7 @@ See `BRAND.md` for colours, type, voice and rules.
 - 22 Oct 2026, 21:30: Dr. Lochab approved the references (now live, collapsed at the end of 14 pages) and dropped the deeper sections and the publications list; those files were removed. The reviewed-by line stays off until he gives real review dates (`REVIEW_LOG`).
 
 ### 23 Oct 2026: second clinic
-- `clinics.py` holds both clinics' sessions and the Apollo Clinic, Sector 52 details (Mon–Sat 4–6 pm, booking by WhatsApp/phone or at the clinic). Change timings there only: it feeds the home 'open now' line, the visit section, booking chips, the 'Book a consultation' box, the Gurgaon and About pages and structured data. Apollo Clinic address: Netaji Subhash Marg, Indira Colony 1, Sector 52, Gurugram 122003.
+- `clinics.py` holds both clinics' sessions, the Arcura hours text (`ARCURA`: Mon–Sat 10 am–5 pm, Sun 9 am–1 pm from 30 Oct 2026) and the Apollo Clinic, Sector 52 details (OPD from 6 Nov 2026, timings to be added; booking by WhatsApp/phone or at the clinic). Change timings there only: it feeds the home 'open now' line, the visit section, booking chips, the 'Book a consultation' box, the Gurgaon and About pages and structured data. Apollo Clinic address: Netaji Subhash Marg, Indira Colony 1, Sector 52, Gurugram 122003.
 
 ### 23 Oct 2026: About page and AI note
 - About page 'Training and qualifications' rewritten as cards with factual context for AFMC, Medical College Baroda, Lady Hardinge, Medanta (Padma Shri Dr Randhir Sud) and the EUS/ERCP fellowship; gold medal kept as part of the DrNB line. No rankings or superlatives (NMC guidelines on ethical advertising, 6 Oct 2026).
@@ -122,3 +123,8 @@ See `BRAND.md` for colours, type, voice and rules.
 ## 27 Oct 2026: search descriptions
 - `build_pages.fit_desc` no longer cuts descriptions off mid-sentence (120 pages ended in "…" or a stray "Dr."). It shortens the closing "Dr. Kshitij Lochab, Gurugram." line first, then ends at a full sentence (ignoring "Dr."), then at the last whole list item with "and"/"और".
 - Condition pages: "<name>: <one-line summary> Symptoms, causes, tests and treatment. Dr. Kshitij Lochab, Gurugram." (EN + HI) instead of cut-off page text. Procedures without their own description get a complete fallback sentence.
+
+### 31 Oct 2026: reviewed-by line, deeper sections, sitemap dates
+- At Dr. Lochab's request, every condition, procedure, answer, guide and diet chart page carries "Medically reviewed by Dr. Kshitij Lochab on 31 October 2026" (`medical_review.REVIEW_ALL`; per-page dates go in `REVIEW_LOG`). Structured data `lastReviewed` follows.
+- Deeper sections are live (`cond_more_en/hi.py` merges `deep/part*_en|hi.py`): all 14 condition pages (after "Treatment") and the answer pages for high SGPT/SGOT, typhoid and diet in jaundice (aimed at Hindi searches from Search Console). `medical_review.check()` stops the build if EN and HI differ in slugs, section counts or bullet positions.
+- `dateModified` moves to the change date for pages in `medical_review.CHANGED` and pages with deeper sections; the sitemap now carries `<lastmod>` from each page's dateModified (today for the home pages).

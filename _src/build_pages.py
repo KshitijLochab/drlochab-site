@@ -65,7 +65,7 @@ L = {
    cta_h="Book a consultation", cta_p="Appointments and video consultations", cta_call="Call or WhatsApp", cta_wa="Message on WhatsApp",
    clinic="Arcura Clinic, M2K Corporate Park, 14, Mayfield Garden, Sector 51, Gurugram", also="Also at Apollo Hospitals, Golf Course Road",
    disc="This page is for general health education and does not replace a consultation. In an emergency, call 112 or go to the nearest emergency department.",
-   reg="Haryana Medical Council Reg. No. HN-23524", lang_link="हिंदी", lang_aria="यह पेज हिंदी में पढ़ें", city="in Gurgaon (Gurugram)", hours="Mon–Fri 6–8 pm · Sun 9 am–1 pm",
+   reg="Haryana Medical Council Reg. No. HN-23524", lang_link="हिंदी", lang_aria="यह पेज हिंदी में पढ़ें", city="in Gurgaon (Gurugram)", hours=__import__("clinics").ARCURA["en"]["short"],
    all_guides="More guides", guides="Guides",
    special="Special guides:", special_p="read the guide for your situation, with diet advice and the warning signs to watch for.",
    about="How it works", prep="Before the procedure", day="On the day", glance="At a glance", after="After the procedure",
@@ -79,7 +79,7 @@ L = {
    cta_h="अपॉइंटमेंट लें", cta_p="अपॉइंटमेंट और वीडियो कंसल्टेशन", cta_call="कॉल या WhatsApp करें", cta_wa="WhatsApp पर मैसेज करें",
    clinic="आर्क्योरा क्लिनिक, M2K कॉर्पोरेट पार्क, 14, मेफ़ील्ड गार्डन, सेक्टर 51, गुरुग्राम", also="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड में भी",
    disc="यह पेज सामान्य स्वास्थ्य जानकारी के लिए है और डॉक्टर की सलाह की जगह नहीं ले सकता। इमरजेंसी में 112 पर कॉल करें या सबसे पास की इमरजेंसी में जाएँ।",
-   reg="हरियाणा मेडिकल काउंसिल रजि. नं. HN-23524", lang_link="English", lang_aria="Read this page in English", city="गुरुग्राम (गुड़गाँव)", hours="सोम–शुक्र शाम 6–8 · रवि सुबह 9–1",
+   reg="हरियाणा मेडिकल काउंसिल रजि. नं. HN-23524", lang_link="English", lang_aria="Read this page in English", city="गुरुग्राम (गुड़गाँव)", hours=__import__("clinics").ARCURA["hi"]["short"],
    all_guides="और गाइड", guides="गाइड",
    special="ख़ास गाइड:", special_p="अपनी स्थिति के लिए गाइड पढ़ें, जिसमें खाने की सलाह और ख़तरे के संकेत दिए गए हैं।",
    about="यह कैसे होता है", prep="प्रोसीजर से पहले", day="प्रोसीजर वाले दिन", glance="एक नज़र में", after="प्रोसीजर के बाद",
@@ -113,7 +113,7 @@ def fit_title(lang, title):
             break
     return title
 
-_DOC_SUFFIX = re.compile(r"\s+(?:Dr\. Kshitij Lochab|डॉ\. क्षितिज लोचब)[^.।]*[.।]$")
+_DOC_SUFFIX = re.compile(r"(?<=[.।])\s+(?:Dr\. Kshitij Lochab|डॉ\. क्षितिज लोचब)[^.।]*[.।]$")  # a closing sign-off sentence only, never a sentence that starts with the name
 _SENT_END = re.compile(r"(?<!\bDr)(?<!डॉ)[.?।](?=\s)")
 
 def fit_desc(desc):
@@ -347,6 +347,9 @@ def build():
                     f'<section><h2>{t["causes"]}</h2>{ul(x["causes"])}</section>',
                     f'<section><h2>{t["tests"]}</h2><p>{e(x["tests"])}</p></section>',
                     f'<section><h2>{t["treat"]}</h2><p>{e(c["h"])}</p></section>']
+            import medical_review
+            deep = medical_review.deep_sections(lang, base["slug"], e)
+            if deep: body.append(deep)
             if base["procs"]:
                 body.append(f'<section><h2>{t["proc_help"]}</h2>' + links([(url(lang, "procedures", seo_en.PROCS[j]["slug"]), d["PROCS"][j]["n"]) for j in base["procs"]]) + "</section>")
             if base["guide"] is not None:
@@ -425,6 +428,9 @@ def build():
                 items = [p_[2:] for p_ in parts if p_.startswith("- ")]
                 paras = [p_ for p_ in parts if not p_.startswith("- ")]
                 secs.append(f"<section><h2>{e(h)}</h2>" + "".join(f"<p>{e(p_)}</p>" for p_ in paras) + (ul(items) if items else "") + "</section>")
+            import medical_review
+            deep = medical_review.deep_sections(lang, base["slug"], e)
+            if deep: secs.append(deep)
             X = (answers_extra_en if lang == "en" else answers_extra_hi).EXTRA.get(base["slug"])
             xfaqs = []
             if X:

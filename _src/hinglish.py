@@ -48,6 +48,7 @@ AKA = {
  "vomiting-blood-black-stools": ["khoon ki ulti", "kali potty aana"],
  "is-pantoprazole-safe-long-term": ["acidity ki goli roz lena"],
  "indigestion-heaviness-after-meals": ["badhazmi ka ilaj", "khana khane ke baad pet bhari lagna", "khana hajam na hona"],
+ "pain-under-right-ribs": ["dayi pasli ke niche dard", "pet me right side upar dard", "pasliyon ke niche dard"],
  "burping-and-hiccups": ["baar baar dakar aana", "hichki kaise roke"],
  "how-much-alcohol-is-safe-for-liver": ["sharab se liver kharab"],
  "travellers-diarrhoea": ["safar me dast"],
