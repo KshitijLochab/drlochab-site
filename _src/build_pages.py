@@ -342,14 +342,15 @@ def build():
             lead = c["s"] if lang == "hi" or c["s"][1:2].isupper() else c["s"][0].lower() + c["s"][1:]
             desc = (f'{c["n"]}: {lead} Symptoms, causes, tests and treatment. Dr. Kshitij Lochab, Gurugram.' if lang == "en"
                     else f'{c["n"]}: {lead} लक्षण, कारण, जाँच और इलाज। डॉ. क्षितिज लोचब, गुरुग्राम।')
-            body = [f'<p class="lead">{e(c["w"])}</p>',
-                    f'<section><h2>{t["symptoms"]}</h2>{ul(c["g"])}</section>',
-                    f'<section><h2>{t["causes"]}</h2>{ul(x["causes"])}</section>',
-                    f'<section><h2>{t["tests"]}</h2><p>{e(x["tests"])}</p></section>',
-                    f'<section><h2>{t["treat"]}</h2><p>{e(c["h"])}</p></section>']
             import medical_review
-            deep = medical_review.deep_sections(lang, base["slug"], e)
-            if deep: body.append(deep)
+            jump, detailed = medical_review.deep_parts(lang, base["slug"], c["n"], e)
+            summary = [f'<section><h2>{t["symptoms"]}</h2>{ul(c["g"])}</section>',
+                       f'<section><h2>{t["causes"]}</h2>{ul(x["causes"])}</section>',
+                       f'<section><h2>{t["tests"]}</h2><p>{e(x["tests"])}</p></section>',
+                       f'<section><h2>{t["treat"]}</h2><p>{e(c["h"])}</p></section>']
+            body = [f'<p class="lead">{e(c["w"])}</p>']
+            # 31 Oct 2026: the original short sections are a labelled summary; the deeper sections follow lower down as a "Detailed guide"
+            body += ([medical_review.summary_open(lang)] + summary + ["</div>", jump]) if detailed else summary
             if base["procs"]:
                 body.append(f'<section><h2>{t["proc_help"]}</h2>' + links([(url(lang, "procedures", seo_en.PROCS[j]["slug"]), d["PROCS"][j]["n"]) for j in base["procs"]]) + "</section>")
             if base["guide"] is not None:
@@ -372,6 +373,7 @@ def build():
             if base["slug"] in TRACK_CONDS:
                 body.append(tracker_note(lang))
             body.append(guide_notes(lang, "conds", i))
+            if detailed: body.append(detailed)
             body.append(faq_html(lang, x["faqs"]))
             reads = answer_links(lang, S, base["answer"])
             rel = [(url(lang, "conditions", seo_en.CONDS[j]["slug"]), d["CONDITIONS"][j]["n"]) for j, cc in enumerate(d["CONDITIONS"]) if cc["o"] == c["o"] and j != i]
@@ -429,8 +431,8 @@ def build():
                 paras = [p_ for p_ in parts if not p_.startswith("- ")]
                 secs.append(f"<section><h2>{e(h)}</h2>" + "".join(f"<p>{e(p_)}</p>" for p_ in paras) + (ul(items) if items else "") + "</section>")
             import medical_review
-            deep = medical_review.deep_sections(lang, base["slug"], e)
-            if deep: secs.append(deep)
+            jump, detailed = medical_review.deep_parts(lang, base["slug"], a.get("seo", a["q"]).split(":")[0], e)
+            if jump: secs.insert(0, jump)
             X = (answers_extra_en if lang == "en" else answers_extra_hi).EXTRA.get(base["slug"])
             xfaqs = []
             if X:
@@ -440,7 +442,9 @@ def build():
                             f'<div class="gcol less"><h3>{e(lb[1])}</h3>{ul(dt["less"])}</div>'
                             f'<div class="gcol know"><h3>{e(lb[2])}</h3>{ul(dt["know"])}</div></div></section>')
                 xfaqs = X["faqs"]
+                if detailed: secs.append(detailed); detailed = ""
                 secs.append(faq_html(lang, xfaqs))
+            if detailed: secs.append(detailed)
             rel = []
             if base.get("cond") is not None:
                 rel.append((url(lang, "conditions", seo_en.CONDS[base["cond"]]["slug"]), d["CONDITIONS"][base["cond"]]["n"]))
@@ -453,7 +457,7 @@ def build():
                 import diet_text_en, diet_text_hi
                 secs.append(f'<p class="dc-link"><a class="btn btn-ghost btn-sm" href="{url(lang, "diet-charts", ANSWER_DIET[base["slug"]])}">{(diet_text_en if lang == "en" else diet_text_hi).UI["cond_link"]} →</a></p>')
             fig = f'<figure class="fig">{d["IL"][ANSWER_IL[base["slug"]]]}</figure>' if base["slug"] in ANSWER_IL else ""
-            body = (fig + f'<div class="short"><p class="lbl">{t["short"]}</p><p>{e(a["short"])}</p></div>' + "".join(secs)
+            body = (fig + f'<div class="short" id="summary"><p class="lbl">{t["short"]}</p><p>{e(a["short"])}</p></div>' + "".join(secs)
                     + f'<section><h2>{t["read"]}</h2>{links(rel + others)}</section>')
             ld = ld_page(lang, path, a["q"], a["desc"], "MedicalProcedure" if base.get("cond") is None and base.get("proc") is not None else "MedicalCondition",
                          rel[0][1] if rel else a["q"], [[a["q"], a["short"]]] + xfaqs, t["answers"], "conditions", base.get("updated"))
