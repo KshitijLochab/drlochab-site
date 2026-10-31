@@ -113,7 +113,7 @@ def fit_title(lang, title):
             break
     return title
 
-_DOC_SUFFIX = re.compile(r"\s+(?:Dr\. Kshitij Lochab|डॉ\. क्षितिज लोचब)[^.।]*[.।]$")
+_DOC_SUFFIX = re.compile(r"(?<=[.।])\s+(?:Dr\. Kshitij Lochab|डॉ\. क्षितिज लोचब)[^.।]*[.।]$")  # a closing sign-off sentence only, never a sentence that starts with the name
 _SENT_END = re.compile(r"(?<!\bDr)(?<!डॉ)[.?।](?=\s)")
 
 def fit_desc(desc):

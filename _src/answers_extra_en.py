@@ -717,6 +717,8 @@ EXTRA.update({
          "Frequent burping often improves with slow belly breathing."]),
   faqs=[["Is frequent burping a sign of a serious disease?",
          "Rarely. It is usually from swallowed air or reflux. It needs a check if it comes with weight loss, vomiting or difficulty swallowing."],
+        ["Why do I burp and hiccup at the same time?",
+         "Both start near the top of the stomach. A stomach stretched by a big meal, fizzy drinks or swallowed air irritates the diaphragm just above it, which causes hiccups, while the extra air comes up as burps. Eating slowly and avoiding fizzy drinks usually settles both."],
         ["Why do I hiccup after eating?",
          "A full stomach presses on the diaphragm. Eating smaller amounts slowly and avoiding fizzy drinks usually helps."],
         ["Can medicines cause hiccups?",

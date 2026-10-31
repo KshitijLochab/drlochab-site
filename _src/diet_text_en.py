@@ -334,6 +334,7 @@ PAGES = {
             preg="Pancreatitis in pregnancy, often from gallstones or high triglycerides, needs specialist care. Do not start a very low-fat diet on your own; get advice.",
             old="Weight loss and weakness are common in older adults with chronic pancreatitis. Keep protein and calories up, and ask about vitamin D and bone health."),
   faqs=[["What should I eat after pancreatitis?", "For the first few weeks: small, lighter meals such as idli, poha, khichdi, dal, curd, steamed vegetables, and fish or chicken cooked without frying. Most people then return to a normal, balanced diet."],
+        ["Is idli good for pancreatitis?", "Yes. Idli is steamed, low in fat and easy to digest, so it suits the first weeks after an attack, with sambar or a little chutney. Plain dosa made with little oil and poha are also fine; avoid fried items such as vada and medu vada until you recover."],
         ["Can I ever drink alcohol after pancreatitis?", "No. Alcohol can bring on another attack and speeds up permanent damage, even in small amounts."],
         ["Should I eat a fat-free diet in chronic pancreatitis?", "No. A very low-fat diet causes weight loss and vitamin deficiency. Eat normal amounts of fat with enzyme capsules."]],
   doc="Go to an emergency department for sudden severe upper belly pain spreading to the back, with vomiting. See a specialist for oily stools, weight loss or new diabetes after pancreatitis."),
