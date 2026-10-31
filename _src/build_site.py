@@ -300,8 +300,18 @@ import build_pages
 pairs = [("/", "/hi/")] + build_pages.build()
 import not_found
 open(f"{OUT}/404.html", "w").write(not_found.render(build_pages))
+import datetime as _dt
+def _lastmod(u):
+    """Sitemap lastmod: the page's own dateModified (structured data); today for the home pages, which change daily."""
+    if u in ("/", "/hi/"):
+        return _dt.datetime.now(_dt.timezone(_dt.timedelta(hours=5, minutes=30))).date().isoformat()
+    try:
+        m = re.search(r'"dateModified": "(\d{4}-\d{2}-\d{2})', open(f"{OUT}{u}index.html", encoding="utf8").read())
+        return m.group(1) if m else None
+    except OSError:
+        return None
 urls = "".join(
-    f'  <url><loc>https://drlochab.com{u}</loc><changefreq>{"daily" if en == "/" else "monthly"}</changefreq>'
+    f'  <url><loc>https://drlochab.com{u}</loc>' + (f'<lastmod>{_lastmod(u)}</lastmod>' if _lastmod(u) else "") + f'<changefreq>{"daily" if en == "/" else "monthly"}</changefreq>'
     f'<xhtml:link rel="alternate" hreflang="en" href="https://drlochab.com{en}"/>'
     f'<xhtml:link rel="alternate" hreflang="hi" href="https://drlochab.com{hi}"/></url>\n'
     for en, hi in pairs for u in (en, hi))

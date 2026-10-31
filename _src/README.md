@@ -123,3 +123,8 @@ See `BRAND.md` for colours, type, voice and rules.
 ## 27 Oct 2026: search descriptions
 - `build_pages.fit_desc` no longer cuts descriptions off mid-sentence (120 pages ended in "…" or a stray "Dr."). It shortens the closing "Dr. Kshitij Lochab, Gurugram." line first, then ends at a full sentence (ignoring "Dr."), then at the last whole list item with "and"/"और".
 - Condition pages: "<name>: <one-line summary> Symptoms, causes, tests and treatment. Dr. Kshitij Lochab, Gurugram." (EN + HI) instead of cut-off page text. Procedures without their own description get a complete fallback sentence.
+
+### 31 Oct 2026: reviewed-by line, deeper sections, sitemap dates
+- At Dr. Lochab's request, every condition, procedure, answer, guide and diet chart page carries "Medically reviewed by Dr. Kshitij Lochab on 31 October 2026" (`medical_review.REVIEW_ALL`; per-page dates go in `REVIEW_LOG`). Structured data `lastReviewed` follows.
+- Deeper sections are live (`cond_more_en/hi.py` merges `deep/part*_en|hi.py`): all 14 condition pages (after "Treatment") and the answer pages for high SGPT/SGOT, typhoid and diet in jaundice (aimed at Hindi searches from Search Console). `medical_review.check()` stops the build if EN and HI differ in slugs, section counts or bullet positions.
+- `dateModified` moves to the change date for pages in `medical_review.CHANGED` and pages with deeper sections; the sitemap now carries `<lastmod>` from each page's dateModified (today for the home pages).

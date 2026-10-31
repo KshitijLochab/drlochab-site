@@ -5,7 +5,8 @@
       "/conditions/fatty-liver/": "2026-11-02",
   The byline then reads "Medically reviewed by Dr. Kshitij Lochab on 2 November 2026" (English and Hindi) and
   the structured data 'lastReviewed' uses that date.
-- Deeper page sections and a publications list were drafted and dropped at his request (22 Oct 2026).
+- Deeper page sections were drafted on 22 Oct 2026, held, and approved on 31 Oct 2026 (cond_more_en/hi.py, deep/). The publications list stays dropped.
+- REVIEW_ALL (31 Oct 2026): reviewed-by line with that date on every condition, procedure, answer, guide and diet chart page.
 
 References are clinical guidelines checked on 22 Oct 2026 against the publisher or journal record (title, journal, year, DOI).
 Page numbers are left out on purpose: the DOI link is the reliable pointer."""
@@ -13,7 +14,14 @@ import os, re, datetime, html as _html
 
 PREVIEW = os.environ.get("PREVIEW") == "1"
 REFS_LIVE = True   # approved by Dr. Lochab, 22 Oct 2026
-REVIEW_LOG = {}          # "/conditions/slug/": "YYYY-MM-DD", English path; the Hindi twin follows automatically
+REVIEW_LOG = {}          # "/conditions/slug/": "YYYY-MM-DD", English path; the Hindi twin follows automatically (overrides REVIEW_ALL)
+# 31 Oct 2026: Dr. Lochab asked for the reviewed-by line with that day's date on the medical pages. Every page under these sections
+# gets it; when a page is reviewed again, put its new date in REVIEW_LOG (or move REVIEW_ALL forward after a full review).
+REVIEW_ALL = ("2026-10-31", ("/conditions/", "/procedures/", "/answers/", "/guides/", "/diet-charts/"))
+# Pages whose content changed (dateModified and the sitemap lastmod follow): English path -> date. Pages with deeper
+# sections (cond_more) count as changed on DEEP_DATE.
+CHANGED = {"/answers/burping-and-hiccups/": "2026-10-31", "/diet-charts/pancreatitis/": "2026-10-31", "/gastroenterologist-in-gurgaon/": "2026-10-31"}
+DEEP_DATE = "2026-10-31"
 
 # key: (authors, title, journal, year, doi)
 REFS = {
@@ -75,7 +83,8 @@ def refs_html(lang, path):
             f'<p class="small" lang="{lang}">{T[lang]["note"]}</p><ol>{items}</ol></details>')
 
 def review_date(path):
-    d = REVIEW_LOG.get(_en_path(path))
+    p = _en_path(path)
+    d = REVIEW_LOG.get(p) or (REVIEW_ALL[0] if REVIEW_ALL and p.startswith(REVIEW_ALL[1]) else None)
     return datetime.date.fromisoformat(d) if d else None
 
 def apply(path, text):
@@ -85,6 +94,11 @@ def apply(path, text):
     if r and "</article>" in text:
         anchor = '<section class="share-end">' if '<section class="share-end">' in text else "</article>"
         text = text.replace(anchor, r + anchor, 1)
+    p = _en_path(path); parts = [x for x in p.split("/") if x]
+    import cond_more_en
+    changed = CHANGED.get(p) or (DEEP_DATE if len(parts) == 2 and parts[0] in ("conditions", "answers") and parts[1] in cond_more_en.MORE else None)
+    if changed:
+        text = re.sub(r'"dateModified": "[^"]*"', f'"dateModified": "{changed}T09:00:00+05:30"', text)
     d = review_date(path)
     if d and 'class="byline"' in text:
         ds = d.strftime("%-d %B %Y") if lang == "en" else f"{d.day} {MONTHS_HI[d.month - 1]} {d.year}"
@@ -92,7 +106,29 @@ def apply(path, text):
         text = re.sub(r'"lastReviewed": "[^"]*"', f'"lastReviewed": "{d.isoformat()}"', text)
     return text
 
+def deep_sections(lang, slug, e):
+    """Deeper sections (cond_more_en/hi.py) for a condition or answer page, as HTML."""
+    import cond_more_en, cond_more_hi
+    M = (cond_more_en if lang == "en" else cond_more_hi).MORE.get(slug)
+    if not M:
+        return ""
+    out = ""
+    for h, items in M:
+        body, ul = "", []
+        for it in items + [""]:
+            if it.startswith("- "):
+                ul.append(f"<li>{e(it[2:])}</li>"); continue
+            if ul: body += "<ul>" + "".join(ul) + "</ul>"; ul = []
+            if it: body += f"<p>{e(it)}</p>"
+        out += f'<section class="deep"><h2>{e(h)}</h2>{body}</section>'
+    return out
+
 def check():
+    import cond_more_en as _ce, cond_more_hi as _ch
+    assert set(_ce.MORE) == set(_ch.MORE), set(_ce.MORE) ^ set(_ch.MORE)
+    for _k in _ce.MORE:
+        assert [len(i) for _, i in _ce.MORE[_k]] == [len(i) for _, i in _ch.MORE[_k]], _k
+        assert [i.startswith("- ") for _, s in _ce.MORE[_k] for i in s] == [i.startswith("- ") for _, s in _ch.MORE[_k] for i in s], _k
     for p, ks in PAGE_REFS.items():
         assert all(k in REFS for k in ks), p
     for p, d in REVIEW_LOG.items():

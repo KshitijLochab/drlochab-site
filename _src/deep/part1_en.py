@@ -1,0 +1,126 @@
+"""Deeper sections written 31 Oct 2026 at Dr. Lochab's request; published with his review date of 31 Oct 2026 (PR #10)."""
+MORE = {
+"h-pylori-gastritis-ulcer": [
+ ("How H. pylori, gastritis and ulcers are linked", [
+  "Gastritis means inflammation of the stomach lining, seen at endoscopy or under the microscope. Many people use the word for any burning or gas, but that is not the same thing. An ulcer is a deeper sore through the lining, either in the stomach (gastric ulcer) or in the first part of the small intestine (duodenal ulcer).",
+  "H. pylori is a germ that lives in the stomach lining. It is usually picked up in childhood and stays for life unless treated. Many adults in India carry it. Most never have symptoms, but in some it causes long-term gastritis, ulcers and, rarely, stomach cancer. Painkillers for body or joint pain are the other main cause of ulcers, and the two together raise the risk further.",
+ ]),
+ ("Which test, and how to prepare for it", [
+  "Testing is advised for people with an ulcer now or in the past, ongoing indigestion, unexplained iron deficiency anaemia or a close relative with stomach cancer, and for some people before long-term painkillers or heart-protecting blood thinners.",
+  "- Urea breath test: you drink a test solution and breathe into a tube. It is accurate and shows current infection.",
+  "- Stool antigen test: a small stool sample is checked for the germ. It is also accurate and shows current infection.",
+  "- Endoscopy with biopsy: small, painless samples are taken from the stomach lining. This is chosen when an endoscopy is needed anyway, for example for warning signs or bleeding.",
+  "- Blood antibody test: widely offered, but it stays positive for years after the germ has gone, so it is not used to decide treatment or to check cure.",
+  "Acid-reducing tablets and antibiotics can hide the germ and give a falsely negative result. Your doctor will tell you which tablets to stop before the test, and for how long. Do not stop any medicine on your own.",
+ ]),
+ ("Treatment and the test to confirm cure", [
+  "H. pylori is treated with a combination of antibiotics and an acid-reducing tablet, taken as one course. The doctor chooses the combination based on antibiotic resistance, which is high for some antibiotics in India, and on antibiotics you have taken before.",
+  "- Take every dose until the course ends, even if the pain settles in a few days. Stopping early is a common reason the germ survives.",
+  "- A bitter taste, nausea or loose stools are common and usually mild. Call the clinic rather than stopping the course.",
+  "- Avoid alcohol and smoking during treatment.",
+  "Everyone treated should have a breath test, stool test or biopsy afterwards to confirm the germ has gone. It is done some weeks after the course ends, off acid-reducing tablets; your doctor will tell you when. Feeling better is not proof of cure. If the germ is still there, a different combination is used, not the same one again.",
+  "A stomach (gastric) ulcer is often checked again with endoscopy to confirm healing and to take biopsies.",
+ ]),
+ ("Painkillers, older adults and pregnancy", [
+  "- Painkillers for headache, back, knee or period pain (NSAIDs) weaken the stomach's protection. Many are bought without a prescription, and the ulcers they cause can be painless until they bleed. Use them only when needed. If they are needed long term, ask your doctor about safer options and stomach protection.",
+  "- Heart-protecting blood thinners should not be stopped without the advice of the doctor who prescribed them, even after an ulcer has bled.",
+  "- Older adults: ulcers may cause little pain and show up as tiredness from anaemia, black stools or sudden bleeding.",
+  "- Pregnancy: tell your doctor if you are pregnant or breastfeeding. H. pylori treatment is usually put off until after pregnancy.",
+ ]),
+ ("Ulcer complications: warning signs", [
+  "Most ulcers heal fully once the cause is removed. A few cause serious problems, sometimes with little pain beforehand:",
+  "- Bleeding: black, sticky, tar-like stools, vomiting blood or material like coffee grounds, dizziness or fainting. An endoscopy can usually find and stop the bleeding in the same procedure.",
+  "- Perforation: a hole through the wall of the stomach or duodenum, causing sudden severe belly pain and a hard belly. It needs urgent surgical care.",
+  "- Narrowing (obstruction): scarring at the stomach outlet, causing repeated vomiting of food eaten hours earlier. It can often be stretched with a balloon during endoscopy.",
+  "Vomiting blood, black tarry stools with dizziness or fainting, or sudden severe belly pain is an emergency: call 112 or go to the nearest emergency department.",
+ ]),
+ ("Family members, stomach cancer and common myths", [
+  "Most people with H. pylori never get stomach cancer, but long-standing infection is its main known risk factor, and clearing the germ lowers the risk. People whose parent, brother, sister or child has had stomach cancer should be tested, and treated if positive. When one adult in a home has H. pylori, testing other adults may be considered; discuss this with your doctor. Routine testing of children without symptoms is not needed.",
+  "- Myth: spicy food causes ulcers. Spices can worsen discomfort, but ulcers are caused mainly by H. pylori and painkillers.",
+  "- Myth: once the pain goes, the treatment can stop. Only a cure test confirms the germ has gone.",
+  "- Myth: a positive blood antibody test after treatment means the germ is back. The antibody can stay positive for years after cure.",
+ ]),
+],
+"swallowing-difficulty": [
+ ("Throat or food pipe: where the problem starts", [
+  "In throat (oropharyngeal) dysphagia, the trouble is in starting a swallow. People cough or choke while eating, liquid comes out through the nose, the voice sounds wet after drinking, or one bite needs several swallows. It is often due to a stroke, Parkinson's disease or other nerve and muscle conditions, and is assessed with a neurologist, an ENT surgeon and a swallowing therapist.",
+  "In food pipe (oesophageal) dysphagia, the swallow starts normally but food sticks a few seconds later, behind the breastbone or at the base of the neck. This is the type a gastroenterologist sees most often, and endoscopy is usually the first test.",
+  "A feeling of a lump in the throat without real difficulty swallowing food (globus) is common and usually harmless. It still needs a check if it comes with pain, weight loss or a change in voice.",
+ ]),
+ ("Clues from the pattern of symptoms", [
+  "- Solids only, slowly getting worse: a narrowing such as a stricture or, especially with weight loss in an older person, a growth.",
+  "- Solids only, coming and going, with sudden episodes of food getting stuck: a ring in the food pipe, or eosinophilic oesophagitis, commoner in young people with allergies or asthma.",
+  "- Both solids and liquids from the start, with undigested food coming back up: a muscle problem such as achalasia.",
+  "- Years of heartburn, then difficulty with solids: a stricture from reflux.",
+  "- Difficulty after swallowing acid, toilet cleaner or another chemical, even years earlier: a corrosive stricture.",
+ ]),
+ ("Tests, and which one when", [
+  "- Upper GI endoscopy: the first test for most people. It shows narrowings, inflammation and growths, allows biopsies, and lets a narrowing be stretched in the same session.",
+  "- Barium swallow: X-rays taken while drinking a chalky liquid. It shows the shape of the food pipe and how well it empties, and helps in achalasia and long or complex narrowings.",
+  "- Oesophageal manometry: a thin tube through the nose measures the squeeze of each swallow. It confirms achalasia and other muscle problems when endoscopy finds no narrowing.",
+  "- Video swallow study: used for throat dysphagia, to see whether food or liquid goes into the windpipe.",
+  "- CT scan or endoscopic ultrasound (EUS): used when a growth is found, to see how far it has spread.",
+ ]),
+ ("Treatment by cause", [
+  "- Reflux stricture: stretching (dilatation) with a balloon or dilators during endoscopy, then acid-reducing tablets to stop the narrowing forming again. A few sessions may be needed.",
+  "- Eosinophilic oesophagitis: an allergy-type inflammation, treated with acid-reducing tablets, swallowed steroid medicines, or removal of trigger foods such as milk or wheat under supervision. Dilatation helps if a narrowing has formed. It needs long-term follow-up.",
+  "- Corrosive strictures: often long and tight, needing repeated, careful dilatations over months.",
+  "- Achalasia: the tight valve at the lower end of the food pipe is opened, either with a larger balloon (pneumatic dilatation) during endoscopy or by keyhole surgery that cuts the tight muscle (Heller myotomy). The choice depends on age, the type of achalasia and the person's preference. Symptoms can return over the years.",
+  "- Food pipe cancer: a cancer team plans surgery, chemotherapy or radiation. When the food pipe is badly blocked, a metal stent placed through the endoscope can open it so that eating becomes possible again.",
+  "After a dilatation, most people go home the same day, starting with liquids and then soft food.",
+ ]),
+ ("Special situations and common beliefs", [
+  "- Older adults: swallowing difficulty is often put down to age or dentures, but it should be checked. Food going into the windpipe can cause chest infections, and weight loss can follow quickly.",
+  "- Tablets that stick: some antibiotics, painkillers and iron supplements can injure the food pipe. Take tablets upright with a full glass of water, and do not lie down soon after.",
+  "- Teenagers (12 and above): food sticking, especially with allergies, should be checked for eosinophilic oesophagitis. Younger children should see their paediatrician.",
+  "Some beliefs delay care: that food sticking is just gas, that it is normal with age, or that a banana or bread will push stuck food down. Stuck food should never be forced down with more food.",
+ ]),
+ ("When to seek urgent help", [
+  "- Food stuck in the chest, with drooling or being unable to swallow even saliva.",
+  "- Choking with breathlessness, or lips turning blue.",
+  "- Vomiting blood or black stools along with swallowing difficulty.",
+  "- Severe chest pain, fever or breathlessness after a dilatation.",
+  "For any of these, call 112 or go to the nearest emergency department.",
+ ]),
+],
+"constipation": [
+ ("What counts as constipation", [
+  "Constipation is not only about how often stool is passed. Doctors call it chronic constipation when, for some months, there are two or more of: hard or lumpy stools, straining, a feeling of not emptying fully, a feeling of blockage, needing to press with a finger to pass stool, or fewer than three stools a week.",
+  "The Bristol stool scale sorts stool into seven types:",
+  "- Types 1 and 2: hard lumps or a lumpy sausage. These suggest constipation.",
+  "- Types 3 and 4: a cracked or smooth, soft sausage. These are the ideal.",
+  "- Types 5 to 7: soft blobs, mushy or watery stool, leaning towards loose motions.",
+ ]),
+ ("Slow bowel or blocked exit", [
+  "When simple measures do not help, there are two main problems to tell apart, and some people have both.",
+  "- Slow transit: the large bowel moves stool slowly. There is little urge to go for days, often with bloating.",
+  "- Evacuation (pelvic floor) problem: the muscles around the back passage tighten instead of relaxing while pushing. People strain hard even for soft stool, feel blocked, or need to press with a finger. It is common, often missed, and does not respond well to laxatives alone.",
+  "Anorectal manometry, with a balloon expulsion test, measures the pressures in the back passage while squeezing and pushing, and shows whether the pelvic floor relaxes properly. A colon transit study, with X-rays after swallowing small markers, shows how fast stool moves.",
+  "Pelvic floor problems are treated with biofeedback. Over a series of sessions, a trained therapist uses a sensor and a screen to teach the person to relax the right muscles and push effectively. It has no drug side effects.",
+ ]),
+ ("Treatment, step by step", [
+  "Each step is given a fair trial before moving on.",
+  "- Fibre and fluids: increase fibre slowly through whole grains, dal, vegetables and fruit such as kiwi, guava and prunes. If food is not enough, a fibre supplement with plenty of water helps many people.",
+  "- Routine: a daily walk, and sitting on the toilet at the same time each day, ideally soon after breakfast. Do not hold back the urge.",
+  "- Toilet posture: on a Western toilet, rest the feet on a small footstool so the knees are above the hips, lean forward, and breathe out gently instead of straining. Avoid sitting for long with a phone.",
+  "- Osmotic laxatives: these hold water in the stool to soften it. They are gentle, can be used long term under advice, and are usually the first medicine tried. Some types do not suit people with kidney disease.",
+  "- Stimulant laxatives: these make the bowel muscles contract. They are used for short periods or as a rescue, on a doctor's advice.",
+  "- Newer prescription medicines: for constipation that does not respond, there are medicines that draw fluid into the bowel or help it move more regularly. A gastroenterologist decides if they suit you.",
+ ]),
+ ("Medicines and conditions that slow the bowel", [
+  "Iron and calcium tablets, strong opioid-type painkillers, some antacids, some blood pressure tablets, and some medicines for depression, allergy or bladder control can all cause constipation. So can an underactive thyroid and long-standing diabetes. Do not stop a prescribed medicine on your own; ask whether it can be changed or a laxative added.",
+ ]),
+ ("Older adults, pregnancy and teenagers", [
+  "- Older adults: less movement, less water and many medicines make constipation common. Hard stool can get stuck low down, and watery stool may leak around it, which is easily mistaken for diarrhoea. New constipation in an older person still needs a check for a bowel cause.",
+  "- Pregnancy: hormones and iron tablets slow the bowel. Fibre, water and walking help most women. Some laxatives are considered safe in pregnancy, but check with your obstetrician before taking any medicine.",
+  "- Teenagers (12 and above): holding back stool because of school toilets or a painful fissure is common. A regular toilet time at home helps. Younger children should see their paediatrician.",
+ ]),
+ ("Common myths and warning signs", [
+  "- Myth: laxatives make the bowel lazy. Laxatives used as a doctor advises do not damage the bowel. The concern is strong products taken daily without advice.",
+  "- Myth: herbal churans are harmless. Some contain strong laxatives. Tell the doctor about any powder you take.",
+  "- Myth: more water alone cures constipation. Extra water helps only if you are not drinking enough. Fibre and routine matter more.",
+  "Book a visit if constipation is new after 45, does not improve with these steps, or comes with blood in the stool, weight loss, anaemia or a family history of bowel cancer.",
+  "Severe belly pain with a swollen belly, vomiting, and no stool or gas passing can mean the bowel is blocked: call 112 or go to the nearest emergency department.",
+ ]),
+],
+}
