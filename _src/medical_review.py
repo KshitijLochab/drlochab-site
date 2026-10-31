@@ -106,22 +106,53 @@ def apply(path, text):
         text = re.sub(r'"lastReviewed": "[^"]*"', f'"lastReviewed": "{d.isoformat()}"', text)
     return text
 
-def deep_sections(lang, slug, e):
-    """Deeper sections (cond_more_en/hi.py) for a condition or answer page, as HTML."""
+DEEP_T = {
+ "en": dict(sum_lbl="Summary", sum_note="the essentials in 2 minutes", jump_q="Want to know more?",
+            jump_p="The detailed guide below covers:", jump_btn="Read the detailed guide", kick="Detailed guide",
+            h="{n}: the detailed guide", meta="{k} sections · about {m} min read",
+            intro="For readers who want more than the summary: tests, treatment step by step, complications and follow-up.",
+            back="Back to the summary"),
+ "hi": dict(sum_lbl="सार", sum_note="2 मिनट में ज़रूरी बातें", jump_q="और जानना चाहते हैं?",
+            jump_p="नीचे विस्तार से दी गई जानकारी में:", jump_btn="विस्तार से पढ़ें", kick="विस्तार से जानकारी",
+            h="{n}: विस्तार से", meta="{k} भाग · पढ़ने में लगभग {m} मिनट",
+            intro="जो सार से ज़्यादा जानना चाहते हैं, उनके लिए: जाँचें, क़दम-दर-क़दम इलाज, जटिलताएँ और फ़ॉलो-अप।",
+            back="सार पर वापस जाएँ"),
+}
+
+def deep_parts(lang, slug, name, e):
+    """Deeper sections (cond_more_en/hi.py) for a condition or answer page.
+    Returns (jump, detailed): a 'Want to know more?' box with a link per section for under the summary, and the
+    'Detailed guide' block (its own H2, sections as H3) that goes lower on the page. ('', '') if the page has none."""
     import cond_more_en, cond_more_hi
     M = (cond_more_en if lang == "en" else cond_more_hi).MORE.get(slug)
     if not M:
-        return ""
+        return "", ""
+    T = DEEP_T[lang]
+    words = sum(len(" ".join([h] + items).split()) for h, items in M)
+    mins = max(2, round(words / (200 if lang == "en" else 160)))
     out = ""
-    for h, items in M:
+    for n, (h, items) in enumerate(M, 1):
         body, ul = "", []
         for it in items + [""]:
             if it.startswith("- "):
                 ul.append(f"<li>{e(it[2:])}</li>"); continue
             if ul: body += "<ul>" + "".join(ul) + "</ul>"; ul = []
             if it: body += f"<p>{e(it)}</p>"
-        out += f'<section class="deep"><h2>{e(h)}</h2>{body}</section>'
-    return out
+        out += f'<section id="detail-{n}"><h3><span class="det-n" aria-hidden="true">{n}</span>{e(h)}</h3>{body}</section>'
+    chips = "".join(f'<a href="#detail-{n}">{e(h)}</a>' for n, (h, _) in enumerate(M, 1))
+    jump = (f'<nav class="det-jump" aria-label="{e(T["kick"])}"><p class="det-q"><b>{e(T["jump_q"])}</b> {e(T["jump_p"])}</p>'
+            f'<div class="det-chips">{chips}</div>'
+            f'<a class="btn btn-solid btn-sm" href="#detailed">{e(T["jump_btn"])} ↓</a>'
+            f'<span class="det-meta">{e(T["meta"].format(k=len(M), m=mins))}</span></nav>')
+    detailed = (f'<section class="detailed" id="detailed" aria-labelledby="detailed-h"><div class="det-head"><p class="lbl">{e(T["kick"])}</p>'
+                f'<h2 id="detailed-h">{e(T["h"].format(n=name))}</h2><p class="det-intro">{e(T["intro"])} '
+                f'<span class="det-meta">{e(T["meta"].format(k=len(M), m=mins))}</span></p></div>{out}'
+                f'<p class="det-back"><a href="#summary">↑ {e(T["back"])}</a></p></section>')
+    return jump, detailed
+
+def summary_open(lang):
+    T = DEEP_T[lang]
+    return f'<div class="summary" id="summary"><p class="lbl">{T["sum_lbl"]} <span class="sum-note">· {T["sum_note"]}</span></p>'
 
 def check():
     import cond_more_en as _ce, cond_more_hi as _ch
