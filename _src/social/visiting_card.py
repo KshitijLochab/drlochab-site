@@ -24,8 +24,8 @@ PAD = BLEED + SAFE
 
 PLACES = [  # updated 30 Oct 2026 (timings from Dr. Lochab)
     ("Arcura Clinic", "M2K Corporate Park, 14 Mayfield Garden, Sector 51", "Mon–Sat 10 am – 5 pm<br>Sun 9 am – 1 pm", None),
-    ("Apollo Clinic", "Netaji Subhash Marg, Sector 52, Gurugram", "OPD from<br>6 November", None),
-    ("Apollo Hospitals", "Golf Course Road, Gurugram", "OPD from<br>6 November", "Associate Consultant, Gastroenterology &amp; Therapeutic Endoscopy"),
+    ("Apollo Clinic", "Netaji Subhash Marg, Sector 52, Gurugram", "OPD from<br>11 November", None),
+    ("Apollo Hospitals", "Golf Course Road, Gurugram", "OPD from<br>11 November", "Associate Consultant, Gastroenterology &amp; Therapeutic Endoscopy"),
 ]
 
 CSS = f"""
