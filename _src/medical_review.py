@@ -23,7 +23,9 @@ REVIEW_ALL = ("2026-10-31", ("/conditions/", "/procedures/", "/answers/", "/guid
 CHANGED = {"/answers/burping-and-hiccups/": "2026-10-31", "/diet-charts/pancreatitis/": "2026-10-31", "/gastroenterologist-in-gurgaon/": "2026-10-31",
            # 5 Nov 2026: diet box and common questions added to the 7 launch answers
            **{f"/answers/{s_}/": "2026-11-05" for s_ in ("is-fatty-liver-reversible", "is-endoscopy-painful", "diet-in-jaundice", "is-ibs-dangerous",
-                                                         "blood-in-stool-always-piles", "when-is-acidity-serious", "gas-and-bloating")}}
+                                                         "blood-in-stool-always-piles", "when-is-acidity-serious", "gas-and-bloating")},
+           # 5 Nov 2026: medicine names, course lengths and a cure percentage reworded
+           "/conditions/h-pylori-gastritis-ulcer/": "2026-11-05", "/conditions/hepatitis-b-c/": "2026-11-05"}
 DEEP_DATE = "2026-10-31"
 
 # key: (authors, title, journal, year, doi)
