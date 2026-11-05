@@ -23,6 +23,9 @@ def physician(full=False):
                   "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Armed Forces Medical College, Pune"},
                                {"@type": "CollegeOrUniversity", "name": "Medical College Baroda"},
                                {"@type": "Hospital", "name": "Medanta – The Medicity, Gurugram"}]})
+        import seo_en
+        p["knowsAbout"] = ["Gastroenterology", "Hepatology", "Therapeutic endoscopy", "Endoscopic ultrasound (EUS)", "ERCP"] + [c["seo"] for c in seo_en.CONDS]
+        p["availableService"] = [{"@type": "MedicalProcedure", "name": x["seo"], "url": f"https://drlochab.com/procedures/{x['slug']}/"} for x in seo_en.PROCS]
     return p
 
 EN = dict(

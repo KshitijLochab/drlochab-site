@@ -20,7 +20,10 @@ REVIEW_LOG = {}          # "/conditions/slug/": "YYYY-MM-DD", English path; the 
 REVIEW_ALL = ("2026-10-31", ("/conditions/", "/procedures/", "/answers/", "/guides/", "/diet-charts/"))
 # Pages whose content changed (dateModified and the sitemap lastmod follow): English path -> date. Pages with deeper
 # sections (cond_more) count as changed on DEEP_DATE.
-CHANGED = {"/answers/burping-and-hiccups/": "2026-10-31", "/diet-charts/pancreatitis/": "2026-10-31", "/gastroenterologist-in-gurgaon/": "2026-10-31"}
+CHANGED = {"/answers/burping-and-hiccups/": "2026-10-31", "/diet-charts/pancreatitis/": "2026-10-31", "/gastroenterologist-in-gurgaon/": "2026-10-31",
+           # 5 Nov 2026: diet box and common questions added to the 7 launch answers
+           **{f"/answers/{s_}/": "2026-11-05" for s_ in ("is-fatty-liver-reversible", "is-endoscopy-painful", "diet-in-jaundice", "is-ibs-dangerous",
+                                                         "blood-in-stool-always-piles", "when-is-acidity-serious", "gas-and-bloating")}}
 DEEP_DATE = "2026-10-31"
 
 # key: (authors, title, journal, year, doi)
@@ -87,6 +90,35 @@ def review_date(path):
     d = REVIEW_LOG.get(p) or (REVIEW_ALL[0] if REVIEW_ALL and p.startswith(REVIEW_ALL[1]) else None)
     return datetime.date.fromisoformat(d) if d else None
 
+_PUB = None
+def published(path):
+    """Date a page was first published: the first commit that added it (git), cached for the build."""
+    global _PUB
+    if _PUB is None:
+        import subprocess
+        _PUB = {}
+        try:
+            out = subprocess.run(["git", "log", "--diff-filter=A", "--reverse", "--format=@%as", "--name-only", "--", "*index.html"],
+                                 cwd=os.path.dirname(os.path.dirname(os.path.abspath(__file__))), capture_output=True, text=True, timeout=60).stdout
+            day = None
+            for line in out.splitlines():
+                if line.startswith("@"): day = line[1:]
+                elif line.endswith("index.html") and not line.startswith("_src/"):
+                    _PUB.setdefault("/" + line[:-len("index.html")], day)
+        except Exception:
+            pass
+    return _PUB.get(path)
+
+def _launch_page(path):
+    """Pages that were on the site before the repository history starts (launch, 5–15 Oct 2026)."""
+    import seo_en
+    parts = [x for x in _en_path(path).split("/") if x]
+    if len(parts) != 2: return len(parts) == 0
+    k, slug = parts
+    return ((k == "conditions" and slug in {c["slug"] for c in seo_en.CONDS}) or (k == "procedures" and slug in {p["slug"] for p in seo_en.PROCS})
+            or (k == "answers" and slug in {a["slug"] for a in seo_en.ANSWERS[:7]})
+            or (k == "guides" and slug in {"navratri-fasting-guide", "pregnancy-digestive-health", "children-digestive-health", "digestive-health-after-60"}))
+
 def apply(path, text):
     """Called by build_pages.write(): adds References before the share box and the reviewed-by line to the byline."""
     lang = "hi" if path.startswith("/hi/") else "en"
@@ -99,6 +131,17 @@ def apply(path, text):
     changed = CHANGED.get(p) or (DEEP_DATE if len(parts) == 2 and parts[0] in ("conditions", "answers") and parts[1] in cond_more_en.MORE else None)
     if changed:
         text = re.sub(r'"dateModified": "[^"]*"', f'"dateModified": "{changed}T09:00:00+05:30"', text)
+    if '"datePublished"' not in text:
+        m = re.search(r'"dateModified": "(\d{4}-\d{2}-\d{2})', text)
+        if m:
+            mod, git = m.group(1), published(path)
+            # The repo starts on 17 Oct 2026; pages written before that (the launch set) keep their own earlier date.
+            if git is None: pub = mod
+            elif git == "2026-10-17" and _launch_page(path): pub = mod if mod < "2026-10-17" else "2026-10-10"   # launch-set pages: their own early date, else the 10 Oct launch date
+            else: pub = git
+            if mod < pub:   # a default 'updated' date older than the page itself
+                text = re.sub(r'"dateModified": "[^"]*"', f'"dateModified": "{pub}T09:00:00+05:30"', text)
+            text = text.replace('"dateModified": "', f'"datePublished": "{pub}T09:00:00+05:30", "dateModified": "')
     d = review_date(path)
     if d and 'class="byline"' in text:
         ds = d.strftime("%-d %B %Y") if lang == "en" else f"{d.day} {MONTHS_HI[d.month - 1]} {d.year}"

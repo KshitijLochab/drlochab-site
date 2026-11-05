@@ -38,9 +38,13 @@ TRACK_CONDS = {"ibs-irritable-bowel-syndrome", "constipation", "acidity-reflux-g
 TRACK_TXT = {"en": ("Keep a symptom diary", "Log your bowel habits, symptoms and possible food triggers for 2 to 4 weeks, privately on your phone, and bring the summary to your visit.", "Open the gut health tracker"),
              "hi": ("लक्षणों की डायरी रखें", "2 से 4 हफ़्ते तक अपनी मल की आदत, लक्षण और संभावित खाने के ट्रिगर अपने फ़ोन पर निजी रूप से लिखें, और सारांश डॉक्टर के पास लाएँ।", "पेट की सेहत का ट्रैकर खोलें")}
 
-def tracker_note(lang):
+STOOL_CONDS = {"ibs-irritable-bowel-syndrome", "constipation", "ulcerative-colitis-crohns-disease"}   # also link the stool check (5 Nov 2026)
+STOOL_TXT = {"en": "Check your stool shape and colour", "hi": "मल का आकार और रंग जाँचें"}
+
+def tracker_note(lang, slug=""):
     h, p_, b = TRACK_TXT[lang]
-    return f'<section class="note"><p><b>{h}.</b> {p_}</p><p><a class="btn btn-ghost btn-sm" href="{url(lang, "tools", "gut-tracker")}">{b} →</a></p></section>'
+    stool = f' <a class="btn btn-ghost btn-sm" href="{url(lang, "tools", "stool-check")}">{STOOL_TXT[lang]} →</a>' if slug in STOOL_CONDS else ""
+    return f'<section class="note"><p><b>{h}.</b> {p_}</p><p><a class="btn btn-ghost btn-sm" href="{url(lang, "tools", "gut-tracker")}">{b} →</a>{stool}</p></section>'
 
 def aka(lang, slug):
     """'Also searched as' Hinglish line on Hindi pages (hinglish.py)."""
@@ -371,7 +375,7 @@ def build():
                 body.append(f'<p class="dc-link"><a class="btn btn-ghost btn-sm" href="{url(lang, "diet-charts", dc[0])}">{(diet_text_en if lang == "en" else diet_text_hi).UI["cond_link"]} →</a></p>')
             body.append(f'<section class="see"><h2>{t["when"]}</h2><p>{e(c["e"])}</p><a class="btn btn-sm see-book" href="{WA}" target="_blank" rel="noopener">{WA_ICON}{t["book_this"]}</a></section>')
             if base["slug"] in TRACK_CONDS:
-                body.append(tracker_note(lang))
+                body.append(tracker_note(lang, base["slug"]))
             body.append(guide_notes(lang, "conds", i))
             if detailed: body.append(detailed)
             body.append(faq_html(lang, x["faqs"]))
