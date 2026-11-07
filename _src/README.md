@@ -33,6 +33,7 @@ Requirements: Python Playwright with Chromium (`python3 -m playwright install ch
 - `social/week_2026_10_12.py`: example of a full week (Instagram EN and HI, Google post, WhatsApp Status) in one script.
 - `social/week_2026_10_26.py`: week of 26 Oct 2026 (Myth or fact? carousel from myths.json, Karwa Chauth in Hindi, indigestion carousel, Google post, 3 WhatsApp Status, broadcast).
 - `social/week_2026_11_02.py`: week of 2 Nov 2026 (Myth or fact? ultrasound carousel, pain under the right ribs carousel, Diwali "5 days, 5 diyas" in Hindi, Google post, 3 WhatsApp Status, broadcast).
+- `social/week_2026_11_09.py`: week of 9 Nov 2026 (Myth or fact? chest pain after a heavy meal, loss of appetite carousel with a hunger meter, Chhath Puja nirjala fast in Hindi, Google post, 3 WhatsApp Status, broadcast).
 - `social/log.md`: what has already been made and posted, to avoid repeats.
 
 See `BRAND.md` for colours, type, voice and rules.
@@ -128,3 +129,7 @@ See `BRAND.md` for colours, type, voice and rules.
 - At Dr. Lochab's request, every condition, procedure, answer, guide and diet chart page carries "Medically reviewed by Dr. Kshitij Lochab on 31 October 2026" (`medical_review.REVIEW_ALL`; per-page dates go in `REVIEW_LOG`). Structured data `lastReviewed` follows.
 - Deeper sections are live (`cond_more_en/hi.py` merges `deep/part*_en|hi.py`): all 14 condition pages (after "Treatment") and the answer pages for high SGPT/SGOT, typhoid and diet in jaundice (aimed at Hindi searches from Search Console). `medical_review.check()` stops the build if EN and HI differ in slugs, section counts or bullet positions.
 - `dateModified` moves to the change date for pages in `medical_review.CHANGED` and pages with deeper sections; the sitemap now carries `<lastmod>` from each page's dateModified (today for the home pages).
+
+### 7 Nov 2026: new pages and the reviewed-by line; home fonts inlined
+- `medical_review.review_date()`: the 31 Oct `REVIEW_ALL` date now applies only to pages published on or before that date. Newer pages carry no "Medically reviewed" line and no `lastReviewed`/`reviewedBy` in structured data until Dr. Lochab reviews them and their date is added to `REVIEW_LOG`.
+- `build_site.py` inlines the Latin `@font-face` rules from `webfonts/fonts.css` into both home pages (no render-blocking stylesheet on the first visit). Inner pages still link `fonts.css`.
