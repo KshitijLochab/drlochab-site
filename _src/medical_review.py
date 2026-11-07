@@ -89,7 +89,12 @@ def refs_html(lang, path):
 
 def review_date(path):
     p = _en_path(path)
-    d = REVIEW_LOG.get(p) or (REVIEW_ALL[0] if REVIEW_ALL and p.startswith(REVIEW_ALL[1]) else None)
+    d = REVIEW_LOG.get(p)
+    if not d and REVIEW_ALL and p.startswith(REVIEW_ALL[1]):
+        # 7 Nov 2026: a page added after the full review must not claim it. It gets the line once its own date is in REVIEW_LOG.
+        pub = published(p)
+        if (pub and pub <= REVIEW_ALL[0]) or (not pub and _launch_page(p)):
+            d = REVIEW_ALL[0]
     return datetime.date.fromisoformat(d) if d else None
 
 _PUB = None
@@ -149,6 +154,10 @@ def apply(path, text):
         ds = d.strftime("%-d %B %Y") if lang == "en" else f"{d.day} {MONTHS_HI[d.month - 1]} {d.year}"
         text = re.sub(r'<p class="byline">.*?</p>', f'<p class="byline">{T[lang]["by"]} · {T[lang]["rev"].format(d=ds)}</p>', text, count=1, flags=re.S)
         text = re.sub(r'"lastReviewed": "[^"]*"', f'"lastReviewed": "{d.isoformat()}"', text)
+    elif not d and REVIEW_ALL and _en_path(path).startswith(REVIEW_ALL[1]):
+        # Not reviewed yet (a page newer than REVIEW_ALL): no review claim in the structured data either.
+        text = re.sub(r'"lastReviewed": "[^"]*", ', "", text)
+        text = re.sub(r'"reviewedBy": \{[^{}]*(\{[^{}]*\}[^{}]*)*\}, ', "", text)
     return text
 
 DEEP_T = {

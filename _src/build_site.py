@@ -8,6 +8,10 @@ shutil.rmtree(OUT, ignore_errors=True)
 os.makedirs(f"{OUT}/hi")
 
 src = open("lochab-gastro.html").read()
+# 7 Nov 2026: the Latin @font-face rules (1.9 KB) are inlined on the two home pages, so the first screen no longer waits
+# for a render-blocking fonts.css request (Lighthouse mobile: ~120 ms). Inner pages keep the cached link.
+_fonts_css = "".join(l for l in open("webfonts/fonts.css", encoding="utf8").read().splitlines(True) if l.startswith("@font-face"))
+src = src.replace('<link rel="stylesheet" href="/assets/fonts/fonts.css">', "<style>" + _fonts_css.replace("\n", "") + "</style>", 1)
 
 schema = {
     "@context": "https://schema.org",

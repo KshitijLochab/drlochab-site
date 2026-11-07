@@ -75,7 +75,7 @@ PROBLEMS = {
 }
 # Other answer pages, shown as question chips under their organ.
 QS = {
- "stomach": ["when-is-acidity-serious", "is-endoscopy-painful", "is-pantoprazole-safe-long-term", "burping-and-hiccups", "weight-loss-injections-and-gut"],
+ "stomach": ["when-is-acidity-serious", "is-endoscopy-painful", "is-pantoprazole-safe-long-term", "burping-and-hiccups", "weight-loss-injections-and-gut", "loss-of-appetite"],
  "liver": ["is-fatty-liver-reversible", "high-sgpt-sgot-liver-function-test", "fatty-liver-grade-on-ultrasound", "fibroscan-test",
            "diet-in-jaundice", "when-is-liver-transplant-needed", "ultrasound-report-terms", "how-much-alcohol-is-safe-for-liver"],
  "gb": ["pain-under-right-ribs"], "pancreas": ["diabetes-and-digestive-system"],

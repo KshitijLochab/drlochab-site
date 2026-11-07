@@ -1,6 +1,17 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## Week of 9 Nov 2026 (Govardhan Puja Tue 10, Bhai Dooj Wed 11, Chhath Puja Fri 13 to Mon 16 Nov)
+Generator: social/week_2026_11_09.py (output in _src/out/week-2026-11-09/).
+- Instagram carousel (5 slides, EN), Mon 9 Nov: Myth or fact? "Chest pain after a heavy meal is just gas" (Myth Buster entry of 9 Nov): heart half-hidden behind gas bubbles above a festive plate; MYTH with an ECG strip; what to do (ECG first, then gas remedies; diabetes may mask pain); call 112 signs; play more at drlochab.com (phone shows Thursday's weight-loss myth). Links to answers/when-is-acidity-serious.
+- Instagram carousel (5 slides, EN), Wed 11 Nov: Not feeling hungry lately? (hunger meter gauge near E over a plate with one bite of roti; four short-lived causes; make every bite count: every 2 to 3 hours, protein, water between meals, no tonics on your own; see-a-doctor signs with 112; new answer page).
+- Instagram post (HI), Fri 13 Nov (Nahay Khay): छठ पूजा, निर्जला व्रत में सेहत का भी ध्यान (sunset over the river, soop with fruit, sugarcane and thekua; fluids on Nahay Khay and Kharna, Kharna prasad without overeating, break the fast with sips then light food, ask a doctor first with diabetes, kidney disease or pregnancy; dizziness, fainting, very little urine → 112). Links to hi/guides/navratri-fasting-guide.
+- Google Business Profile (EN): Not feeling hungry lately? (Learn more: answers/loss-of-appetite).
+- WhatsApp Status: Myth: chest pain is just gas (EN); छठ पूजा (HI); Not feeling hungry lately? (EN).
+- WhatsApp broadcast (EN + HI): new answer page, Loss of appetite (HI with Chhath wishes).
+- Captions carry name, qualifications, HMC Reg. No. HN-23524 and the AI line.
+- Site: new answer page loss-of-appetite (EN and HI, no reviewed-by line until Dr. Lochab adds its date to medical_review.REVIEW_LOG); Latin font rules inlined on the home pages (Lighthouse mobile 94 → 97).
+
 ## Week of 2 Nov 2026 (Dhanteras Fri 6 Nov, Diwali Sun 8 Nov)
 Generator: social/week_2026_11_02.py (output in _src/out/week-2026-11-02/).
 - Instagram carousel (5 slides, EN), Mon 2 Nov: Myth or fact? "My ultrasound is normal, so my stomach is fine" (Myth Buster entry of 2 Nov): ultrasound probe and scan fan with the liver seen and the stomach hidden behind gas bubbles; MYTH; endoscopy view of the lining with an ulcer + H. pylori test; see-a-doctor signs with 112; play more at drlochab.com (phone shows Thursday's pancreatitis myth). Links to procedures/upper-gi-endoscopy.
