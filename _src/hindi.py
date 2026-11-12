@@ -20,7 +20,7 @@ PAIRS = [
  ('<h1>Clear answers about your <em>stomach, liver and digestion.</em></h1>', '<h1>आपके <em>पेट, लिवर और पाचन</em> से जुड़े सवालों के सीधे जवाब।</h1>'),
  ('<p class="lede">Many gut and liver problems are easy to treat when they are caught early, and many others are harmless once properly checked. This page explains the common ones in plain language, so you know what to watch for and when to see a specialist.</p>',
   '<p class="lede">पेट और लिवर की कई बीमारियाँ समय पर पकड़ में आ जाएँ तो आसानी से ठीक हो जाती हैं, और कई तकलीफ़ें ठीक से जाँच के बाद मामूली निकलती हैं। यहाँ आम बीमारियों को आसान भाषा में समझाया गया है, ताकि आप जान सकें कि किन बातों पर ध्यान दें और विशेषज्ञ को कब दिखाएँ।</p>'),
- ('rel="noopener">WhatsApp to book</a>', 'rel="noopener">WhatsApp पर अपॉइंटमेंट</a>'),
+ ('data-ev="wa-hero">WhatsApp to book</a>', 'data-ev="wa-hero">WhatsApp पर अपॉइंटमेंट</a>'),
  ('<a class="btn btn-ghost" href="#symptoms">Check a symptom</a>', '<a class="btn btn-ghost" href="#symptoms">लक्षण देखें</a>'),
  ('<span>DrNB Gastroenterology, Medanta</span>', '<span>DrNB गैस्ट्रोएंटेरोलॉजी, मेदांता</span>'),
  ('<span>All-India Gold Medal</span>', '<span>ऑल-इंडिया गोल्ड मेडल</span>'),
@@ -126,7 +126,7 @@ PAIRS = [
   '<p>पुरानी रिपोर्ट, स्कैन और अपनी दवाइयों की लिस्ट साथ लाएँ। अगर पहले एंडोस्कोपी हुई है, तो उसकी रिपोर्ट भी लाएँ।</p>'),
  ('<span class="phone-lbl">Appointments &amp; video consultations</span>', '<span class="phone-lbl">अपॉइंटमेंट और वीडियो कंसल्टेशन</span>'),
  ('<span class="phone-lbl">Call or WhatsApp</span>', '<span class="phone-lbl">कॉल या WhatsApp करें</span>'),
- ('rel="noopener">Message on WhatsApp</a>', 'rel="noopener">WhatsApp पर मैसेज करें</a>'),
+ ('data-ev="wa-visit">Message on WhatsApp</a>', 'data-ev="wa-visit">WhatsApp पर मैसेज करें</a>'),
  ('id="copyPhone" type="button">Copy number</button>', 'id="copyPhone" type="button">नंबर कॉपी करें</button>'),
  ("<p>Can't travel? Video consultations are available for follow-ups and for reviewing reports.</p>",
   '<p>आ नहीं सकते? फ़ॉलो-अप और रिपोर्ट दिखाने के लिए वीडियो कंसल्टेशन उपलब्ध है।</p>'),
@@ -137,8 +137,8 @@ PAIRS = [
  ('<p><a href="https://share.google/9ZndZsg6NHVxeQfYl" target="_blank" rel="noopener" style="color:var(--warm-on-ink)">Google Business Profile</a>: directions, photos and reviews.</p>',
   '<p><a href="https://share.google/9ZndZsg6NHVxeQfYl" target="_blank" rel="noopener" style="color:var(--warm-on-ink)">Google बिज़नेस प्रोफ़ाइल</a>: रास्ता, फ़ोटो और रिव्यू।</p>'),
  ('<p>Also consulting at Apollo Hospitals, Golf Course Road, Gurugram.</p>', '<p>अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड, गुरुग्राम में भी देखते हैं।</p>'),
- ('<a class="fab" href="#visit" aria-label="Book a visit">', '<a class="fab" href="#visit" aria-label="अपॉइंटमेंट लें">'),
- ('<nav class="fabs" aria-label="Quick actions">', '<nav class="fabs" aria-label="तुरंत करें">'),
+ ('aria-label="Book a visit on WhatsApp"', 'aria-label="WhatsApp पर अपॉइंटमेंट लें"'),
+ ('<nav class="fabs at-top" id="fabs" aria-label="Quick actions">', '<nav class="fabs at-top" id="fabs" aria-label="तुरंत करें">'),
  ('</svg>\n  Book\n</a>', '</svg>\n  अपॉइंटमेंट\n</a>'),
 
  # footer
@@ -179,8 +179,12 @@ PAIRS = [
  ('"phoneNum","Number");', '"phoneNum","नंबर");'),
 
  # trust strip, open status, booking chips (18 Oct 2026)
- ('<b>Dr. Kshitij Lochab</b><span>Gold Medal DrNB · EUS &amp; ERCP fellowship</span><span class="id-open" id="openNow">Arcura Clinic, Sector 51, Gurugram</span></div><a class="btn btn-solid btn-sm" href="#visit">Book</a>',
-  '<b>डॉ. क्षितिज लोचब</b><span>DrNB में ऑल-इंडिया गोल्ड मेडल · EUS और ERCP फ़ेलोशिप</span><span class="id-open" id="openNow">आर्क्योरा क्लिनिक, सेक्टर 51, गुरुग्राम</span></div><a class="btn btn-solid btn-sm" href="#visit">अपॉइंटमेंट</a>'),
+ ('<b>Dr. Kshitij Lochab</b><span>Gold Medal DrNB · EUS &amp; ERCP fellowship</span><span class="id-open" id="openNow">Arcura Clinic, Sector 51, Gurugram</span></div>',
+  '<b>डॉ. क्षितिज लोचब</b><span>DrNB में ऑल-इंडिया गोल्ड मेडल · EUS और ERCP फ़ेलोशिप</span><span class="id-open" id="openNow">आर्क्योरा क्लिनिक, सेक्टर 51, गुरुग्राम</span></div>'),
+ ('</svg>Call</a><a class="btn btn-solid" id="waStrip"', '</svg>कॉल करें</a><a class="btn btn-solid" id="waStrip"'),
+ ('<a class="id-more" href="#visit">Clinic timings and directions ↓</a>', '<a class="id-more" href="#visit">क्लिनिक का समय और रास्ता ↓</a>'),
+ ('data-ev="call-hero">Call +91 96671 04882</a>', 'data-ev="call-hero">कॉल करें: +91 96671 04882</a>'),
+ ('aria-label="Call the clinic"', 'aria-label="क्लिनिक को कॉल करें"'),
  ('<p class="reason-lbl">What is the visit about? <span>Optional</span></p>', '<p class="reason-lbl">किस बारे में दिखाना है? <span>चाहें तो चुनें</span></p>'),
  ('<p class="reason-lbl">When suits you? <span>Optional</span></p>', '<p class="reason-lbl">कब आना ठीक रहेगा? <span>चाहें तो चुनें</span></p>'),
  ('const BOOK={hello:"Hello Dr. Lochab, I would like to book a consultation",about:" about: ",when:"Preferred time: ",src:"(Found you on drlochab.com)",',

@@ -103,6 +103,10 @@ for u in sorted(pages):
     for s in p.iframes:
         if re.match(r"(https?:)?//", s): err(u, f"external iframe {s}")
     if re.search(r"fetch\(\s*['\"`]https?://", pages[u]): err(u, "script fetches an external address")
+    if "goatcounter" in pages[u] and ("content-security-policy" in p.meta or u.startswith(PRIVATE_PAGES)):
+        err(u, "the visit counter must never be on a private tool page")
+    if re.search(r"<script[^>]+src=[\"'][^\"']*(goatcounter|zgo\.at|googletagmanager|google-analytics)", pages[u]):
+        err(u, "analytics script loaded from another site (the visit counter is the few inline lines in build_pages.counter_js only)")
     if u.startswith(PRIVATE_PAGES) and "connect-src 'none'" not in p.meta.get("content-security-policy", ""):
         err(u, "private tool page lost its Content-Security-Policy (connect-src 'none')")
     # links

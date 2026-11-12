@@ -1,6 +1,11 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 12 Nov 2026 (site, audit and booking path)
+- Full audit: 219 pages clean for script errors, links, overflow and accessibility. Fixed: /#fibre link landing under the header, slow Hindi home page (content-visibility), Apollo wording ("By appointment"), 404 page without contact buttons.
+- Phones: Call button next to WhatsApp on every page (floating and at the top); home page first screen is now the doctor card with Call/WhatsApp, then the heading, then the tool cards; a doctor card with clinic status, Call and WhatsApp under the opening paragraph of every article page.
+- Visit counter prepared (GoatCounter, no cookies), off until the site code is added to build_pages.GOATCOUNTER.
+
 ## 12 Nov 2026 (site, AI search readiness)
 - robots.txt names and allows AI crawlers; /llms.txt; IndexNow key and workflow for Bing; question headings on all condition and procedure pages (EN + HI); "About the author" box on every article page; Person schema as author.
 

@@ -1,9 +1,11 @@
 # drlochab.com
 
-Website of Dr. Kshitij Lochab, Consultant Gastroenterologist, Gurugram.
+Source of **[drlochab.com](https://drlochab.com)**, the website of Dr. Kshitij Lochab, Consultant Gastroenterologist and Therapeutic Endoscopist, Arcura Clinic, Sector 51, Gurugram (Gurgaon), India. Patients: please visit **https://drlochab.com** (English) or **https://drlochab.com/hi/** (Hindi).
+
+The pages in this repository are built from `_src/` (see `_src/README.md`); do not edit the built pages by hand.
 
 ## Files
-- `index.html`: the whole website
+- `index.html`: the home page
 - `tips.json`: the Gut Health Daily tips. Each tip has a `date` (YYYY-MM-DD). The site shows the latest tip whose date is today or earlier (India time). Tips with future dates stay hidden until their day comes.
 - `ibs.json`: the IBS Corner tips, same format and date rule as `tips.json`. Categories: Food, Habits, Mind, Know.
 - `dr-lochab.jpg`, `logo-mark.*`, `favicon.png`, `apple-touch-icon.png`, `og-image.jpg`: images

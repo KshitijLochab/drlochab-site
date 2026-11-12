@@ -5,6 +5,7 @@ the Gurgaon and About pages, and structured data. Change hours here, run publish
 APOLLO_CLINIC started 23 Oct 2026, Mon–Sat 4–6 pm. On 30 Oct 2026 Dr. Lochab gave new timings (used on the visiting card):
 Arcura Mon–Sat 10 am–5 pm and Sun 9 am–1 pm; Apollo Clinic, Sector 52 and Apollo Hospitals OPD from 6 November; on 5 Nov 2026 he moved the start to 11 November, timings still to be decided (so
 so the site says 'call or WhatsApp for timings' and Apollo is left out of the 'open now' line until they are added to SESSIONS).
+On 12 Nov 2026 (the start date had passed, timings still not fixed) he chose 'By appointment: call or WhatsApp for timings', with no date.
 ARCURA below holds the Arcura hours text used everywhere on the site.
 Booking at Apollo Clinic: his WhatsApp/phone or directly at the clinic. Address confirmed by him on 23 Oct 2026; the map link is the one he sent."""
 
@@ -30,11 +31,11 @@ APOLLO_CLINIC = dict(
  addr={"en": "Netaji Subhash Marg, Indira Colony 1, Sector 52, Gurugram, Haryana 122003",
        "hi": "नेताजी सुभाष मार्ग, इंदिरा कॉलोनी 1, सेक्टर 52, गुरुग्राम, हरियाणा 122003"},
  en=dict(name="Apollo Clinic, Sector 52", line="Apollo Clinic, Sector 52, Gurugram", place="Apollo Clinic, Sector 52",
-         hours=[("From 11 November", "timings to be announced; call or WhatsApp")], short="from 11 Nov",
-         book="Book on WhatsApp or call, or directly at the clinic.", dir="Directions to Apollo Clinic", chip="Apollo Clinic, Sector 52 (from 11 Nov)"),
+         hours=[("By appointment", "call or WhatsApp for timings")], short="by appointment",
+         book="Book on WhatsApp or call, or directly at the clinic.", dir="Directions to Apollo Clinic", chip="Apollo Clinic, Sector 52"),
  hi=dict(name="अपोलो क्लिनिक, सेक्टर 52", line="अपोलो क्लिनिक, सेक्टर 52, गुरुग्राम", place="अपोलो क्लिनिक, सेक्टर 52",
-         hours=[("11 नवंबर से", "समय जल्द बताया जाएगा; कॉल या WhatsApp करें")], short="11 नवंबर से",
-         book="WhatsApp या कॉल करके, या सीधे क्लिनिक पर अपॉइंटमेंट लें।", dir="अपोलो क्लिनिक का रास्ता", chip="अपोलो क्लिनिक, सेक्टर 52 (11 नवंबर से)"),
+         hours=[("अपॉइंटमेंट से", "समय जानने के लिए कॉल या WhatsApp करें")], short="अपॉइंटमेंट से",
+         book="WhatsApp या कॉल करके, या सीधे क्लिनिक पर अपॉइंटमेंट लें।", dir="अपोलो क्लिनिक का रास्ता", chip="अपोलो क्लिनिक, सेक्टर 52"),
 )
 ARCURA_PLACE = {"en": "Arcura, Sector 51", "hi": "आर्क्योरा, सेक्टर 51"}
 HOUR_TXT = {"en": {9: "9 am", 10: "10 am", 13: "1 pm", 16: "4 pm", 17: "5 pm", 18: "6 pm", 20: "8 pm"},

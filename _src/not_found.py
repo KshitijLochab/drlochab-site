@@ -22,12 +22,13 @@ def render(bp):
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="/assets/fonts/fonts-hi.css">
 <link rel="stylesheet" href="/assets/pages.css">
-<style>.nf{{max-width:760px;padding-block:48px 64px}}.nf h1{{margin:10px 0 24px}}.nf section{{margin-top:28px}}</style>
+<style>.nf{{max-width:760px;padding-block:48px 64px}}.nf h1{{margin:10px 0 24px}}.nf section{{margin-top:28px}}.nf-act{{display:flex;flex-wrap:wrap;gap:10px}}.nf-act svg{{width:18px;height:18px}}</style>
 </head>
 <body>
 <header class="top"><div class="wrap"><a class="brand" href="/"><img src="/logo-mark.svg" alt="" width="40" height="40"><span><span class="brand-name">Dr. Kshitij Lochab</span><span class="brand-sub">Gastroenterology · Liver · Endoscopy</span></span></a>
 <nav aria-label="Main"><a class="btn btn-solid btn-sm" href="/#visit">Book a visit</a></nav></div></header>
-<main class="wrap nf"><p class="eyebrow">404</p><h1>Page not found</h1><p class="lead" lang="hi">यह पेज नहीं मिला</p>{en}{hi}</main>
+<main class="wrap nf"><p class="eyebrow">404</p><h1>Page not found</h1><p class="lead" lang="hi">यह पेज नहीं मिला</p>
+<p class="nf-act"><a class="btn btn-ghost btn-sm" href="tel:+919667104882">{bp.PHONE_SVG}Call {bp.PHONE}</a> <a class="btn btn-solid btn-sm" href="{bp.WA}" target="_blank" rel="noopener">{bp.WA_ICON}WhatsApp</a></p>{en}{hi}</main>
 <footer><div class="wrap"><p>Dr. Kshitij Lochab · {bp.L["en"]["reg"]} · {bp.PHONE}</p></div></footer>
 </body></html>
 """
