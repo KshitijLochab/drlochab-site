@@ -12,6 +12,9 @@ src = open("lochab-gastro.html").read()
 # for a render-blocking fonts.css request (Lighthouse mobile: ~120 ms). Inner pages keep the cached link.
 _fonts_css = "".join(l for l in open("webfonts/fonts.css", encoding="utf8").read().splitlines(True) if l.startswith("@font-face"))
 src = src.replace('<link rel="stylesheet" href="/assets/fonts/fonts.css">', "<style>" + _fonts_css.replace("\n", "") + "</style>", 1)
+# 12 Nov 2026: Bing Webmaster Tools site verification (Dr. Lochab's account). Keep it: removing it un-verifies the site in Bing.
+BING_VERIFY = "D17A3BD49A74D3887ADBA01C904D085C"
+src = src.replace("<title>", f'<meta name="msvalidate.01" content="{BING_VERIFY}">\n<title>', 1)
 
 schema = {
     "@context": "https://schema.org",
