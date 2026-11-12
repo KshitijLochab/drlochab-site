@@ -133,3 +133,11 @@ See `BRAND.md` for colours, type, voice and rules.
 ### 7 Nov 2026: new pages and the reviewed-by line; home fonts inlined
 - `medical_review.review_date()`: the 31 Oct `REVIEW_ALL` date now applies only to pages published on or before that date. Newer pages carry no "Medically reviewed" line and no `lastReviewed`/`reviewedBy` in structured data until Dr. Lochab reviews them and their date is added to `REVIEW_LOG`.
 - `build_site.py` inlines the Latin `@font-face` rules from `webfonts/fonts.css` into both home pages (no render-blocking stylesheet on the first visit). Inner pages still link `fonts.css`.
+
+### 12 Nov 2026: AI search readiness
+- `robots.txt` (written by `build_site.py`, `AI_BOTS`) names the AI search, answer and training crawlers and allows them all (Dr. Lochab's choice), plus everyone else.
+- `/llms.txt` (`llms_txt.py`): key facts about Dr. Lochab and every English page with its summary, rebuilt from the pages on each build.
+- IndexNow: key file `/<INDEXNOW_KEY>.txt` from `build_site.py`; `.github/workflows/indexnow.yml` sends changed pages to Bing and other IndexNow engines after each push to main (run it by hand to send every page).
+- Condition and procedure section headings are the questions they answer (`qheads.py`, EN + HI), e.g. "What causes fatty liver?" / "फैटी लिवर की वजहें क्या हैं?". New conditions or procedures need an entry there or the build stops.
+- Every article page ends with an "About the author" box (`build_pages.author_box`, not on the About page). Medical pages' `author`/`reviewedBy` are now a `Person` (`build_pages.person`) who works for the practice (`Physician`); the About page's ProfilePage is about that Person.
+- Not done, by choice: prices (Dr. Lochab: no prices for now).

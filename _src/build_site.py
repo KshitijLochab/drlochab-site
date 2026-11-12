@@ -299,7 +299,16 @@ og.paste(photo.resize((504, 630), Image.LANCZOS), (1200 - 504, 0))
 og.save(f"{OUT}/og-image.jpg", quality=85)
 
 open(f"{OUT}/CNAME", "w").write("drlochab.com\n")
-open(f"{OUT}/robots.txt", "w").write("User-agent: *\nAllow: /\nSitemap: https://drlochab.com/sitemap.xml\n")
+# 12 Nov 2026: AI search and answer crawlers are named explicitly (all allowed, as is everything else), so the site
+# can be read and cited by ChatGPT, Perplexity, Claude, Gemini, Copilot and Bing. Dr. Lochab chose to allow training crawlers too.
+AI_BOTS = ["OAI-SearchBot", "ChatGPT-User", "GPTBot", "PerplexityBot", "Perplexity-User", "ClaudeBot", "Claude-SearchBot", "Claude-User",
+           "Google-Extended", "Bingbot", "Applebot", "Applebot-Extended", "DuckAssistBot", "CCBot", "meta-externalagent", "MistralAI-User"]
+open(f"{OUT}/robots.txt", "w").write("".join(f"User-agent: {b}\n" for b in AI_BOTS) + "Allow: /\n\nUser-agent: *\nAllow: /\n\n"
+                                     "Sitemap: https://drlochab.com/sitemap.xml\n")
+# IndexNow (Bing, Yandex, Seznam, Naver): the key file proves the site owns the key; .github/workflows/indexnow.yml
+# sends the pages changed by each push to main. Changing the key: change it here and in the workflow.
+INDEXNOW_KEY = "7194d169ca9e77cd28fe30f7bc9e57b3"
+open(f"{OUT}/{INDEXNOW_KEY}.txt", "w").write(INDEXNOW_KEY + "\n")
 import build_pages
 pairs = [("/", "/hi/")] + build_pages.build()
 import not_found
@@ -321,6 +330,10 @@ urls = "".join(
     for en, hi in pairs for u in (en, hi))
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n'
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + urls + "</urlset>\n")
+# 12 Nov 2026: /llms.txt, a plain-text map of the site for AI assistants (title, link and one-line summary of every English page,
+# with the Hindi twin noted), written from the built pages so it never goes out of date.
+import llms_txt
+open(f"{OUT}/llms.txt", "w", encoding="utf-8").write(llms_txt.render(OUT, pairs))
 # Keep "→" on the same line as the word before it, everywhere.
 for d, _, fs in os.walk(OUT):
     for f in fs:
