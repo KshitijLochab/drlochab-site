@@ -267,11 +267,22 @@ def physician(lang):
             "telephone": "+91-9667104882", "address": {"@type": "PostalAddress", "streetAddress": "Arcura Clinic, M2K Corporate Park, 14, Mayfield Garden, Sector 51",
             "addressLocality": "Gurugram", "addressRegion": "Haryana", "postalCode": "122003", "addressCountry": "IN"}}
 
+ABOUT_SLUG = "about-dr-kshitij-lochab"
+
+def person(lang):
+    """12 Nov 2026: the author and reviewer of every medical page is a Person (with credentials), who works at the practice (Physician)."""
+    return {"@type": "Person", "@id": "https://drlochab.com/#person", "name": "Dr. Kshitij Lochab", "honorificPrefix": "Dr.",
+            "jobTitle": "Consultant Gastroenterologist and Therapeutic Endoscopist", "url": f"{SITE}{pre(lang)}{ABOUT_SLUG}/",
+            "image": f"{SITE}/dr-lochab.jpg", "knowsLanguage": ["en", "hi"],
+            "sameAs": ["https://www.instagram.com/drlochab/", "https://www.linkedin.com/in/drlochab/", "https://arcuracare.com/dr-kshitij-lochab/"],
+            "alumniOf": [{"@type": "Hospital", "name": "Medanta – The Medicity, Gurugram"}],
+            "worksFor": {"@type": "Physician", "@id": "https://drlochab.com/#physician", "name": "Dr. Kshitij Lochab"}}
+
 def ld_page(lang, path, name, desc, about_type, about_name, faqs, mid_label, mid_anchor, upd=None):
     p = pre(lang); u = upd or UPDATED
     return {"@context": "https://schema.org", "@graph": [
         {"@type": "MedicalWebPage", "name": name, "description": desc, "url": SITE + path, "inLanguage": lang,
-         "lastReviewed": u[0], "dateModified": u[0] + "T09:00:00+05:30", "author": physician(lang), "reviewedBy": physician(lang),
+         "lastReviewed": u[0], "dateModified": u[0] + "T09:00:00+05:30", "author": person(lang), "reviewedBy": person(lang),
          "about": {"@type": about_type, "name": about_name}},
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": L[lang]["home"], "item": SITE + p},
@@ -301,7 +312,30 @@ def page_extras(path, text):
     if 'class="byline"' in text:
         i = text.index('class="byline"'); j = text.index("</p>", i) + 4
         text = text[:j] + top + text[j:]
+    if ABOUT_SLUG not in path:
+        bottom = author_box(lang) + bottom
     return text.replace("</article>", bottom + "</article>", 1)
+
+AUTHOR = {
+ "en": dict(h="About the author", role="Consultant Gastroenterologist and Therapeutic Endoscopist, Gurugram",
+            cred=["DrNB Gastroenterology, Medanta – The Medicity (All-India Gold Medal)", "Advanced Fellowship in EUS and ERCP",
+                  "Associate Consultant, Apollo Hospitals, Golf Course Road", "Haryana Medical Council Reg. No. HN\u201123524"],
+            p="Dr. Lochab sees adults and teenagers (12 and above) at Arcura Clinic, Sector 51, Gurugram, in English and Hindi. Every page on this site is prepared with AI assistance and reviewed by him.",
+            more="More about Dr. Lochab", alt="Dr. Kshitij Lochab"),
+ "hi": dict(h="लेखक के बारे में", role="कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट और थेराप्यूटिक एंडोस्कोपिस्ट, गुरुग्राम",
+            cred=["DrNB गैस्ट्रोएंटेरोलॉजी, मेदांता – द मेडिसिटी (ऑल-इंडिया गोल्ड मेडल)", "EUS और ERCP में एडवांस्ड फ़ेलोशिप",
+                  "एसोसिएट कंसल्टेंट, अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड", "हरियाणा मेडिकल काउंसिल रजि. नं. HN\u201123524"],
+            p="डॉ. लोचब आर्क्योरा क्लिनिक, सेक्टर 51, गुरुग्राम में वयस्कों और 12 साल से बड़े बच्चों को हिंदी और अंग्रेज़ी में देखते हैं। इस साइट का हर पेज AI की सहायता से तैयार होता है और वे ख़ुद उसकी समीक्षा करते हैं।",
+            more="डॉ. लोचब के बारे में और जानें", alt="डॉ. क्षितिज लोचब"),
+}
+
+def author_box(lang):
+    """12 Nov 2026: a visible author bio at the end of every article page (who wrote it, credentials, registration, link to About)."""
+    A = AUTHOR[lang]
+    return (f'<section class="author-box" aria-labelledby="author-h"><img src="/dr-lochab-thumb.jpg" width="72" height="72" alt="{e(A["alt"])}" loading="lazy">'
+            f'<div><h2 id="author-h">{A["h"]}</h2><p class="author-name"><a href="{pre(lang)}{ABOUT_SLUG}/">{"Dr. Kshitij Lochab" if lang == "en" else "डॉ. क्षितिज लोचब"}</a></p>'
+            f'<p class="author-role">{e(A["role"])}</p><ul class="author-cred">' + "".join(f"<li>{e(c)}</li>" for c in A["cred"]) + "</ul>"
+            f'<p>{e(A["p"])}</p><p><a href="{pre(lang)}{ABOUT_SLUG}/">{A["more"]} →</a></p></div></section>')
 
 def write(path, text):
     text = page_extras(path, text)
@@ -333,8 +367,12 @@ def guide_notes(lang, kind, idx):
         text = f'<p><b>{L[lang]["special"]}</b> {L[lang]["special_p"]}</p>'
     return f'<section class="note">{text}' + links([(url(lang, "guides", g["slug"]), x["name"]) for g, x in hits]) + "</section>"
 
+import qheads
+
 def build():
     D = load()
+    import qheads
+    qheads.check([c["slug"] for c in seo_en.CONDS], [p["slug"] for p in seo_en.PROCS])
     pages = []
     for lang, S in (("en", seo_en), ("hi", seo_hi)):
         d, t = D[lang], L[lang]
@@ -348,24 +386,25 @@ def build():
                     else f'{c["n"]}: {lead} लक्षण, कारण, जाँच और इलाज। डॉ. क्षितिज लोचब, गुरुग्राम।')
             import medical_review
             jump, detailed = medical_review.deep_parts(lang, base["slug"], c["n"], e)
-            summary = [f'<section><h2>{t["symptoms"]}</h2>{ul(c["g"])}</section>',
-                       f'<section><h2>{t["causes"]}</h2>{ul(x["causes"])}</section>',
-                       f'<section><h2>{t["tests"]}</h2><p>{e(x["tests"])}</p></section>',
-                       f'<section><h2>{t["treat"]}</h2><p>{e(c["h"])}</p></section>']
+            Q = lambda k: e(qheads.q(lang, k, "cond", base["slug"]))   # 12 Nov 2026: headings are the questions they answer
+            summary = [f'<section><h2>{Q("symptoms")}</h2>{ul(c["g"])}</section>',
+                       f'<section><h2>{Q("causes")}</h2>{ul(x["causes"])}</section>',
+                       f'<section><h2>{Q("tests")}</h2><p>{e(x["tests"])}</p></section>',
+                       f'<section><h2>{Q("treat")}</h2><p>{e(c["h"])}</p></section>']
             body = [f'<p class="lead">{e(c["w"])}</p>']
             # 31 Oct 2026: the original short sections are a labelled summary; the deeper sections follow lower down as a "Detailed guide"
             body += ([medical_review.summary_open(lang)] + summary + ["</div>", jump]) if detailed else summary
             if base["procs"]:
-                body.append(f'<section><h2>{t["proc_help"]}</h2>' + links([(url(lang, "procedures", seo_en.PROCS[j]["slug"]), d["PROCS"][j]["n"]) for j in base["procs"]]) + "</section>")
+                body.append(f'<section><h2>{Q("proc_help")}</h2>' + links([(url(lang, "procedures", seo_en.PROCS[j]["slug"]), d["PROCS"][j]["n"]) for j in base["procs"]]) + "</section>")
             if base["guide"] is not None:
                 g = d["GUIDES"][base["guide"]]
-                body.append(f'<section><h2>{t["diet"]}: {e(g["n"])}</h2><div class="guide">'
+                body.append(f'<section><h2>{Q("diet")}</h2><div class="guide">'
                             f'<div class="gcol more"><h3>{t["more"]}</h3>{ul(g["more"])}</div>'
                             f'<div class="gcol less"><h3>{t["less"]}</h3>{ul(g["less"])}</div>'
                             f'<div class="gcol know"><h3>{t["know"]}</h3>{ul(g["know"])}</div></div></section>')
             elif base["slug"] in cond_diet_en.DIET:
                 g = (cond_diet_en if lang == "en" else cond_diet_hi).DIET[base["slug"]]
-                body.append(f'<section><h2>{e(g["h"])}</h2><div class="guide">'
+                body.append(f'<section><h2>{Q("diet")}</h2><div class="guide">'
                             f'<div class="gcol more"><h3>{t["more"]}</h3>{ul(g["more"])}</div>'
                             f'<div class="gcol less"><h3>{t["less"]}</h3>{ul(g["less"])}</div>'
                             f'<div class="gcol know"><h3>{t["know"]}</h3>{ul(g["know"])}</div></div></section>')
@@ -373,7 +412,7 @@ def build():
             dc = [s_ for s_, _, c_ in diet_rules.PAGES if c_ == base["slug"]]
             if dc:
                 body.append(f'<p class="dc-link"><a class="btn btn-ghost btn-sm" href="{url(lang, "diet-charts", dc[0])}">{(diet_text_en if lang == "en" else diet_text_hi).UI["cond_link"]} →</a></p>')
-            body.append(f'<section class="see"><h2>{t["when"]}</h2><p>{e(c["e"])}</p><a class="btn btn-sm see-book" href="{WA}" target="_blank" rel="noopener">{WA_ICON}{t["book_this"]}</a></section>')
+            body.append(f'<section class="see"><h2>{Q("when")}</h2><p>{e(c["e"])}</p><a class="btn btn-sm see-book" href="{WA}" target="_blank" rel="noopener">{WA_ICON}{t["book_this"]}</a></section>')
             if base["slug"] in TRACK_CONDS:
                 body.append(tracker_note(lang, base["slug"]))
             body.append(guide_notes(lang, "conds", i))
@@ -401,19 +440,20 @@ def build():
             table = '<dl class="expect">' + "".join(f"<dt>{e(k)}</dt><dd>{e(v)}</dd>" for k, v in pr["d"]) + "</dl>"
             sec = lambda h, inner: f"<section><h2>{h}</h2>{inner}</section>"
             body = [f'<figure class="fig">{d["IL"][pr["il"]]}</figure>', f'<p class="lead">{e(pr["w"])}</p>']
-            if M.get("intro"): body.append(sec(t["about"], "".join(f"<p>{e(p_)}</p>" for p_ in M["intro"])))
-            body.append(sec(t["uses"], ul(x["uses"])))
-            if M.get("prep"): body.append(sec(t["prep"], ul(M["prep"])))
+            Q = lambda k: e(qheads.q(lang, k, "proc", base["slug"]))
+            if M.get("intro"): body.append(sec(Q("about"), "".join(f"<p>{e(p_)}</p>" for p_ in M["intro"])))
+            body.append(sec(Q("uses"), ul(x["uses"])))
+            if M.get("prep"): body.append(sec(Q("prep"), ul(M["prep"])))
             body.append(prep_guides.proc_note(lang, __import__(__name__), base["slug"]))
-            if M.get("day"): body.append(sec(t["day"], f"<p>{e(M['day'])}</p><h3>{t['glance']}</h3>{table}"))
-            else: body.append(sec(t["expect"], table))
-            if M.get("after"): body.append(sec(t["after"], ul(M["after"])))
-            body.append(sec(t["risks"], f"<p>{e(M.get('risks') or x['risks'])}</p>"))
-            if M.get("alarm"): body.append(f'<section class="alarm"><h2>{t["alarm"]}</h2>{ul(M["alarm"])}<p class="small">{e(t["disc"])}</p></section>')
-            if M.get("alts"): body.append(sec(t["alts"], f"<p>{e(M['alts'])}</p>"))
-            body.append(sec(t["treats"], links([(url(lang, "conditions", seo_en.CONDS[j]["slug"]), d["CONDITIONS"][j]["n"]) for j in base["conds"]])))
+            if M.get("day"): body.append(sec(Q("day"), f"<p>{e(M['day'])}</p><h3>{t['glance']}</h3>{table}"))
+            else: body.append(sec(Q("expect"), table))
+            if M.get("after"): body.append(sec(Q("after"), ul(M["after"])))
+            body.append(sec(Q("risks"), f"<p>{e(M.get('risks') or x['risks'])}</p>"))
+            if M.get("alarm"): body.append(f'<section class="alarm"><h2>{Q("alarm")}</h2>{ul(M["alarm"])}<p class="small">{e(t["disc"])}</p></section>')
+            if M.get("alts"): body.append(sec(Q("alts"), f"<p>{e(M['alts'])}</p>"))
+            body.append(sec(Q("treats"), links([(url(lang, "conditions", seo_en.CONDS[j]["slug"]), d["CONDITIONS"][j]["n"]) for j in base["conds"]])))
             body.append(guide_notes(lang, "procs", i))
-            if M: body.append(sec(e(t["where"].format(n=x["seo"])), f"<p>{e(t['where_p'])}</p>"))
+            if M: body.append(sec(Q("where"), f"<p>{e(t['where_p'])}</p>"))
             body.append(faq_html(lang, faqs))
             if base["answer"]:
                 body.append(f'<section><h2>{t["read"]}</h2>' + links(answer_links(lang, S, base["answer"])) + "</section>")

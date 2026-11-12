@@ -1,0 +1,46 @@
+# Tells Bing (and other IndexNow search engines: Yandex, Seznam, Naver) which pages changed, right after a change reaches main.
+# Bing's index also feeds ChatGPT search and Microsoft Copilot. Added 12 Nov 2026.
+# The key file /<key>.txt is written by _src/build_site.py (INDEXNOW_KEY); keep the two in step.
+# Run it by hand (Actions → IndexNow → Run workflow) to submit every page in the sitemap.
+name: IndexNow
+on:
+  push:
+    branches: [main]
+    paths: ["**/index.html", "sitemap.xml", "!_src/**"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ping:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      KEY: 7194d169ca9e77cd28fe30f7bc9e57b3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: List changed pages
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ -z "${{ github.event.before }}" ] || [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+            grep -o '<loc>[^<]*</loc>' sitemap.xml | sed 's/<\/*loc>//g' > urls.txt
+          else
+            git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- '*index.html' ':!_src' \
+              | sed -e 's#index.html$##' -e 's#^#https://drlochab.com/#' > urls.txt
+          fi
+          wc -l < urls.txt
+      - name: Wait for GitHub Pages to publish
+        run: sleep 120
+      - name: Send to IndexNow
+        run: |
+          [ -s urls.txt ] || { echo "No pages changed."; exit 0; }
+          python3 - <<'EOF'
+          import json, os, urllib.request
+          urls = [u.strip() for u in open("urls.txt") if u.strip()][:10000]
+          body = json.dumps({"host": "drlochab.com", "key": os.environ["KEY"],
+                             "keyLocation": f"https://drlochab.com/{os.environ['KEY']}.txt", "urlList": urls}).encode()
+          req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body,
+                                       headers={"Content-Type": "application/json; charset=utf-8"})
+          with urllib.request.urlopen(req, timeout=30) as r:
+              print("IndexNow:", r.status, "for", len(urls), "pages")
+          EOF

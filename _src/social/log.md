@@ -1,6 +1,9 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 12 Nov 2026 (site, AI search readiness)
+- robots.txt names and allows AI crawlers; /llms.txt; IndexNow key and workflow for Bing; question headings on all condition and procedure pages (EN + HI); "About the author" box on every article page; Person schema as author.
+
 ## Week of 9 Nov 2026 (Govardhan Puja Tue 10, Bhai Dooj Wed 11, Chhath Puja Fri 13 to Mon 16 Nov)
 Generator: social/week_2026_11_09.py (output in _src/out/week-2026-11-09/).
 - Instagram carousel (5 slides, EN), Mon 9 Nov: Myth or fact? "Chest pain after a heavy meal is just gas" (Myth Buster entry of 9 Nov): heart half-hidden behind gas bubbles above a festive plate; MYTH with an ECG strip; what to do (ECG first, then gas remedies; diabetes may mask pain); call 112 signs; play more at drlochab.com (phone shows Thursday's weight-loss myth). Links to answers/when-is-acidity-serious.

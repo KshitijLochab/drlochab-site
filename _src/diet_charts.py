@@ -106,7 +106,7 @@ def ld(lang, bp, path, name, desc, faqs, idx=False):
     if not idx:
         items.append({"@type": "ListItem", "position": 3, "name": name, "item": bp.SITE + path})
     g = [{"@type": "MedicalWebPage", "name": name, "description": desc, "url": bp.SITE + path, "inLanguage": lang, "lastReviewed": UPD[0], "dateModified": UPD[0] + "T09:00:00+05:30",
-          "author": bp.physician(lang), "reviewedBy": bp.physician(lang), "about": {"@type": "Diet", "name": name}},
+          "author": bp.person(lang), "reviewedBy": bp.person(lang), "about": {"@type": "Diet", "name": name}},
          {"@type": "BreadcrumbList", "itemListElement": items}]
     if faqs:
         g.append({"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]})

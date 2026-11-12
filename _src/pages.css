@@ -201,3 +201,14 @@ h1,h2{overflow-wrap:break-word;hyphens:auto}
 #summary,#detailed,.detailed section[id]{scroll-margin-top:96px}
 @media print{.det-jump,.det-back{display:none!important}}
 .short{scroll-margin-top:96px}
+
+/* 12 Nov 2026: author bio at the end of every article */
+.author-box{display:flex;gap:18px;align-items:flex-start;margin-top:36px;padding:20px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.author-box img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none}
+.author-box h2{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 4px;font-family:inherit;font-weight:600}
+.author-box p{margin:4px 0}
+.author-box .author-name{font-size:1.15rem;font-weight:600}
+.author-box .author-role{color:var(--muted);font-size:.95rem}
+.author-cred{margin:8px 0;padding-left:18px;font-size:.92rem}
+@media (max-width:480px){.author-box{flex-direction:column}}
+@media print{.author-box img{display:none}}

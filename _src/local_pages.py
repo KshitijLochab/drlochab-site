@@ -211,8 +211,8 @@ def render(lang, bp, kind, conds, procs):
                 + sec(X["reg_h"], f"<p>{e(X['reg'])}</p>") + sec(X["lang_h"], f"<p>{e(X['langs'])}</p>")
                 + sec(ONLINE[lang][0], '<div class="links">' + "".join(f'<a href="{u}" target="_blank" rel="noopener">{e(n)} <span aria-hidden="true">→</span></a>' for u, n in zip((INSTAGRAM, LINKEDIN, ARCURA, GBP), ONLINE[lang][1:])) + "</div>")
                 + bp.faq_html(lang, X["faqs"]))
-        graph = [{"@type": "ProfilePage", "url": bp.SITE + path, "name": X["title"], "inLanguage": lang, "dateCreated": UPD[0] + "T09:00:00+05:30", "dateModified": UPD[0] + "T09:00:00+05:30", "mainEntity": {"@id": "https://drlochab.com/#physician"}},
-                 physician(full=True)]
+        graph = [{"@type": "ProfilePage", "url": bp.SITE + path, "name": X["title"], "inLanguage": lang, "dateCreated": UPD[0] + "T09:00:00+05:30", "dateModified": UPD[0] + "T09:00:00+05:30", "mainEntity": {"@id": "https://drlochab.com/#person"}},
+                 dict(bp.person(lang), description=X["title"]), physician(full=True)]   # 12 Nov 2026: the profile is about the person
     ld = {"@context": "https://schema.org", "@graph": graph + [
         {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": t["home"], "item": bp.SITE + bp.pre(lang)},
                                                        {"@type": "ListItem", "position": 2, "name": X["h1"], "item": bp.SITE + path}]},
