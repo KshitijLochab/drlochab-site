@@ -42,10 +42,40 @@ const fail = (where, msg) => fails.push(`${where}: ${msg}`);
     if (!wa.startsWith('https://wa.me/919667104882?text=') || wa.length < 60) fail(`/${lang}`, 'WhatsApp booking link is wrong: ' + wa.slice(0, 80));
     if ((await pg.$$('#procGrid .ptile')).length < 9) fail(`/${lang}`, 'procedure tiles missing');
   }
+  // 2b. phones: one-tap Call and WhatsApp at the top of the home page and under the opening paragraph of an article, and as floating buttons
+  for (const [u, top] of [['/', '.id-cta'], ['/hi/', '.id-cta'], ['/conditions/fatty-liver/', '.ds-cta'], ['/hi/answers/gas-and-bloating/', '.ds-cta'], ['/procedures/ercp/', '.ds-cta']]) {
+    await pg.goto(BASE + u); await pg.waitForTimeout(500);
+    const r = await pg.evaluate(sel => {
+      const box = document.querySelector(sel); if (!box) return { box: false };
+      const vis = e => !!e && e.getBoundingClientRect().width > 0;
+      const tel = box.querySelector('a[href="tel:+919667104882"]'), wa = box.querySelector('a[href^="https://wa.me/919667104882?text="]');
+      return { box: true, y: Math.round(box.getBoundingClientRect().top + scrollY), tel: vis(tel), wa: vis(wa),
+               fabCall: !!document.querySelector('.fabs .fab-call[href="tel:+919667104882"]'), fabWa: !!document.querySelector('.fabs a.fab[href^="https://wa.me/919667104882?text="]') };
+    }, top);
+    if (!r.box || !r.tel || !r.wa) fail(u, 'Call and WhatsApp buttons near the top are missing');
+    else if (r.y > 1300) fail(u, `Call and WhatsApp buttons are too far down the page (${r.y}px)`);
+    if (!r.fabCall || !r.fabWa) fail(u, 'floating Call or WhatsApp button is missing');
+  }
+  // 2c. the floating buttons show once the top buttons have scrolled away, and fit side by side on a small phone
+  {
+    const small = await b.newContext({ viewport: { width: 360, height: 740 } }); const sp = await small.newPage();
+    for (const u of ['/', '/hi/', '/conditions/fatty-liver/', '/hi/conditions/fatty-liver/']) {
+      await sp.goto(BASE + u); await sp.waitForTimeout(400); await sp.evaluate(() => scrollTo(0, 3000)); await sp.waitForTimeout(500);
+      const boxes = await sp.$$eval('.fabs .fab', x => x.map(e => { const r = e.getBoundingClientRect(), s = getComputedStyle(e); return { l: r.left, r: r.right, shown: s.visibility !== 'hidden' && r.width > 0 }; }));
+      if (boxes.length < 3 || boxes.some(x => !x.shown)) fail(u, 'floating Diet charts, Call and Book buttons are not all showing after scrolling');
+      const s = boxes.slice().sort((x, y) => x.l - y.l);
+      if (s.some((x, i) => i && x.l < s[i - 1].r - 1) || s[0].l < 0 || s[s.length - 1].r > 360) fail(u, 'floating buttons overlap or run off a 360px screen');
+    }
+    await small.close();
+  }
   // 3. a shared link to the booking section lands on it
   await pg.goto(`${BASE}/#visit`); await pg.waitForTimeout(2200);
   const top = await pg.$eval('#visit', e => e.getBoundingClientRect().top);
   if (Math.abs(top - 70) > 40) fail('/#visit', `lands ${Math.round(top)}px from the top`);
+  // 3b. a shared link to the Thali meter opens it, with the section heading and tabs showing (not hidden under the header)
+  await pg.goto(`${BASE}/#fibre`); await pg.waitForTimeout(2200);
+  const fib = await pg.evaluate(() => ({ hidden: document.getElementById('fibre').hidden, top: document.getElementById('daily').getBoundingClientRect().top }));
+  if (fib.hidden || Math.abs(fib.top - 70) > 40) fail('/#fibre', `Thali meter link lands wrongly (hidden=${fib.hidden}, section ${Math.round(fib.top)}px from the top)`);
   // 4. preparation planner makes a dated plan and a calendar file
   await pg.goto(`${BASE}/guides/colonoscopy-preparation/`);
   const d = new Date(Date.now() + 5 * 864e5).toISOString().slice(0, 10);
@@ -75,5 +105,5 @@ const fail = (where, msg) => fails.push(`${where}: ${msg}`);
   if (!csp.includes("connect-src 'none'")) fail('gut tracker', 'privacy policy header missing');
   await b.close();
   if (fails.length) { console.log(`${fails.length} problem(s):`); fails.forEach(f => console.log('  ✗', f)); process.exit(1); }
-  console.log(`Browser checks passed (${PAGES.length} pages at 2 widths, 6 journeys).`);
+  console.log(`Browser checks passed (${PAGES.length} pages at 2 widths, 9 journeys).`);
 })().catch(e => { console.error(e); process.exit(1); });

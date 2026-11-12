@@ -122,13 +122,32 @@ section[id]{scroll-margin-top:84px}
 
 footer{padding-block:36px 56px;font-size:.88rem;color:var(--muted);border-top:1px solid var(--line)}
 .fab{display:none}
+/* floating buttons on phones: Diet charts (left), Call and Book on WhatsApp (right). 12 Nov 2026 */
 @media (max-width:760px){
-  .fab{display:flex;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;padding:13px 20px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.22)}
-  .fab-diet{right:auto;left:16px;align-items:center;gap:8px;background:var(--surface);color:var(--accent);border:1.5px solid var(--accent);padding:12px 16px}
-  .fab-diet svg{width:20px;height:20px}
+  .fabs{display:flex;align-items:center;gap:8px;position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:20;pointer-events:none}
+  .fab{display:flex;align-items:center;gap:8px;pointer-events:auto;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;padding:13px 18px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.22);white-space:nowrap}
+  .fab svg{width:20px;height:20px;flex:none}
+  .fab-call{margin-left:auto;padding:0;width:50px;height:50px;justify-content:center;background:var(--surface);color:var(--accent);border:1.5px solid var(--accent)}
+  .fab-call svg{width:22px;height:22px}
+  .fab-diet{order:-1;background:var(--surface);color:var(--accent);border:1.5px solid var(--accent);padding:12px 16px}
+  .fabs .fab{transition:opacity .2s}
+  .fabs.at-top .fab:not(.fab-diet){opacity:0;visibility:hidden}
   footer{padding-bottom:110px}
 }
-.alarm{background:var(--urgent-soft);border-radius:18px;padding:22px 24px}
+@media (max-width:350px){.fab-diet span{display:none}.fab-diet{padding:12px}}
+/* who wrote this and how to book, under the opening paragraph on phones and tablets (the booking box is at the end there) */
+.doc-strip{display:none}
+@media (max-width:900px){
+  .doc-strip{display:grid;grid-template-columns:48px minmax(0,1fr);gap:10px 12px;align-items:center;margin:20px 0 28px;padding:12px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+  .doc-strip img{width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:center 12%;background:var(--line)}
+  .ds-t{display:grid;gap:1px;min-width:0}.ds-t b{font-family:var(--display);font-weight:400;font-size:1.02rem;line-height:1.2}
+  .ds-t span{font-size:.8rem;color:var(--muted);line-height:1.35}
+  .ds-open{display:flex;align-items:center;gap:6px;font-weight:600}.ds-open::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--muted)}
+  .ds-open.is-open{color:var(--accent)}.ds-open.is-open::before{background:#2E9C86;box-shadow:0 0 0 3px rgba(46,156,134,.2)}
+  .ds-cta{grid-column:1/-1;display:grid;grid-template-columns:1fr 1.25fr;gap:10px}
+  .ds-cta .btn{justify-content:center;gap:8px;padding:10px}.ds-cta svg{width:18px;height:18px;flex:none}
+}
+
 .alarm h2{color:var(--urgent)}
 .alarm .small{margin-top:10px}
 section h3{margin-top:18px}
@@ -153,7 +172,7 @@ section h3{margin-top:18px}
 
 /* print: a clean chart or guide on paper */
 @media print{
- .top,.season,aside.cta,.fab,.dd-wrap,.share-top,.share-end,.dc-jump,.dc-link,footer .foot-links,footer .chan,.links,.toc{display:none!important}
+ .top,.season,aside.cta,.fab,.fabs,.doc-strip,.dd-wrap,.share-top,.share-end,.dc-jump,.dc-link,footer .foot-links,footer .chan,.links,.toc{display:none!important}
  body{background:#fff;color:#000;font-size:11pt}
  .grid{display:block}
  .dc-slot,.dc-targets>div,.dc-care>div,.gcol,.dc-goals li,.dc-str,.faq{break-inside:avoid;border-color:#bbb}

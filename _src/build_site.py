@@ -350,6 +350,8 @@ for d, _, fs in os.walk(OUT):
             if f == "index.html" and os.path.relpath(d, OUT) in (".", "hi") and "const GUIDES=[" in h2:
                 i = h2.index("const GUIDES=["); j = h2.index("];", i) + 3
                 h2 = h2[:i] + h2[j:]
+            if f != "404.html":
+                h2 = build_pages.add_counter(h2, "hi" if os.path.relpath(d, OUT).split(os.sep)[0] == "hi" else "en")   # nothing unless GOATCOUNTER is set
             if h2 != h: open(fp, "w", encoding="utf-8").write(h2)
 print("pages:", len(pairs) * 2)
 print("built:", sorted(os.listdir(OUT)), sorted(os.listdir(f"{OUT}/hi")))

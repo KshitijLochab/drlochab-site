@@ -24,6 +24,33 @@ ANSWER_IL = {"capsule-endoscopy": "capsule"}  # answer pages that show a home-pa
 # answer pages that are really diet questions -> their full diet chart (linked both ways)
 ANSWER_DIET = {"diet-in-jaundice": "jaundice-hepatitis", "is-fatty-liver-reversible": "fatty-liver"}
 WA_CHANNEL = ""
+# 12 Nov 2026: privacy-friendly visit counter (GoatCounter), asked for by Dr. Lochab so he can tell "nobody visits" from
+# "people visit but do not book". Put the site code here (for https://drlochab.goatcounter.com the code is "drlochab");
+# while it is empty nothing is counted and nothing is added to any page.
+# What it sends: one small image request per page view (path, page title, referring site, screen size) and one per tap on a
+# Call / WhatsApp button (the data-ev names). No cookies, no personal data, no outside script: the few lines below are the
+# whole thing. It honours "Do Not Track" and is never added to the private tool pages (tracker, stool check, diet charts and
+# food diary), whose Content-Security-Policy would block it anyway; tests/check_site.py enforces that.
+GOATCOUNTER = ""
+COUNTER_NOTE = {"en": "This site counts page visits without cookies or personal data.",
+                "hi": "यह साइट बिना कुकी और बिना निजी जानकारी के सिर्फ़ पेज विज़िट गिनती है।"}
+
+def counter_js():
+    if not GOATCOUNTER:
+        return ""
+    return ('<script data-counter>(function(){var G="https://' + GOATCOUNTER + '.goatcounter.com/count";'
+            'if(location.hostname!=="drlochab.com"||navigator.doNotTrack==="1"||/bot|crawl|spider|lighthouse|headless|preview/i.test(navigator.userAgent))return;'
+            'function c(p,t,ev){new Image().src=G+"?p="+encodeURIComponent(p)+"&t="+encodeURIComponent(t)+(ev?"&e=true":"&r="+encodeURIComponent(document.referrer))'
+            '+"&s="+screen.width+","+screen.height+","+(window.devicePixelRatio||1)+"&rnd="+Math.random().toString(36).slice(2)}'
+            'c(location.pathname,document.title);'
+            'document.addEventListener("click",function(x){var a=x.target.closest&&x.target.closest("[data-ev]");if(a)c("tap-"+a.getAttribute("data-ev"),location.pathname,1)},true)})();</script>')
+
+def add_counter(html_text, lang):
+    """Called by build_site.py for every finished page. Pages with a Content-Security-Policy (the private tools) are left alone."""
+    if not GOATCOUNTER or "Content-Security-Policy" in html_text or "</body>" not in html_text or "data-counter" in html_text:
+        return html_text
+    html_text = html_text.replace('<p class="ai-note">', f'<p class="ai-note">{COUNTER_NOTE[lang]} ', 1)
+    return html_text.replace("</body>", counter_js() + "</body>", 1)
 FOOT_LINKS = {"en": ("About Dr. Lochab", "Gastroenterologist in Gurgaon", "Gut health tracker"), "hi": ("डॉ. लोचब के बारे में", "गुड़गाँव में गैस्ट्रोएंटेरोलॉजिस्ट", "पेट की सेहत का ट्रैकर")}
 SOCIAL = {"en": ("Instagram @drlochab", "LinkedIn", "Profile on Arcura Clinic"), "hi": ("Instagram @drlochab", "LinkedIn", "आर्क्योरा क्लिनिक पर प्रोफ़ाइल")}
 
@@ -236,8 +263,8 @@ def links(items):
 
 def aside(lang):
     t = L[lang]
-    return f"""<aside class="cta"><h2>{t['cta_h']}</h2><p class="lbl">{t['cta_p']}</p><a class="num" href="tel:+919667104882" aria-label="{t['cta_call']}: {PHONE}"><span class="num-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg></span>{PHONE}</a><p class="small">{t['cta_call']}</p>
-<a class="btn btn-solid" href="{WA}" target="_blank" rel="noopener">{t['cta_wa']}</a>
+    return f"""<aside class="cta"><h2>{t['cta_h']}</h2><p class="lbl">{t['cta_p']}</p><a class="num" href="tel:+919667104882" data-ev="call-box" aria-label="{t['cta_call']}: {PHONE}"><span class="num-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg></span>{PHONE}</a><p class="small">{t['cta_call']}</p>
+<a class="btn btn-solid" href="{WA}" target="_blank" rel="noopener" data-ev="wa-box">{t['cta_wa']}</a>
 <p class="small">{t['clinic']}</p><p class="small"><b>{t['hours']}</b></p><p class="small">{__import__("clinics").APOLLO_CLINIC[lang]["line"]} · <b>{__import__("clinics").APOLLO_CLINIC[lang]["short"]}</b></p><p class="small">{t['also']}</p>
 <p class="small"><a href="{pre(lang)}about-dr-kshitij-lochab/">{FOOT_LINKS[lang][0]} →</a></p></aside>"""
 
@@ -247,9 +274,54 @@ PLATE_SVG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
 WA_ICON = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
            '<path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>')
 
+PHONE_SVG = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1'
+             'A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>')
+# 12 Nov 2026: short labels for the phone buttons (Call next to WhatsApp everywhere, at Dr. Lochab's request)
+TAP = {"en": dict(call="Call", call_aria="Call the clinic", wa="WhatsApp", book="Book", book_aria="Book a visit on WhatsApp",
+                  where="Gastroenterologist · Arcura Clinic, Sector 51, Gurugram", strip="Book a consultation"),
+       "hi": dict(call="कॉल करें", call_aria="क्लिनिक को कॉल करें", wa="WhatsApp", book="अपॉइंटमेंट", book_aria="WhatsApp पर अपॉइंटमेंट लें",
+                  where="गैस्ट्रोएंटेरोलॉजिस्ट · आर्क्योरा क्लिनिक, सेक्टर 51, गुरुग्राम", strip="अपॉइंटमेंट लें")}
+
 def diet_fab(lang, href):
-    """Phone-only floating link to the diet charts, bottom left (the Book button sits bottom right)."""
-    return f'<a class="fab fab-diet" href="{href}">{PLATE_SVG}{L[lang]["dietnav"]}</a>'
+    """Phone-only floating link to the diet charts, bottom left (Call and Book sit bottom right)."""
+    return f'<a class="fab fab-diet" href="{href}">{PLATE_SVG}<span>{L[lang]["dietnav"]}</span></a>'
+
+def doc_strip(lang):
+    """12 Nov 2026: on phones and tablets the booking box sits at the very end of the page, so a compact card under the opening
+    paragraph says who wrote the page, where he sees patients and when the clinic is next open, with Call and WhatsApp buttons.
+    Hidden on wide screens (the booking box is beside the article there) and in print."""
+    import clinics
+    T = TAP[lang]; name = "Dr. Kshitij Lochab" if lang == "en" else "डॉ. क्षितिज लोचब"
+    js = ("<script>" + clinics.open_js(lang) + "(function(){var el=document.getElementById('dsOpen');if(!el)return;"
+          "var now=new Date(Date.now()+(330+new Date().getTimezoneOffset())*6e4),d=now.getDay(),h=now.getHours()+now.getMinutes()/60;"
+          "var on=function(day){return SESS.filter(function(s){return s.d.indexOf(day)>-1}).sort(function(x,y){return x.a-y.a})};"
+          "var cur=on(d).find(function(s){return h>=s.a&&h<s.b});"
+          "if(cur){el.textContent=OPENTXT.open(OPENTXT.t[cur.b]);el.className+=' is-open';return}"
+          "var later=on(d).find(function(s){return h<s.a});if(later){el.textContent=OPENTXT.today(OPENTXT.t[later.a]);return}"
+          "for(var k=1;k<8;k++){var n=(d+k)%7,f=on(n)[0];if(f){el.textContent=OPENTXT.next(k===1?OPENTXT.tom:OPENTXT.days[n],OPENTXT.t[f.a]);break}}})();"
+          # the floating Call and Book buttons stay out of the way while this card's own buttons are on screen
+          "(function(){var c=document.querySelector('.ds-cta');if(!c||!('IntersectionObserver' in window))return;"
+          "new IntersectionObserver(function(es){var f=document.querySelector('.fabs');if(f)f.classList.toggle('at-top',es[0].isIntersecting)}).observe(c)})();</script>")
+    return (f'<div class="doc-strip" role="group" aria-label="{T["strip"]}"><img src="/dr-lochab-thumb.jpg" width="48" height="48" alt="" loading="lazy">'
+            f'<div class="ds-t"><b>{name}</b><span>{e(T["where"])}</span><span class="ds-open" id="dsOpen">{e(L[lang]["hours"])}</span></div>'
+            f'<div class="ds-cta"><a class="btn btn-ghost btn-sm" href="tel:+919667104882" data-ev="call-strip">{PHONE_SVG}{T["call"]}</a>'
+            f'<a class="btn btn-solid btn-sm" href="{WA}" target="_blank" rel="noopener" data-ev="wa-strip">{WA_ICON}{T["wa"]}</a></div></div>' + js)
+
+STRIP_PATHS = ("/conditions/", "/procedures/", "/answers/", "/guides/", "/diet-charts/", "/gastroenterologist-in-gurgaon/", "/about-dr-kshitij-lochab/")
+
+def add_doc_strip(path, text):
+    """Places the card after the opening paragraph (or the short answer box) of condition, procedure, answer, guide and diet chart pages."""
+    lang = "hi" if path.startswith("/hi/") else "en"
+    if not path[len(pre(lang)) - 1:].startswith(STRIP_PATHS) or 'class="doc-strip"' in text or "<article" not in text:
+        return text
+    i = text.find('<p class="lead">')
+    if i >= 0:
+        j = text.index("</p>", i) + 4
+    else:
+        i = text.find('<div class="short"')
+        if i < 0: return text
+        j = text.index("</div>", i) + 6
+    return text[:j] + doc_strip(lang) + text[j:]
 
 AI_NOTE = {'en': 'Prepared with AI assistance and reviewed by Dr. Kshitij Lochab.', 'hi': 'AI की सहायता से तैयार और डॉ. क्षितिज लोचब द्वारा समीक्षित।'}
 
@@ -257,7 +329,7 @@ def footer(lang, diet=True):
     t = L[lang]
     fl = f'<p class="foot-links"><a href="{pre(lang)}about-dr-kshitij-lochab/">{FOOT_LINKS[lang][0]}</a> · <a href="{pre(lang)}gastroenterologist-in-gurgaon/">{FOOT_LINKS[lang][1]}</a> · <a href="{pre(lang)}tools/gut-tracker/">{FOOT_LINKS[lang][2]}</a> · <a href="{pre(lang)}diet-charts/">{L[lang]['dietnav']}</a></p>'
     return f"""<footer><div class="wrap">{channel_html(lang, "chan chan-foot")}{fl}{social_html(lang)}<p>{t['disc']}</p><p>Dr. Kshitij Lochab · {t['reg']} · {PHONE}</p><p>© 2026 Dr. Kshitij Lochab</p><p class="ai-note">{AI_NOTE[lang]}</p></div></footer>
-<nav class="fabs" aria-label="{t['quick']}"><a class="fab" href="{WA}" target="_blank" rel="noopener">{t['book']}</a>
+<nav class="fabs" aria-label="{t['quick']}"><a class="fab fab-call" href="tel:+919667104882" aria-label="{TAP[lang]['call_aria']}" data-ev="call-float">{PHONE_SVG}</a><a class="fab" href="{WA}" target="_blank" rel="noopener" aria-label="{TAP[lang]['book_aria']}" data-ev="wa-float">{WA_ICON}{TAP[lang]['book']}</a>
 {diet_fab(lang, pre(lang) + "diet-charts/") if diet else ""}</nav>
 </body></html>"""
 
@@ -302,6 +374,7 @@ def page_extras(path, text):
     m = re.search(r"<h1>(.*?)</h1>", text, re.S)
     if not m or "<article" not in text:
         return text
+    text = add_doc_strip(path, text)
     t = html.unescape(re.sub(r"<[^>]+>", "", m.group(1))).strip()
     btn, end, lead, book, src = SHARE_TXT[lang]
     share = "https://wa.me/?text=" + quote(f"{t}\n{lead} {SITE}{path}")
@@ -412,7 +485,7 @@ def build():
             dc = [s_ for s_, _, c_ in diet_rules.PAGES if c_ == base["slug"]]
             if dc:
                 body.append(f'<p class="dc-link"><a class="btn btn-ghost btn-sm" href="{url(lang, "diet-charts", dc[0])}">{(diet_text_en if lang == "en" else diet_text_hi).UI["cond_link"]} →</a></p>')
-            body.append(f'<section class="see"><h2>{Q("when")}</h2><p>{e(c["e"])}</p><a class="btn btn-sm see-book" href="{WA}" target="_blank" rel="noopener">{WA_ICON}{t["book_this"]}</a></section>')
+            body.append(f'<section class="see"><h2>{Q("when")}</h2><p>{e(c["e"])}</p><a class="btn btn-sm see-book" href="{WA}" target="_blank" rel="noopener" data-ev="wa-see">{WA_ICON}{t["book_this"]}</a></section>')
             if base["slug"] in TRACK_CONDS:
                 body.append(tracker_note(lang, base["slug"]))
             body.append(guide_notes(lang, "conds", i))
