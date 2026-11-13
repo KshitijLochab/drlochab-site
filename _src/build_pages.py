@@ -31,7 +31,7 @@ WA_CHANNEL = ""
 # Call / WhatsApp button (the data-ev names). No cookies, no personal data, no outside script: the few lines below are the
 # whole thing. It honours "Do Not Track" and is never added to the private tool pages (tracker, stool check, diet charts and
 # food diary), whose Content-Security-Policy would block it anyway; tests/check_site.py enforces that.
-GOATCOUNTER = ""
+GOATCOUNTER = "drlochab"   # switched on 12 Nov 2026 (his dashboard: https://drlochab.goatcounter.com)
 COUNTER_NOTE = {"en": "This site counts page visits without cookies or personal data.",
                 "hi": "यह साइट बिना कुकी और बिना निजी जानकारी के सिर्फ़ पेज विज़िट गिनती है।"}
 
@@ -40,7 +40,7 @@ def counter_js():
         return ""
     return ('<script data-counter>(function(){var G="https://' + GOATCOUNTER + '.goatcounter.com/count";'
             'if(location.hostname!=="drlochab.com"||navigator.doNotTrack==="1"||/bot|crawl|spider|lighthouse|headless|preview/i.test(navigator.userAgent))return;'
-            'function c(p,t,ev){new Image().src=G+"?p="+encodeURIComponent(p)+"&t="+encodeURIComponent(t)+(ev?"&e=true":"&r="+encodeURIComponent(document.referrer))'
+            'function c(p,t,ev){new Image().src=G+"?p="+encodeURIComponent(p)+"&t="+encodeURIComponent(t)+(ev?"&e=true":"&r="+encodeURIComponent(document.referrer)+"&q="+encodeURIComponent(location.search.slice(1)))'
             '+"&s="+screen.width+","+screen.height+","+(window.devicePixelRatio||1)+"&rnd="+Math.random().toString(36).slice(2)}'
             'c(location.pathname,document.title);'
             'document.addEventListener("click",function(x){var a=x.target.closest&&x.target.closest("[data-ev]");if(a)c("tap-"+a.getAttribute("data-ev"),location.pathname,1)},true)})();</script>')
