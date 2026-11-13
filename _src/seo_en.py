@@ -165,8 +165,8 @@ ANSWERS = [
    ("Is a biopsy painful?",["No. The stomach and bowel lining have no pain nerves, so taking small tissue samples cannot be felt."]),
    ("After the test",["- A mild sore throat for a day is common","- Eat once the throat numbness wears off, usually within an hour","- If you had sedation, do not drive for the rest of the day and have someone accompany you"]),
   ]),
- dict(slug="diet-in-jaundice", q="What should I eat in jaundice?", cond=5,
-  desc="What to eat during and after jaundice, and which common food myths to ignore. Practical advice from gastroenterologist Dr. Kshitij Lochab.",
+ dict(slug="diet-in-jaundice", q="What should I eat in jaundice?", seo="Jaundice diet: what to eat and what to avoid", cond=5,
+  desc="What to eat and avoid in jaundice, food by food: poha, rice, roti, potato, curd, fruits, tea and sweets, plus the food myths to ignore. Dr. Kshitij Lochab, Gurugram.",
   short="Eat normal, balanced home food with enough calories, and drink plenty of clean water. There is no need to avoid haldi, oil or salt used in normal cooking. Avoid alcohol completely, and do not take herbal remedies unless your doctor approves them.",
   sections=[
    ("Good choices",["- Dal, rice, roti, khichdi and vegetables","- Curd, buttermilk and fruits","- Small meals every few hours if appetite is poor","- Plenty of boiled or filtered water"]),

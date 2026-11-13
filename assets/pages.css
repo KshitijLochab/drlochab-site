@@ -231,6 +231,16 @@ h1,h2{overflow-wrap:break-word;hyphens:auto}
 .author-cred{margin:8px 0;padding-left:18px;font-size:.92rem}
 @media (max-width:480px){.author-box{flex-direction:column}}
 @media print{.author-box img{display:none}}
+
+/* 13 Nov 2026: food-by-food answers on answer pages ("Can I eat poha in jaundice?") */
+.foodq{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:14px}
+.fq{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:12px 14px}
+.fq h3{font-family:inherit;font-weight:700;font-size:1rem;margin:0 0 4px}
+.fq p{margin:0;font-size:.95rem}
+.fq-v{font-weight:700;color:var(--accent)}
+.fq-some{border-left-color:var(--warm)}.fq-some .fq-v{color:var(--warm-text)}
+.fq-no{border-left-color:var(--urgent)}.fq-no .fq-v{color:var(--urgent)}
+@media print{.fq{break-inside:avoid;border-color:#bbb}}
 /* procedures */
 .il-fill{fill:var(--organ);stroke:var(--organ-line);stroke-width:1.5}
 .il-fill.on{fill:var(--accent-soft);stroke:var(--accent)}

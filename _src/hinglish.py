@@ -21,7 +21,8 @@ AKA = {
  "colon-polyps-colon-cancer": ["aant ka cancer ke lakshan", "aant me ganth"],
  # answers
  "blood-in-stool-always-piles": ["potty me blood aana", "latrine me khoon aana", "mal me khoon"],
- "diet-in-jaundice": ["piliya me kya khana chahiye", "piliya me kya nahi khana chahiye", "jaundice me kya khana chahiye", "piliya me parhej", "jaundice diet in hindi"],
+ "diet-in-jaundice": ["piliya me kya khana chahiye", "piliya me kya nahi khana chahiye", "piliya me poha kha sakte hai", "piliya me aalu, dahi, chai", "piliya me parhej"],
+ "tb-medicines-and-liver": ["tb ki dawa se liver kharab hota hai", "tb ki dawa ke side effect", "tb ki dawa aur piliya"],
  "gas-and-bloating": ["pet me gas banna", "pet phoolna", "gas ka ilaj"],
  "is-endoscopy-painful": ["endoscopy me dard hota hai kya", "doorbeen se jaanch"],
  "when-is-acidity-serious": ["acidity kab khatarnak hai", "acidity ke lakshan", "acidity symptoms in hindi"],
