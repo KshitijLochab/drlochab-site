@@ -25,7 +25,9 @@ CHANGED = {"/answers/burping-and-hiccups/": "2026-10-31", "/diet-charts/pancreat
            **{f"/answers/{s_}/": "2026-11-05" for s_ in ("is-fatty-liver-reversible", "is-endoscopy-painful", "diet-in-jaundice", "is-ibs-dangerous",
                                                          "blood-in-stool-always-piles", "when-is-acidity-serious", "gas-and-bloating")},
            # 5 Nov 2026: medicine names, course lengths and a cure percentage reworded
-           "/conditions/h-pylori-gastritis-ulcer/": "2026-11-05", "/conditions/hepatitis-b-c/": "2026-11-05"}
+           "/conditions/h-pylori-gastritis-ulcer/": "2026-11-05", "/conditions/hepatitis-b-c/": "2026-11-05",
+           # 13 Nov 2026 (from Search Console): food-by-food answers on the jaundice diet page; dalia question on the acidity chart
+           "/answers/diet-in-jaundice/": "2026-11-13", "/diet-charts/acidity-gastritis/": "2026-11-13"}
 DEEP_DATE = "2026-10-31"
 
 # key: (authors, title, journal, year, doi)
@@ -152,7 +154,13 @@ def apply(path, text):
     d = review_date(path)
     if d and 'class="byline"' in text:
         ds = d.strftime("%-d %B %Y") if lang == "en" else f"{d.day} {MONTHS_HI[d.month - 1]} {d.year}"
-        text = re.sub(r'<p class="byline">.*?</p>', f'<p class="byline">{T[lang]["by"]} · {T[lang]["rev"].format(d=ds)}</p>', text, count=1, flags=re.S)
+        fmt = lambda x: x.strftime("%-d %B %Y") if lang == "en" else f"{x.day} {MONTHS_HI[x.month - 1]} {x.year}"
+        # 13 Nov 2026: a page changed after its review date says so ("... reviewed on 31 October 2026 · Updated 13 November 2026"),
+        # so the review line never appears to cover text added later. Giving the page a new date in REVIEW_LOG removes the suffix.
+        later = ""
+        if changed and datetime.date.fromisoformat(changed) > d:
+            later = f' · {"Updated" if lang == "en" else "अपडेट"} {fmt(datetime.date.fromisoformat(changed))}'
+        text = re.sub(r'<p class="byline">.*?</p>', f'<p class="byline">{T[lang]["by"]} · {T[lang]["rev"].format(d=ds)}{later}</p>', text, count=1, flags=re.S)
         text = re.sub(r'"lastReviewed": "[^"]*"', f'"lastReviewed": "{d.isoformat()}"', text)
     elif not d and REVIEW_ALL and _en_path(path).startswith(REVIEW_ALL[1]):
         # Not reviewed yet (a page newer than REVIEW_ALL): no review claim in the structured data either.

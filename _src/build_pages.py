@@ -10,6 +10,10 @@ for _k, _v in answers_extra_en.EXTRA.items():
     _h = answers_extra_hi.EXTRA[_k]
     assert len(_v["faqs"]) == len(_h["faqs"]) and all(len(_v["diet"][c]) == len(_h["diet"][c]) for c in ("more", "less", "know")), _k
     assert ("labels" in _v["diet"]) == ("labels" in _h["diet"]), _k
+    # optional food-by-food answers ("Can I eat poha in jaundice?"): same number, same verdicts in both languages
+    assert ("foods" in _v) == ("foods" in _h), _k
+    if "foods" in _v:
+        assert [x[1] for x in _v["foods"]["items"]] == [x[1] for x in _h["foods"]["items"]], _k
 for _k, _v in cond_diet_en.DIET.items():
     assert all(len(_v[c]) == len(cond_diet_hi.DIET[_k][c]) for c in ("more", "less", "know")), _k
 assert set(cond_diet_en.DIET) == set(cond_diet_hi.DIET) <= {c["slug"] for c in seo_en.CONDS}
@@ -559,8 +563,15 @@ def build():
                             f'<div class="gcol less"><h3>{e(lb[1])}</h3>{ul(dt["less"])}</div>'
                             f'<div class="gcol know"><h3>{e(lb[2])}</h3>{ul(dt["know"])}</div></div></section>')
                 xfaqs = X["faqs"]
+                if X.get("foods"):
+                    # 13 Nov 2026: one-line answers to the "can I eat X" searches seen in Search Console (see search_insights.md).
+                    # Each is a question heading with a verdict chip, and is also in the FAQ structured data.
+                    F = X["foods"]
+                    secs.append(f'<section id="foods"><h2>{e(F["h"])}</h2><p>{e(F["note"])}</p><div class="foodq">' + "".join(
+                        f'<div class="fq fq-{v}"><h3>{e(q_)}</h3><p><span class="fq-v">{e(F["verdicts"][v])}</span> {e(a_)}</p></div>' for q_, v, a_ in F["items"]) + "</div></section>")
+                    xfaqs = xfaqs + [[q_, F["verdicts"][v] + " " + a_] for q_, v, a_ in F["items"]]
                 if detailed: secs.append(detailed); detailed = ""
-                secs.append(faq_html(lang, xfaqs))
+                secs.append(faq_html(lang, X["faqs"]))
             if detailed: secs.append(detailed)
             rel = []
             if base.get("cond") is not None:

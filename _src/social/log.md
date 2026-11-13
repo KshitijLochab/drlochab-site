@@ -1,6 +1,9 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 13 Nov 2026 (site, from Search Console 14 Oct to 10 Nov)
+- 21 clicks and 2,166 impressions in 28 days; most demand is Hinglish food questions about jaundice. Jaundice diet page (EN + HI) gained 14 food-by-food answers (poha, rice and roti, aalu, dahi, paneer, eggs/chicken/fish, chana and dal, fruits, vegetables, dry fruits, sweets, salt, tea/coffee, sugarcane juice) and a new search title; Hindi TB medicines page title now mirrors "tb ki dawa se liver kharab hota hai"; acidity diet chart answers "Is dalia good for gastritis?". Details and ideas in _src/search_insights.md.
+
 ## 12 Nov 2026 (site, audit and booking path)
 - Full audit: 219 pages clean for script errors, links, overflow and accessibility. Fixed: /#fibre link landing under the header, slow Hindi home page (content-visibility), Apollo wording ("By appointment"), 404 page without contact buttons.
 - Phones: Call button next to WhatsApp on every page (floating and at the top); home page first screen is now the doctor card with Call/WhatsApp, then the heading, then the tool cards; a doctor card with clinic status, Call and WhatsApp under the opening paragraph of every article page.

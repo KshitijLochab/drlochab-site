@@ -144,7 +144,8 @@ PAGES = {
   faqs=[["What should I eat when I have acidity?", "Small, simple meals such as oats, idli, khichdi, curd rice, roti with dal and a lightly spiced vegetable, and fruits like banana and papaya."],
         ["Is milk good for acidity?", "It can soothe for a few minutes, but its fat and protein can bring more acid later. It does not heal acidity or ulcers."],
         ["Should I avoid spicy food?", "Only if it triggers your symptoms. Many people tolerate normal home spices. Very spicy, oily or tomato-heavy gravies are common triggers."],
-        ["Is fasting good for gastritis?", "Long gaps without food worsen symptoms for some people. Regular, moderate meals usually work better."]],
+        ["Is fasting good for gastritis?", "Long gaps without food worsen symptoms for some people. Regular, moderate meals usually work better."],
+        ["Is dalia good for acidity and gastritis?", "Yes. Dalia (broken wheat) is soft, low in fat and filling, so it suits most people with acidity or gastritis. Cook it with vegetables or a little milk, go easy on ghee and chilli, and avoid it only if you have celiac disease."]],
   doc="See a doctor if acidity happens twice a week or more for over a month, does not settle with simple changes, or comes with difficulty swallowing, vomiting, weight loss, anaemia or black stools."),
 
  "ibs-bloating": dict(name="IBS and bloating",
