@@ -1,6 +1,24 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## AI visibility check 14 Nov 2026 (first monthly check, Part C)
+Searches run (web search, extended): "Dr Kshitij Lochab"; "Kshitij Lochab gastroenterologist Gurugram"; "gastroenterologist Sector 51 Gurgaon"; "EUS ERCP doctor Gurgaon"; "Arcura Clinic gastroenterologist Gurugram"; "गुरुग्राम गैस्ट्रोएंटेरोलॉजिस्ट डॉ. क्षितिज लोचब"; also "drlochab.com", "\"Kshitij Lochab\"", "Dr Kshitij Lochab Arcura Clinic Sector 51 Mayfield Garden", "medanta.org kshitij-lochab".
+- drlochab.com appeared for none of them (not even "drlochab.com"). The GitHub repository and its pull requests appeared instead for his name, "drlochab.com" and the Arcura search. Other sources about him: an old LinkedIn profile (linkedin.com/in/kshitij-lochab-41009575, "Doctor Of Medicine - Self-employed"), Medanta doctor-listing pages and an old Medanta profile URL (/hospitals-near-me/gurugram-hospital/speciality/gastroenterology/doctor/dr-kshitij-lochab, now a generic page without him), and Medical Dialogues (NBEMS convocation: Dr. S K Sama Gold Medal, "Medanta The Medicity, Gurugram"; correct for the time).
+- Not found in results: Practo, Justdial, Google Business Profile snippets. No page mentioned POEM, ESD or third-space endoscopy; no PIN 122018 seen. Could not open: arcuracare.com profile (fetch permission not granted in an unattended run), LinkedIn, ISGCON 2025 page, Perplexity (blocked).
+- Fixed on the site's side: repository README now opens with his key facts and points to the About page and /llms.txt, and says pull requests may hold outdated details.
+- For him: set the GitHub repository "Website" field to https://drlochab.com; update or close the old LinkedIn profile; ask Medanta's web team to remove or redirect the old profile URL; verify the site in Google Search Console and Bing Webmaster Tools and request indexing of the home and About pages; check the Arcura profile PIN (122003).
+
+## Week of 16 Nov 2026 (World Toilet Day Thu 19, Dev Uthani Ekadashi Fri 20, Tulsi Vivah Sat 21 Nov, wedding season)
+Generator: social/week_2026_11_16.py (output in _src/out/week-2026-11-16/).
+- Instagram carousel (5 slides, EN), Mon 16 Nov: Myth or fact? "Piles always need an operation" (Myth Buster entry of 16 Nov): toilet with a scalpel and a question mark; MYTH with the scalpel crossed out; make stools soft (fibre, water, short toilet visits, get it diagnosed); see-a-doctor signs for bleeding with 112; play more at drlochab.com (phone shows Thursday's swallowing myth). Links to answers/piles-fissure-fistula.
+- Instagram carousel (5 slides, EN), Thu 19 Nov (World Toilet Day): Spotted corn in your stool? (corn cob with a kernel under a magnifying glass; skins and seeds pass whole: corn, peas/chana, tomato, guava/til; chew well, cook soft, keep the fibre, no enzyme tablets on your own; see-a-doctor signs with 112; new answer page).
+- Instagram post (HI), Fri 20 Nov: देवउठनी एकादशी · तुलसी विवाह, व्रत भी, शादियाँ भी: पेट रहे हल्का (tulsi pot under a sugarcane arch with marigolds and diyas; roast not fry, small meals every 3 to 4 hours, salad and dal first at weddings, no heavy late dinner; diabetes/pregnancy ask first; pancreatitis-type pain → 112). Links to hi/guides/winter-wedding-season-guide.
+- Google Business Profile (EN): Spotted corn in your stool? (Learn more: answers/undigested-food-in-stool).
+- WhatsApp Status: Myth: piles and surgery (EN); Spotted corn in your stool? (EN); देवउठनी एकादशी (HI).
+- WhatsApp broadcast (EN + HI): new answer page, Undigested food in stool (HI with Ekadashi wishes).
+- Captions carry name, qualifications, HMC Reg. No. HN-23524 and the AI line.
+- Site: new answer page undigested-food-in-stool (EN and HI; no reviewed-by line until Dr. Lochab adds its date to medical_review.REVIEW_LOG); typhoid page gained 11 food-by-food answers (EN + HI); repository README with key facts.
+
 ## 13 Nov 2026 (site, from Search Console 14 Oct to 10 Nov)
 - 21 clicks and 2,166 impressions in 28 days; most demand is Hinglish food questions about jaundice. Jaundice diet page (EN + HI) gained 14 food-by-food answers (poha, rice and roti, aalu, dahi, paneer, eggs/chicken/fish, chana and dal, fruits, vegetables, dry fruits, sweets, salt, tea/coffee, sugarcane juice) and a new search title; Hindi TB medicines page title now mirrors "tb ki dawa se liver kharab hota hai"; acidity diet chart answers "Is dalia good for gastritis?". Details and ideas in _src/search_insights.md.
 
