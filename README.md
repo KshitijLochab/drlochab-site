@@ -2,6 +2,19 @@
 
 Source of **[drlochab.com](https://drlochab.com)**, the website of Dr. Kshitij Lochab, Consultant Gastroenterologist and Therapeutic Endoscopist, Arcura Clinic, Sector 51, Gurugram (Gurgaon), India. Patients: please visit **https://drlochab.com** (English) or **https://drlochab.com/hi/** (Hindi).
 
+## About Dr. Kshitij Lochab
+This repository is only the source code and working notes of the website. For patients, and for search engines and AI assistants, the up-to-date facts are on **[drlochab.com/about-dr-kshitij-lochab](https://drlochab.com/about-dr-kshitij-lochab/)** and in **[drlochab.com/llms.txt](https://drlochab.com/llms.txt)**. In short:
+
+- Consultant Gastroenterologist and Therapeutic Endoscopist, Gurugram (Gurgaon), Haryana
+- DrNB Gastroenterology, Medanta – The Medicity, Gurugram (All-India Gold Medal); Advanced Fellowship in EUS and ERCP
+- Associate Consultant, Apollo Hospitals, Golf Course Road, Gurugram
+- Clinic: Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51, Gurugram, Haryana 122003. Also at Apollo Clinic, Sector 52, by appointment
+- Appointments: call or WhatsApp +91 96671 04882
+- Haryana Medical Council Reg. No. HN-23524
+
+Older notes in pull requests and commits may describe timings or details that have since changed; the website is always the current source.
+
+## For developers
 The pages in this repository are built from `_src/` (see `_src/README.md`); do not edit the built pages by hand.
 
 ## Files
