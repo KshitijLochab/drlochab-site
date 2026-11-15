@@ -431,10 +431,36 @@ def answer_links(lang, S, ans):
         out.append((url(lang, "answers", slug), S.ANSWERS[k]["q"]))
     return out
 
+# 15 Nov 2026: festival guides lead only around their festival. A guide is "in season" from 3 weeks before its banner starts
+# until the banner ends (seo_en.SEASONAL). In season: first on the home page and in the condition-page callouts. Out of season:
+# festival guides move to the end of the home page list and drop out of the callouts; their pages stay live for next year.
+FESTIVAL_GUIDES = {"diwali-food-guide", "navratri-fasting-guide"}
+
+def guide_order(now=None):
+    """Indices into seo_en.SPECIAL: guides in season first, then the year-round guides, then festival guides out of season."""
+    import datetime
+    now = now or datetime.datetime.now(datetime.timezone.utc)
+    cfgs = getattr(seo_en, "SEASONAL", None) or []
+    cfgs = [cfgs] if isinstance(cfgs, dict) else cfgs
+    def live(slug):
+        for c in cfgs:
+            if c["slug"] != slug or c.get("kind", "guides") != "guides":
+                continue
+            start = datetime.datetime.fromisoformat(c["start"]) - datetime.timedelta(days=21) if c.get("start") else None
+            if (start is None or now >= start) and now < datetime.datetime.fromisoformat(c["until"]):
+                return True
+        return False
+    slugs = [g["slug"] for g in seo_en.SPECIAL]
+    first = [i for i, s_ in enumerate(slugs) if live(s_)]
+    year = [i for i, s_ in enumerate(slugs) if i not in first and s_ not in FESTIVAL_GUIDES]
+    off = [i for i, s_ in enumerate(slugs) if i not in first and s_ in FESTIVAL_GUIDES]
+    return first + year, off
+
 def guide_notes(lang, kind, idx):
     """One callout box linking a condition or procedure page to the special guides that list it."""
     S = seo_en if lang == "en" else seo_hi
-    hits = [(g, x) for g, x in zip(seo_en.SPECIAL, S.SPECIAL) if idx in g[kind]]
+    shown, _ = guide_order()
+    hits = [(seo_en.SPECIAL[i], S.SPECIAL[i]) for i in shown if idx in seo_en.SPECIAL[i][kind]]
     if not hits:
         return ""
     if len(hits) == 1:

@@ -216,6 +216,21 @@ MORE = [
    ("Warning signs: see a doctor soon", ["- Poor appetite for more than 2 to 3 weeks","- Weight loss without trying, especially more than about 5% of your weight in 6 to 12 months","- Yellow eyes, dark urine or itching","- Feeling full after a few bites, repeated vomiting or difficulty swallowing","- Black stools, blood in the stool, or fever and night sweats for weeks",
      "Vomiting blood, severe belly pain, or new confusion and drowsiness in someone with liver disease is an emergency: call 112 or go to the nearest emergency department."]),
   ]),
+ dict(slug="undigested-food-in-stool", q="Undigested food in stool: is it normal, and when should I worry?", seo="Undigested food in stool: normal or a problem?", cond=10, proc=1,
+  updated=("2026-11-14", "14 November 2026", "14 नवंबर 2026"),
+  desc="Undigested food in stool (corn, peas, seeds, vegetable skins): why it is usually normal, when it points to a digestion problem such as malabsorption, simple tests, what helps, and warning signs. Dr. Kshitij Lochab, Gurugram.",
+  short="Seeing bits of corn, peas, seeds, tomato skin or leafy vegetables in your stool is normal. The body cannot digest the tough outer fibre of some foods, and pieces that are not chewed well come out looking whole, even though most of the goodness inside has been absorbed. It needs a check only when it comes with loose motions for weeks, pale, oily or very foul stools, weight loss or belly pain.",
+  sections=[
+   ("Why some food comes out whole", ["- Tough plant fibre (cellulose) that no one can digest: the skins of corn (bhutta), peas, chana, rajma and tomato, husks, and seeds of tomato, guava, til and flax","- Food swallowed in large pieces when you eat fast or chew less, for example with tooth or denture problems","- Leafy and raw vegetables, carrot and capsicum, which often keep their colour on the way through","- Loose motions from any cause, which move food through the bowel faster than usual",
+     "This kind of fibre is still useful: it adds bulk to the stool and feeds the healthy bacteria in the gut. Seeing it does not mean your digestion is weak, and there is no reason to stop eating vegetables."]),
+   ("When it can mean a digestion problem", ["- Stools that are pale, oily, bulky and very foul-smelling, float, leave an oily film in the toilet or are hard to flush: this suggests fat is not being absorbed (malabsorption)","- Loose motions every day for more than 2 to 4 weeks, with food passing through","- Weight loss, weakness or anaemia despite eating well",
+     "Long-standing malabsorption can come from the pancreas not making enough digestive enzymes (for example after chronic pancreatitis), celiac disease, some infections such as giardia, a blocked bile duct, or after some operations on the stomach and bowel. These causes are uncommon, and each can be tested for and treated."]),
+   ("What you can do", ["- Eat slowly and chew each mouthful well; it is the simplest fix","- Cook vegetables until soft, and soak and cook dal, chana and rajma well","- Keep eating fruit, vegetables and whole grains: fibre is good for you even when some of it shows","- Get tooth or denture problems seen by a dentist","- Keep a simple note of your stool shape and colour for a week; the stool check and gut tracker tools on this site make this easy",
+     "Do not start digestive enzyme tablets or syrups on your own. They are needed only when tests show the pancreas is not making enough enzymes, and the right product is chosen by your doctor."]),
+   ("Tests your doctor may advise", ["If there are no warning signs, usually no test is needed. When the story suggests malabsorption or long-lasting loose motions, the doctor may advise a stool test (routine examination, and a stool elastase test to check the pancreas), a blood count, iron and vitamin B12 levels, a celiac blood test, and an ultrasound of the abdomen. A colonoscopy or endoscopy is advised only when there are warning signs or the first tests point to the bowel or stomach."]),
+   ("Warning signs: see a doctor", ["- Loose motions for more than 2 to 4 weeks, or waking at night to pass stool","- Pale, oily, very foul stools that are hard to flush","- Weight loss without trying, or tiredness from anaemia","- Blood in the stool, or black, tarry stools","- Belly pain that keeps coming back, or yellow eyes",
+     "Children under 12 with changes in their stool or poor growth should be seen by their paediatrician. Heavy bleeding from the back passage, black stools with dizziness, or fainting is an emergency: call 112 or go to the nearest emergency department."]),
+  ]),
 ]
 
 # Extra links from condition pages to these answers (index into CONDS -> slugs), merged in seo_en.py.
@@ -225,7 +240,8 @@ COND_LINKS = {
  5: ["high-sgpt-sgot-liver-function-test", "liver-abscess", "loss-of-appetite"],
  4: ["liver-cancer-screening"],
  12: ["piles-fissure-fistula"],
- 10: ["celiac-disease", "lactose-intolerance"],
+ 10: ["celiac-disease", "lactose-intolerance", "undigested-food-in-stool"],
+ 8: ["undigested-food-in-stool"],
  1: ["stomach-cancer-warning-signs", "stomach-infection-gastroenteritis", "indigestion-heaviness-after-meals", "loss-of-appetite"],
  0: ["indigestion-heaviness-after-meals"],
  7: ["pain-under-right-ribs"],

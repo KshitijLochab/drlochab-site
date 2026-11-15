@@ -79,7 +79,7 @@ QS = {
  "liver": ["is-fatty-liver-reversible", "high-sgpt-sgot-liver-function-test", "fatty-liver-grade-on-ultrasound", "fibroscan-test",
            "diet-in-jaundice", "when-is-liver-transplant-needed", "ultrasound-report-terms", "how-much-alcohol-is-safe-for-liver"],
  "gb": ["pain-under-right-ribs"], "pancreas": ["diabetes-and-digestive-system"],
- "intestine": ["gas-and-bloating", "is-ibs-dangerous", "blood-in-stool-always-piles", "stool-tests", "capsule-endoscopy", "do-probiotics-help"],
+ "intestine": ["gas-and-bloating", "is-ibs-dangerous", "blood-in-stool-always-piles", "stool-tests", "capsule-endoscopy", "do-probiotics-help", "undigested-food-in-stool"],
 }
 PROCS = {
  "stomach": ["upper-gi-endoscopy", "dilatation-stenting", "gi-bleeding-treatment", "peg-feeding-tube"],

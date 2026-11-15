@@ -208,7 +208,9 @@ def link_lists(lang):
     h_p = "Detailed guides to each procedure" if lang == "en" else "हर प्रोसीजर की पूरी जानकारी"
     import guide_art
     feats = ""
-    for g, x in zip(seo_en.SPECIAL, S.SPECIAL):
+    import build_pages as _bp
+    shown, off = _bp.guide_order()
+    for g, x in [(seo_en.SPECIAL[i], S.SPECIAL[i]) for i in shown + off]:   # in-season guides first, past festivals last
         art = guide_art.ART[g["slug"]]("").replace('role="img" aria-label=""', 'aria-hidden="true" focusable="false"')
         feats += (f'<a class="feature" href="{pre}guides/{g["slug"]}/"><div class="feature-art">{art}</div><div>'
                   f'<h3>{esc(x["name"])}</h3><p>{esc(x["blurb"])}</p><span class="btn btn-solid">{esc(x["feature_btn"])} <span aria-hidden="true">→</span></span></div></a>')
