@@ -1,6 +1,11 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 17 Nov 2026: new OPD timings
+Generator: social/opd_timings_nov2026.py (output in _src/out/opd-timings-nov-2026/).
+- Week timetable drawing (Mon to Sun, 4 to 8 pm, a coloured block per place; Sunday closed), three place cards, urgent-daytime note. Instagram post EN + HI, Instagram story / WhatsApp Status EN + HI, Google Business image (Learn more: drlochab.com/#visit, no phone number in text), WhatsApp messages EN + HI.
+- Site: all timings updated from clinics.py (home, every page's booking box and doctor card, Gurgaon and About pages, llms.txt, structured data).
+
 ## AI visibility check 14 Nov 2026 (first monthly check, Part C)
 Searches run (web search, extended): "Dr Kshitij Lochab"; "Kshitij Lochab gastroenterologist Gurugram"; "gastroenterologist Sector 51 Gurgaon"; "EUS ERCP doctor Gurgaon"; "Arcura Clinic gastroenterologist Gurugram"; "गुरुग्राम गैस्ट्रोएंटेरोलॉजिस्ट डॉ. क्षितिज लोचब"; also "drlochab.com", "\"Kshitij Lochab\"", "Dr Kshitij Lochab Arcura Clinic Sector 51 Mayfield Garden", "medanta.org kshitij-lochab".
 - drlochab.com appeared for none of them (not even "drlochab.com"). The GitHub repository and its pull requests appeared instead for his name, "drlochab.com" and the Arcura search. Other sources about him: an old LinkedIn profile (linkedin.com/in/kshitij-lochab-41009575, "Doctor Of Medicine - Self-employed"), Medanta doctor-listing pages and an old Medanta profile URL (/hospitals-near-me/gurugram-hospital/speciality/gastroenterology/doctor/dr-kshitij-lochab, now a generic page without him), and Medical Dialogues (NBEMS convocation: Dr. S K Sama Gold Medal, "Medanta The Medicity, Gurugram"; correct for the time).

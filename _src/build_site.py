@@ -36,7 +36,7 @@ schema = {
         "postalCode": "122003",
         "addressCountry": "IN",
     },
-    "location": [clinics.location_ld()],
+    "location": clinics.location_ld(),
 }
 
 PAGES = {
@@ -232,8 +232,8 @@ def link_lists(lang):
             "<!--TRK_CARD-->": trk_card(lang),
             "<!--AI_NOTE-->": f'<p class="ai-note">{build_pages.AI_NOTE[lang]}</p>',
             "/*OPEN_JS*/": clinics.open_js(lang),
-            "/*TIMES*/": json.dumps(clinics.ARCURA[lang]["chips"] + [clinics.APOLLO_CLINIC[lang]["chip"]] + (["Video consultation"] if lang == "en" else ["वीडियो कंसल्टेशन"]), ensure_ascii=False),
-            "<!--CLINIC2-->": clinics.home_block(lang),
+            "/*TIMES*/": json.dumps([clinics.APOLLO_HOSP[lang]["chip"], clinics.APOLLO_CLINIC[lang]["chip"]] + clinics.ARCURA[lang]["chips"] + (["Video consultation"] if lang == "en" else ["वीडियो कंसल्टेशन"]), ensure_ascii=False),
+            "<!--CLINIC2-->": clinics.home_block(lang), "<!--CLINIC3-->": clinics.home_block3(lang),
             "<!--PREP_LINKS-->": __import__("prep_guides").home_links(lang),
             "<!--DIET_TAB-->": diet_tab(lang),
             "<!--DIET_FAB-->": build_pages.diet_fab(lang, "diet-charts/"),

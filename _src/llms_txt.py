@@ -34,7 +34,7 @@ def render(out, pairs):
         "- Current role: Associate Consultant, Apollo Hospitals, Golf Course Road, Gurugram",
         "- Registration: Haryana Medical Council Reg. No. HN-23524",
         f"- Clinic: Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51, Gurugram, Haryana 122003. Hours: {A['sentence']}.",
-        f"- Also: {clinics.APOLLO_CLINIC['en']['name']}, {clinics.APOLLO_CLINIC['addr']['en']}; and Apollo Hospitals, Golf Course Road",
+        f"- Also: {clinics.APOLLO_CLINIC['en']['name']}, {clinics.APOLLO_CLINIC['addr']['en']} (Monday, Wednesday and Friday, 6 pm to 8 pm); and Apollo Hospitals, Golf Course Road, Gurugram (Tuesday, Thursday and Saturday, 4 pm to 6 pm; urgent daytime consultations only here)",
         "- Appointments and video consultations: call or WhatsApp +91 96671 04882",
         "- Sees adults and teenagers aged 12 and above; consults in English and Hindi",
         "- Treats: acidity and GERD, H. pylori, gastritis and ulcers, swallowing problems, fatty liver, hepatitis B and C, jaundice, cirrhosis, "

@@ -136,7 +136,6 @@ PAIRS = [
  ('id="copyAddr" type="button">Copy address</button>', 'id="copyAddr" type="button">पता कॉपी करें</button>'),
  ('<p><a href="https://share.google/9ZndZsg6NHVxeQfYl" target="_blank" rel="noopener" style="color:var(--warm-on-ink)">Google Business Profile</a>: directions, photos and reviews.</p>',
   '<p><a href="https://share.google/9ZndZsg6NHVxeQfYl" target="_blank" rel="noopener" style="color:var(--warm-on-ink)">Google बिज़नेस प्रोफ़ाइल</a>: रास्ता, फ़ोटो और रिव्यू।</p>'),
- ('<p>Also consulting at Apollo Hospitals, Golf Course Road, Gurugram.</p>', '<p>अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड, गुरुग्राम में भी देखते हैं।</p>'),
  ('aria-label="Book a visit on WhatsApp"', 'aria-label="WhatsApp पर अपॉइंटमेंट लें"'),
  ('<nav class="fabs at-top" id="fabs" aria-label="Quick actions">', '<nav class="fabs at-top" id="fabs" aria-label="तुरंत करें">'),
  ('</svg>\n  Book\n</a>', '</svg>\n  अपॉइंटमेंट\n</a>'),

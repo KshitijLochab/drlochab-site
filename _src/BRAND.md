@@ -2,6 +2,7 @@
 
 ## Who
 Dr. Kshitij Lochab, Consultant Gastroenterologist and Therapeutic Endoscopist, Gurugram. DrNB Gastroenterology, Medanta – The Medicity (All-India Gold Medal). Advanced Fellowship in EUS and ERCP. Associate Consultant, Apollo Hospitals, Golf Course Road. Private clinic: Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51, Gurugram 122003. Haryana Medical Council Reg. No. HN-23524. Phone and WhatsApp: +91 96671 04882. Website: drlochab.com (English) and drlochab.com/hi (Hindi).
+OPD timings (from 17 Nov 2026): Apollo Hospitals, Golf Course Road, Tue/Thu/Sat 4–6 pm; Apollo Clinic, Sector 52, Mon/Wed/Fri 6–8 pm; Arcura Clinic, Sector 51, Tue/Thu/Sat 6:30–8 pm. Urgent daytime consultations at Apollo Hospitals only. No Sunday OPD. (Source of truth: `clinics.py`.)
 Does not perform third-space endoscopy (POEM, ESD): never list these.
 
 ## Look

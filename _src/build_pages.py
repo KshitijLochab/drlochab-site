@@ -98,14 +98,14 @@ L = {
    know="Good to know", when="When to see a gastroenterologist", faq="Common questions", related="Related conditions", read="Read next",
    uses="What it is used for", expect="What to expect", risks="Risks", treats="Conditions it is used for", short="Short answer",
    cta_h="Book a consultation", cta_p="Appointments and video consultations", cta_call="Call or WhatsApp", cta_wa="Message on WhatsApp",
-   clinic="Arcura Clinic, M2K Corporate Park, 14, Mayfield Garden, Sector 51, Gurugram", also="Also at Apollo Hospitals, Golf Course Road",
+   clinic="Arcura Clinic, M2K Corporate Park, 14, Mayfield Garden, Sector 51, Gurugram", also="Also at Apollo Hospitals, Golf Course Road (Tue, Thu, Sat 4–6 pm)",
    disc="This page is for general health education and does not replace a consultation. In an emergency, call 112 or go to the nearest emergency department.",
    reg="Haryana Medical Council Reg. No. HN-23524", lang_link="हिंदी", lang_aria="यह पेज हिंदी में पढ़ें", city="in Gurgaon (Gurugram)", hours=__import__("clinics").ARCURA["en"]["short"],
    all_guides="More guides", guides="Guides",
    special="Special guides:", special_p="read the guide for your situation, with diet advice and the warning signs to watch for.",
    about="How it works", prep="Before the procedure", day="On the day", glance="At a glance", after="After the procedure",
    alarm="Get medical help straight away if you have", alts="Other tests and options", where="{n} in Gurgaon (Gurugram)",
-   where_p="Dr. Kshitij Lochab, Consultant Gastroenterologist and Therapeutic Endoscopist (DrNB Gastroenterology, Medanta; Advanced Fellowship in EUS and ERCP), sees patients in Gurugram (Gurgaon) at Arcura Clinic, M2K Corporate Park, Sector 51, and at Apollo Hospitals, Golf Course Road. Book a consultation by call or WhatsApp on +91 96671 04882. Video consultations are available to go through your reports before a visit."),
+   where_p="Dr. Kshitij Lochab, Consultant Gastroenterologist and Therapeutic Endoscopist (DrNB Gastroenterology, Medanta; Advanced Fellowship in EUS and ERCP), sees patients in Gurugram (Gurgaon) at Apollo Hospitals, Golf Course Road (Tuesday, Thursday and Saturday, 4 to 6 pm), Apollo Clinic, Sector 52 (Monday, Wednesday and Friday, 6 to 8 pm) and Arcura Clinic, Sector 51 (Tuesday, Thursday and Saturday, 6:30 to 8 pm). Urgent daytime consultations are at Apollo Hospitals only. Book a consultation by call or WhatsApp on +91 96671 04882. Video consultations are available to go through your reports before a visit."),
  "hi": dict(home="होम", conds="बीमारियाँ", procs="जाँच और इलाज", answers="सवाल-जवाब", tools="टूल्स", book_this="इसके लिए अपॉइंटमेंट लें", quick="तुरंत करें", tips="रोज़ की सलाह", book="अपॉइंटमेंट", dietnav="डाइट चार्ट",
    by="लेखक: डॉ. क्षितिज लोचब, कंसल्टेंट गैस्ट्रोएंटेरोलॉजिस्ट", upd="अपडेट", symptoms="आम लक्षण", causes="वजहें और ख़तरे",
    tests="जाँच कैसे होती है", treat="इलाज", proc_help="इलाज में मदद करने वाले प्रोसीजर", diet="क्या खाएँ", more="ज़्यादा खाएँ", less="कम करें",
@@ -269,7 +269,7 @@ def aside(lang):
     t = L[lang]
     return f"""<aside class="cta"><h2>{t['cta_h']}</h2><p class="lbl">{t['cta_p']}</p><a class="num" href="tel:+919667104882" data-ev="call-box" aria-label="{t['cta_call']}: {PHONE}"><span class="num-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg></span>{PHONE}</a><p class="small">{t['cta_call']}</p>
 <a class="btn btn-solid" href="{WA}" target="_blank" rel="noopener" data-ev="wa-box">{t['cta_wa']}</a>
-<p class="small">{t['clinic']}</p><p class="small"><b>{t['hours']}</b></p><p class="small">{__import__("clinics").APOLLO_CLINIC[lang]["line"]} · <b>{__import__("clinics").APOLLO_CLINIC[lang]["short"]}</b></p><p class="small">{t['also']}</p>
+{__import__("clinics").aside_html(lang, e)}
 <p class="small"><a href="{pre(lang)}about-dr-kshitij-lochab/">{FOOT_LINKS[lang][0]} →</a></p></aside>"""
 
 PLATE_SVG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'
@@ -282,9 +282,9 @@ PHONE_SVG = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.
              'A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>')
 # 12 Nov 2026: short labels for the phone buttons (Call next to WhatsApp everywhere, at Dr. Lochab's request)
 TAP = {"en": dict(call="Call", call_aria="Call the clinic", wa="WhatsApp", book="Book", book_aria="Book a visit on WhatsApp",
-                  where="Gastroenterologist · Arcura Clinic, Sector 51, Gurugram", strip="Book a consultation"),
+                  where="Gastroenterologist · Gurugram: Sector 51, Sector 52, Golf Course Road", strip="Book a consultation"),
        "hi": dict(call="कॉल करें", call_aria="क्लिनिक को कॉल करें", wa="WhatsApp", book="अपॉइंटमेंट", book_aria="WhatsApp पर अपॉइंटमेंट लें",
-                  where="गैस्ट्रोएंटेरोलॉजिस्ट · आर्क्योरा क्लिनिक, सेक्टर 51, गुरुग्राम", strip="अपॉइंटमेंट लें")}
+                  where="गैस्ट्रोएंटेरोलॉजिस्ट · गुरुग्राम: सेक्टर 51, सेक्टर 52, गोल्फ़ कोर्स रोड", strip="अपॉइंटमेंट लें")}
 
 def diet_fab(lang, href):
     """Phone-only floating link to the diet charts, bottom left (Call and Book sit bottom right)."""
@@ -300,9 +300,9 @@ def doc_strip(lang):
           "var now=new Date(Date.now()+(330+new Date().getTimezoneOffset())*6e4),d=now.getDay(),h=now.getHours()+now.getMinutes()/60;"
           "var on=function(day){return SESS.filter(function(s){return s.d.indexOf(day)>-1}).sort(function(x,y){return x.a-y.a})};"
           "var cur=on(d).find(function(s){return h>=s.a&&h<s.b});"
-          "if(cur){el.textContent=OPENTXT.open(OPENTXT.t[cur.b]);el.className+=' is-open';return}"
-          "var later=on(d).find(function(s){return h<s.a});if(later){el.textContent=OPENTXT.today(OPENTXT.t[later.a]);return}"
-          "for(var k=1;k<8;k++){var n=(d+k)%7,f=on(n)[0];if(f){el.textContent=OPENTXT.next(k===1?OPENTXT.tom:OPENTXT.days[n],OPENTXT.t[f.a]);break}}})();"
+          "if(cur){el.textContent=OPENTXT.open(OPENTXT.t[cur.b])+' · '+cur.p;el.className+=' is-open';return}"
+          "var later=on(d).find(function(s){return h<s.a});if(later){el.textContent=OPENTXT.today(OPENTXT.t[later.a])+' · '+later.p;return}"
+          "for(var k=1;k<8;k++){var n=(d+k)%7,f=on(n)[0];if(f){el.textContent=OPENTXT.next(k===1?OPENTXT.tom:OPENTXT.days[n],OPENTXT.t[f.a])+' · '+f.p;break}}})();"
           # the floating Call and Book buttons stay out of the way while this card's own buttons are on screen
           "(function(){var c=document.querySelector('.ds-cta');if(!c||!('IntersectionObserver' in window))return;"
           "new IntersectionObserver(function(es){var f=document.querySelector('.fabs');if(f)f.classList.toggle('at-top',es[0].isIntersecting)}).observe(c)})();</script>")

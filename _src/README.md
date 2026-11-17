@@ -160,3 +160,8 @@ Audit of all 219 pages (script errors, failed requests, overflow at 320/360/1280
 
 ### 15 Nov 2026: guides follow the season
 - `build_pages.guide_order()`: a guide whose banner in `SEASONAL` starts within 3 weeks or is running comes first on the home page and in condition-page callouts. Festival guides (`FESTIVAL_GUIDES`: Diwali, Navratri) out of season move to the end of the home list and leave the callouts; their pages stay live and come back to the top on their own when next year's banner is due (the order changes at each weekly rebuild).
+
+### 17 Nov 2026: new OPD timings (three places, evenings only)
+- `clinics.py` now holds all three OPDs: Apollo Hospitals, Golf Course Road (Tue, Thu, Sat 4–6 pm; urgent daytime consultations there only), Apollo Clinic, Sector 52 (Mon, Wed, Fri 6–8 pm) and Arcura Clinic, Sector 51 (Tue, Thu, Sat 6:30–8 pm). No Sunday OPD. `SESSIONS` allows half hours (18.5 = 6:30 pm).
+- They feed the home 'open now' line and the doctor card on every article page (both now name the place), the home visit section (a third card for Apollo Hospitals with the urgent-daytime note), booking chips, the 'Book a consultation' box, the Gurgaon and About page FAQs (`clinics.schedule_sentence`), llms.txt and structured data (Arcura hours on the Physician; Apollo Clinic and Apollo Hospitals as `location` with their own hours).
+- Announcement images: `social/opd_timings_nov2026.py` (Instagram EN + HI, story/Status EN + HI, Google Business image; captions and messages).
