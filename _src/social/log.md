@@ -1,6 +1,12 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 17 Nov 2026: visiting cards with the new timings
+Generator: social/visiting_card_2026.py (output in _src/out/card-2026/). Two designs, 3.5 x 2 in with 1/16 in bleed, print PDF + PNG previews:
+- A "Midnight & gold": ink-teal front, gold line art of the digestive organs, name, credentials, gold-medal tag, phone; cream back with the evening timetable as two tickets, QR to drlochab.com, urgent-daytime line, HMC Reg.
+- B "Bold portrait": white front with a teal wave and gold line, round portrait in a gold ring; teal back with the same timetable and QR.
+Replaces social/visiting_card.py (old timings).
+
 ## 17 Nov 2026: new OPD timings
 Generator: social/opd_timings_nov2026.py (output in _src/out/opd-timings-nov-2026/).
 - Week timetable drawing (Mon to Sun, 4 to 8 pm, a coloured block per place; Sunday closed), three place cards, urgent-daytime note. Instagram post EN + HI, Instagram story / WhatsApp Status EN + HI, Google Business image (Learn more: drlochab.com/#visit, no phone number in text), WhatsApp messages EN + HI.
