@@ -178,8 +178,56 @@ def mf_back():
    <div style="width:.46in;height:.46in;background:#fff;padding:.03in;border-radius:.04in">{qr_svg("https://drlochab.com", "#0E1312")}</div></div>
  </div></div>"""
 
+def medal(w=.34):
+    """A gold medal on a teal-and-gold ribbon (original drawing)."""
+    return (f'<svg viewBox="0 0 40 52" style="width:{w}in;height:{w*1.3}in;flex:none" xmlns="http://www.w3.org/2000/svg">'
+            '<defs><linearGradient id="md" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8DF97"/><stop offset=".45" stop-color="#D4A23F"/>'
+            '<stop offset=".7" stop-color="#F3CF7A"/><stop offset="1" stop-color="#A9771F"/></linearGradient></defs>'
+            '<path d="M10 0 H18 L24 18 H16 Z" fill="#0F6B5F"/><path d="M30 0 H22 L16 18 H24 Z" fill="#0A4D45"/>'
+            '<path d="M14 0 H16 L21 16 H19 Z M26 0 H24 L19 16 H21 Z" fill="#E7C373"/>'
+            '<circle cx="20" cy="33" r="15" fill="url(#md)"/><circle cx="20" cy="33" r="11.5" fill="none" stroke="#FFF4D2" stroke-width="1" opacity=".8"/>'
+            '<path d="M20 25.5 L22.2 30.2 L27.3 30.7 L23.5 34.1 L24.6 39.1 L20 36.5 L15.4 39.1 L16.5 34.1 L12.7 30.7 L17.8 30.2 Z" fill="#FFF4D2" opacity=".95"/></svg>')
+
+# ---------------- 2 Minimal, horizontal (3.5 x 2 in), at Dr. Lochab's request (17 Nov 2026) ----------------
+def mh_front():
+    return f"""<div class="card" style="background:#F6F2EA;color:#13241F">
+ <div style="position:absolute;right:.2in;top:.52in;width:.95in;height:1.35in;opacity:.95">{gut_line("#C69A3E", 1.5)}</div>
+ <div class="in">
+  <div style="position:absolute;right:0;top:0;width:.26in;height:.26in">{MARK}</div>
+  <div style="position:absolute;left:0;top:0">
+   <div style="font-size:6.6pt;color:#6D7A73;letter-spacing:.06em">Dr.</div>
+   <div class="serif" style="font-size:20pt;line-height:.98">Kshitij Lochab</div>
+   <div style="width:.5in;height:1.2pt;background:{FOIL};margin:.07in 0 .06in"></div>
+   <div style="font-size:7pt;line-height:1.38;color:#2E4740">Consultant Gastroenterologist<br>&amp; Therapeutic Endoscopist</div>
+   <div style="display:flex;align-items:center;gap:.06in;margin-top:.07in">{medal(.24)}
+    <div><div class="foil" style="font-size:7.2pt;font-weight:600;letter-spacing:.02em">All-India Gold Medal</div>
+     <div style="font-size:5.8pt;color:#6D7A73">DrNB Gastroenterology · Medanta</div></div></div></div>
+  <div style="position:absolute;left:0;bottom:0">
+   <div class="serif" style="font-size:10pt">{PHONE}</div>
+   <div style="font-size:6.4pt;color:#6D7A73;margin-top:.01in">Call or WhatsApp · {SITE}</div></div>
+ </div></div>"""
+
+def mh_back():
+    rows = "".join(f'<div style="display:grid;grid-template-columns:.8in 1fr auto;align-items:center;gap:.06in;padding:.04in 0;border-top:.5pt solid rgba(255,255,255,.22)">'
+                   f'<span class="cap" style="font-size:5.6pt;color:#F1CD7E;letter-spacing:.1em">{d}</span>'
+                   f'<div style="line-height:1.15"><div class="serif" style="font-size:8.6pt">{p}</div><div style="font-size:6pt;color:#BFDCD5">{a}, Gurugram</div></div>'
+                   f'<span style="font-size:7.6pt;font-weight:600;white-space:nowrap">{t}</span></div>' for d, p, a, t in OPD)
+    return f"""<div class="card" style="background:linear-gradient(160deg,#0F6B5F 0%,#0A4D45 100%);color:#fff">
+ <div class="in">
+  <div style="display:flex;gap:.14in;height:100%">
+   <div style="flex:1;display:flex;flex-direction:column">
+    <div style="display:flex;align-items:baseline;gap:.06in"><span class="cap" style="font-size:5.8pt;color:#F1CD7E">Evening OPD</span><span class="serif" style="font-size:9pt">Monday to Saturday</span></div>
+    <div style="margin-top:.04in">{rows}</div>
+    <div style="margin-top:auto;border-top:.5pt solid rgba(255,255,255,.22);padding-top:.04in;font-size:6pt;color:#E6F2EF">Urgent during the day? Apollo Hospitals only. Call first.</div></div>
+   <div style="width:.62in;display:flex;flex-direction:column;align-items:center;justify-content:space-between">
+    <div style="text-align:center"><div style="width:.6in;height:.6in;background:#fff;padding:.04in;border-radius:.04in">{qr_svg("https://drlochab.com", "#0A4D45")}</div>
+     <div style="font-size:5.2pt;color:#BFDCD5;margin-top:.025in">Scan: directions</div></div>
+    <div style="font-size:5.2pt;line-height:1.4;color:#BFDCD5;text-align:center">MBBS · MD · DrNB<br>HMC Reg.<br>HN-23524</div></div>
+  </div>
+ </div></div>"""
+
 DESIGNS = [("1-anatomy-blueprint", 3.5, 2.0, bp_front, bp_back, "#D9D3C7"),
-           ("2-vertical-minimal", 2.0, 3.5, vm_front, vm_back, "#C9C1B2"),
+           ("2-minimal-horizontal", 3.5, 2.0, mh_front, mh_back, "#C9C1B2"),
            ("3-midnight-foil", 3.5, 2.0, mf_front, mf_back, "#B9B3A6")]
 
 def mockup(fr, bk, w, h, bg, k=3.2):

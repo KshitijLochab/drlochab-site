@@ -5,6 +5,7 @@ Newest first. Add every new post here so topics are not repeated.
 Generator: social/visiting_card_v3.py (output in _src/out/card-v3/; replaces visiting_card_2026.py, which Dr. Lochab did not like). Applied from research: generous white space, name as the largest element, details at 6–8 pt instead of 5 pt, one serif + one sans, blueprint style, vertical layout, dark stock with gold foil, QR labelled with its use.
 - 1 Anatomy blueprint (3.5 x 2): white line drawing of the digestive tract with labels on a deep-blue drafting grid; clean white back with the OPD timetable, phone, QR.
 - 2 Vertical minimal (2 x 3.5): off-white, oversized stacked name, gold-foil rule and fine gold line drawing; deep-teal back with the three OPDs, urgent note, credentials, QR.
+- Same day, at his request: design 2 made horizontal (3.5 x 2, `mh_front`/`mh_back`) with a drawn gold medal and 'All-India Gold Medal · DrNB Gastroenterology · Medanta' on the front. This is the version to print.
 - 3 Midnight foil (3.5 x 2): near-black with tone-on-tone ripple motif, gold-foil name; matching back.
 Each: print PDF with 1/16 in bleed, flat previews and a photographed-style mock-up.
 
