@@ -1,6 +1,27 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## 17 Nov 2026: visiting cards v3 (after researching 2026 card trends)
+Generator: social/visiting_card_v3.py (output in _src/out/card-v3/; replaces visiting_card_2026.py, which Dr. Lochab did not like). Applied from research: generous white space, name as the largest element, details at 6–8 pt instead of 5 pt, one serif + one sans, blueprint style, vertical layout, dark stock with gold foil, QR labelled with its use.
+- 1 Anatomy blueprint (3.5 x 2): white line drawing of the digestive tract with labels on a deep-blue drafting grid; clean white back with the OPD timetable, phone, QR.
+- 2 Vertical minimal (2 x 3.5): off-white, oversized stacked name, gold-foil rule and fine gold line drawing; deep-teal back with the three OPDs, urgent note, credentials, QR.
+- Same day, at his request: design 2 made horizontal (3.5 x 2, `mh_front`/`mh_back`) with 'All-India Gold Medal · DrNB Gastroenterology · Medanta' on the front (medal drawing dropped at his request: set as tracked gold capitals beside a thin gold rule). This is the version to print.
+- 3 Midnight foil (3.5 x 2): near-black with tone-on-tone ripple motif, gold-foil name; matching back.
+Each: print PDF with 1/16 in bleed, flat previews and a photographed-style mock-up.
+
+## 17 Nov 2026: visiting cards with the new timings
+Generator: social/visiting_card_2026.py (output in _src/out/card-2026/). Two designs, 3.5 x 2 in with 1/16 in bleed, print PDF + PNG previews:
+- A "Midnight & gold": ink-teal front, gold line art of the digestive organs, name, credentials, gold-medal tag, phone; cream back with the evening timetable as two tickets, QR to drlochab.com, urgent-daytime line, HMC Reg.
+- B "Bold portrait": white front with a teal wave and gold line, round portrait in a gold ring; teal back with the same timetable and QR.
+Replaces social/visiting_card.py (old timings).
+
+## 17 Nov 2026: new OPD timings
+Generator: social/opd_timings_nov2026.py (output in _src/out/opd-timings-nov-2026/).
+- Week timetable drawing (Mon to Sun, 4 to 8 pm, a coloured block per place; Sunday closed), three place cards, urgent-daytime note. Instagram post EN + HI, Instagram story / WhatsApp Status EN + HI, Google Business image (Learn more: drlochab.com/#visit, no phone number in text), WhatsApp messages EN + HI.
+- Site: all timings updated from clinics.py (home, every page's booking box and doctor card, Gurgaon and About pages, llms.txt, structured data).
+- Redesigned the same day at Dr. Lochab's request (first version not eye-catching): social/opd_timings_v2.py (output in _src/out/opd-timings-v2/). "Your evening gastro clinic": dusk sky over a Gurugram skyline, a big clock with the 4 to 8 pm arc glowing, his portrait; then two bold tickets (Mon·Wed·Fri: Apollo Clinic 6–8; Tue·Thu·Sat: Apollo Hospitals 4–6, then Arcura 6:30–8); then the urgent-daytime rule (noon sun over a hospital). Instagram carousel EN + HI (3 slides), story/Status EN + HI, Google Business image. Use these instead of the first version.
+- Third design the same day (he asked for modern and sophisticated): social/opd_timings_v3.py (output in _src/out/opd-timings-v3/), in the style of the chosen visiting card: off-white and deep teal, serif headings, tracked gold capitals, thin gold rule, fine gold line drawing, editorial timetable with lots of white space. Instagram carousel EN + HI (cover 'Now seeing patients every evening.' + timetable, which also works alone), story/Status EN + HI, Google Business image. This is the version to post.
+
 ## AI visibility check 14 Nov 2026 (first monthly check, Part C)
 Searches run (web search, extended): "Dr Kshitij Lochab"; "Kshitij Lochab gastroenterologist Gurugram"; "gastroenterologist Sector 51 Gurgaon"; "EUS ERCP doctor Gurgaon"; "Arcura Clinic gastroenterologist Gurugram"; "गुरुग्राम गैस्ट्रोएंटेरोलॉजिस्ट डॉ. क्षितिज लोचब"; also "drlochab.com", "\"Kshitij Lochab\"", "Dr Kshitij Lochab Arcura Clinic Sector 51 Mayfield Garden", "medanta.org kshitij-lochab".
 - drlochab.com appeared for none of them (not even "drlochab.com"). The GitHub repository and its pull requests appeared instead for his name, "drlochab.com" and the Arcura search. Other sources about him: an old LinkedIn profile (linkedin.com/in/kshitij-lochab-41009575, "Doctor Of Medicine - Self-employed"), Medanta doctor-listing pages and an old Medanta profile URL (/hospitals-near-me/gurugram-hospital/speciality/gastroenterology/doctor/dr-kshitij-lochab, now a generic page without him), and Medical Dialogues (NBEMS convocation: Dr. S K Sama Gold Medal, "Medanta The Medicity, Gurugram"; correct for the time).
