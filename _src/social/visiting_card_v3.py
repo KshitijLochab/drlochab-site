@@ -199,9 +199,9 @@ def mh_front():
    <div class="serif" style="font-size:20pt;line-height:.98">Kshitij Lochab</div>
    <div style="width:.5in;height:1.2pt;background:{FOIL};margin:.07in 0 .06in"></div>
    <div style="font-size:7pt;line-height:1.38;color:#2E4740">Consultant Gastroenterologist<br>&amp; Therapeutic Endoscopist</div>
-   <div style="display:flex;align-items:center;gap:.06in;margin-top:.07in">{medal(.24)}
-    <div><div class="foil" style="font-size:7.2pt;font-weight:600;letter-spacing:.02em">All-India Gold Medal</div>
-     <div style="font-size:5.8pt;color:#6D7A73">DrNB Gastroenterology · Medanta</div></div></div></div>
+   <div style="margin-top:.1in;padding-left:.07in;border-left:1.2pt solid #C69A3E">
+    <div class="cap" style="font-size:6pt;letter-spacing:.2em;color:#A2741C">All-India Gold Medal</div>
+    <div style="font-size:6pt;color:#6D7A73;margin-top:.015in;letter-spacing:.02em">DrNB Gastroenterology · Medanta</div></div></div>
   <div style="position:absolute;left:0;bottom:0">
    <div class="serif" style="font-size:10pt">{PHONE}</div>
    <div style="font-size:6.4pt;color:#6D7A73;margin-top:.01in">Call or WhatsApp · {SITE}</div></div>
