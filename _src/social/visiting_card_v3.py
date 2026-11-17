@@ -191,20 +191,24 @@ def medal(w=.34):
 # ---------------- 2 Minimal, horizontal (3.5 x 2 in), at Dr. Lochab's request (17 Nov 2026) ----------------
 def mh_front():
     return f"""<div class="card" style="background:#F6F2EA;color:#13241F">
- <div style="position:absolute;right:.2in;top:.52in;width:.95in;height:1.35in;opacity:.95">{gut_line("#C69A3E", 1.5)}</div>
+ <div style="position:absolute;right:.2in;top:.5in;width:.85in;height:1.15in;opacity:.95">{gut_line("#C69A3E", 1.5)}</div>
  <div class="in">
   <div style="position:absolute;right:0;top:0;width:.26in;height:.26in">{MARK}</div>
   <div style="position:absolute;left:0;top:0">
    <div style="font-size:6.6pt;color:#6D7A73;letter-spacing:.06em">Dr.</div>
-   <div class="serif" style="font-size:20pt;line-height:.98">Kshitij Lochab</div>
-   <div style="width:.5in;height:1.2pt;background:{FOIL};margin:.07in 0 .06in"></div>
-   <div style="font-size:7pt;line-height:1.38;color:#2E4740">Consultant Gastroenterologist<br>&amp; Therapeutic Endoscopist</div>
-   <div style="margin-top:.1in;padding-left:.07in;border-left:1.2pt solid #C69A3E">
+   <div class="serif" style="font-size:19pt;line-height:.98">Kshitij Lochab</div>
+   <div style="width:.5in;height:1.2pt;background:{FOIL};margin:.06in 0 .05in"></div>
+   <div style="font-size:7pt;line-height:1.35;color:#2E4740">Consultant Gastroenterologist &amp; Therapeutic Endoscopist</div>
+   <div style="font-size:7pt;line-height:1.35;color:#0D7466;font-weight:600">Associate Consultant, Apollo Hospitals, Gurugram</div>
+   <div style="margin-top:.07in;padding-left:.07in;border-left:1.2pt solid #C69A3E">
     <div class="cap" style="font-size:6pt;letter-spacing:.2em;color:#A2741C">All-India Gold Medal</div>
     <div style="font-size:6pt;color:#6D7A73;margin-top:.015in;letter-spacing:.02em">DrNB Gastroenterology · Medanta</div></div></div>
-  <div style="position:absolute;left:0;bottom:0">
-   <div class="serif" style="font-size:10pt">{PHONE}</div>
-   <div style="font-size:6.4pt;color:#6D7A73;margin-top:.01in">Call or WhatsApp · {SITE}</div></div>
+  <div style="position:absolute;left:0;bottom:0;display:flex;align-items:flex-end;gap:.12in">
+   <div><div class="serif" style="font-size:10pt">{PHONE}</div>
+    <div style="font-size:6pt;color:#6D7A73;margin-top:.01in">Call or WhatsApp</div></div>
+   <div style="width:.6pt;height:.28in;background:#C69A3E"></div>
+   <div><div class="serif" style="font-size:10pt;color:#0D7466">{SITE}</div>
+    <div style="font-size:6pt;color:#6D7A73;margin-top:.01in">Timings, directions, health guides</div></div></div>
  </div></div>"""
 
 def mh_back():
