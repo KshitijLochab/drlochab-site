@@ -231,6 +231,21 @@ MORE = [
    ("Warning signs: see a doctor", ["- Loose motions for more than 2 to 4 weeks, or waking at night to pass stool","- Pale, oily, very foul stools that are hard to flush","- Weight loss without trying, or tiredness from anaemia","- Blood in the stool, or black, tarry stools","- Belly pain that keeps coming back, or yellow eyes",
      "Children under 12 with changes in their stool or poor growth should be seen by their paediatrician. Heavy bleeding from the back passage, black stools with dizziness, or fainting is an emergency: call 112 or go to the nearest emergency department."]),
   ]),
+ dict(slug="nausea-and-vomiting", q="Feeling nauseous or vomiting: what causes it, and when is it serious?", seo="Nausea and vomiting (ji machlana): causes and when to worry", cond=1, proc=0,
+  updated=("2026-11-21", "21 November 2026", "21 नवंबर 2026"),
+  desc="Nausea and vomiting (ji machlana, feeling like vomiting): common short-lived causes, stomach, liver and other causes that need a check-up, what helps at home, tests and warning signs. Dr. Kshitij Lochab, Gurugram.",
+  short="Feeling sick (ji machlana) or vomiting once or twice is usually caused by a stomach infection, acidity, a heavy meal, travel or a new medicine, and settles in a day or two with sips of fluid and light food. Nausea that lasts more than one to two weeks, keeps coming back, or comes with weight loss, belly pain, yellow eyes or blood in the vomit needs a doctor. In the short term, the main risk is losing too much water.",
+  sections=[
+   ("Common, short-lived causes", ["- A stomach infection or food poisoning, often with loose motions","- Acidity, gastritis or a very heavy, oily meal","- Travel (motion sickness), a migraine, or strong smells","- Alcohol the night before, stress or poor sleep","- New medicines, such as some antibiotics, painkillers, iron tablets, some diabetes medicines and weight-loss injections","- Early pregnancy: morning nausea is common in the first three months",
+     "These usually settle within a day or two, or once the medicine is reviewed by the doctor who prescribed it."]),
+   ("Causes that need a check-up", ["- Liver: hepatitis often begins with nausea, poor appetite and a dislike of oily food a few days before the eyes turn yellow","- Gallbladder and pancreas: nausea with attacks of pain in the upper belly, often after a fatty meal","- Stomach: an ulcer, H. pylori infection, or a narrowing at the stomach outlet, which causes vomiting of food eaten many hours earlier","- Slow stomach emptying (gastroparesis), especially in long-standing diabetes: fullness after a few bites and vomiting of old food","- Kidney disease, thyroid problems, very high blood sugar, anxiety and low mood",
+     "In people with diabetes and in older people, a heart attack can show up as nausea and upper belly discomfort with sweating, rather than chest pain. An ECG should be done first in this situation."]),
+   ("What helps at home", ["- Take small sips of ORS, water, coconut water or clear soup every few minutes, rather than a big glass at once","- Once vomiting settles, start with small amounts of bland food: toast, rice, khichdi, idli, banana or curd rice","- Eat small meals every 2 to 3 hours and stay upright for 2 to 3 hours after eating","- Avoid fried, spicy and strongly smelling food until you feel better","- Do not keep taking anti-vomiting tablets on your own for days, as they can hide the cause",
+     "Children under 12 with vomiting should be seen by their paediatrician, and anyone pregnant who cannot keep fluids down should see her doctor the same day."]),
+   ("Tests your doctor may advise", ["For a short episode, usually no test is needed. If nausea lasts or keeps returning, the doctor may advise a blood count, blood sugar, liver and kidney tests, salts (electrolytes), a thyroid test, a pregnancy test where relevant, and an ultrasound of the abdomen. An upper GI endoscopy is advised when there are warning signs, when the problem is new after about 45 to 50 years of age, or when the first tests do not explain it. An ECG is done if heart trouble is possible."]),
+   ("Warning signs: see a doctor the same day", ["- Vomiting for more than a day, or not keeping any fluids down","- Very little urine, dizziness on standing, or a very dry mouth","- Green or foul-smelling vomit with a swollen belly and no passing of wind or stool","- Severe belly pain, or yellow eyes and dark urine","- Nausea with weight loss, difficulty swallowing, or vomiting that keeps coming back for weeks",
+     "Vomiting blood or material like coffee grounds, black stools, chest pain with sweating or breathlessness, a severe headache with a stiff neck or confusion, or vomiting after a head injury is an emergency: call 112 or go to the nearest emergency department."]),
+  ]),
 ]
 
 # Extra links from condition pages to these answers (index into CONDS -> slugs), merged in seo_en.py.
@@ -242,8 +257,8 @@ COND_LINKS = {
  12: ["piles-fissure-fistula"],
  10: ["celiac-disease", "lactose-intolerance", "undigested-food-in-stool"],
  8: ["undigested-food-in-stool"],
- 1: ["stomach-cancer-warning-signs", "stomach-infection-gastroenteritis", "indigestion-heaviness-after-meals", "loss-of-appetite"],
- 0: ["indigestion-heaviness-after-meals"],
+ 1: ["stomach-cancer-warning-signs", "stomach-infection-gastroenteritis", "indigestion-heaviness-after-meals", "loss-of-appetite", "nausea-and-vomiting"],
+ 0: ["indigestion-heaviness-after-meals", "nausea-and-vomiting"],
  7: ["pain-under-right-ribs"],
  2: ["achalasia"],
  11: ["capsule-endoscopy", "stool-tests"],

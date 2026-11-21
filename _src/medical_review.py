@@ -29,7 +29,9 @@ CHANGED = {"/answers/burping-and-hiccups/": "2026-10-31", "/diet-charts/pancreat
            # 13 Nov 2026 (from Search Console): food-by-food answers on the jaundice diet page; dalia question on the acidity chart
            "/answers/diet-in-jaundice/": "2026-11-13", "/diet-charts/acidity-gastritis/": "2026-11-13",
            # 14 Nov 2026: food-by-food answers on the typhoid page
-           "/answers/typhoid-fever/": "2026-11-14"}
+           "/answers/typhoid-fever/": "2026-11-14",
+           # 21 Nov 2026: food-by-food answers on the fatty liver page; "normal liver tests" question on the SGPT page
+           "/answers/is-fatty-liver-reversible/": "2026-11-21", "/answers/high-sgpt-sgot-liver-function-test/": "2026-11-21"}
 DEEP_DATE = "2026-10-31"
 
 # key: (authors, title, journal, year, doi)
