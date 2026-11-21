@@ -177,7 +177,7 @@ def render(lang, bp, kind, conds, procs):
     """kind: 'local' or 'about'. conds/procs: lists of (url, name) in the page language."""
     import clinics, copy
     X = copy.deepcopy((EN if lang == "en" else HI)[kind]); e = bp.e; t = bp.L[lang]
-    A = clinics.APOLLO_CLINIC[lang]
+    A = clinics.APOLLO_CLINIC[lang]; H = clinics.APOLLO_HOSP[lang]
     # 17 Nov 2026: the first FAQ already lists every OPD (clinics.schedule_sentence)
     path, path_en, path_hi = f"{bp.pre(lang)}{X['slug']}/", f"/{X['slug']}/", f"/hi/{X['slug']}/"
     sec = lambda h, inner: f"<section><h2>{e(h)}</h2>{inner}</section>"
@@ -186,9 +186,11 @@ def render(lang, bp, kind, conds, procs):
         body = (f'<p class="lead">{e(X["lead"])}</p>'
                 + sec(X["clinic_h"], "".join(f"<p>{e(p)}</p>" for p in X["clinic"]) + f'<h3>{e(X["hours_h"])}</h3>{hours}<p>{e(X["book"])}</p>'
                       + f'<h3>{e(A["name"])}</h3><p>{e(clinics.APOLLO_CLINIC["addr"][lang])}</p><dl class="lp-hours">' + "".join(f"<dt>{e(d)}</dt><dd>{e(h)}</dd>" for d, h in A["hours"]) + f'</dl><p>{e(A["book"])}</p>'
+                      + f'<h3>{e(H["name"])}</h3><p>{e(clinics.APOLLO_HOSP["addr"][lang])}</p><dl class="lp-hours">' + "".join(f"<dt>{e(d)}</dt><dd>{e(h)}</dd>" for d, h in H["hours"]) + f'</dl><p>{e(H["urgent"])}</p>'
                       f'<div class="lp-act"><a class="btn btn-solid btn-sm" href="{bp.WA}" target="_blank" rel="noopener">{e(X["wa"])}</a>'
                       f'<a class="btn btn-ghost btn-sm" href="{GBP}" target="_blank" rel="noopener">{"Directions to Arcura Clinic" if lang == "en" else "आर्क्योरा क्लिनिक का रास्ता"}</a>'
                       f'<a class="btn btn-ghost btn-sm" href="{clinics.APOLLO_CLINIC["map"]}" target="_blank" rel="noopener">{e(A["dir"])}</a>'
+                      f'<a class="btn btn-ghost btn-sm" href="{clinics.APOLLO_HOSP["map"]}" target="_blank" rel="noopener">{e(H["dir"])}</a>'
                       f'<a class="btn btn-ghost btn-sm" href="{ARCURA}" target="_blank" rel="noopener">{e(ONLINE[lang][3])}</a></div>')
                 + sec(X["treat_h"], bp.links(conds))
                 + sec(X["proc_h"], f'<p>{e(X["proc_p"])}</p>' + bp.links(procs))

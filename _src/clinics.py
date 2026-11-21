@@ -45,10 +45,16 @@ APOLLO_CLINIC = dict(
 
 # Apollo Hospitals, Golf Course Road: OPD, and the only place for urgent daytime consultations.
 APOLLO_HOSP = dict(
- en=dict(name="Apollo Hospitals, Golf Course Road", line="Apollo Hospitals, Golf Course Road, Gurugram", place="Apollo Hospitals, Golf Course Road",
+ # 21 Nov 2026: address from apollohospitals.com/hospitals/gurugram; map is a Google Maps search link (replace with the
+ # exact place link if Dr. Lochab sends one, as for Apollo Clinic).
+ map="https://www.google.com/maps/search/?api=1&query=Apollo+Hospitals+Gurugram+Golf+Course+Road+Sector+28",
+ street="Plot 1202-1204, Golf Course Road, Sector 28, Chakkarpur", postal="122002",
+ addr={"en": "Golf Course Road, Sector 28, Chakkarpur, Gurugram, Haryana 122002",
+       "hi": "गोल्फ़ कोर्स रोड, सेक्टर 28, चक्करपुर, गुरुग्राम, हरियाणा 122002"},
+ en=dict(dir="Directions to Apollo Hospitals", name="Apollo Hospitals, Golf Course Road", line="Apollo Hospitals, Golf Course Road, Gurugram", place="Apollo Hospitals, Golf Course Road",
          hours=[("Tuesday, Thursday and Saturday", "4 pm to 6 pm")], short="Tue, Thu, Sat 4–6 pm", dl=[("Tue, Thu, Sat", "4 – 6 pm")],
          urgent="Urgent daytime consultations: at Apollo Hospitals only. Call or WhatsApp first.", chip="Apollo Hospitals, Tue/Thu/Sat 4–6 pm"),
- hi=dict(name="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड", line="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड, गुरुग्राम", place="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड",
+ hi=dict(dir="अपोलो हॉस्पिटल्स का रास्ता", name="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड", line="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड, गुरुग्राम", place="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड",
          hours=[("मंगलवार, गुरुवार और शनिवार", "शाम 4 से 6 बजे")], short="मंगल, गुरु, शनि शाम 4–6", dl=[("मंगल, गुरु, शनि", "शाम 4 – 6 बजे")],
          urgent="दिन में अर्जेंट परामर्श: सिर्फ़ अपोलो हॉस्पिटल्स में। पहले कॉल या WhatsApp करें।", chip="अपोलो हॉस्पिटल्स, मंगल/गुरु/शनि शाम 4–6"),
 )
@@ -94,8 +100,8 @@ def opening_spec(key="apollo_clinic"):
 def location_ld():
     """Other practice locations (Apollo Clinic, Apollo Hospitals) for the Physician structured data."""
     return [_apollo_clinic_ld(), {"@type": "Hospital", "name": "Apollo Hospitals, Golf Course Road, Gurugram",
-            "address": {"@type": "PostalAddress", "streetAddress": "Golf Course Road", "addressLocality": "Gurugram", "addressRegion": "Haryana", "addressCountry": "IN"},
-            "telephone": "+91-9667104882", "openingHoursSpecification": opening_spec("apollo_hosp")}]
+            "address": {"@type": "PostalAddress", "streetAddress": APOLLO_HOSP["street"], "addressLocality": "Gurugram", "addressRegion": "Haryana", "postalCode": APOLLO_HOSP["postal"], "addressCountry": "IN"},
+            "hasMap": APOLLO_HOSP["map"], "telephone": "+91-9667104882", "openingHoursSpecification": opening_spec("apollo_hosp")}]
 
 def _apollo_clinic_ld():
     d = {"@type": "MedicalClinic", "name": "Apollo Clinic, Sector 52, Gurugram",
@@ -117,7 +123,8 @@ def home_block3(lang):
     import html
     X = APOLLO_HOSP[lang]; e = lambda s: html.escape(s, quote=True)
     hours = '<dl class="hours">' + "".join(f"<dt>{e(d)}</dt><dd>{e(h)}</dd>" for d, h in X["dl"]) + "</dl>"
-    return f'<div class="clinic2"><address><strong>{e(X["line"])}</strong></address>{hours}<p><b>{e(X["urgent"])}</b></p></div>'
+    return (f'<div class="clinic2"><address><strong>{e(X["line"])}</strong><br>{e(APOLLO_HOSP["addr"][lang])}</address>{hours}<p><b>{e(X["urgent"])}</b></p>'
+            f'<div class="hero-cta"><a class="btn btn-ghost" href="{APOLLO_HOSP["map"]}" target="_blank" rel="noopener">{e(X["dir"])}</a></div></div>')
 
 def aside_html(lang, e):
     """Every OPD for the 'Book a consultation' box on inner pages."""
