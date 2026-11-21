@@ -45,9 +45,8 @@ APOLLO_CLINIC = dict(
 
 # Apollo Hospitals, Golf Course Road: OPD, and the only place for urgent daytime consultations.
 APOLLO_HOSP = dict(
- # 21 Nov 2026: address from apollohospitals.com/hospitals/gurugram; map is a Google Maps search link (replace with the
- # exact place link if Dr. Lochab sends one, as for Apollo Clinic).
- map="https://www.google.com/maps/search/?api=1&query=Apollo+Hospitals+Gurugram+Golf+Course+Road+Sector+28",
+ # 21 Nov 2026: address from apollohospitals.com/hospitals/gurugram; map link sent by Dr. Lochab the same day.
+ map="https://maps.app.goo.gl/ZAd4bECZYRwEdQSi6",
  street="Plot 1202-1204, Golf Course Road, Sector 28, Chakkarpur", postal="122002",
  addr={"en": "Golf Course Road, Sector 28, Chakkarpur, Gurugram, Haryana 122002",
        "hi": "गोल्फ़ कोर्स रोड, सेक्टर 28, चक्करपुर, गुरुग्राम, हरियाणा 122002"},
