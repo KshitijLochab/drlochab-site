@@ -1,6 +1,17 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## Week of 23 Nov 2026 (Guru Nanak Jayanti / Gurpurab Tue 24 Nov, wedding season)
+Generator: social/week_2026_11_23.py (output in _src/out/week-2026-11-23/).
+- Instagram carousel (5 slides, EN), Mon 23 Nov: Myth or fact? "A biopsy makes cancer spread" (Myth Buster entry of 23 Nov): endoscope view of the stomach lining with biopsy forceps and a question mark; MYTH with a rice grain vs biopsy piece for scale ("delay does harm"); say yes, ask the report date, collect it, plan treatment; see-without-delay signs with 112; play more at drlochab.com (phone shows Thursday's normal-liver-tests myth). Links to procedures/upper-gi-endoscopy.
+- Instagram post (HI), Tue 24 Nov: गुरु नानक जयंती, लंगर की सीख, पेट के लिए भी (steel thali with dal, sabzi, rotis and kheer on a striped durrie, marigolds, diyas; simple balanced food, eat seated and slowly, take only what you can finish, keep drinking water during sewa; diabetes: watch the sweets). Links to hi/guides/winter-wedding-season-guide.
+- Instagram carousel (5 slides, EN), Wed 25 Nov: Feeling queasy? Nausea and vomiting (green stomach as a seasick boat on waves; usual causes: stomach bug, acidity, travel, new medicine; sip, nibble, sit up; same-day signs with 112; new answer page).
+- Google Business Profile (EN): Feeling queasy? (Learn more: answers/nausea-and-vomiting).
+- WhatsApp Status: Myth: biopsy (EN); गुरुपर्व लंगर (HI); Feeling queasy? (EN).
+- WhatsApp broadcast (EN + HI): new answer page, Nausea and vomiting (HI with Gurpurab wishes).
+- Captions carry name, qualifications, HMC Reg. No. HN-23524 and the AI line.
+- Site: new answer page nausea-and-vomiting (EN and HI; no reviewed-by line until Dr. Lochab adds its date to medical_review.REVIEW_LOG); fatty liver page gained 13 food-by-food answers (EN + HI); SGPT page gained "My liver tests are normal. Does that mean my liver is healthy?" (EN + HI).
+
 ## 17 Nov 2026: visiting cards v3 (after researching 2026 card trends)
 Generator: social/visiting_card_v3.py (output in _src/out/card-v3/; replaces visiting_card_2026.py, which Dr. Lochab did not like). Applied from research: generous white space, name as the largest element, details at 6–8 pt instead of 5 pt, one serif + one sans, blueprint style, vertical layout, dark stock with gold foil, QR labelled with its use.
 - 1 Anatomy blueprint (3.5 x 2): white line drawing of the digestive tract with labels on a deep-blue drafting grid; clean white back with the OPD timetable, phone, QR.

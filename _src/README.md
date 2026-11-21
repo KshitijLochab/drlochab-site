@@ -35,6 +35,7 @@ Requirements: Python Playwright with Chromium (`python3 -m playwright install ch
 - `social/week_2026_11_02.py`: week of 2 Nov 2026 (Myth or fact? ultrasound carousel, pain under the right ribs carousel, Diwali "5 days, 5 diyas" in Hindi, Google post, 3 WhatsApp Status, broadcast).
 - `social/week_2026_11_09.py`: week of 9 Nov 2026 (Myth or fact? chest pain after a heavy meal, loss of appetite carousel with a hunger meter, Chhath Puja nirjala fast in Hindi, Google post, 3 WhatsApp Status, broadcast).
 - `social/week_2026_11_16.py`: week of 16 Nov 2026 (Myth or fact? piles carousel, undigested food in stool carousel for World Toilet Day, Dev Uthani Ekadashi in Hindi, Google post, 3 WhatsApp Status, broadcast).
+- `social/week_2026_11_23.py`: week of 23 Nov 2026 (Myth or fact? biopsy carousel, nausea and vomiting carousel, Guru Nanak Jayanti langar post in Hindi, Google post, 3 WhatsApp Status, broadcast).
 - `social/log.md`: what has already been made and posted, to avoid repeats.
 
 See `BRAND.md` for colours, type, voice and rules.
