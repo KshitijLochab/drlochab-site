@@ -14,7 +14,23 @@ import os, re, datetime, html as _html
 
 PREVIEW = os.environ.get("PREVIEW") == "1"
 REFS_LIVE = True   # approved by Dr. Lochab, 22 Oct 2026
-REVIEW_LOG = {}          # "/conditions/slug/": "YYYY-MM-DD", English path; the Hindi twin follows automatically (overrides REVIEW_ALL)
+REVIEW_LOG = {  # 21 Nov 2026: Dr. Lochab confirmed in chat that he reviewed these 15 pages today
+ "/answers/loss-of-appetite/": "2026-11-21",
+ "/answers/nausea-and-vomiting/": "2026-11-21",
+ "/answers/undigested-food-in-stool/": "2026-11-21",
+ "/answers/blood-in-stool-always-piles/": "2026-11-21",
+ "/answers/diet-in-jaundice/": "2026-11-21",
+ "/answers/gas-and-bloating/": "2026-11-21",
+ "/answers/high-sgpt-sgot-liver-function-test/": "2026-11-21",
+ "/answers/is-endoscopy-painful/": "2026-11-21",
+ "/answers/is-fatty-liver-reversible/": "2026-11-21",
+ "/answers/is-ibs-dangerous/": "2026-11-21",
+ "/answers/typhoid-fever/": "2026-11-21",
+ "/answers/when-is-acidity-serious/": "2026-11-21",
+ "/conditions/h-pylori-gastritis-ulcer/": "2026-11-21",
+ "/conditions/hepatitis-b-c/": "2026-11-21",
+ "/diet-charts/acidity-gastritis/": "2026-11-21",
+}          # "/conditions/slug/": "YYYY-MM-DD", English path; the Hindi twin follows automatically (overrides REVIEW_ALL)
 # 31 Oct 2026: Dr. Lochab asked for the reviewed-by line with that day's date on the medical pages. Every page under these sections
 # gets it; when a page is reviewed again, put its new date in REVIEW_LOG (or move REVIEW_ALL forward after a full review).
 REVIEW_ALL = ("2026-10-31", ("/conditions/", "/procedures/", "/answers/", "/guides/", "/diet-charts/"))

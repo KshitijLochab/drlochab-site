@@ -603,6 +603,28 @@ a.sym{text-decoration:none}
 .phone-ic{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--warm-on-ink);color:var(--ink)}.phone-ic svg{width:24px;height:24px}
 .copied{font-size:.88rem;color:var(--warm-on-ink);min-height:1.2em}
 @media (max-width:860px){.visit{grid-template-columns:1fr;padding:28px 22px}}
+.clinic1{display:grid;gap:18px}
+/* 21 Nov 2026: phones see the three clinics as compact cards right after the phone number, then the optional chips (one swipe row each) and the WhatsApp button */
+@media (max-width:760px){
+#visit .visit{display:flex;flex-direction:column;gap:14px}
+#visit .visit-col{display:contents}
+#visit .visit-col:last-child>*{order:5}
+#visit .reason{order:10}
+#visit .visit-col:first-child>.hero-cta{order:11}
+#visit .visit-col:first-child>p:last-child{order:12}
+#visit .clinic1,#visit .clinic2{gap:8px;margin:0;padding:16px;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:rgba(255,255,255,.05)}
+#visit .clinic1 address,#visit .clinic2 address{font-size:.98rem;line-height:1.45}
+#visit .clinic1 .hours,#visit .clinic2 .hours{margin:2px 0}
+#visit .clinic1 p,#visit .clinic2 p{font-size:.92rem;margin:0}
+#visit .clinic1 .hero-cta,#visit .clinic2 .hero-cta{gap:8px;margin:2px 0 0}
+#visit .clinic1 .btn,#visit .clinic2 .btn{padding:9px 16px;font-size:.88rem}
+#visit .copied:empty{display:none}
+#visit .clinic1>p:has(a[href*="arcuracare"]){display:none}
+#visit .clinic1 .btn,#visit .clinic2 .btn{padding:8px 13px}
+#visit .reason-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-22px;padding:2px 22px}
+#visit .reason-chips::-webkit-scrollbar{display:none}
+#visit .reason-chips .chip{flex:none}
+}
 
 footer{padding-block:40px 56px;font-size:.9rem;color:var(--muted);border-top:1px solid var(--line)}
 footer .wrap{display:grid;gap:10px}
@@ -876,6 +898,7 @@ footer .wrap{display:grid;gap:10px}
           <p>Can't travel? Video consultations are available for follow-ups and for reviewing reports.</p>
         </div>
         <div class="visit-col">
+          <div class="clinic1">
           <address id="addr"><strong>Arcura Clinic</strong><br>M2K Corporate Park &amp; Shopping Plaza<br>14, Mayfield Garden, Sector 51<br>Gurugram, Haryana 122003</address>
           <!--HOURS-->
           <p><a style="color:var(--warm-on-ink)" href="https://arcuracare.com/dr-kshitij-lochab/" target="_blank" rel="noopener">My profile on the Arcura Clinic website →</a></p>
@@ -883,9 +906,10 @@ footer .wrap{display:grid;gap:10px}
             <a class="btn btn-solid" href="https://share.google/9ZndZsg6NHVxeQfYl" target="_blank" rel="noopener">Directions to Arcura</a>
             <button class="btn btn-ghost" id="copyAddr" type="button">Copy address</button>
           </div>
-          <!--CLINIC2-->
           <p class="copied" id="copied" aria-live="polite"></p>
           <p><a href="https://share.google/9ZndZsg6NHVxeQfYl" target="_blank" rel="noopener" style="color:var(--warm-on-ink)">Google Business Profile</a>: directions, photos and reviews.</p>
+          </div>
+          <!--CLINIC2-->
           <!--CLINIC3-->
         </div>
       </div>
@@ -1319,7 +1343,13 @@ function mbBuild(){
   document.getElementById("mbDots").addEventListener("click",e=>{const d=e.target.closest(".mbc-dot");if(d)mbGo(+d.dataset.to);});
   let tm; tr.addEventListener("scroll",()=>{clearTimeout(tm);tm=setTimeout(mbSync,70);},{passive:true});
   addEventListener("resize",()=>mbGo(MBI));
-  mbSync(); mbFoot();
+  // 21 Nov 2026: the first sync reads card sizes, which forced a layout of the whole carousel while the page loaded (about 80 ms on a
+  // mid-range phone in Hindi). Mark card 1 now without reading layout, and measure only when the carousel comes near the screen.
+  MBI=0; document.querySelectorAll(".mbc-dot").forEach((d,i)=>{d.setAttribute("aria-current",String(i===0));d.classList.toggle("done",!!MBG[MBALL[i].date]);});
+  document.getElementById("mbPrev").disabled=true; document.getElementById("mbNext").disabled=MBALL.length<2;
+  if("IntersectionObserver" in window){const io=new IntersectionObserver(es=>{if(es.some(x=>x.isIntersecting)){io.disconnect();mbSync();}},{rootMargin:"800px 0px"});io.observe(tr);}
+  else mbSync();
+  mbFoot();
 }
 getJSON("myths.json").then(all=>{
   const l=live(all); if(!l.length)throw 0;
@@ -1377,7 +1407,8 @@ function fbUpdate(){
   fbUpdate();
 })();
 const hdr=()=>document.documentElement.style.setProperty("--hdr",document.querySelector(".top").offsetHeight+"px");
-hdr(); addEventListener("resize",hdr);
+// 21 Nov 2026: a ResizeObserver reports the header height after the browser's own layout, instead of forcing one while the page loads.
+if("ResizeObserver" in window)new ResizeObserver(hdr).observe(document.querySelector(".top")); else{hdr(); addEventListener("resize",hdr);}
 function openFibre(){selectTab(document.getElementById("tab-fibre"));document.getElementById("daily").scrollIntoView();}
 function openFromHash(){if(location.hash==="#fibre")openFibre();}
 document.getElementById("fbTeaser").addEventListener("click",e=>{e.preventDefault();history.replaceState(null,"","#fibre");openFibre();});
