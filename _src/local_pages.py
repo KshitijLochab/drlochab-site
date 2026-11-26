@@ -5,8 +5,9 @@ import json
 UPD = ("2026-10-18", "18 October 2026", "18 अक्टूबर 2026")
 GBP = "https://share.google/9ZndZsg6NHVxeQfYl"
 ARCURA = "https://arcuracare.com/dr-kshitij-lochab/"
+APOLLO_PROFILE = "https://www.apollohospitals.com/doctors/gastroenterologist/gurugram/dr-kshitij-lochab"   # 26 Nov 2026: his doctor profile on the Apollo Hospitals website
 INSTAGRAM, LINKEDIN = "https://www.instagram.com/drlochab/", "https://www.linkedin.com/in/drlochab/"
-SAME_AS = [GBP, INSTAGRAM, LINKEDIN, ARCURA]
+SAME_AS = [GBP, INSTAGRAM, LINKEDIN, APOLLO_PROFILE, ARCURA]
 HOURS = __import__("clinics").opening_spec("arcura")   # Arcura Clinic; the other OPDs are in location (clinics.location_ld)
 ADDRESS = {"@type": "PostalAddress", "streetAddress": "Arcura Clinic, M2K Corporate Park & Shopping Plaza, 14, Mayfield Garden, Sector 51",
            "addressLocality": "Gurugram", "addressRegion": "Haryana", "postalCode": "122003", "addressCountry": "IN"}
@@ -170,8 +171,8 @@ CSS = """
 @media (max-width:560px){.lp-head{grid-template-columns:110px 1fr}.lp-head img{width:110px;height:138px}}
 """
 
-ONLINE = {"en": ("Find me online", "Instagram @drlochab: gut-health tips", "LinkedIn", "Profile on Arcura Clinic", "Google Business Profile and reviews"),
-          "hi": ("ऑनलाइन यहाँ मिलें", "Instagram @drlochab: पेट की सेहत की सलाह", "LinkedIn", "आर्क्योरा क्लिनिक पर प्रोफ़ाइल", "Google बिज़नेस प्रोफ़ाइल और रिव्यू")}
+ONLINE = {"en": ("Find me online", "Instagram @drlochab: gut-health tips", "LinkedIn", "Profile on Arcura Clinic", "Google Business Profile and reviews", "Profile on Apollo Hospitals"),
+          "hi": ("ऑनलाइन यहाँ मिलें", "Instagram @drlochab: पेट की सेहत की सलाह", "LinkedIn", "आर्क्योरा क्लिनिक पर प्रोफ़ाइल", "Google बिज़नेस प्रोफ़ाइल और रिव्यू", "अपोलो हॉस्पिटल्स पर प्रोफ़ाइल")}
 
 def render(lang, bp, kind, conds, procs):
     """kind: 'local' or 'about'. conds/procs: lists of (url, name) in the page language."""
@@ -191,7 +192,8 @@ def render(lang, bp, kind, conds, procs):
                       f'<a class="btn btn-ghost btn-sm" href="{GBP}" target="_blank" rel="noopener">{"Directions to Arcura Clinic" if lang == "en" else "आर्क्योरा क्लिनिक का रास्ता"}</a>'
                       f'<a class="btn btn-ghost btn-sm" href="{clinics.APOLLO_CLINIC["map"]}" target="_blank" rel="noopener">{e(A["dir"])}</a>'
                       f'<a class="btn btn-ghost btn-sm" href="{clinics.APOLLO_HOSP["map"]}" target="_blank" rel="noopener">{e(H["dir"])}</a>'
-                      f'<a class="btn btn-ghost btn-sm" href="{ARCURA}" target="_blank" rel="noopener">{e(ONLINE[lang][3])}</a></div>')
+                      f'<a class="btn btn-ghost btn-sm" href="{ARCURA}" target="_blank" rel="noopener">{e(ONLINE[lang][3])}</a>'
+                      f'<a class="btn btn-ghost btn-sm" href="{APOLLO_PROFILE}" target="_blank" rel="noopener">{e(ONLINE[lang][5])}</a></div>')
                 + sec(X["treat_h"], bp.links(conds))
                 + sec(X["proc_h"], f'<p>{e(X["proc_p"])}</p>' + bp.links(procs))
                 + f'<section class="see"><h2>{e(X["when_h"])}</h2>{bp.ul(X["when"])}<p>{e(X["urgent"])}</p></section>'
@@ -209,7 +211,7 @@ def render(lang, bp, kind, conds, procs):
                 + sec(X["proc_h"], bp.links(procs))
                 + sec(X["res_h"], f"<p>{e(X['res'])}</p>")
                 + sec(X["reg_h"], f"<p>{e(X['reg'])}</p>") + sec(X["lang_h"], f"<p>{e(X['langs'])}</p>")
-                + sec(ONLINE[lang][0], '<div class="links">' + "".join(f'<a href="{u}" target="_blank" rel="noopener">{e(n)} <span aria-hidden="true">→</span></a>' for u, n in zip((INSTAGRAM, LINKEDIN, ARCURA, GBP), ONLINE[lang][1:])) + "</div>")
+                + sec(ONLINE[lang][0], '<div class="links">' + "".join(f'<a href="{u}" target="_blank" rel="noopener">{e(n)} <span aria-hidden="true">→</span></a>' for u, n in zip((APOLLO_PROFILE, INSTAGRAM, LINKEDIN, ARCURA, GBP), (ONLINE[lang][5],) + ONLINE[lang][1:5])) + "</div>")
                 + bp.faq_html(lang, X["faqs"]))
         graph = [{"@type": "ProfilePage", "url": bp.SITE + path, "name": X["title"], "inLanguage": lang, "dateCreated": UPD[0] + "T09:00:00+05:30", "dateModified": UPD[0] + "T09:00:00+05:30", "mainEntity": {"@id": "https://drlochab.com/#person"}},
                  dict(bp.person(lang), description=X["title"]), physician(full=True)]   # 12 Nov 2026: the profile is about the person

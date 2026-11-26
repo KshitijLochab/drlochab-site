@@ -47,13 +47,14 @@ APOLLO_CLINIC = dict(
 APOLLO_HOSP = dict(
  # 21 Nov 2026: address from apollohospitals.com/hospitals/gurugram; map link sent by Dr. Lochab the same day.
  map="https://maps.app.goo.gl/ZAd4bECZYRwEdQSi6",
+ profile="https://www.apollohospitals.com/doctors/gastroenterologist/gurugram/dr-kshitij-lochab",
  street="Plot 1202-1204, Golf Course Road, Sector 28, Chakkarpur", postal="122002",
  addr={"en": "Golf Course Road, Sector 28, Chakkarpur, Gurugram, Haryana 122002",
        "hi": "गोल्फ़ कोर्स रोड, सेक्टर 28, चक्करपुर, गुरुग्राम, हरियाणा 122002"},
- en=dict(dir="Directions to Apollo Hospitals", name="Apollo Hospitals, Golf Course Road", line="Apollo Hospitals, Golf Course Road, Gurugram", place="Apollo Hospitals, Golf Course Road",
+ en=dict(dir="Directions to Apollo Hospitals", prof="My profile on the Apollo Hospitals website", name="Apollo Hospitals, Golf Course Road", line="Apollo Hospitals, Golf Course Road, Gurugram", place="Apollo Hospitals, Golf Course Road",
          hours=[("Tuesday, Thursday and Saturday", "4 pm to 6 pm")], short="Tue, Thu, Sat 4–6 pm", dl=[("Tue, Thu, Sat", "4 – 6 pm")],
          urgent="Urgent daytime consultations: at Apollo Hospitals only. Call or WhatsApp first.", chip="Apollo Hospitals, Tue/Thu/Sat 4–6 pm"),
- hi=dict(dir="अपोलो हॉस्पिटल्स का रास्ता", name="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड", line="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड, गुरुग्राम", place="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड",
+ hi=dict(dir="अपोलो हॉस्पिटल्स का रास्ता", prof="अपोलो हॉस्पिटल्स की वेबसाइट पर मेरी प्रोफ़ाइल", name="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड", line="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड, गुरुग्राम", place="अपोलो हॉस्पिटल्स, गोल्फ़ कोर्स रोड",
          hours=[("मंगलवार, गुरुवार और शनिवार", "शाम 4 से 6 बजे")], short="मंगल, गुरु, शनि शाम 4–6", dl=[("मंगल, गुरु, शनि", "शाम 4 – 6 बजे")],
          urgent="दिन में अर्जेंट परामर्श: सिर्फ़ अपोलो हॉस्पिटल्स में। पहले कॉल या WhatsApp करें।", chip="अपोलो हॉस्पिटल्स, मंगल/गुरु/शनि शाम 4–6"),
 )
@@ -123,6 +124,7 @@ def home_block3(lang):
     X = APOLLO_HOSP[lang]; e = lambda s: html.escape(s, quote=True)
     hours = '<dl class="hours">' + "".join(f"<dt>{e(d)}</dt><dd>{e(h)}</dd>" for d, h in X["dl"]) + "</dl>"
     return (f'<div class="clinic2"><address><strong>{e(X["line"])}</strong><br>{e(APOLLO_HOSP["addr"][lang])}</address>{hours}<p><b>{e(X["urgent"])}</b></p>'
+            f'<p><a style="color:var(--warm-on-ink)" href="{APOLLO_HOSP["profile"]}" target="_blank" rel="noopener">{e(X["prof"])} →</a></p>'
             f'<div class="hero-cta"><a class="btn btn-ghost" href="{APOLLO_HOSP["map"]}" target="_blank" rel="noopener">{e(X["dir"])}</a></div></div>')
 
 def aside_html(lang, e):
