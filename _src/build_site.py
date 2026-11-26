@@ -26,7 +26,7 @@ schema = {
     "telephone": "+91-9667104882",
     "image": "https://drlochab.com/dr-lochab.jpg",
     "logo": "https://drlochab.com/logo-mark.png",
-    "sameAs": ["https://share.google/9ZndZsg6NHVxeQfYl"],
+    "sameAs": ["https://share.google/9ZndZsg6NHVxeQfYl", "https://www.apollohospitals.com/doctors/gastroenterologist/gurugram/dr-kshitij-lochab"],
     "availableLanguage": ["English", "Hindi"],
     "address": {
         "@type": "PostalAddress",

@@ -42,7 +42,7 @@ def render(out, pairs):
         "- Procedures: upper GI endoscopy, colonoscopy, endoscopic ultrasound (EUS), ERCP, variceal banding, polyp removal and EMR, "
         "endoscopic control of bleeding, PEG feeding tubes, dilatation and stenting, capsule endoscopy",
         "- Online: https://drlochab.com (English), https://drlochab.com/hi/ (Hindi), Instagram @drlochab, https://www.linkedin.com/in/drlochab/, "
-        "https://arcuracare.com/dr-kshitij-lochab/",
+        "Apollo Hospitals profile https://www.apollohospitals.com/doctors/gastroenterologist/gurugram/dr-kshitij-lochab, https://arcuracare.com/dr-kshitij-lochab/",
         "",
         "Every page below also exists in Hindi at the same path under /hi/ (for example /hi/conditions/fatty-liver/).",
     ]

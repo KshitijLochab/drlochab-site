@@ -56,12 +56,14 @@ def add_counter(html_text, lang):
     html_text = html_text.replace('<p class="ai-note">', f'<p class="ai-note">{COUNTER_NOTE[lang]} ', 1)
     return html_text.replace("</body>", counter_js() + "</body>", 1)
 FOOT_LINKS = {"en": ("About Dr. Lochab", "Gastroenterologist in Gurgaon", "Gut health tracker"), "hi": ("डॉ. लोचब के बारे में", "गुड़गाँव में गैस्ट्रोएंटेरोलॉजिस्ट", "पेट की सेहत का ट्रैकर")}
-SOCIAL = {"en": ("Instagram @drlochab", "LinkedIn", "Profile on Arcura Clinic"), "hi": ("Instagram @drlochab", "LinkedIn", "आर्क्योरा क्लिनिक पर प्रोफ़ाइल")}
+SOCIAL = {"en": ("Instagram @drlochab", "LinkedIn", "Profile on Arcura Clinic", "Profile on Apollo Hospitals"), "hi": ("Instagram @drlochab", "LinkedIn", "आर्क्योरा क्लिनिक पर प्रोफ़ाइल", "अपोलो हॉस्पिटल्स पर प्रोफ़ाइल")}
+APOLLO_PROFILE = "https://www.apollohospitals.com/doctors/gastroenterologist/gurugram/dr-kshitij-lochab"
 
 def social_html(lang):
-    a, b, c = SOCIAL[lang]
+    a, b, c, d = SOCIAL[lang]
     return (f'<p class="foot-social"><a href="https://www.instagram.com/drlochab/" target="_blank" rel="noopener">{a}</a> · '
             f'<a href="https://www.linkedin.com/in/drlochab/" target="_blank" rel="noopener">{b}</a> · '
+            f'<a href="{APOLLO_PROFILE}" target="_blank" rel="noopener">{d}</a> · '
             f'<a href="https://arcuracare.com/dr-kshitij-lochab/" target="_blank" rel="noopener">{c}</a></p>')
 CHANNEL_TXT = {"en": ("Get a daily gut-health tip on WhatsApp", "Join the channel"), "hi": ("पेट की सेहत की रोज़ की सलाह WhatsApp पर पाएँ", "चैनल से जुड़ें")}
 
@@ -339,7 +341,7 @@ def footer(lang, diet=True):
 
 def physician(lang):
     return {"@type": "Physician", "@id": "https://drlochab.com/#physician", "name": "Dr. Kshitij Lochab", "url": SITE + pre(lang), "medicalSpecialty": "Gastroenterologic",
-            "sameAs": ["https://share.google/9ZndZsg6NHVxeQfYl", "https://www.instagram.com/drlochab/", "https://www.linkedin.com/in/drlochab/", "https://arcuracare.com/dr-kshitij-lochab/"],
+            "sameAs": ["https://share.google/9ZndZsg6NHVxeQfYl", "https://www.instagram.com/drlochab/", "https://www.linkedin.com/in/drlochab/", APOLLO_PROFILE, "https://arcuracare.com/dr-kshitij-lochab/"],
             "telephone": "+91-9667104882", "address": {"@type": "PostalAddress", "streetAddress": "Arcura Clinic, M2K Corporate Park, 14, Mayfield Garden, Sector 51",
             "addressLocality": "Gurugram", "addressRegion": "Haryana", "postalCode": "122003", "addressCountry": "IN"}}
 
@@ -350,7 +352,8 @@ def person(lang):
     return {"@type": "Person", "@id": "https://drlochab.com/#person", "name": "Dr. Kshitij Lochab", "honorificPrefix": "Dr.",
             "jobTitle": "Consultant Gastroenterologist and Therapeutic Endoscopist", "url": f"{SITE}{pre(lang)}{ABOUT_SLUG}/",
             "image": f"{SITE}/dr-lochab.jpg", "knowsLanguage": ["en", "hi"],
-            "sameAs": ["https://www.instagram.com/drlochab/", "https://www.linkedin.com/in/drlochab/", "https://arcuracare.com/dr-kshitij-lochab/"],
+            "sameAs": ["https://www.instagram.com/drlochab/", "https://www.linkedin.com/in/drlochab/", APOLLO_PROFILE, "https://arcuracare.com/dr-kshitij-lochab/"],
+            "affiliation": [{"@type": "Hospital", "name": "Apollo Hospitals, Golf Course Road, Gurugram", "url": APOLLO_PROFILE}],
             "alumniOf": [{"@type": "Hospital", "name": "Medanta – The Medicity, Gurugram"}],
             "worksFor": {"@type": "Physician", "@id": "https://drlochab.com/#physician", "name": "Dr. Kshitij Lochab"}}
 
