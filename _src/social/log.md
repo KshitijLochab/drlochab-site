@@ -1,6 +1,14 @@
 # Content log
 Newest first. Add every new post here so topics are not repeated.
 
+## Week of 30 Nov 2026 (no major festival; winter smog season)
+Generator: social/week_2026_11_30.py (output in _src/out/week-2026-11-30/). Instagram and Google posts for this week are made by their own Buffer tasks, so this week's set is WhatsApp only.
+- WhatsApp Status (EN), Mon 30 Nov: Low iron? Check the gut. Clean labelled diagram of the digestive tract with three blood drops (ulcer, polyp, piles) and the small bowel labelled "celiac, worms", iron fuel gauge near empty; men and women after menopause: find the cause, don't just take iron; "send this to someone taking iron tablets for months". Links to answers/low-haemoglobin-iron-deficiency-gut. White with rose and gold.
+- WhatsApp Status (EN), Thu 3 Dec: H. pylori: Treat. Wait. Re-test. Comic-strip panels (1 blister strip and a sad germ; 2 calendar "4 weeks", acidity tablets off for 2 if the doctor agrees; 3 breath bag and stool pot with a tick, faded germ); "feeling better is not proof". Links to conditions/h-pylori-gastritis-ulcer. Sky blue.
+- WhatsApp Status (HI), Sat 5 Dec: बाहर स्मॉग है? खाने के बाद 10 मिनट घर में ही टहलें. Hand-drawn whiteboard sketch (smoggy window "AQI 300+", stick figure walking a dotted loop round the dining table, timer); sugar rises less, stomach lighter, don't lie down for 2 to 3 hours; send to the elders at home; chest pain or breathlessness → 112. Links to drlochab.com/hi. Dotted whiteboard, marker green, blue and red.
+- WhatsApp broadcast (EN + HI): new answer page, Low haemoglobin or iron deficiency: when is the stomach or bowel the cause? Now ends with an opt-out line.
+- Site: new answer page low-haemoglobin-iron-deficiency-gut (EN and HI; no reviewed-by line until Dr. Lochab adds its date to medical_review.REVIEW_LOG); H. pylori page gained "Who should be tested for H. pylori?" (EN + HI).
+
 ## Week of 23 Nov 2026 (Guru Nanak Jayanti / Gurpurab Tue 24 Nov, wedding season)
 Generator: social/week_2026_11_23.py (output in _src/out/week-2026-11-23/).
 - Instagram carousel (5 slides, EN), Mon 23 Nov: Myth or fact? "A biopsy makes cancer spread" (Myth Buster entry of 23 Nov): endoscope view of the stomach lining with biopsy forceps and a question mark; MYTH with a rice grain vs biopsy piece for scale ("delay does harm"); say yes, ask the report date, collect it, plan treatment; see-without-delay signs with 112; play more at drlochab.com (phone shows Thursday's normal-liver-tests myth). Links to procedures/upper-gi-endoscopy.

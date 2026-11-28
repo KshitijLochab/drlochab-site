@@ -246,6 +246,21 @@ MORE = [
    ("Warning signs: see a doctor the same day", ["- Vomiting for more than a day, or not keeping any fluids down","- Very little urine, dizziness on standing, or a very dry mouth","- Green or foul-smelling vomit with a swollen belly and no passing of wind or stool","- Severe belly pain, or yellow eyes and dark urine","- Nausea with weight loss, difficulty swallowing, or vomiting that keeps coming back for weeks",
      "Vomiting blood or material like coffee grounds, black stools, chest pain with sweating or breathlessness, a severe headache with a stiff neck or confusion, or vomiting after a head injury is an emergency: call 112 or go to the nearest emergency department."]),
   ]),
+ dict(slug="low-haemoglobin-iron-deficiency-gut", q="Low haemoglobin or iron deficiency: when is the stomach or bowel the cause?", seo="Low haemoglobin (khoon ki kami): when to check the gut", cond=1, proc=1,
+  updated=("2026-11-28", "28 November 2026", "28 नवंबर 2026"),
+  desc="Low haemoglobin from iron deficiency (khoon ki kami): when the stomach or bowel is the cause, who needs an endoscopy and colonoscopy, and warning signs.",
+  short="Iron deficiency is the commonest cause of low haemoglobin in India. In young women it is most often from heavy periods, pregnancy or a diet low in iron. In men of any age, and in women after menopause, iron deficiency is never \"just weakness\": the gut is the usual cause, from slow bleeding (an ulcer, piles, a polyp or a growth) or from poor absorption (celiac disease, H. pylori, worms). These people should have the cause found, usually with an endoscopy and a colonoscopy, and not just take iron tablets.",
+  sections=[
+   ("How the gut causes iron deficiency", ["- Slow, hidden bleeding that you may never see: ulcers and erosions from painkillers or H. pylori, piles, polyps, a growth in the stomach or colon, or small blood vessels that ooze (angiodysplasia)","- Poor absorption: celiac disease, H. pylori infection, long-term acidity tablets, and surgery on the stomach or small intestine","- Worms (hookworm), still common where people walk barefoot or water is unsafe","- Inflammation of the bowel in ulcerative colitis or Crohn's disease",
+     "A small daily loss of blood, too little to change the colour of the stool, is enough to empty the body's iron stores over months."]),
+   ("Who should have the gut checked", ["- Every man with iron deficiency anaemia, whatever his age","- Every woman after menopause with iron deficiency","- Women before menopause who have stomach or bowel symptoms, are over about 50, have a family history of bowel cancer, or whose iron stays low despite treatment","- Anyone with black stools, blood in the stool, weight loss or a change in bowel habit together with low iron","- Anyone whose haemoglobin does not rise, or falls again, after a course of iron",
+     "Taking iron tablets for months without finding the cause can hide a problem, such as a polyp or an early cancer, that is easier to treat when found early."]),
+   ("Tests your doctor may advise", ["First, blood tests confirm that the anaemia is from low iron: a complete blood count, serum ferritin and sometimes iron studies. Most people also need a celiac blood test (tTG IgA), an H. pylori test, a urine test for blood, and kidney and liver tests. When the gut needs to be checked, an upper GI endoscopy and a colonoscopy are usually done on the same day, one after the other, under light sedation. Small biopsies from the small intestine are taken to look for celiac disease. If both are normal and the anaemia continues, a capsule endoscopy can look at the small intestine. Dr. Lochab performs these tests himself at Apollo Hospitals, Golf Course Road; consultations are also held at Arcura Clinic, Sector 51, and Apollo Clinic, Sector 52."]),
+   ("Treatment", ["- Treat the cause: heal the ulcer, clear H. pylori, a gluten-free diet for celiac disease, remove polyps, treat worms or piles","- Iron tablets, as advised by your doctor. Taking them once a day or on alternate days is often better tolerated and absorbed than several times a day","- Take iron with water or a vitamin C-rich fruit such as amla, orange or guava, and keep tea, coffee, milk and calcium tablets at least an hour away","- Iron by drip (intravenous iron) when tablets are not tolerated, do not work, or the iron is needed quickly",
+     "Black stools are normal on iron tablets. Haemoglobin usually starts to rise within 2 to 4 weeks; tablets are continued for about 3 months after it is normal to refill the stores. Do not start or stop iron, or give it to children, without a doctor's advice."]),
+   ("Warning signs: see a doctor soon", ["- Black, tarry stools or blood in the stool","- Breathlessness on walking a short distance, chest pain or a racing heart","- Weight loss without trying, or loss of appetite","- Difficulty swallowing, or vomiting that keeps coming back","- A haemoglobin that keeps falling despite iron",
+     "Children under 12 with low haemoglobin should be seen by their paediatrician. Vomiting blood, black stools with dizziness or fainting, or chest pain with breathlessness is an emergency: call 112 or go to the nearest emergency department."]),
+  ]),
 ]
 
 # Extra links from condition pages to these answers (index into CONDS -> slugs), merged in seo_en.py.
@@ -255,12 +270,12 @@ COND_LINKS = {
  5: ["high-sgpt-sgot-liver-function-test", "liver-abscess", "loss-of-appetite"],
  4: ["liver-cancer-screening"],
  12: ["piles-fissure-fistula"],
- 10: ["celiac-disease", "lactose-intolerance", "undigested-food-in-stool"],
+ 10: ["celiac-disease", "lactose-intolerance", "undigested-food-in-stool", "low-haemoglobin-iron-deficiency-gut"],
  8: ["undigested-food-in-stool"],
- 1: ["stomach-cancer-warning-signs", "stomach-infection-gastroenteritis", "indigestion-heaviness-after-meals", "loss-of-appetite", "nausea-and-vomiting"],
+ 1: ["stomach-cancer-warning-signs", "stomach-infection-gastroenteritis", "indigestion-heaviness-after-meals", "loss-of-appetite", "nausea-and-vomiting", "low-haemoglobin-iron-deficiency-gut"],
  0: ["indigestion-heaviness-after-meals", "nausea-and-vomiting"],
  7: ["pain-under-right-ribs"],
  2: ["achalasia"],
  11: ["capsule-endoscopy", "stool-tests"],
- 13: ["stool-tests", "piles-fissure-fistula"],
+ 13: ["stool-tests", "piles-fissure-fistula", "low-haemoglobin-iron-deficiency-gut"],
 }

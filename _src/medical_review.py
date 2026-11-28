@@ -47,7 +47,9 @@ CHANGED = {"/answers/burping-and-hiccups/": "2026-10-31", "/diet-charts/pancreat
            # 14 Nov 2026: food-by-food answers on the typhoid page
            "/answers/typhoid-fever/": "2026-11-14",
            # 21 Nov 2026: food-by-food answers on the fatty liver page; "normal liver tests" question on the SGPT page
-           "/answers/is-fatty-liver-reversible/": "2026-11-21", "/answers/high-sgpt-sgot-liver-function-test/": "2026-11-21"}
+           "/answers/is-fatty-liver-reversible/": "2026-11-21", "/answers/high-sgpt-sgot-liver-function-test/": "2026-11-21",
+           # 28 Nov 2026: "Who should be tested for H. pylori?" question
+           "/conditions/h-pylori-gastritis-ulcer/": "2026-11-28"}
 DEEP_DATE = "2026-10-31"
 
 # key: (authors, title, journal, year, doi)
