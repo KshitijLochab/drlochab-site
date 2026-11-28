@@ -72,6 +72,7 @@ PROBLEMS = {
  "appendicitis-or-gas-pain": ("intestine", "Appendicitis or gas?", "Lower right belly pain: how to tell.", "अपेंडिसाइटिस या गैस?", "निचले दाएँ पेट में दर्द: फ़र्क़ कैसे पहचानें।"),
  "typhoid-fever": ("intestine", "Typhoid", "Rising fever; blood culture, not Widal.", "टाइफ़ाइड", "बढ़ता बुखार; विडाल नहीं, ब्लड कल्चर।"),
  "travellers-diarrhoea": ("intestine", "Loose motions while travelling", "Prevention and treatment on trips.", "यात्रा में दस्त", "सफ़र में बचाव और इलाज।"),
+ "low-haemoglobin-iron-deficiency-gut": ("intestine", "Low haemoglobin (iron deficiency)", "When the gut is the hidden cause.", "हीमोग्लोबिन कम (आयरन की कमी)", "जब वजह पेट या आँत में छिपी हो।"),
 }
 # Other answer pages, shown as question chips under their organ.
 QS = {

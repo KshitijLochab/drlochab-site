@@ -51,6 +51,7 @@ AKA = {
  "indigestion-heaviness-after-meals": ["badhazmi ka ilaj", "khana khane ke baad pet bhari lagna", "khana hajam na hona"],
  "pain-under-right-ribs": ["dayi pasli ke niche dard", "pet me right side upar dard", "pasliyon ke niche dard"],
  "undigested-food-in-stool": ["potty me khana nikalna", "mal me bina pacha khana", "latrine me khana sabut aana"],
+ "low-haemoglobin-iron-deficiency-gut": ["khoon ki kami ka karan", "hemoglobin kam hone ke karan", "iron ki kami ke lakshan", "khoon ki kami me endoscopy"],
  "nausea-and-vomiting": ["ji machlana", "ulti jaisa lagna", "ji michlane ka karan", "subah ulti jaisa lagna"],
  "loss-of-appetite": ["bhook na lagna", "bhukh kam lagne ka karan", "khana khane ka man na karna"],
  "burping-and-hiccups": ["baar baar dakar aana", "hichki kaise roke"],
